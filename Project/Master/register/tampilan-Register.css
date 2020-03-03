@@ -1,0 +1,23 @@
+.panjangSetengah{
+    width:48%;
+}
+
+.panjangSeperempat{
+    width:30%;
+}
+
+.panjangTigaperempat{
+    width:65%;
+}
+
+.gabung{
+    float:left;
+}
+
+.berhentiGabung{
+    clear:both;
+}
+
+.jarakKanan{
+    margin-right:4%;
+}

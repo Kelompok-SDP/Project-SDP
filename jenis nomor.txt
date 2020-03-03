@@ -1,0 +1,5 @@
+3 Jenis nomor
+
+1. Nomor Reservasi Meja rmj001
+2. Nomor Dine in d001
+3. Nomor take away t001
