@@ -41,80 +41,78 @@
     <div class="limiter">
 		<div class="container-login100" style="background-image: url('../Template/Login_v3/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="checkLogin.php" method="post">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Register
-					</span>
+                <span class="login100-form-title p-b-34 p-t-27">
+                    Register
+                </span>
 
-					<div class="wrap-input100 validate-input panjangSetengah gabung jarakKanan" data-validate = "Enter username">
-						<input class="input100" type="text" name="nama_depan" placeholder="Nama Depan">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input panjangSetengah gabung"  data-validate = "Enter username">
-						<input class="input100" type="text" name="nama_belakang" placeholder="Nama Belakang">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-                    
-                    <div class="wrap-input100 validate-input berhentiGabung" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input"  data-validate = "Enter username">
-						<input class="input100" type="text" id="nohp" maxlength="13" onkeypress="NumberOnly(event)" name="nohp" placeholder="Nomor Telepon">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Email Invalid">
-						<input class="input100" type="text" id="email" name="email" placeholder="Email">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" id="pass" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" id="conpass" type="password" name="conpass" placeholder="Confirm Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-                        <select id="kabupaten" onchange="gantiKota()"  style="margin-bottom:15px">
-                            <?php
-                                $query=mysqli_query($conn_detail,"SELECT * from daerah");
-                                foreach ($query as $key => $value) {
-                                    echo "<option value='$value[kode_daerah]'>$value[nama_daerah]</option>";
-                                }
-                            ?>
-                        </select>
-
-                        <select id="kota">
-                            
-                        </select>
-                    
-                    <div class="wrap-input100 validate-input gabung panjangTigaperempat jarakKanan" data-validate = "Enter username">
-                    <input class="input100" type="text" name="alamat" placeholder="Alamat">
+                <div class="wrap-input100 validate-input panjangSetengah gabung jarakKanan" data-validate = "Enter username">
+                    <input required class="input100" type="text" id="nama_depan" name="nama_depan" placeholder="Nama Depan">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-                    
-                    <div class="wrap-input100 validate-input gabung panjangSeperempat" data-validate = "Enter username">
-                    <input class="input100" type="text" maxlength="6" onkeypress="NumberOnly(event)" name="kodepos" placeholder="Kode Pos">
-                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
+                </div>
 
-					<div class="container-login100-form-btn berhentiGabung">
-						<button class="login100-form-btn" name="btnLogin" onclick='checkValid()'>
-							Register
-						</button>
-					</div>
+                <div class="wrap-input100 validate-input panjangSetengah gabung"  data-validate = "Enter username">
+                    <input required class="input100" type="text" id="nama_depan" name="nama_belakang" placeholder="Nama Belakang">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input berhentiGabung" data-validate = "Enter username">
+                    <input required  class="input100" type="text" id="username" name="username" placeholder="Username">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input"  data-validate = "Enter username">
+                    <input required  class="input100" type="text" id="nohp" maxlength="13" onkeypress="NumberOnly(event)" name="nohp" placeholder="Nomor Telepon">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Email Invalid">
+                    <input required  class="input100" type="text" id="email" name="email" placeholder="Email">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input required  class="input100" id="pass" type="password" name="pass" placeholder="Password">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <input required  class="input100" id="conpass" type="password" name="conpass" placeholder="Confirm Password">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                    <select id="kabupaten" onchange="gantiKota()"  style="margin-bottom:15px">
+                        <?php
+                            $query=mysqli_query($conn_detail,"SELECT * from daerah");
+                            foreach ($query as $key => $value) {
+                                echo "<option value='$value[kode_daerah]'>$value[nama_daerah]</option>";
+                            }
+                        ?>
+                    </select>
+
+                    <select id="kota">
+                        
+                    </select>
+                
+                <div class="wrap-input100 validate-input gabung panjangTigaperempat jarakKanan" data-validate = "Enter username">
+                <input required  class="input100" type="text" id="alamat" name="alamat" placeholder="Alamat">
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+                
+                <div class="wrap-input100 validate-input gabung panjangSeperempat" data-validate = "Enter Kodepos">
+                <input required  class="input100" type="text" id="kodepos" maxlength="6" onkeypress="NumberOnly(event)" name="kodepos" placeholder="Kode Pos">
+                <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="container-login100-form-btn berhentiGabung">
+                    <button class="login100-form-btn" name="btnRegis" onclick='checkValid()'>
+                        Register
+                    </button>
+                </div>
                     
-				</form>
 			</div>
 		</div>
 	</div>
@@ -173,9 +171,40 @@
     }
 
     function checkValid(){
-        ValidateEmail($("#email").val());
-        ValidatePass($("#pass").val(),$("#conpass").val());
-        ValidateNohp($("#nohp").val()) 
+        var nama_depan=$("#nama_depan").val();
+        var nama_belakang=$("#nama_belakang").val();
+        var username=$("#username").val();
+        var alamat=$("#alamat").val();
+        var kodepos=$("#kodepos").val();
+        var email=$("#email").val();
+        var pass=$("#pass").val();
+        var conpass=$("#conpass").val();
+        var nohp=$("#nohp").val();
+        if(nama_depan!=''&&nama_belakang!=''&&username!=''&&alamat!=''&&kodepos!=''&&email!=''&&pass!=''&&conpass!=''&&nohp!=''){
+            if(ValidateEmail(email)){
+                if(ValidatePass(pass,conpass)){
+                    if(ValidateNohp(nohp)){
+                        
+                    }
+                }
+            }
+        }else{
+            alert('Ada field yang kosong');
+        }
+    }
+
+    function check(check,jenis){
+        $.ajax({
+            type: "post",
+            url: "register/check_valid.php",
+            data: {
+                data:check,
+                jenis:jenis
+            },
+            success: function (response) {
+                
+            }
+        });
     }
 
     function ValidateEmail(email) {
