@@ -1,0 +1,55 @@
+Penulisan buku
+
+PENDAHULUAN
+
+Latar Blkg (3 paragraf)
+Pengenalan Masalah: mengapa catering itu di jual online
+Inti dari Masalah: masalah apa yg terjadi
+Solusi: sistem yg dibuat seperti apa
+
+Tujuan
+pengantar, poin2 yg mjd inti dri proyek
+
+Teori Penunjang
+front + back end (api,library2)
+
+Ruang Lingkup
+arsitektur sistem: 
+user: tambah penyedia katering
+• user bs lihat history (extend)
+• admin bs menghasilkan laporan (10)
+fitur2
+• batasan pke framework/bahasa
+• app pembanding
+
+metodologi
+SDLC
+• planning: kebutuhanx apa
+• analisa: tanya kebutuhan ke orgnya
+• desain: erd dfd database interface tabel algo
+• implementasi: insert up del
+• uji coba/testing: black box
+• maintenance
+
+Sistematika Pembahasan
+
+BAB 2 ANALISA
+analisa sistem baru+lama
+
+BAB 3 DESAIN
+sistem
+db
+tabel
+interface
+algo
+
+BAB 4 IMPLEMENTASI
+BAB 5 UJI COBA
+BAB 6 USER MANUAL
+BAB 7 PENUTUP
+
+kalimat pasif
+file penting: pedoman penulisan kir
+lakban biru map pink
+
+Website Katering X untuk Pola Makan Sehat
