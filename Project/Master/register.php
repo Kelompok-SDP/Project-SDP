@@ -184,7 +184,8 @@
             if(ValidateEmail(email)){
                 if(ValidatePass(pass,conpass)){
                     if(ValidateNohp(nohp)){
-                        console.log(check(email,'email'));
+                        check(email,'email');
+                        console.log(balik);
                         if(check(email,'email')){
                             if(check(nohp,'nohp')){
                                 if(check(nohp,'nohp')){
@@ -243,9 +244,10 @@
                 jenis:jenis
             },dataType: "json",
             success: function (data) {
-                console.log($.parseJSON(data));
+                balik=$.parseJSON(data);
+                console.log(balik);
                 
-                return $.parseJSON(data);
+                return balik;
             }
         });
     }
