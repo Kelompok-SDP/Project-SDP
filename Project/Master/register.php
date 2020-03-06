@@ -184,7 +184,14 @@
             if(ValidateEmail(email)){
                 if(ValidatePass(pass,conpass)){
                     if(ValidateNohp(nohp)){
-                        
+                        console.log(check(email,'email'));
+                        if(check(email,'email')){
+                            if(check(nohp,'nohp')){
+                                if(check(nohp,'nohp')){
+                                    insertUser();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -192,17 +199,53 @@
             alert('Ada field yang kosong');
         }
     }
-
-    function check(check,jenis){
+    function insertUser(){
+        var nama_depan   =$("#nama_depan").val();
+        var nama_belakang=$("#nama_belakang").val();
+        var username     =$("#username").val();
+        var alamat       =$("#alamat").val();
+        var kodepos      =$("#kodepos").val();
+        var email        =$("#email").val();
+        var pass         =$("#pass").val();
+        var nohp         =$("#nohp").val();
+        var kabupaten    =$("#kabupaten").val();
+        var kota          =$("#kota").val();
         $.ajax({
-            type: "post",
+            method: "post",
+            url: "register/insertUser.php",
+            data: {
+                nama_depan   :nama_depan   ,
+                nama_belakang:nama_belakang,
+                username     :username     ,
+                alamat       :alamat       ,
+                kodepos      :kodepos      ,
+                email        :email        ,
+                pass         :pass         ,
+                nohp         :nohp         ,
+                kabupaten    :kabupaten    ,
+                kota         :kota         
+            },
+            dataType: "dataType",
+            success: function (response) {
+                
+            }
+        });
+    }
+    
+    var balik=-1;
+    function check(check,jenis){
+        
+        $.ajax({
+            method: "post",
             url: "register/check_valid.php",
             data: {
                 data:check,
                 jenis:jenis
-            },
-            success: function (response) {
+            },dataType: "json",
+            success: function (data) {
+                console.log($.parseJSON(data));
                 
+                return $.parseJSON(data);
             }
         });
     }
