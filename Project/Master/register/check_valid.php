@@ -19,7 +19,7 @@
             echo json_encode($kembali);
         }
     }
-
+    $row_cnt =0;
     if($jenis=='nohp'){
         $query=mysqli_query($conn,"SELECT * from member where no_hp=$data");
         if (is_array($query) || is_object($query))
@@ -34,7 +34,7 @@
             echo "1";
         }
     }
-
+    $row_cnt =0;
     if($jenis=='username'){
         $query=mysqli_query($conn,"SELECT * from member where username=$data");
         if (is_array($query) || is_object($query))

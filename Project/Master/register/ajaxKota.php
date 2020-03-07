@@ -5,7 +5,7 @@
     
     foreach ($query as $key => $value) {
         if($value["kode_daerah"]==$kodeDaerah)
-        echo "<option value='$value[kode_daerah]'>$value[nama_kota]</option>";
+        echo "<option value='$value[kode_kota]'>$value[nama_kota]</option>";
     }
     
 ?>

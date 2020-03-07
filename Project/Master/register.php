@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="wrap-input100 validate-input panjangSetengah gabung"  data-validate = "Enter username">
-                    <input required class="input100" type="text" id="nama_depan" name="nama_belakang" placeholder="Nama Belakang">
+                    <input required class="input100" type="text" id="nama_belakang" name="nama_belakang" placeholder="Nama Belakang">
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                 </div>
                 
@@ -185,10 +185,9 @@
                 if(ValidatePass(pass,conpass)){
                     if(ValidateNohp(nohp)){
                         check(email,'email');
-                        console.log(balik);
-                        if(check(email,'email')){
-                            if(check(nohp,'nohp')){
-                                if(check(nohp,'nohp')){
+                        if(balik==1){check(nohp,'nohp');
+                            if(balik==1){check(nohp,'nohp')
+                                if(balik==1){
                                     insertUser();
                                 }
                             }
@@ -204,27 +203,29 @@
         var nama_depan   =$("#nama_depan").val();
         var nama_belakang=$("#nama_belakang").val();
         var username     =$("#username").val();
+        var pass     =$("#pass").val();
         var alamat       =$("#alamat").val();
         var kodepos      =$("#kodepos").val();
         var email        =$("#email").val();
         var pass         =$("#pass").val();
         var nohp         =$("#nohp").val();
         var kabupaten    =$("#kabupaten").val();
-        var kota          =$("#kota").val();
+        var kota         =$("#kota").val();
         $.ajax({
             method: "post",
             url: "register/insertUser.php",
             data: {
-                nama_depan   :nama_depan   ,
+                nama_depan:nama_depan,
                 nama_belakang:nama_belakang,
-                username     :username     ,
-                alamat       :alamat       ,
-                kodepos      :kodepos      ,
-                email        :email        ,
-                pass         :pass         ,
-                nohp         :nohp         ,
-                kabupaten    :kabupaten    ,
-                kota         :kota         
+                username:username,
+                alamat:alamat,
+                pass:pass,
+                kodepos:kodepos,
+                email:email,
+                pass:pass,
+                nohp:nohp,
+                kabupaten:kabupaten,
+                kota:kota         
             },
             dataType: "dataType",
             success: function (response) {
@@ -233,7 +234,7 @@
         });
     }
     
-    var balik=-1;
+    let balik=-1;
     function check(check,jenis){
         
         $.ajax({
