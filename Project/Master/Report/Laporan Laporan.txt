@@ -1,0 +1,12 @@
+Laporan Laporan
+
+1. laporan penjualan perbulan yang di pilih user
+2. laporan penjualan per hari
+3. laporan penjualan per minggu
+4. laporan penjualan sesuai rentang yang di berikan oleh user
+5. laporan menu terfavorit perbulan
+6. laporan menu terfavorit perminggu
+7. laporan menu terfavorit perhari
+8. laporan penjualan terbanyak tiap jenis transaksi
+9. Laporan 10 member beli terbanyak
+10.Laporan penjualan jenis transaksi terbanyak
