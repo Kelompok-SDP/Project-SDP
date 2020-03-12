@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.min.js"></script>
     <title>Kategori</title>
+</head>
 </head>
 <body>
     <h1>Input Kategori</h1>
@@ -13,3 +15,5 @@
     </form>
 </body>
 </html>
+<script>
+</script>
