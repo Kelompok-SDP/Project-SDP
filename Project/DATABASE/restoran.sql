@@ -98,24 +98,30 @@ CREATE TABLE `kategori` (
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id_member` varchar(10) NOT NULL,
-  `Nama_depan` varchar(50) NOT NULL,
+  `fullname` varchar(50) NOT NULL,
   `password` varchar(50) CHARACTER SET macce COLLATE macce_bin NOT NULL,
   `email` varchar(100) NOT NULL,
   `alamat` varchar(100) NOT NULL,
-  `no_hp` int(12) NOT NULL,
+  `no_hp` bigint(13) NOT NULL,
   `kota` varchar(50) NOT NULL,
   `kecematan` varchar(50) NOT NULL,
   `kode_pos` int(8) NOT NULL,
-  `Nama_belakang` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL
+  `username` varchar(50) NOT NULL,
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id_member`, `Nama_depan`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `Nama_belakang`, `username`) VALUES
-('fa00001', 'fabian suryajaya s', '6e3df1e2bccb9e5eea0d1822814ed45f', 'fab@gmail.com', 'kranggan 38', 123213, 'surabaya', 'bubutan', 123213, '', '');
+INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`) VALUES
+('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0'),
+('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '1'),
+('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1'),
+('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0'),
+('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1'),
+('FA00001', 'Fabian Suryajaya S', '123', 'fab@gmail.com', 'jalan 30', 891234567894, '', 'Jawa Timur', 123123, 'fabiansuryajayas', '1'),
+('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1');
 
 -- --------------------------------------------------------
 
@@ -224,7 +230,9 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`id_member`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `no_hp` (`no_hp`);
 
 --
 -- Indexes for table `menu`
