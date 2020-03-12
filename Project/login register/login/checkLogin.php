@@ -2,9 +2,11 @@
     require_once("../../config.php");
     $user=$_POST["user"];
     $password=$_POST["password"];
-    $query="SELECT username,no_hp,email,password,status from member where username='$user' or email='$user' or no_hp = $user";
+
+    $query="SELECT username,no_hp,email,password,status from member where username='$user' or email='$user' or no_hp = '$user'";
     $query=mysqli_query($conn,$query);
-    if(mysqli_num_rows($query)>0){
+    $jumlah=mysqli_num_rows($query);
+    if($jumlah>0){
         $query=mysqli_fetch_assoc($query);
         if($query["status"]==1){
             if($query["password"]==$password){
