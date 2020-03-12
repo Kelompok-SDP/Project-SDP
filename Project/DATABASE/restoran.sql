@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2020 at 02:45 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Mar 12, 2020 at 05:59 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -23,6 +23,58 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `restoran` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `restoran`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `djual`
+--
+
+DROP TABLE IF EXISTS `djual`;
+CREATE TABLE `djual` (
+  `id_djual` varchar(10) NOT NULL,
+  `id_menu` varchar(10) NOT NULL,
+  `harga` bigint(6) NOT NULL,
+  `jumlah` int(3) NOT NULL,
+  `subtotal` bigint(8) NOT NULL,
+  `id_hjual` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `djual`
+--
+
+INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_hjual`) VALUES
+('DJ001', 'MEN001', 5000, 1, 5000, 'H001'),
+('DJ002', 'MEN002', 5000, 1, 5000, 'H001'),
+('DJ003', 'MEN003', 10000, 1, 10000, 'H002'),
+('DJ004', 'MEN004', 5000, 2, 10000, 'H002'),
+('DJ005', 'MEN001', 5000, 4, 20000, 'H003');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hjual`
+--
+
+DROP TABLE IF EXISTS `hjual`;
+CREATE TABLE `hjual` (
+  `id_hjual` varchar(10) NOT NULL,
+  `tanggal_transaksi` date NOT NULL,
+  `total` int(11) NOT NULL,
+  `jenis_pemesanan` varchar(10) NOT NULL,
+  `id_pegawai` varchar(10) NOT NULL,
+  `id_member` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hjual`
+--
+
+INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`, `id_pegawai`, `id_member`) VALUES
+('H001', '2020-02-14', 10000, 'dine-in', 'PEG001', 'AM001'),
+('H002', '2020-03-18', 20000, 'take away', 'PEG001', 'AM001'),
+('H003', '2020-02-14', 20000, 'delivery', 'PEG002', 'fa00001');
 
 -- --------------------------------------------------------
 
@@ -87,6 +139,14 @@ CREATE TABLE `menu` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `id_kategori`, `id_promo`, `status`) VALUES
+('MEN001', 'Nasi Goreng', 5000, '001', '01', 1),
+('MEN002', 'Ayam Goreng', 5000, '002', '001', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -118,11 +178,24 @@ CREATE TABLE `paket_menu` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `periode`
+-- Table structure for table `pegawai`
 --
 
-DROP TABLE IF EXISTS `periode`;
-CREATE TABLE `periode` (
+DROP TABLE IF EXISTS `pegawai`;
+CREATE TABLE `pegawai` (
+  `id_pegawai` varchar(10) NOT NULL,
+  `nama` varchar(25) NOT NULL,
+  `jabatan` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo`
+--
+
+DROP TABLE IF EXISTS `promo`;
+CREATE TABLE `promo` (
   `id_promo` varchar(10) NOT NULL,
   `nama_promo` varchar(50) NOT NULL,
   `harga_promo` int(11) NOT NULL,
@@ -133,6 +206,18 @@ CREATE TABLE `periode` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `djual`
+--
+ALTER TABLE `djual`
+  ADD PRIMARY KEY (`id_djual`);
+
+--
+-- Indexes for table `hjual`
+--
+ALTER TABLE `hjual`
+  ADD PRIMARY KEY (`id_hjual`);
 
 --
 -- Indexes for table `kategori`
@@ -168,9 +253,9 @@ ALTER TABLE `paket_menu`
   ADD PRIMARY KEY (`id_paket`,`id_menu`);
 
 --
--- Indexes for table `periode`
+-- Indexes for table `promo`
 --
-ALTER TABLE `periode`
+ALTER TABLE `promo`
   ADD PRIMARY KEY (`id_promo`);
 COMMIT;
 
