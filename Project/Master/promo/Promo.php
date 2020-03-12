@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/Project-SDP/Project/jQuery/jQuery.js"></script>
     <title>Kategori</title>
+    
 </head>
 </head>
 <body>
-    <h1>Input Kategori</h1>
+    <h1>Input Promo</h1>
     
-        Item name: <input type="text" name="namKat" id="namKat"> <br>
-        Jenis Kategori: <input type="text" name="jenisKat" id="jenisKat"> <br>
-        <div id="divKat">Id Kategori : <input type="text" name="id" id="idKat" value="" disabled> </div>
+       Nama Promo: <input type="text" name="namPromo" id="namPromo"> <br>
+        <div id="divKat">Id Kategori : <input type="text" name="id" id="idPromo" value="" disabled> </div> 
+        Harga Promo: <input type ="number" name= "hargaPromo" id="hargaPromo" value=0/> <br>
+        Awal Periode: <input type="date" name="daterange"   id="Pawal"/> <br>
+        Akhir Periode: <input type="date" name="daterange"   id="Pakhir"/> <br>
         <button onclick="insertItem()" id="btInsert" >Insert</button>
         <button onclick="updateItem()" id="btUpdate" >Update</button> 
       
@@ -28,11 +31,14 @@
      var ids = document.getElementById("id");
      var tb = document.getElementById("tablecontainer");
      function insertItem(){
-            $.post("checkDatabase.php",
+            $.post("controllerPromo.php",
             {
                 "action":"insert",
-                "namKat":$("#namKat").val(),
-                "jenisKat" : $("#jenisKat").val()
+                "namPromo":$("#namPromo").val(),
+                "hargaPromo" : $("#hargaPromo").val(),
+                "pAwal": $("#Pawal").val(),
+                "pAkhir": $("#Pakhir").val(),
+                "jenisPromo" : $("#jenisPromo").val()
             },function(data){
                 alert(data);
                 loadTable();
@@ -41,11 +47,11 @@
    
 
      function loadTable(){
-            $("#tablecontainer").load("showtable.php");
+            $("#tablecontainer").load("showtablePromo.php");
         }
 
         function deleteItem(id){
-            $.post("checkDatabase.php",{
+            $.post("controllerPromo.php",{
                 "action":"delete",
                 "id": id
                 
@@ -55,11 +61,13 @@
         }
         
         function updateItem(){
-            $.post("checkDatabase.php",{
+            $.post("controllerPromo.php",{
                 "action":"update",
-                "id": $("#idKat").val(),
-                "namKat":$("#namKat").val(),
-                "jenisKat" : $("#jenisKat").val()
+                "id": $("#idPromo").val(),
+                "namPromo":$("#namPromo").val(),
+                "hargaPromo" : $("#hargaPromo").val(),
+                "pAwal": $("#Pawal").val(),
+                "pAkhir": $("#Pakhir").val()
             },function(data){
                 alert(data);
                 loadTable();
@@ -71,16 +79,20 @@
         }
 
 
-        function showId(id, isi, jenis){
+        function showId(id, isi, jenis,pa,pk){
            tb.style.display = "none";
             x.style.display = "block";
             btin.style.display = "none";
             btnup.style.display = "block";
-            $("#idKat").val(id);
-            $("#namKat").val(isi);
-            $("#jenisKat").val(jenis);
+            $("#idPromo").val(id);
+            $("#namPromo").val(isi);
+            $("#hargaPromo").val(jenis);
+            $("#Pawal").val(pa);
+            $("#Pakhir").val(pk);
         }
+
     $(document).ready(function(){
+            
             //setelah document terload semua, langsung load table    
             loadTable();
             var x = document.getElementById("divKat");
