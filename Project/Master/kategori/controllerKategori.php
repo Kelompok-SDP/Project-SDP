@@ -1,50 +1,84 @@
 <?php
     require_once("../../config.php");
-    if($_POST["action"]=="insert")
-        {
-        //masukan kategori baru
-        $namaKat = $_POST['namKat'];
-        $jeniskat = $_POST['jenisKat'];
-            $jum2 =0;
-       if($namaKat != ''){
-        $query = "SELECT  count(id_kategori) jml FROM kategori";
-        $rs=  mysqli_query($conn,$query);
-        foreach($rs as $key=>$data) {
-            $jum2 = $data['jml'];
-        }
-        $jum2 ++;
-        $id_kategori = "KA".$jum2;
-        $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`)VALUES ('$id_kategori','$namaKat','$jeniskat')";
-        if(mysqli_query($conn,$query) == true){
-            echo "Berhasil input data";
-        } else{
-            echo "Gagal Input data";
-        }
-       }else{
-        echo "Nama tidak boleh kosong";
-       }
-    }
-    else if($_POST["action"]=="delete")
+   if($_POST["action"]=="recover")
     {
      //delete kategori
      $id  = $_POST['id'];
-     $query ="DELETE FROM kategori WHERE id_kategori = '$id'";
-     if(mysqli_query($conn,$query) == true){
-         echo "berhasil";
-     } else {
-         echo "tidak Berhasil men-delete";
-     }   
+     $query = "UPDATE `kategori` SET `status_kategori`='A',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
+     mysqli_query($conn,$query) ;
+    } else
+    if($_POST["action"]=="showdata"){
+        $isi  = $_POST['source'];
+        $filter = $_POST['fillter'];
+        $pb ='';
+        if($filter ==1 ){
+            $pb = "nama_kategori";
+        } else{
+            $pb = "jenis_kategori";
+        }
+        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 'A'";
+        $hasil = mysqli_query($conn,$query);
+        echo  "<table class='table table-head-fixed text-nowrap'>
+        <thead>
+        <tr>
+        <th>Id Kategori</th>
+        <th>Nama Kategori</th>
+        <th>jenis Kategori</th>
+        <th>action</th>
+        </tr>
+            </thead>
+            <tbody>";
+
+            $tmp ='';
+            foreach ($hasil as $key=>$row){
+                $tmp = $row["id_kategori"];
+            echo" <tr>
+                <td>".$row['id_kategori']."</td>
+                <td>".$row['nama_kategori']."</td>
+                <td>".$row["jenis_kategori"]."</td>
+                <td>
+                    <button onclick='edit('".$row["id_kategori"].")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
+            </tr> '";
+        }
+        echo " </tbody>
+        </table>";
+
     }
-    else if($_POST["action"]=="update"){
-        $id  = $_POST['id'];
-        $nama = $_POST['namKat'];
-        $jenis = $_POST['jenisKat'];
-        $query = "UPDATE `kategori` SET `nama_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-            echo "berhasil";
-        } else {
-            echo "tidak Berhasil men-update";
-        }   
+    else if($_POST["action"]=="showdata2"){
+        $isi  = $_POST['source'];
+        $filter = $_POST['fillter'];
+        $pb ='';
+        if($filter ==1 ){
+            $pb = "nama_kategori";
+        } else{
+            $pb = "jenis_kategori";
+        }
+        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 'NA'";
+        $hasil = mysqli_query($conn,$query);
+        echo  "<table class='table table-head-fixed text-nowrap'>
+        <thead>
+        <tr>
+        <th>Id Kategori</th>
+        <th>Nama Kategori</th>
+        <th>jenis Kategori</th>
+        <th>action</th>
+        </tr>
+            </thead>
+            <tbody>";
+
+            $tmp ='';
+            foreach ($hasil as $key=>$row){
+                $tmp = $row["id_kategori"];
+            echo" <tr>
+                <td>".$row['id_kategori']."</td>
+                <td>".$row['nama_kategori']."</td>
+                <td>".$row["jenis_kategori"]."</td>
+                <td>
+                <button onclick='pulihkan('".$row["id_kategori"].")' class='btn btn-primary'>Pulihkan</button>
+            </tr> '";
+        }
+        echo " </tbody>
+        </table>";
     }
      
 

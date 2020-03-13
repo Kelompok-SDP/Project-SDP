@@ -1,7 +1,7 @@
 <?php 
 
 require_once("../../config.php");
-$query="SELECT * from kategori where status_kategori = 'A'";
+$query="SELECT * from kategori where status_kategori = 'NA'";
 $hasil = mysqli_query($conn,$query);
 ?>
     <table class="table table-head-fixed text-nowrap">
@@ -26,7 +26,7 @@ $hasil = mysqli_query($conn,$query);
             <td><?=$row["nama_kategori"]?></td>
             <td><?=$row["jenis_kategori"]?></td>
             <td>
-                <button onclick="edit('<?=$row['id_kategori']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                <button onclick="pulihkan('<?=$row['id_kategori']?>')" class="btn btn-primary">Pulihkan</button>
         </tr>
     <?php } ?>
     </tbody>

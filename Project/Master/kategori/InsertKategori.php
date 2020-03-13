@@ -1,9 +1,43 @@
+<?php 
+
+require_once("../../config.php");
+
+    if(isset($_POST['submit'])){
+        $nama  = $_POST['nama'];
+        $jenis = $_POST['jenis'];
+        if($nama == ''){
+            echo "<script>alert('nama kategori tidak boleh kosong');</script>";
+        } else
+        if($jenis == ''){
+            echo "<script>alert('jenis kategori tidak boleh kosong');</script>";
+        } else{
+            $jum2 =0;
+            $query = "SELECT  count(id_kategori) jml FROM kategori";
+            $rs=  mysqli_query($conn,$query);
+            foreach($rs as $key=>$data) {
+                $jum2 = $data['jml'];
+            }
+            $jum2 ++;
+            $id_kategori = "KA".$jum2;
+            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis','A')";
+            if(mysqli_query($conn,$query) == true){
+                echo "<script>alert('Berhasil input data');</script>";
+                header("Location:InsertKategori.php");
+
+            } else{
+                echo "<script>alert('Tidak Berhasil input data');</script>";
+            }
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Promo</title>
+  <title>kategori.php</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,16 +59,16 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+  <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Promo</h1>
+            <h1>Insert Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="kategori.php">Back</a></li>
+              <li class="breadcrumb-item active">Table Kategori</li>
             </ol>
           </div>
         </div>
@@ -46,32 +80,30 @@
       <div class="row">
         <div class="col-12">
           <!-- KODING NYA DI SINI GAEESSSS -->
-           <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Budget</h3>
+          <div class="card card-primary">
+              <div class="card-header">
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action = "#" method ="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nama Kategori</label>
+                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Jenis Kategori</label>
+                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis">
+                  </div>
+                 
+                </div>
+                <!-- /.card-body -->
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                </div>
+              </form>
             </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputEstimatedBudget">Estimated budget</label>
-                <input type="number" id="inputEstimatedBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputSpentBudget">Total amount spent</label>
-                <input type="number" id="inputSpentBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputEstimatedDuration">Estimated project duration</label>
-                <input type="number" id="inputEstimatedDuration" class="form-control">
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-
         </div>
         <!-- /.col -->
       </div>
@@ -107,3 +139,4 @@
 </script>
 </body>
 </html>
+

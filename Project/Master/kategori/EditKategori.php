@@ -1,9 +1,46 @@
+<?php
+     require_once("../../config.php");
+     $id = '';
+     $id  = $_GET['id'];
+     $query  = "SELECT * FROM KATEGORI WHERE id_kategori = '$id'";
+     $res = mysqli_query($conn,$query);
+     $nama = "";
+     $jenis = "";
+     foreach ($res as $key=>$data){
+         $nama  = $data['nama_kategori'];
+         $jenis = $data['jenis_kategori'];
+     }
+
+     if(isset($_POST['submit'])){
+        $nama  = $_POST['nama'];
+        $jenis = $_POST['jenis'];
+        $id = $_POST['id'];
+        $query = "UPDATE `kategori` SET `status_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
+        if(mysqli_query($conn,$query) == true){
+           header("location:kategori.php");
+        } else {
+            echo "alert('tidak Berhasil men-update');";
+        }   
+     } 
+      else if(isset($_POST['delete'])){
+        $id = $_POST['id'];
+        $query = "UPDATE `kategori` SET `status_kategori`='NA' WHERE id_kategori = '$id'";
+        if(mysqli_query($conn,$query) == true){
+           header("location:kategori.php");
+        }
+      }
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Promo</title>
+  <title>kategori.php</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,16 +62,16 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+  <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Promo</h1>
+            <h1>Edit Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="kategori.php">Back</a></li>
+              <li class="breadcrumb-item active">Table Kategori</li>
             </ol>
           </div>
         </div>
@@ -46,32 +83,32 @@
       <div class="row">
         <div class="col-12">
           <!-- KODING NYA DI SINI GAEESSSS -->
-           <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Budget</h3>
+          <div class="card card-primary">
+              <div class="card-header">
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action = "" method ="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nama Kategori</label>
+                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama" value=<?=$nama?>>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Jenis Kategori</label>
+                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis" value=<?=$jenis?>>
+                    <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
+                  </div>
+                 
+                </div>
+                <!-- /.card-body -->
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary" name="submit">Save</button>
+                  <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                </div>
+              </form>
             </div>
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputEstimatedBudget">Estimated budget</label>
-                <input type="number" id="inputEstimatedBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputSpentBudget">Total amount spent</label>
-                <input type="number" id="inputSpentBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputEstimatedDuration">Estimated project duration</label>
-                <input type="number" id="inputEstimatedDuration" class="form-control">
-              </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-
         </div>
         <!-- /.col -->
       </div>
