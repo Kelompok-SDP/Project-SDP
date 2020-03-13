@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Mar 2020 pada 11.55
+-- Waktu pembuatan: 13 Mar 2020 pada 16.59
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -87,7 +87,7 @@ CREATE TABLE `kategori` (
   `id_kategori` varchar(10) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL,
   `jenis_kategori` varchar(50) NOT NULL,
-  `status_kategori` varchar(3) NOT NULL
+  `status_kategori` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -95,8 +95,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'juice', '', 'A'),
-('KA2', 'roi', '', 'NA');
+('KA1', 'shan', 'roy', 1),
+('KA2', 'fendy', 'shan', 1);
 
 -- --------------------------------------------------------
 

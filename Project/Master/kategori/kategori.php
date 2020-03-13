@@ -210,7 +210,6 @@
         }
     
     function edit(id){
-        alert("hoi");
         var url  = "EditKategori.php?id="+id;
         document.location.href = url;
 

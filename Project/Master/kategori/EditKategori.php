@@ -15,7 +15,7 @@
         $nama  = $_POST['nama'];
         $jenis = $_POST['jenis'];
         $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `status_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
+        $query = "UPDATE `kategori` SET `nama_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
         if(mysqli_query($conn,$query) == true){
            header("location:kategori.php");
         } else {
@@ -24,7 +24,7 @@
      } 
       else if(isset($_POST['delete'])){
         $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `status_kategori`='NA' WHERE id_kategori = '$id'";
+        $query = "UPDATE `kategori` SET `status_kategori`=0 WHERE id_kategori = '$id'";
         if(mysqli_query($conn,$query) == true){
            header("location:kategori.php");
         }

@@ -1,7 +1,7 @@
 <?php 
 
 require_once("../../config.php");
-$query="SELECT * from kategori where status_kategori = 'A'";
+$query="SELECT * from kategori where status_kategori = 1";
 $hasil = mysqli_query($conn,$query);
 ?>
     <table class="table table-head-fixed text-nowrap">

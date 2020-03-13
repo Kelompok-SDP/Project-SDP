@@ -4,7 +4,7 @@
     {
      //delete kategori
      $id  = $_POST['id'];
-     $query = "UPDATE `kategori` SET `status_kategori`='A',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
+     $query = "UPDATE `kategori` SET `status_kategori`=1 WHERE id_kategori = '$id'";
      mysqli_query($conn,$query) ;
     } else
     if($_POST["action"]=="showdata"){
@@ -16,7 +16,7 @@
         } else{
             $pb = "jenis_kategori";
         }
-        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 'A'";
+        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 1";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-head-fixed text-nowrap'>
         <thead>
@@ -36,9 +36,9 @@
                 <td>".$row['id_kategori']."</td>
                 <td>".$row['nama_kategori']."</td>
                 <td>".$row["jenis_kategori"]."</td>
-                <td>
-                    <button onclick='edit('".$row["id_kategori"].")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
-            </tr> '";
+                <td>";
+             echo "<button onclick='edit(\"$row[id_kategori]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+               echo " </tr> ";
         }
         echo " </tbody>
         </table>";
@@ -53,7 +53,7 @@
         } else{
             $pb = "jenis_kategori";
         }
-        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 'NA'";
+        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 0";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-head-fixed text-nowrap'>
         <thead>
@@ -74,7 +74,7 @@
                 <td>".$row['nama_kategori']."</td>
                 <td>".$row["jenis_kategori"]."</td>
                 <td>
-                <button onclick='pulihkan('".$row["id_kategori"].")' class='btn btn-primary'>Pulihkan</button>
+                <button onclick='pulihkan(\"$row[id_kategori]\")' class='btn btn-primary'>Pulihkan</button>
             </tr> '";
         }
         echo " </tbody>

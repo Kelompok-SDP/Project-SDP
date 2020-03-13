@@ -19,7 +19,7 @@ require_once("../../config.php");
             }
             $jum2 ++;
             $id_kategori = "KA".$jum2;
-            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis','A')";
+            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis',1)";
             if(mysqli_query($conn,$query) == true){
                 echo "<script>alert('Berhasil input data');</script>";
                 header("Location:InsertKategori.php");
