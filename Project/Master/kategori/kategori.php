@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/Project-SDP/Project/jQuery/jQuery.js"></script>
+    <script src="jQuery/jQuery.js"></script>
     <title>Kategori</title>
     
 </head>
