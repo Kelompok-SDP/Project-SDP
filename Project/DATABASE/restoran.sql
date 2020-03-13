@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2020 at 05:59 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Mar 13, 2020 at 02:38 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -185,8 +185,22 @@ DROP TABLE IF EXISTS `pegawai`;
 CREATE TABLE `pegawai` (
   `id_pegawai` varchar(10) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `jabatan` varchar(25) NOT NULL
+  `jabatan` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `nohp` bigint(13) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pegawai`
+--
+
+INSERT INTO `pegawai` (`id_pegawai`, `nama`, `jabatan`, `email`, `nohp`, `password`, `status`) VALUES
+('J00001', 'yongki tanu', 'Waiter', 'yongki@gmail.com', 6666666666666, 'PJ00001', '1'),
+('J00002', 'fabian', 'Host', 'fab@gmail.com', 6666666666666, 'PJ00002', '1'),
+('J00003', 'fendi', 'Waiter', 'fen@gmail.com', 6666666666666, 'PJ00003', '1'),
+('W00004', 'san', 'Waiter', 'san@gmail.com', 6666666666666, 'PW00004', '1');
 
 -- --------------------------------------------------------
 
@@ -251,6 +265,12 @@ ALTER TABLE `paket`
 --
 ALTER TABLE `paket_menu`
   ADD PRIMARY KEY (`id_paket`,`id_menu`);
+
+--
+-- Indexes for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`id_pegawai`);
 
 --
 -- Indexes for table `promo`
