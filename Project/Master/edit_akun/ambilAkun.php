@@ -14,7 +14,7 @@
             echo "</td>";
         }else{
             echo "<td>";
-            echo "<button type='button' onclick='banned(\"$value[username]\")' class='btn btn-block btn-outline-danger'>Kembalikan</button>";
+            echo "<button type='button' onclick='banned(\"$value[username]\")' class='btn btn-block btn-outline-danger'>Unbanned</button>";
             echo "</td>";
         }
         echo"</tr>";

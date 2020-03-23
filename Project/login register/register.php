@@ -21,7 +21,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../AdminLTE-master/index2.html"><b>Admin</b>LTE</a>
+    <a href="../AdminLTE-master/index2.html"><b>Register</b></a>
   </div>
 
   <div class="card">
@@ -102,7 +102,7 @@
         </div>
         
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="login.php" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
