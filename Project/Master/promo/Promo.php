@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kategori</title>
+  <title>Promo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +30,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Kategori</h1>
+            <h1>Promo</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,7 +48,7 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
            <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Table Kategori</h3>
+              <h3 class="card-title">Table Promo</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -57,7 +57,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
+            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
 
                 <div class="card-tools">
                 
@@ -93,13 +93,13 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                  <button onclick="tambah()" class="btn btn-primary">Insert New Promo <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 </div>
           </div>
 
           <div class="card card-primary">
               <div class="card-header" style="color:white; background-color:red;">
-                 <h3 class="card-title" >Purgatory Table Kategori</h3>
+                 <h3 class="card-title" >Purgatory Table Promo</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -108,7 +108,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
+            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
 
                 <div class="card-tools">
                 
@@ -187,7 +187,7 @@
         }
     }
     function loadTable(){
-        $("#tKat").load("showtableKategori.php");
+        $("#tKat").load("showtablePromo.php");
     }
     function loadpurgatory(){
         $("#tKatHap").load("purgatoryKategori.php");

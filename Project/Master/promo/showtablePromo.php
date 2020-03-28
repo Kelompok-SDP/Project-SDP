@@ -1,37 +1,48 @@
 <?php 
 
 require_once("../../config.php");
-$query="SELECT * from promo";
+$query="SELECT * from promo where status_promo = 1";
 $hasil = mysqli_query($conn,$query);
 ?>
+    <table class="table table-bordered text-nowrap" id = "tpromo">
+            <thead>
+                <tr>
+                <th>Id Promo</th>
+                <th>Nama Promo</th>
+                <th>Harga Promo</th>
+                <th>Awal Periode Promo</th>
+                <th>Akhir Periode Promo</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            
 
-<table border="1">
-    <thead>
-        <th>id</th>
-        <th>nama</th>
-        <th>harga</th>
-        <th>Awal Periode</th>
-        <th>AKhir Periode</th>
-        <th colspan=2>action</th>
-    </thead>
     <?php
-    $tmp ='';
     foreach ($hasil as $key=>$row){
-        $tmp = $row["id_promo"];
         ?>
         <tr>
-        <td><?=$row["id_promo"]?></td>
-        <td><?=$row["nama_promo"]?></td>
-        <td><?=$row["harga_promo"]?></td>
-        <td><?=$row["periode_awal"]?></td>
-        <td><?=$row["periode_akhir"]?></td>
-        <td>
-        <button onclick="showId('<?=$row['id_promo']?>','<?=$row['nama_promo']?>','<?=$row['harga_promo']?>','<?=$row['periode_awal']?>','<?=$row['periode_akhir']?>')" name='btnUp' id="uP">Update</button></td>
-        <td>
-            <button onclick="deleteItem('<?=$row['id_promo']?>')" name='btnDel' value='Delete'>Delete</button></td>
+            <td><?=$row["id_promo"]?></td>
+            <td><?=$row["nama_promo"]?></td>
+            <td><?='Rp.'.$row["harga_promo"]?></td>
+            <td><?=$row["periode_awal"]?></td>
+            <td><?=$row["periode_akhir"]?></td>
+            <td>
+                <button onclick="edit('<?=$row['id_kategori']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
         </tr>
     <?php } ?>
+    </tbody>
 </table>
 <script>
-    
+    $(function(){
+        $('#tpromo').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    });
 </script>
