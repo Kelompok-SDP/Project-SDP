@@ -218,7 +218,7 @@
         }
     
     function edit(id){
-        alert("hoi");
+      //  alert("hoi");
         var url  = "editPaket.php?id="+id;
         document.location.href = url;
 

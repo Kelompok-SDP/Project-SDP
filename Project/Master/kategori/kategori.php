@@ -61,9 +61,9 @@
 
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 150px;" >
+                  <div class="input-group input-group-sm" style="width: 350px;" >
                   <div class="input-group-prepend">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
@@ -72,8 +72,8 @@
                       <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Jenis Kategori</li>
                     </ul>
                   </div>
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
-
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
+                
                     <div class="input-group-append">
                       <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
@@ -112,9 +112,9 @@
 
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 150px;" >
+                  <div class="input-group input-group-sm" style="width: 350px;" >
                   <div class="input-group-prepend">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr2">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
@@ -174,16 +174,24 @@
     var tp2 = 2;
     function ubah(id){
         if (id==1){
+          let tmp = "Nama Kategori";
             tp = 1;
+            document.getElementById("Btnfilter").innerHTML=tmp;
         } else{
+          let tmp = "Jenis Kategori";
             tp = 2;
+            document.getElementById("Btnfilter").innerHTML=tmp;
         }
     }
     function ubah2(id){
         if (id==1){
+            let tmp = "Nama Kategori";  
             tp2 = 1;
+            document.getElementById("Btnfilter2").innerHTML=tmp;
         } else{
+          let tmp = "Jenis Kategori";
             tp2 = 2;
+           document.getElementById("Btnfilter2").innerHTML=tmp;
         }
     }
     function loadTable(){

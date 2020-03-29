@@ -1,10 +1,10 @@
 <?php 
 
 require_once("../../config.php");
-$query="SELECT * from promo where status_promo = 1";
+$query="SELECT * from promo where status_promo = 0";
 $hasil = mysqli_query($conn,$query);
 ?>
-    <table class="table table-bordered text-nowrap" id = "tpromo">
+    <table class="table table-bordered text-nowrap" id = "purgapromo">
             <thead>
                 <tr>
                 <th>Id Promo</th>
@@ -28,14 +28,14 @@ $hasil = mysqli_query($conn,$query);
             <td><?=$row["periode_awal"]?></td>
             <td><?=$row["periode_akhir"]?></td>
             <td>
-                <button onclick="edit('<?=$row['id_promo']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+            <button onclick="pulihkan('<?=$row['id_promo']?>')" class="btn btn-primary">Pulihkan</button>
         </tr>
     <?php } ?>
     </tbody>
 </table>
 <script>
     $(function(){
-        $('#tpromo').DataTable({
+        $('#purgapromo').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,

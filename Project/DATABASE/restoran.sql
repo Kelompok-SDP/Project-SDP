@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Mar 2020 pada 16.59
+-- Waktu pembuatan: 29 Mar 2020 pada 13.44
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -95,8 +95,15 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'shan', 'roy', 1),
-('KA2', 'fendy', 'shan', 1);
+('KA1', 'shan', 'kue', 0),
+('KA2', 'royl', 'kiyoshi', 1),
+('KA3', 'alsdksad', 'ajskdlksajd', 0),
+('KA4', 'aldk', '', 1),
+('KA5', 'ad', '', 1),
+('KA6', 'asda', '', 1),
+('KA7', '211213', '', 1),
+('KA8', '211213', '', 1),
+('KA9', 'fendy', '', 1);
 
 -- --------------------------------------------------------
 
@@ -209,21 +216,18 @@ CREATE TABLE `promo` (
   `nama_promo` varchar(50) NOT NULL,
   `harga_promo` int(11) NOT NULL,
   `periode_awal` date NOT NULL,
-  `periode_akhir` date NOT NULL
+  `periode_akhir` date NOT NULL,
+  `status_promo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `promo`
 --
 
-INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`) VALUES
-('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00'),
-('PR2', 'hihi', 0, '0000-00-00', '0000-00-00'),
-('PR3', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00'),
-('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00'),
-('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00'),
-('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26'),
-('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25');
+INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `status_promo`) VALUES
+('PR1', 'Chen', 1000, '2020-03-10', '2020-03-14', 1),
+('PR2', 'Grace jelek', 200000, '2020-03-28', '2020-03-28', 1),
+('PR3', 'Makanan ringan', 150000, '2020-03-27', '2020-03-28', 1);
 
 --
 -- Indexes for dumped tables

@@ -1,55 +1,123 @@
 <?php
     require_once("../../config.php");
-    if($_POST["action"]=="insert")
-        {
-        //masukan kategori baru
-        $namaPromo = $_POST['namPromo'];
-        $harga = $_POST['hargaPromo'];
-        $pawal = $_POST['pAwal'];
-        $pakhir = $_POST['pAkhir'];
-            $jum2 =0;
-        
-       if($namaPromo != ''&& $harga !=0 && $pawal !='' && $pakhir !='' && $pakhir>$pawal ){
-        $query = "SELECT  count(id_promo) jml FROM promo";
-        $rs=  mysqli_query($conn,$query);
-        foreach($rs as $key=>$data) {
-            $jum2 = $data['jml'];
-        }
-        $jum2 ++;
-        $id_promo = "PR".$jum2;
-        $query = "INSERT INTO promo (`id_promo`, `nama_promo`,`harga_promo`,`periode_awal`,`periode_akhir` )VALUES ('$id_promo','$namaPromo',$harga,'$pawal','$pakhir')";
-        if(mysqli_query($conn,$query) == true){
-            echo "Berhasil input data";
-        } else{
-            echo "Gagal Input data";
-        }
-       }else{
-        echo "Data ada yang salah atau masih ";
-       }
-    }
-    else if($_POST["action"]=="delete")
+   if($_POST["action"]=="recover")
     {
      //delete kategori
      $id  = $_POST['id'];
-     $query ="DELETE FROM promo WHERE id_kategori = '$id'";
-     if(mysqli_query($conn,$query) == true){
-         echo "berhasil";
-     } else {
-         echo "tidak Berhasil men-delete";
-     }   
+     $query = "UPDATE `promo` SET `status_promo`=1 WHERE id_promo = '$id'";
+     mysqli_query($conn,$query) ;
+    } else
+    if($_POST["action"]=="showdata"){
+        $isi  = $_POST['source'];
+        $filter = $_POST['fillter'];
+        $pb ='';
+        if($filter ==1 ){
+            $pb = "nama_promo";
+        } else{
+            $pb = "harga_promo";
+        }
+        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 1";
+        $hasil = mysqli_query($conn,$query);
+        echo  "<table class='table table-bordered text-nowrap' id='stkat'>
+        <thead>
+        <tr>
+                 <th>Id Promo</th>
+                <th>Nama Promo</th>
+                <th>Harga Promo</th>
+                <th>Awal Periode Promo</th>
+                <th>Akhir Periode Promo</th>
+                <th>Action</th>
+        </tr>
+            </thead>
+            <tbody>";
+
+            $tmp ='';
+            foreach ($hasil as $key=>$row){
+                //$tmp = $row["id_promo"];
+            echo" <tr>
+                <td>".$row['id_promo']."</td>
+                <td>".$row['nama_promo']."</td>
+                <td>".$row["harga_promo"]."</td>
+                <td>".$row["periode_awal"]."</td>
+                <td>".$row["periode_akhir"]."</td>
+                <td>";
+             echo "<button onclick='edit(\"$row[id_promo]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+               echo " </tr> ";
+        }
+        echo " </tbody>
+        </table>
+        <script>
+            $(function(){
+                $('#stkat').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>
+        
+        
+        
+        ";
+
     }
-    else if($_POST["action"]=="update"){
-        $id  = $_POST['id'];
-        $nama = $_POST['namPromo'];
-        $harga = $_POST['hargaPromo'];
-        $pawal = $_POST['pAwal'];
-        $pakhir = $_POST['pAkhir'];
-        $query = "UPDATE `promo` SET `nama_promo`='$nama',`harga_promo`='$harga', `periode_awal`='$pawal', `periode_akhir`='$pakhir'  WHERE id_promo = '$id'";
-        if(mysqli_query($conn,$query) == true){
-            echo "berhasil";
-        } else {
-            echo "tidak Berhasil men-update";
-        }   
+    else if($_POST["action"]=="showdata2"){
+        $isi  = $_POST['source'];
+        $filter = $_POST['fillter'];
+        $pb ='';
+        if($filter ==1 ){
+            $pb = "nama_promo";
+        } else{
+            $pb = "harga_promo";
+        }
+        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 0";
+        $hasil = mysqli_query($conn,$query);
+        echo  "<table class='table table-bordered text-nowrap' id='stpurg'>
+        <thead>
+        <tr>
+            <th>Id Promo</th>
+            <th>Nama Promo</th>
+            <th>Harga Promo</th>
+            <th>Awal Periode Promo</th>
+            <th>Akhir Periode Promo</th>
+            <th>Action</th>
+        </tr>
+            </thead>
+            <tbody>";
+
+            $tmp ='';
+            foreach ($hasil as $key=>$row){
+               // $tmp = $row["id_kategori"];
+            echo" <tr>
+                <td>".$row['id_promo']."</td>
+                <td>".$row['nama_promo']."</td>
+                <td>".$row["harga_promo"]."</td>
+                <td>".$row["periode_awal"]."</td>
+                <td>".$row["periode_akhir"]."</td>
+                    <td>
+                <button onclick='pulihkan(\"$row[id_promo]\")' class='btn btn-primary'>Pulihkan</button>
+            </tr> '";
+        }
+        echo " </tbody>
+        </table>
+        <script>
+            $(function(){
+                $('#stpurg').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>
+        ";
     }
      
 
