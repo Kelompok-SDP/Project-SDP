@@ -13,8 +13,6 @@
         $pb ='';
         if($filter ==1 ){
             $pb = "nama_paket";
-        } else{
-            $pb = "harga_paket";
         }
         $query="SELECT * from paket where $pb like '%$isi%' and status = 1";
         $hasil = mysqli_query($conn,$query);

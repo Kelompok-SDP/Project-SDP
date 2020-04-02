@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Mar 2020 pada 13.44
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Waktu pembuatan: 02 Apr 2020 pada 14.06
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -87,7 +87,7 @@ CREATE TABLE `kategori` (
   `id_kategori` varchar(10) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL,
   `jenis_kategori` varchar(50) NOT NULL,
-  `status_kategori` tinyint(1) NOT NULL
+  `status_kategori` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -95,15 +95,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'shan', 'kue', 0),
-('KA2', 'royl', 'kiyoshi', 1),
-('KA3', 'alsdksad', 'ajskdlksajd', 0),
-('KA4', 'aldk', '', 1),
-('KA5', 'ad', '', 1),
-('KA6', 'asda', '', 1),
-('KA7', '211213', '', 1),
-('KA8', '211213', '', 1),
-('KA9', 'fendy', '', 1);
+('KA1', 'juice', '', 'A'),
+('KA2', 'roi', '', 'NA'),
+('KA3', '', 'asaa', '1'),
+('KA4', 's', 's', '1');
 
 -- --------------------------------------------------------
 
@@ -150,6 +145,8 @@ CREATE TABLE `menu` (
   `id_menu` varchar(10) NOT NULL,
   `nama_menu` varchar(50) NOT NULL,
   `harga_menu` int(11) NOT NULL,
+  `gambar` varchar(20) NOT NULL,
+  `deskripsi` varchar(50) NOT NULL,
   `id_kategori` varchar(10) NOT NULL,
   `id_promo` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL
@@ -159,9 +156,9 @@ CREATE TABLE `menu` (
 -- Dumping data untuk tabel `menu`
 --
 
-INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `id_kategori`, `id_promo`, `status`) VALUES
-('MEN001', 'Nasi Goreng', 5000, '001', '01', 1),
-('MEN002', 'Ayam Goreng', 5000, '002', '001', 1);
+INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `id_promo`, `status`) VALUES
+('MEN001', 'Nasi Goreng', 20000, 'Image/Screenshot (14', 'Lezat', 'KA1', 'PR1', 1),
+('MEN002', 'Ayam goreng', 5000, 'Image/800px-Basement', 'Enak', 'KA1', 'PR1', 1);
 
 -- --------------------------------------------------------
 
@@ -173,8 +170,8 @@ DROP TABLE IF EXISTS `paket`;
 CREATE TABLE `paket` (
   `id_paket` varchar(10) NOT NULL,
   `nama_paket` varchar(50) NOT NULL,
-  `id_kategori` varchar(10) NOT NULL,
   `harga_paket` int(11) NOT NULL,
+  `id_kategori` varchar(10) NOT NULL,
   `id_promo` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -216,18 +213,21 @@ CREATE TABLE `promo` (
   `nama_promo` varchar(50) NOT NULL,
   `harga_promo` int(11) NOT NULL,
   `periode_awal` date NOT NULL,
-  `periode_akhir` date NOT NULL,
-  `status_promo` tinyint(1) NOT NULL
+  `periode_akhir` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `promo`
 --
 
-INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `status_promo`) VALUES
-('PR1', 'Chen', 1000, '2020-03-10', '2020-03-14', 1),
-('PR2', 'Grace jelek', 200000, '2020-03-28', '2020-03-28', 1),
-('PR3', 'Makanan ringan', 150000, '2020-03-27', '2020-03-28', 1);
+INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`) VALUES
+('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00'),
+('PR2', 'hihi', 0, '0000-00-00', '0000-00-00'),
+('PR3', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00'),
+('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00'),
+('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00'),
+('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26'),
+('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25');
 
 --
 -- Indexes for dumped tables

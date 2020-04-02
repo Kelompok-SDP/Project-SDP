@@ -64,7 +64,7 @@ require_once("../../config.php");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="Paket.php">Back</a></li>
+              <li class="breadcrumb-item"><a href="../Paket.php">Back</a></li>
               <li class="breadcrumb-item active">Table Paket</li>
             </ol>
           </div>
@@ -164,9 +164,9 @@ require_once("../../config.php");
           let hpaket = $('#Hpaket').val();
           let kpaket = $('#Kpaket').val();
           let ppaket = $('#Ppaket').val();
-          if(npaket != "" && hpaket != "" && idk != "" && idp != ""){
+          if(npaket != "" && hpaket != "" && kpaket != null && ppaket != null){
               $.ajax({
-                  url: "insertDatabase.php",
+                  url: "Paket/insertDatabase.php",
                   method: 'post',
                   data: {
                       npaket : npaket,
@@ -177,7 +177,7 @@ require_once("../../config.php");
                   success: function(result){   
                     alert(result);
                     if(result != "Data Kembar"){
-                      document.location.href = 'insertPaket.php';
+                      document.location.href = 'Paket/insertPaket.php';
                     }
                   }
               });

@@ -58,9 +58,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="AdminLTE-master/index.html" class="nav-link">
+                <a href="Master/Menu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Menu</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="Master/Paket.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Master Paket</p>
                 </a>
               </li>
               <li class="nav-item">

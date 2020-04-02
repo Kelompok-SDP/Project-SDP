@@ -19,7 +19,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Menu</title>
+  <title>Edit Gambar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -157,7 +157,7 @@
 <script>
   $('#Submit').click(function () {
     alert("Berhasil");
-    document.location.href = 'Menu.php';
+    document.location.href = '../Menu.php';
   });
 </script>
 </body>
