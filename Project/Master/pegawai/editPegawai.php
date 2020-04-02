@@ -27,7 +27,7 @@
     echo     "<input type='text' maxlength='13' onkeypress='NumberOnly(event)' value='$query[nohp]' class='form-control' id='nohp2' placeholder='Enter No Telepon'>";
     echo "</div>";
     echo "<div class='card-footer'>";
-    echo     "<button onclick='ubah(\"$query[id_pegawai]\")' class='btn btn-primary'>Daftar</button>";
+    echo     "<button onclick='ubah(\"$query[id_pegawai]\")' class='btn btn-primary'>Update</button>";
     echo "</div>";
 ?>
 <script>

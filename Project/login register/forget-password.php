@@ -38,7 +38,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="button" onclick='kirim()' class="btn btn-primary btn-block">Request new password</button>
+            <button type="button" onclick='CheckEmail()' class="btn btn-primary btn-block">Request new password</button>
           </div>
           <!-- /.col -->
         </div>
@@ -61,6 +61,28 @@
 </html>
 
 <script>
+    function CheckEmail(){
+        var kepada=$("#email").val();
+        
+      $.ajax({
+        method: "post",
+        url: "forget/getEmail.php",
+        data:{
+            kepada:kepada
+        },
+        success: function (response) {
+          if(response=='Email Anda Tidak Di Temukan'){
+            alert(response);
+          }else if (response=='Password Anda Sudah Kamu Ubah Tolong Check Email Anda'){
+            alert(response);
+            kirim();
+            setTimeout(
+              window.location.href = "login.php"
+              , 5000);
+          }
+        }
+      });
+    }
     function kirim(){
         var kepada=$("#email").val();
         

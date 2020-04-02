@@ -61,7 +61,9 @@
           <!-- /.col -->
         </div>
       </form>
-
+      <p class="mb-0">
+        <a href="forget-password.php" class="text-center">Forget Password</a>
+      </p>
       <p class="mb-0">
         <a href="register.php" class="text-center">Register a new membership</a>
       </p>
