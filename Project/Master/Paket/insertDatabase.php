@@ -29,7 +29,7 @@
     $list = $conn->query($query3);
     foreach($list as $key=>$data){
         $tmpnama = $data['nama_paket'];
-        if($nmenu == $tmpnama){
+        if($npaket == $tmpnama){
             $kembar = true;
         }
     }
@@ -37,7 +37,7 @@
         echo "Data Kembar";
     }else{
         echo $string;
-        $query2 = "INSERT INTO PAKET VALUES('$npaket','$hpaket',$kpaket,'$ppaket',1)";
+        $query2 = "INSERT INTO PAKET VALUES('$string','$npaket',$hpaket,'$kpaket','$ppaket',1)";
         if($conn->query($query2) == true){
             echo "Berhasil Menambahkan Data";
         }else{
