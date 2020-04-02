@@ -16,6 +16,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php
+  include("../sidebar.php");
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   
@@ -176,7 +179,7 @@
     function jabatan(){
         $.ajax({
             method0: "post",
-            url: "akun_pegawai/jabatan.php",
+            url: "pegawai/jabatan.php",
             success: function (response) {
                 $("#jabatan").html(response);
             }
@@ -186,7 +189,7 @@
     function getAkun(){
       $.ajax({
         method: "post",
-        url: "akun_pegawai/ambilPegawai.php",
+        url: "pegawai/ambilPegawai.php",
         success: function (response) {
           $("#pegawai").html(response);
         }
@@ -199,7 +202,7 @@
       var nohp=$("#nohp").val();
       $.ajax({
           method: "post",
-          url: "akun_pegawai/tambah_pegawai.php",
+          url: "pegawai/tambah_pegawai.php",
           data: {
             nama:nama,
             email:email,
