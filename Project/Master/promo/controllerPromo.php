@@ -41,7 +41,19 @@
                 <td>".$row["harga_promo"]."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
-                <td>".$row["gambar_promo"]."</td>
+                <td>
+                <form action='promo/openImage.php' method='post' target='_blank'>
+                       <button type='submit' name='gambar' value=\"$row[gambar_promo]\" style='  background-color: Transparent;
+                       background-repeat:no-repeat;
+                       border: none;
+                       color: blue;
+                       cursor:pointer;
+                       overflow: hidden;
+                       outline:none;'>".$row['gambar_promo']."</button>
+                   </form>
+       
+                    
+                   </td>
                 <td>";
              echo "<button onclick='edit(\"$row[id_promo]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
                echo " </tr> ";
@@ -101,7 +113,19 @@
                 <td>".$row["harga_promo"]."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
-                <td>".$row["gambar_promo"]."</td>
+                <td>
+         <form action='promo/openImage.php' method='post' target='_blank'>
+                <button type='submit' name='gambar' value=\"$row[gambar_promo]\" style='  background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                color: blue;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;'>".$row['gambar_promo']."</button>
+            </form>
+
+             
+            </td>
                     <td>
                 <button onclick='pulihkan(\"$row[id_promo]\")' class='btn btn-primary'>Pulihkan</button>
             </tr> '";
