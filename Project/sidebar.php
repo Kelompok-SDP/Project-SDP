@@ -48,32 +48,71 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Master
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="AdminLTE-master/index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Master Menu</p>
+            <ul class="nav-item nav-treeview">
+              <li class="nav-item has-treeview">
+                <a href="Akun.php" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Master Menu
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Akun.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Menu</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Edit Menu.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Edit Menu</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert Menu.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Menu</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
+
               <li class="nav-item">
-                <a href="AdminLTE-master/index2.html" class="nav-link">
+                <a href="Akun.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Akun</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Master Pegawai</p>
+              <li class="nav-item has-treeview">
+                <a href="Pegawai.php" class="nav-link">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Master Pegawai
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Pegawai.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Pegawai</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert Pegawai.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Pegawai</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="AdminLTE-master/index3.html" class="nav-link">
@@ -281,8 +320,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -513,6 +552,7 @@
               <p>Level 1</p>
             </a>
           </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>

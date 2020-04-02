@@ -1,5 +1,5 @@
 <?php
-    require_once("../../config.php");
+    require_once("../config.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,14 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE-master/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -122,18 +122,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="../../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../AdminLTE-master/dist/js/demo.js"></script>
+<script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     $('#Submit').click(function () {
@@ -144,7 +144,7 @@
         let dmenu = $('#Dmenu').val(); 
         if(nmenu != "" && hmenu != "" && kmenu != "" && pmenu != "" && dmenu != ""){
             $.ajax({
-                url: "insertDatabase.php",
+                url: "Menu/insertDatabase.php",
                 method: 'post',
                 data: {
                     nmenu : nmenu,
@@ -156,7 +156,7 @@
                 success: function(result){   
                   alert(result);
                   if(result != "Data Kembar"){
-                    document.location.href = 'Uploadgambar.php';
+                    document.location.href = 'Menu/Uploadgambar.php';
                   }
                 }
             });

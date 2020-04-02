@@ -203,6 +203,10 @@ var balik=-1;
                       if(balik==1){check(username,'username')
                           if(balik==1){
                               insertUser();
+                              alert('Anda Berhasil Register');
+                              setTimeout(
+                                window.location.href = "login.php"
+                              , 2000);
                           }
                       }
                   }

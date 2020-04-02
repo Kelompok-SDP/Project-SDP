@@ -1,14 +1,15 @@
 <?php 
 	require_once('../../email/mailer2/class.phpmailer.php');
-		
+	require_once("../../config.php");
 	//-----------------EMAIL-----------------
 	
 	$mail             = new PHPMailer();
 	$address 		  = $_POST["kepada"];					
-	
+
+    $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT password FROM member where email='$address'"));
 	$mail->Subject    = "Ganti Email";
 
-	$body			  = 'Password Anda Sekarang Adalah '.'0';
+	$body			  = 'Password Anda Sekarang Adalah '.$result["password"];
 
 	$mail->IsSMTP(); // telling the class to use SMTP
 	$mail->Host       = "mail.google.com"; // SMTP server
@@ -26,7 +27,7 @@
 
 	$mail->MsgHTML($body);
 
-	$mail->AddAddress($address, "Kepasa Siapa");
+	$mail->AddAddress($address, "Kepada Anda");
 
 	//$mail->AddAttachment("result/".$file);      // attachment
 	

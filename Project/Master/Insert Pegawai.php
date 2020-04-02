@@ -43,67 +43,46 @@
     </section>
 
     <!-- Main content -->
-    
-
     <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Disable Pegawai</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Id Pegawai</th>
-                  <th>Nama</th>
-                  <th>Jabatan</th>
-                  <th>No Hp</th>
-                  <th>Banned</th>
-                </tr>
-                </thead>
-                <tbody id="pegawai">
-                
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Id Pegawai</th>
-                  <th>Nama</th>
-                  <th>Jabatan</th>
-                  <th>No Hp</th>
-                  <th>Banned</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-
-
-          <!-- general form elements -->
-          <div class="card card-primary">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Pegawai</h3>
+                <h3 class="card-title">Tambah Pegawai</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-                <div class="card-body" id="ubah">
-                 
-                </div>
+                <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nama :</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Enter Nama">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Jabatan</label><br>
+                    <select id="jabatan" style="width:50%">
+                    
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">No Telpon</label>
+                    <input type="text" maxlength="13" onkeypress="NumberOnly(event)" class="form-control" id="nohp" placeholder="Enter No Telepon">
+                  </div>
+                  </div>
                 <!-- /.card-body -->
 
-                
+                <div class="card-footer">
+                  
+                  <button onclick="tambah()" class="btn btn-primary">Daftar</button>
+                </div>
             </div>
-            <!-- /.card -->
-
-
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+            <!-- /.card --> 
             
       </div><!-- /.container-fluid -->
     </section>
