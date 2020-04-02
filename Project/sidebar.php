@@ -72,13 +72,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="Edit Menu.php" class="nav-link">
-                      <i class="fas fa-circle nav-icon"></i>
-                      <p>Edit Menu</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="Insert Menu.php" class="nav-link">
+                    <a href="Insert_Menu.php" class="nav-link">
                       <i class="fas fa-circle nav-icon"></i>
                       <p>Insert Menu</p>
                     </a>
@@ -107,7 +101,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="Insert Pegawai.php" class="nav-link">
+                    <a href="Insert_Pegawai.php" class="nav-link">
                       <i class="fas fa-circle nav-icon"></i>
                       <p>Insert Pegawai</p>
                     </a>
