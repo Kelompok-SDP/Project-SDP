@@ -8,17 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE-master/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -156,18 +157,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="../../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../AdminLTE-master/dist/js/demo.js"></script>
+<script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     var tp = 1;
@@ -199,17 +200,17 @@
         }
     }
     function loadTable(){
-        $("#tKat").load("showtablePromo.php");
+        $("#tKat").load("promo/showtablePromo.php");
     }
     function loadpurgatory(){
-        $("#tKatHap").load("purgatoryPromo.php");
+        $("#tKatHap").load("promo/purgatoryPromo.php");
     }
     function tambah(){
         document.location.href = 'InsertPromo.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
-                $.post("controllerPromo.php",{
+                $.post("promo/controllerPromo.php",{
                     "action" : "showdata",
                     "source": $("#src").val(),
                     "fillter":tp
@@ -217,7 +218,7 @@
                         $("#tKat").html(data);
                 });
             } else{
-                $("#tKat").load("showtablePromo.php");
+                $("#tKat").load("promo/showtablePromo.php");
             }
         }
     
@@ -228,19 +229,19 @@
     }
 
     function pulihkan(id){
-        $.post("controllerPromo.php",{
+        $.post("promo/controllerPromo.php",{
                     "action" : "recover",
                    "id" : id
         },function(data){
-            $("#tKat").load("showtablePromo.php");
-            $("#tKatHap").load("purgatoryPromo.php");
+            $("#tKat").load("promo/showtablePromo.php");
+            $("#tKatHap").load("promo/purgatoryPromo.php");
         });
     }
 
 
     function showtable2(){
             if($("#src2").val()!= ''){
-                $.post("controllerPromo.php",{
+                $.post("promo/controllerPromo.php",{
                     "action" : "showdata2",
                     "source": $("#src2").val(),
                     "fillter":tp2
@@ -248,7 +249,7 @@
                         $("#tKatHap").html(data);
                 });
             } else{
-                $("#tKatHap").load("purgatoryPromo.php");
+                $("#tKatHap").load("promo/purgatoryPromo.php");
             }
         }
     

@@ -127,7 +127,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
+                <a href="Master/Kategori.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Kategori</p>
                 </a>
@@ -139,7 +139,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
+                <a href="Master/Promo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Report</p>
                 </a>
