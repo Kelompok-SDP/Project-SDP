@@ -8,11 +8,13 @@
      $harga = 0;
      $awp = '';
      $akp = '';
+     $gbr = '';
      foreach ($res as $key=>$data){
          $nama  = $data['nama_promo'];
          $harga = $data['harga_promo'];
         $awp = $data['periode_awal'];
         $akp = $data['periode_akhir'];
+        $gbr = $data['gambar_promo'];
      }
      $awp = strtotime($awp);
      $akp = strtotime($akp);
@@ -29,11 +31,38 @@
         $akhirP  = strtotime($akhirP);
         $nawal = date('Y-m-d',$awalP);
         $nakhir = date('Y-m-d',$akhirP);
-        $query = "UPDATE `promo` SET `nama_promo`='$nama',`harga_promo`=$harga,`periode_awal`='$nawal', `periode_akhir`='$nakhir' WHERE id_promo = '$id'";
+        $image = "";
+        $target_dir = "promo/PrImage/"; //<- ini folder tujuannya
+        $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
+        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        if ($_FILES["gambar"]["name"]=="")
+        {
+            if(isset($_POST['ck'])){
+                $image ="";
+            } else {
+              $image = $_POST['hgambar'];
+            }
+        } else {
+        
+          if($file_type !="jpg" && $file_type !="png"){
+            echo "<script>alert('Tipe file hanya jpg dan png saja".$_FILES["gambar"]["name"]."');</script>";
+            echo "<script>document.location.href='Promo.php';</script>";
+          } else if($_FILES["gambar"]["size"] > 500000){
+              echo "File size terlalu besar";
+              echo "<script>alert('File size terlalu besar');</script>";
+              echo "<script>document.location.href='Promo.php';</script>";
+          } else{
+            if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
+             $image= $target_file;
+            } 
+          }
+        }
+        $query = "UPDATE `promo` SET `nama_promo`='$nama',`harga_promo`=$harga,`periode_awal`='$nawal', `periode_akhir`='$nakhir' , `gambar_promo` = '$image' WHERE id_promo = '$id'";
         if(mysqli_query($conn,$query) == true){
            header("location:Promo.php");
         } else {
-            echo "alert('tidak Berhasil men-update');";
+            echo "<script>alert('tidak Berhasil men-update');</script>";
+            echo "<script>document.location.href='Promo.php';</script>";
         }   
      } 
       else if(isset($_POST['delete'])){
@@ -102,7 +131,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post">
+              <form role="form" action = "#" method ="post"  enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Promo</label>
@@ -142,11 +171,20 @@
                         </div>
                         <!-- /.input group -->
                      </div>
-
+                     <div class="input-group">
+                        Pilih Gambar :
+                        <input type="file" name="gambar" id="gambar" >
+                        <p>Gambar Sebelumnya : <?=$gbr?></p>
+                        
+                        <input type="hidden" value="<?=$gbr?>" name="hgambar">
+                     </div>
                         
                 </div>
+                <div class="input-group">
+                     <p style="margin-left:10vw;"> Reset gambar? <input type="checkbox" name="ck" value="delete"> </p>        
+                </div>
                 <!-- /.card-body -->
-
+                
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="submit">Save</button>
                   <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>

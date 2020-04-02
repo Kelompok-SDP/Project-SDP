@@ -190,7 +190,7 @@
         $("#tKatHap").load("Menu/purgatoryMenu.php");
     }
     function tambah(){
-        document.location.href = 'Insert Menu.php';
+        document.location.href = 'Insert_Menu.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
@@ -207,7 +207,7 @@
         }
     
     function edit(id){
-        var url  = "Edit Menu.php?id="+id;
+        var url  = "Edit_Menu.php?id="+id;
         document.location.href = url;
 
     }

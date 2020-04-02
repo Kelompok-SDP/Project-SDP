@@ -7,17 +7,21 @@ require_once("../config.php");
         $harga = $_POST['harga'];
         $awalP = $_POST['awalP'];
         $akhirP = $_POST['akhirP'];
-       
+       $bx = false;
         if($nama == ''){
             echo "<script>alert('nama Promo tidak boleh kosong');</script>";
+             echo "<script>document.location.href='InsertPromo.php';</script>";
         } else
         if($harga == '' || $harga<1){
             echo "<script>alert('harga tidak valid');</script>";
+            echo "<script>document.location.href='InsertPromo.php';</script>";
         }  else if( $akhirP==''){
             echo "<script>alert('tanggal tidak valid');</script>";  
+            echo "<script>document.location.href='InsertPromo.php';</script>";
         }
         else if ($awalP> $akhirP){
             echo "<script>alert('tanggal tidak valid');</script>";
+            echo "<script>document.location.href='InsertPromo.php';</script>";
         }
         else{
             $jum2 =0;
@@ -26,19 +30,35 @@ require_once("../config.php");
             foreach($rs as $key=>$data) {
                 $jum2 = $data['jml'];
             }
+            $target_dir = "promo/PrImage/"; //<- ini folder tujuannya
+            $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
+            $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            if($file_type !="jpg" && $file_type !="png"){
+                echo "<script>alert('Tipe file hanya jpg dan png saja');</script>";
+                echo "<script>document.location.href='InsertPromo.php';</script>";
+            } else if($_FILES["gambar"]["size"] > 500000){
+                echo "<script>alert('File size terlalu besar');</script>";
+                echo "<script>document.location.href='InsertPromo.php';</script>";
+            } else{
+              $gambar = '';
+              if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
+               $gambar= $target_file;
+              } 
+            }
             $awalP  = strtotime($awalP);
             $akhirP  = strtotime($akhirP);
             $nawal = date('Y-m-d',$awalP);
             $nakhir = date('Y-m-d',$akhirP);
             $jum2 ++;
             $id_promo = "PR".$jum2;
-            $query = "INSERT INTO promo (`id_promo`, `nama_promo`,`harga_promo`,`periode_awal`,`periode_akhir`,`status_promo`)VALUES ('$id_promo','$nama',$harga,'$nawal','$nakhir',1)";
+            $query = "INSERT INTO promo (`id_promo`, `nama_promo`,`harga_promo`,`periode_awal`,`periode_akhir`,`gambar_promo`,`status_promo`)VALUES ('$id_promo','$nama',$harga,'$nawal','$nakhir','$gambar',1)";
             if(mysqli_query($conn,$query) == true){
                 echo "<script>alert('Berhasil input data');</script>";
-                header("Location:InsertPromo.php");
+                echo "<script>document.location.href='InsertPromo.php';</script>";
 
             } else{
                 echo "<script>alert('Tidak Berhasil input data');</script>";
+                echo "<script>document.location.href='InsertPromo.php';</script>";
             }
         }
     }
@@ -102,7 +122,7 @@ require_once("../config.php");
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post">
+              <form role="form" action = "#" method ="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Promo</label>
@@ -140,7 +160,10 @@ require_once("../config.php");
                         </div>
                         <!-- /.input group -->
                      </div>
-
+                     <div class="input-group">
+                        Pilih Gambar :
+                        <input type="file" name="gambar" id="gambar">
+                     </div>
                         
                 </div>
                 <!-- /.card-body -->

@@ -12,6 +12,7 @@ $hasil = mysqli_query($conn,$query);
                 <th>Harga Promo</th>
                 <th>Awal Periode Promo</th>
                 <th>Akhir Periode Promo</th>
+                <th>Gambar</th>
                 <th>Action</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@ $hasil = mysqli_query($conn,$query);
             <td><?='Rp.'.$row["harga_promo"]?></td>
             <td><?=$row["periode_awal"]?></td>
             <td><?=$row["periode_akhir"]?></td>
+            <td><?=$row["gambar_promo"]?></td>
             <td>
             <button onclick="pulihkan('<?=$row['id_promo']?>')" class="btn btn-primary">Pulihkan</button>
         </tr>
