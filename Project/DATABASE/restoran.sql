@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Apr 2020 pada 15.47
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Waktu pembuatan: 02 Apr 2020 pada 16.51
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -87,7 +87,7 @@ CREATE TABLE `kategori` (
   `id_kategori` varchar(10) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL,
   `jenis_kategori` varchar(50) NOT NULL,
-  `status_kategori` varchar(3) NOT NULL
+  `status_kategori` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -95,11 +95,19 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'juice', '', 'A'),
-('KA2', 'roi', '', 'NA'),
-('KA3', 'woy', 'asaa', '0'),
-('KA4', 'woah', 's', '1'),
-('KA5', 'shan', 'eeel', '1');
+('KA1', 'juice', '', 0),
+('KA10', 'yy', 'yy', 1),
+('KA11', 'rtt', 'rtt', 1),
+('KA12', 'abc', 'abc', 1),
+('KA13', 'dd', 'dd', 1),
+('KA2', 'roi', '', 0),
+('KA3', 'woy', 'asaa', 0),
+('KA4', 'woah', 's', 1),
+('KA5', 'shan', 'eeel', 1),
+('KA6', 'a', 'asaa', 1),
+('KA7', 's', 'asaa', 1),
+('KA8', 'q', 'q', 1),
+('KA9', 'r', 'r', 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +167,15 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `id_promo`, `status`) VALUES
 ('MEN001', 'Nasi Goreng', 20000, 'Image/Screenshot (14', 'Lezat', 'KA1', 'PR1', 1),
-('MEN002', 'Ayam goreng', 5000, 'Image/800px-Basement', 'Enak', 'KA1', 'PR1', 1);
+('MEN002', 'Ayam goreng', 5000, 'Image/800px-Basement', 'Enak', 'KA1', 'PR1', 1),
+('MEN003', 'Iga Bakar', 20000, 'Image/Screenshot (9)', 'Matang', 'KA5', 'PR3', 1),
+('MEN004', 'Indomie', 5000, 'Image/Screenshot (12', 'Bergizi', 'KA4', 'PR1', 1),
+('MEN005', 'Mie', 15000, 'Image/Screenshot (13', 'Enak', 'KA4', 'PR4', 1),
+('MEN006', 'Ayam Geprek', 12000, 'Image/Screenshot (16', 'Pedas', 'KA4', 'PR5', 1),
+('MEN007', 'Es Teh  Manis', 3000, 'Image/Screenshot (17', 'Dingin', 'KA4', 'PR3', 1),
+('MEN008', 'Teh Hangat', 3000, 'Image/Screenshot (18', 'Hangat', 'KA4', 'PR8', 1),
+('MEN009', 'Es Mega Mendung', 5000, 'Image/Screenshot (19', 'Soda', 'KA4', 'PR3', 1),
+('MEN010', 'Mega Mendung', 8000, 'Image/Screenshot (20', 'Bersoda', 'KA4', 'PR4', 1);
 
 -- --------------------------------------------------------
 
@@ -176,6 +192,22 @@ CREATE TABLE `paket` (
   `id_promo` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `paket`
+--
+
+INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `id_kategori`, `id_promo`, `status`) VALUES
+('PK001', 'Subuh', 20000, 'KA5', 'PR1', 1),
+('PK002', 'Dini', 25000, 'KA4', 'PR1', 1),
+('PK003', 'Siang', 10000, 'KA5', 'PR3', 1),
+('PK004', 'Sore', 15000, 'KA4', 'PR1', 1),
+('PK005', 'Malam', 25000, 'KA4', 'PR1', 1),
+('PK006', 'Tengah malam', 30000, 'KA5', 'PR1', 1),
+('PK007', 'Panas 1', 25000, 'KA5', 'PR3', 1),
+('PK008', 'Panas 2', 20000, 'KA5', 'PR2', 1),
+('PK009', 'Panas 3', 10000, 'KA5', 'PR1', 1),
+('PK010', 'Panas 4', 56000, 'KA5', 'PR2', 1);
 
 -- --------------------------------------------------------
 
