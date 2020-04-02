@@ -18,7 +18,7 @@
         }
         $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 1";
         $hasil = mysqli_query($conn,$query);
-        echo  "<table class='table table-head-fixed text-nowrap'>
+        echo  "<table class='table table-bordered text-nowrap' id='stkat'>
         <thead>
         <tr>
         <th>Id Kategori</th>
@@ -41,7 +41,24 @@
                echo " </tr> ";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#stkat').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>
+        
+        
+        
+        ";
 
     }
     else if($_POST["action"]=="showdata2"){
@@ -55,7 +72,7 @@
         }
         $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 0";
         $hasil = mysqli_query($conn,$query);
-        echo  "<table class='table table-head-fixed text-nowrap'>
+        echo  "<table class='table table-bordered text-nowrap' id='stpurg'>
         <thead>
         <tr>
         <th>Id Kategori</th>
@@ -78,7 +95,28 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#stpurg').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        ";
     }
      
 

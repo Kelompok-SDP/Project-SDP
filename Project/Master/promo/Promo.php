@@ -48,7 +48,7 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
            <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Budget</h3>
+              <h3 class="card-title">Table Promo</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -56,21 +56,88 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="form-group">
-                <label for="inputEstimatedBudget">Estimated budget</label>
-                <input type="number" id="inputEstimatedBudget" class="form-control">
+            <div class="card-header">
+            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
+
+                <div class="card-tools">
+                
+                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group-prepend">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter">Filter By
+                    </button>
+                    <ul class="dropdown-menu" id="filtr">
+                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
+                     <li class="dropdown-divider"></li>
+                      <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Promo</li>
+                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Harga Promo</li>
+                    </ul>
+                  </div>
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
+                
+                    <div class="input-group-append">
+                      <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="inputSpentBudget">Total amount spent</label>
-                <input type="number" id="inputSpentBudget" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="inputEstimatedDuration">Estimated project duration</label>
-                <input type="number" id="inputEstimatedDuration" class="form-control">
+
+           <!--table-->
+                <div class="card-body table-responsive p-0" style="height: 100%;" id="tKat">
+                        
+                </div>
+
+
+
+                
+            </div>
+
+            <!-- /.card-body -->
+            <div class="card-footer">
+                  <button onclick="tambah()" class="btn btn-primary">Insert New Promo <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                </div>
+          </div>
+
+          <div class="card card-primary">
+              <div class="card-header" style="color:white; background-color:red;">
+                 <h3 class="card-title" >Purgatory Table Promo</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
               </div>
             </div>
-            <!-- /.card-body -->
-          </div>
+            <div class="card-body">
+            <div class="card-header">
+            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
+
+                <div class="card-tools">
+                
+                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group-prepend">
+                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
+                    </button>
+                    <ul class="dropdown-menu" id="filtr2">
+                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
+                     <li class="dropdown-divider"></li>
+                      <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Promo</li>
+                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Jenis Promo</li>
+                    </ul>
+                  </div>
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
+
+                    <div class="input-group-append">
+                      <button type="submit" onclick = "showtable2()" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+           <!--table-->
+                <div class="card-body table-responsive p-0" style="height: 100%;" id="tKatHap">
+                        
+                </div>
+             </div>
+         
 
         </div>
         <!-- /.col -->
@@ -103,7 +170,94 @@
 <script src="../../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+    var tp = 1;
+    var tp2 = 2;
+    function ubah(id){
+        if (id==1){
+          let tmp = "Nama Promo";
+            tp = 1;
+            document.getElementById("Btnfilter").innerHTML=tmp;
+            document.getElementById("src").type = "text";
+        } else{
+          let tmp = "Harga Promo";
+            tp = 2;
+            document.getElementById("Btnfilter").innerHTML=tmp;
+            document.getElementById("src").type = "number";
+        }
+    }
+    function ubah2(id){
+        if (id==1){
+            let tmp = "Nama Promo";  
+            tp2 = 1;
+            document.getElementById("Btnfilter2").innerHTML=tmp;
+            document.getElementById("sr2").type = "text";
+        } else{
+          let tmp = "Harga Promo";
+            tp2 = 2;
+           document.getElementById("Btnfilter2").innerHTML=tmp;
+           document.getElementById("src2").type = "number";
+        }
+    }
+    function loadTable(){
+        $("#tKat").load("showtablePromo.php");
+    }
+    function loadpurgatory(){
+        $("#tKatHap").load("purgatoryPromo.php");
+    }
+    function tambah(){
+        document.location.href = 'InsertPromo.php';
+    }
+    function showtable(){
+            if($("#src").val()!= ''){
+                $.post("controllerPromo.php",{
+                    "action" : "showdata",
+                    "source": $("#src").val(),
+                    "fillter":tp
+                },function(data){
+                        $("#tKat").html(data);
+                });
+            } else{
+                $("#tKat").load("showtablePromo.php");
+            }
+        }
+    
+    function edit(id){
+        var url  = "EditPromo.php?id="+id;
+        document.location.href = url;
 
+    }
+
+    function pulihkan(id){
+        $.post("controllerPromo.php",{
+                    "action" : "recover",
+                   "id" : id
+        },function(data){
+            $("#tKat").load("showtablePromo.php");
+            $("#tKatHap").load("purgatoryPromo.php");
+        });
+    }
+
+
+    function showtable2(){
+            if($("#src2").val()!= ''){
+                $.post("controllerPromo.php",{
+                    "action" : "showdata2",
+                    "source": $("#src2").val(),
+                    "fillter":tp2
+                },function(data){
+                        $("#tKatHap").html(data);
+                });
+            } else{
+                $("#tKatHap").load("purgatoryPromo.php");
+            }
+        }
+    
+    $(document).ready(function(){
+            
+        //setelah document terload semua, langsung load table    
+        loadTable();
+        loadpurgatory();
+    });
 </script>
 </body>
 </html>

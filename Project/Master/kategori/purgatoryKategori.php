@@ -4,7 +4,7 @@ require_once("../../config.php");
 $query="SELECT * from kategori where status_kategori = 0";
 $hasil = mysqli_query($conn,$query);
 ?>
-    <table class="table table-head-fixed text-nowrap">
+    <table class="table table-bordered text-nowrap" id="purgaKategori">
             <thead>
                 <tr>
                 <th>Id Kategori</th>
@@ -32,5 +32,15 @@ $hasil = mysqli_query($conn,$query);
     </tbody>
 </table>
 <script>
-    
+      $(function(){
+        $('#purgaKategori').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    });
 </script>

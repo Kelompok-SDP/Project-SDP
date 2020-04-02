@@ -4,25 +4,38 @@ require_once("../../config.php");
 
     if(isset($_POST['submit'])){
         $nama  = $_POST['nama'];
-        $jenis = $_POST['jenis'];
+        $harga = $_POST['harga'];
+        $awalP = $_POST['awalP'];
+        $akhirP = $_POST['akhirP'];
+       
         if($nama == ''){
-            echo "<script>alert('nama kategori tidak boleh kosong');</script>";
+            echo "<script>alert('nama Promo tidak boleh kosong');</script>";
         } else
-        if($jenis == ''){
-            echo "<script>alert('jenis kategori tidak boleh kosong');</script>";
-        } else{
+        if($harga == '' || $harga<1){
+            echo "<script>alert('harga tidak valid');</script>";
+        }  else if( $akhirP==''){
+            echo "<script>alert('tanggal tidak valid');</script>";  
+        }
+        else if ($awalP> $akhirP){
+            echo "<script>alert('tanggal tidak valid');</script>";
+        }
+        else{
             $jum2 =0;
-            $query = "SELECT  count(id_kategori) jml FROM kategori";
+            $query = "SELECT  count(id_promo) jml FROM promo";
             $rs=  mysqli_query($conn,$query);
             foreach($rs as $key=>$data) {
                 $jum2 = $data['jml'];
             }
+            $awalP  = strtotime($awalP);
+            $akhirP  = strtotime($akhirP);
+            $nawal = date('Y-m-d',$awalP);
+            $nakhir = date('Y-m-d',$akhirP);
             $jum2 ++;
-            $id_kategori = "KA".$jum2;
-            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis',1)";
+            $id_promo = "PR".$jum2;
+            $query = "INSERT INTO promo (`id_promo`, `nama_promo`,`harga_promo`,`periode_awal`,`periode_akhir`,`status_promo`)VALUES ('$id_promo','$nama',$harga,'$nawal','$nakhir',1)";
             if(mysqli_query($conn,$query) == true){
                 echo "<script>alert('Berhasil input data');</script>";
-                header("Location:InsertKategori.php");
+                header("Location:InsertPromo.php");
 
             } else{
                 echo "<script>alert('Tidak Berhasil input data');</script>";
@@ -37,7 +50,7 @@ require_once("../../config.php");
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kategori</title>
+  <title>Promo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -50,6 +63,9 @@ require_once("../../config.php");
   <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../AdminLTE-master/dist/css/adminlte.min.css">
+   <!-- daterange picker -->
+   <link rel="stylesheet" href="../../AdminLTE-master/plugins/daterangepicker/daterangepicker.css">
+ 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -63,12 +79,12 @@ require_once("../../config.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Kategori</h1>
+            <h1>Insert Promo</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="kategori.php">Back</a></li>
-              <li class="breadcrumb-item active">Table Kategori</li>
+              <li class="breadcrumb-item"><a href="Promo.php">Back</a></li>
+              <li class="breadcrumb-item active">Table Promo</li>
             </ol>
           </div>
         </div>
@@ -88,14 +104,43 @@ require_once("../../config.php");
               <form role="form" action = "#" method ="post">
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Kategori</label>
-                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama">
+                    <label for="exampleInputEmail1">Nama Promo</label>
+                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Promo" name ="nama">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Jenis Kategori</label>
-                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis">
+                    <label for="exampleInputPassword1">Harga Promo</label>
+                    <input type="number" class="form-control" id="jenisKat" placeholder="Masukan Harga Promo" name = "harga">
                   </div>
-                 
+                         <!-- Date range -->
+                    <div class="form-group">
+                        <label>Awal Periode:</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="date" class="form-control float-right" name="awalP">
+                        </div>
+                        <!-- /.input group -->
+                     </div>
+                      
+                     <div class="form-group">
+                        <label>Akhir Periode:</label>
+
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="date" class="form-control float-right" name="akhirP">
+                        </div>
+                        <!-- /.input group -->
+                     </div>
+
+                        
                 </div>
                 <!-- /.card-body -->
 
@@ -131,6 +176,8 @@ require_once("../../config.php");
 <script src="../../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<!-- date-range-picker -->
+<script src="../../AdminLTE-master/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->

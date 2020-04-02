@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kategori</title>
+  <title>Paket</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +30,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Kategori</h1>
+            <h1>Paket</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,7 +48,7 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
            <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Table Kategori</h3>
+              <h3 class="card-title">Table Paket</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -57,7 +57,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
+            <label style="font-size:20pt; font:bold;">Filter Paket :</label>
 
                 <div class="card-tools">
                 
@@ -68,12 +68,12 @@
                     <ul class="dropdown-menu" id="filtr">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
-                      <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Kategori</li>
-                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Jenis Kategori</li>
+                      <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Paket</li>
+                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Harga Paket</li>
                     </ul>
                   </div>
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
-                
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
+
                     <div class="input-group-append">
                       <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
@@ -93,13 +93,13 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                  <button onclick="tambah()" class="btn btn-primary">Insert New Paket <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 </div>
           </div>
 
           <div class="card card-primary">
               <div class="card-header" style="color:white; background-color:red;">
-                 <h3 class="card-title" >Purgatory Table Kategori</h3>
+                 <h3 class="card-title" >Purgatory Table Paket</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -108,19 +108,19 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
+            <label style="font-size:20pt; font:bold;">Filter Paket :</label>
 
                 <div class="card-tools">
                 
                   <div class="input-group input-group-sm" style="width: 350px;" >
                   <div class="input-group-prepend">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr2">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
-                      <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Kategori</li>
-                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Jenis Kategori</li>
+                      <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Paket</li>
+                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Paket</li>
                     </ul>
                   </div>
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
@@ -173,39 +173,39 @@
     var tp = 1;
     var tp2 = 2;
     function ubah(id){
-        if (id==1){
-          let tmp = "Nama Kategori";
+      if (id==1){
+            let tmp = "Nama Paket";
             tp = 1;
             document.getElementById("Btnfilter").innerHTML=tmp;
         } else{
-          let tmp = "Jenis Kategori";
+            let tmp = "Harga Paket";
             tp = 2;
             document.getElementById("Btnfilter").innerHTML=tmp;
         }
     }
     function ubah2(id){
-        if (id==1){
-            let tmp = "Nama Kategori";  
-            tp2 = 1;
+      if (id==1){
+            let tmp = "Nama Paket";
+            tp = 1;
             document.getElementById("Btnfilter2").innerHTML=tmp;
         } else{
-          let tmp = "Jenis Kategori";
-            tp2 = 2;
-           document.getElementById("Btnfilter2").innerHTML=tmp;
+            let tmp = "Harga Paket";
+            tp = 2;
+            document.getElementById("Btnfilter2").innerHTML=tmp;
         }
     }
     function loadTable(){
-        $("#tKat").load("showtableKategori.php");
+        $("#tKat").load("showtablePaket.php");
     }
     function loadpurgatory(){
-        $("#tKatHap").load("purgatoryKategori.php");
+        $("#tKatHap").load("purgatoryPaket.php");
     }
     function tambah(){
-        document.location.href = 'InsertKategori.php';
+        document.location.href = 'insertPaket.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
-                $.post("controllerKategori.php",{
+                $.post("controllerPaket.php",{
                     "action" : "showdata",
                     "source": $("#src").val(),
                     "fillter":tp
@@ -213,30 +213,30 @@
                         $("#tKat").html(data);
                 });
             } else{
-                $("#tKat").load("showtableKategori.php");
+                $("#tKat").load("showtablePaket.php");
             }
         }
     
     function edit(id){
-        var url  = "EditKategori.php?id="+id;
+      //  alert("hoi");
+        var url  = "editPaket.php?id="+id;
         document.location.href = url;
 
     }
 
     function pulihkan(id){
-        $.post("controllerKategori.php",{
+        $.post("controllerPaket.php",{
                     "action" : "recover",
                    "id" : id
         },function(data){
-            $("#tKat").load("showtableKategori.php");
-            $("#tKatHap").load("purgatoryKategori.php");
+            $("#tKat").load("showtablePaket.php");
+            $("#tKatHap").load("purgatoryPaket.php");
         });
     }
-
-
+    
     function showtable2(){
             if($("#src2").val()!= ''){
-                $.post("controllerKategori.php",{
+                $.post("controllerPaket.php",{
                     "action" : "showdata2",
                     "source": $("#src2").val(),
                     "fillter":tp2
@@ -244,7 +244,7 @@
                         $("#tKatHap").html(data);
                 });
             } else{
-                $("#tKatHap").load("purgatoryKategori.php");
+                $("#tKatHap").load("purgatoryPaket.php");
             }
         }
     
