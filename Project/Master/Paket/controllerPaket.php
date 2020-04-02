@@ -13,8 +13,6 @@
         $pb ='';
         if($filter ==1 ){
             $pb = "nama_paket";
-        } else{
-            $pb = "harga_paket";
         }
         $query="SELECT * from paket where $pb like '%$isi%' and status = 1";
         $hasil = mysqli_query($conn,$query);
@@ -41,7 +39,20 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#showurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
 
     }
     else if($_POST["action"]=="showdata2"){
@@ -78,7 +89,20 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#purgatoryurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
     }
      
 

@@ -52,7 +52,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Menu</title>
+  <title>Edit Menu</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -78,12 +78,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Kategori</h1>
+            <h1>Edit Menu</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="Menu.php">Back</a></li>
-              <li class="breadcrumb-item active">Table Kategori</li>
+              <li class="breadcrumb-item active">Table Menu</li>
             </ol>
           </div>
         </div>
@@ -114,7 +114,7 @@
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 'A'";
+                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_kategori'];
@@ -128,7 +128,7 @@
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM PROMO";
+                            $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_promo'];
@@ -144,7 +144,7 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save</button>
-                  <button type="submit" class="btn btn-primary" name="delete" value="<?= $tmpid ?>" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
                 </div>
                 </div>
             </div>
@@ -181,24 +181,26 @@
 <script>
     $('#btnEdit').click(function () {
         let id = $(this).val();
-        let npaket = $('#Npaket').val();
-        let hpaket = $('#Hpaket').val();
-        let kpaket = $('#Kpaket').val();
-        let ppaket = $('#Ppaket').val();
-        if(nmenu != "" && hmenu != "" && kmenu != "" && pmenu != ""){
+        let nmenu = $('#Nmenu').val();
+        let hmenu = $('#Hmenu').val();
+        let kmenu = $('#Kmenu').val();
+        let pmenu = $('#Pmenu').val();
+        let dmenu = $('#Dmenu').val();
+        if(nmenu != "" && hmenu != "" && kmenu != null && pmenu != null && dmenu != ""){
             $.ajax({
                 url: "Menu/updateDatabase.php",
                 method: 'post',
                 data: {
                     id : id,
-                    npaket : npaket,
-                    hpaket : hpaket,
-                    kpaket : kpaket,
-                    ppaket : pmenu,
+                    nmenu : nmenu,
+                    hmenu : hmenu,
+                    kmenu : kmenu,
+                    pmenu : pmenu,
+                    dmenu : dmenu
                 },
                 success: function(result){   
                     alert(result);
-                    document.location.href = "Menu/Paket.php";
+                    document.location.href = "Menu.php";
                 }
             });
         }else{
@@ -211,14 +213,14 @@
         if (r == true) {
             let id = $(this).val();
             $.ajax({
-                url: "Menu/deletePaket.php",
+                url: "Menu/deleteMenu.php",
                 method: 'post',
                 data: {
                     id : id
                 },
                 success: function(result){   
                     alert(result);
-                    document.location.href = "Paket.php";
+                    document.location.href = "Menu.php";
                 }
             });
         } 

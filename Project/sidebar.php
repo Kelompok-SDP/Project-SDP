@@ -56,17 +56,15 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav-item nav-treeview">
-              <li class="nav-item has-treeview">
-                <a href="Akun.php" class="nav-link">
-                  <i class="nav-icon far fa-circle"></i>
-                  <p>Master Menu
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="Menu.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Master Menu</p>
                 </a>
                 <ul class="nav nav-treeview" style="margin-left:10%">
                   <li class="nav-item">
-                    <a href="Akun.php" class="nav-link">
+                    <a href="Menu.php" class="nav-link">
                       <i class="fas fa-circle nav-icon"></i>
                       <p>Detail Menu</p>
                     </a>
@@ -79,7 +77,26 @@
                   </li>
                 </ul>
               </li>
-
+              <li class="nav-item">
+                <a href="Paket.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Master Paket</p>
+                </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Paket.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Paket</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_Paket.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Paket</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               <li class="nav-item">
                 <a href="Akun.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -109,19 +126,19 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
+                <a href="Kategori.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Kategori</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
+                <a href="Promo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Promo</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/index3.html" class="nav-link">
+                <a href="Promo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Report</p>
                 </a>

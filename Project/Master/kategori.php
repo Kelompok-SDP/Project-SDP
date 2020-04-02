@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Paket</title>
+  <title>Kategori</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE-master/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -30,7 +31,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Paket</h1>
+            <h1>Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -48,7 +49,7 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
            <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Table Paket</h3>
+              <h3 class="card-title">Table Kategori</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -57,7 +58,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Paket :</label>
+            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
 
                 <div class="card-tools">
                 
@@ -68,12 +69,12 @@
                     <ul class="dropdown-menu" id="filtr">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
-                      <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Paket</li>
-                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Harga Paket</li>
+                      <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Kategori</li>
+                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Jenis Kategori</li>
                     </ul>
                   </div>
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
-
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
+                
                     <div class="input-group-append">
                       <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
                     </div>
@@ -93,13 +94,13 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Paket <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                  <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 </div>
           </div>
 
           <div class="card card-primary">
               <div class="card-header" style="color:white; background-color:red;">
-                 <h3 class="card-title" >Purgatory Table Paket</h3>
+                 <h3 class="card-title" >Purgatory Table Kategori</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -108,19 +109,19 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Paket :</label>
+            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
 
                 <div class="card-tools">
                 
                   <div class="input-group input-group-sm" style="width: 350px;" >
                   <div class="input-group-prepend">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
+                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr2">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
-                      <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Paket</li>
-                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Paket</li>
+                      <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Kategori</li>
+                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Jenis Kategori</li>
                     </ul>
                   </div>
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
@@ -156,56 +157,56 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="../../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../AdminLTE-master/dist/js/demo.js"></script>
+<script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
     var tp = 1;
     var tp2 = 2;
     function ubah(id){
-      if (id==1){
-            let tmp = "Nama Paket";
+        if (id==1){
+          let tmp = "Nama Kategori";
             tp = 1;
             document.getElementById("Btnfilter").innerHTML=tmp;
         } else{
-            let tmp = "Harga Paket";
+          let tmp = "Jenis Kategori";
             tp = 2;
             document.getElementById("Btnfilter").innerHTML=tmp;
         }
     }
     function ubah2(id){
-      if (id==1){
-            let tmp = "Nama Paket";
-            tp = 1;
+        if (id==1){
+            let tmp = "Nama Kategori";  
+            tp2 = 1;
             document.getElementById("Btnfilter2").innerHTML=tmp;
         } else{
-            let tmp = "Harga Paket";
-            tp = 2;
-            document.getElementById("Btnfilter2").innerHTML=tmp;
+          let tmp = "Jenis Kategori";
+            tp2 = 2;
+           document.getElementById("Btnfilter2").innerHTML=tmp;
         }
     }
     function loadTable(){
-        $("#tKat").load("showtablePaket.php");
+        $("#tKat").load("kategori/showtableKategori.php");
     }
     function loadpurgatory(){
-        $("#tKatHap").load("purgatoryPaket.php");
+        $("#tKatHap").load("kategori/purgatoryKategori.php");
     }
     function tambah(){
-        document.location.href = 'insertPaket.php';
+        document.location.href = 'InsertKategori.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
-                $.post("controllerPaket.php",{
+                $.post("kategori/controllerKategori.php",{
                     "action" : "showdata",
                     "source": $("#src").val(),
                     "fillter":tp
@@ -213,30 +214,30 @@
                         $("#tKat").html(data);
                 });
             } else{
-                $("#tKat").load("showtablePaket.php");
+                $("#tKat").load("kategori/showtableKategori.php");
             }
         }
     
     function edit(id){
-      //  alert("hoi");
-        var url  = "editPaket.php?id="+id;
+        var url  = "EditKategori.php?id="+id;
         document.location.href = url;
 
     }
 
     function pulihkan(id){
-        $.post("controllerPaket.php",{
+        $.post("kategori/controllerKategori.php",{
                     "action" : "recover",
                    "id" : id
         },function(data){
-            $("#tKat").load("showtablePaket.php");
-            $("#tKatHap").load("purgatoryPaket.php");
+            $("#tKat").load("kategori/showtableKategori.php");
+            $("#tKatHap").load("kategori/purgatoryKategori.php");
         });
     }
-    
+
+
     function showtable2(){
             if($("#src2").val()!= ''){
-                $.post("controllerPaket.php",{
+                $.post("kategori/controllerKategori.php",{
                     "action" : "showdata2",
                     "source": $("#src2").val(),
                     "fillter":tp2
@@ -244,7 +245,7 @@
                         $("#tKatHap").html(data);
                 });
             } else{
-                $("#tKatHap").load("purgatoryPaket.php");
+                $("#tKatHap").load("kategori/purgatoryKategori.php");
             }
         }
     

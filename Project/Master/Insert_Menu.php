@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Menu</title>
+  <title>Insert Menu</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,6 +22,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php
+  include("../sidebar.php");
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -36,7 +39,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="Menu.php">Back</a></li>
+              <li class="breadcrumb-item"><a href="../Menu.php">Back</a></li>
               <li class="breadcrumb-item active">Table Menu</li>
             </ol>
           </div>
@@ -68,7 +71,7 @@
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 'A'";
+                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_kategori'];
@@ -82,7 +85,7 @@
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM PROMO";
+                            $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_promo'];
@@ -142,7 +145,7 @@
         let kmenu = $('#Kmenu').val();
         let pmenu = $('#Pmenu').val();
         let dmenu = $('#Dmenu').val(); 
-        if(nmenu != "" && hmenu != "" && kmenu != "" && pmenu != "" && dmenu != ""){
+        if(nmenu != "" && hmenu != "" && kmenu != null && pmenu != null && dmenu != ""){
             $.ajax({
                 url: "Menu/insertDatabase.php",
                 method: 'post',
