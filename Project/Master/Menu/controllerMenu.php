@@ -13,12 +13,10 @@
         $pb ='';
         if($filter ==1 ){
             $pb = "nama_menu";
-        } else{
-            $pb = "harga_menu";
         }
         $query="SELECT * FROM MENU WHERE $pb LIKE '%$isi%' AND STATUS = 1";
         $hasil = mysqli_query($conn,$query);
-        echo  "<table class='table table-head-fixed text-nowrap'>
+        echo  "<table class='table table-bordered text-nowrap' id='showurut'>
         <thead>
         <tr>
         <th>Id Menu</th>
@@ -41,7 +39,20 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#showurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
 
     }
     else if($_POST["action"]=="showdata2"){
@@ -50,12 +61,10 @@
         $pb ='';
         if($filter ==1 ){
             $pb = "nama_menu";
-        } else{
-            $pb = "harga_menu";
-        }
+        } 
         $query="SELECT * FROM MENU WHERE $pb LIKE '%$isi%' AND STATUS = 0";
         $hasil = mysqli_query($conn,$query);
-        echo  "<table class='table table-head-fixed text-nowrap'>
+        echo  "<table class='table table-bordered text-nowrap' id='purgatoryurut'>
         <thead>
         <tr>
         <th>Id Menu</th>
@@ -72,13 +81,26 @@
             echo" <tr>
                 <td>".$row['id_menu']."</td>
                 <td>".$row['nama_menu']."</td>
-                <td>".$row["jenis_menu"]."</td>
+                <td>".$row["harga_menu"]."</td>
                 <td>
-                <button onclick='pulihkan('".$row["id_menu"].")' class='btn btn-primary'>Pulihkan</button>
+                    <button onclick='pulihkan('".$row["id_menu"].")' class='btn btn-primary'>Pulihkan <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#purgatoryurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
     }
      
 

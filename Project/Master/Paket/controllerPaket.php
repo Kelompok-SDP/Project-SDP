@@ -39,7 +39,20 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#showurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
 
     }
     else if($_POST["action"]=="showdata2"){
@@ -76,7 +89,20 @@
             </tr> '";
         }
         echo " </tbody>
-        </table>";
+        </table>
+        <script>
+            $(function(){
+                $('#purgatoryurut').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            'responsive': true,
+            });
+            });
+        </script>";
     }
      
 

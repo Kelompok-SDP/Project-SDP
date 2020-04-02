@@ -168,23 +168,19 @@
 <!-- page script -->
 <script>
     var tp = 1;
-    var tp2 = 2;
+    var tp2 = 1;
     function ubah(id){
         if (id==1){
             let tmp = "Nama Menu";
             tp = 1;
             document.getElementById("Btnfilter").innerHTML=tmp;
-        } else{
-            tp = 2;
         }
     }
     function ubah2(id){
         if (id==1){
             let tmp = "Nama Menu";
-            tp = 1;
+            tp2 = 1;
             document.getElementById("Btnfilter2").innerHTML=tmp;
-        } else{
-            tp2 = 2;
         }
     }
     function loadTable(){
@@ -194,7 +190,7 @@
         $("#tKatHap").load("Menu/purgatoryMenu.php");
     }
     function tambah(){
-        document.location.href = 'Menu/InsertMenu.php';
+        document.location.href = 'Insert Menu.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
@@ -211,7 +207,7 @@
         }
     
     function edit(id){
-        var url  = "Menu/EditMenu.php?id="+id;
+        var url  = "Edit Menu.php?id="+id;
         document.location.href = url;
 
     }

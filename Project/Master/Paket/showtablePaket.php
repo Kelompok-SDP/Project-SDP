@@ -4,7 +4,7 @@ require_once("../../config.php");
 $query="SELECT * from paket where status = 1";
 $hasil = mysqli_query($conn,$query);
 ?>
-    <table class="table table-head-fixed text-nowrap">
+    <table class="table table-bordered text-nowrap" id="showurut">
             <thead>
                 <tr>
                 <th>Id Paket</th>
@@ -32,5 +32,15 @@ $hasil = mysqli_query($conn,$query);
     </tbody>
 </table>
 <script>
-    
+    $(function(){
+        $('#showurut').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    });
 </script>

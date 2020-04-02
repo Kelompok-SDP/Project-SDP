@@ -19,6 +19,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php
+  include("../sidebar.php");
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -69,7 +72,7 @@
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Paket</li>
-                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Harga Paket</li>
+                     
                     </ul>
                   </div>
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
@@ -120,7 +123,7 @@
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Paket</li>
-                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Paket</li>
+                  
                     </ul>
                   </div>
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
@@ -171,7 +174,7 @@
 <!-- page script -->
 <script>
     var tp = 1;
-    var tp2 = 2;
+    var tp2 = 1;
     function ubah(id){
       if (id==1){
             let tmp = "Nama Paket";
@@ -193,7 +196,7 @@
         $("#tKatHap").load("Paket/purgatoryPaket.php");
     }
     function tambah(){
-        document.location.href = 'Paket/insertPaket.php';
+        document.location.href = 'Insert Paket.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
@@ -211,7 +214,7 @@
     
     function edit(id){
       //  alert("hoi");
-        var url  = "Paket/editPaket.php?id="+id;
+        var url  = "Edit Paket.php?id="+id;
         document.location.href = url;
 
     }

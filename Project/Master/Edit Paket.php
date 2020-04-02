@@ -1,5 +1,5 @@
 <?php
-     require_once("../../config.php");
+     require_once("../config.php");
      $id = '';
      $id  = $_GET['id'];
      $query  = "SELECT * FROM PAKET WHERE id_paket = '$id'";
@@ -62,7 +62,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../Paket.php">Back</a></li>
+              <li class="breadcrumb-item"><a href="Paket.php">Back</a></li>
               <li class="breadcrumb-item active">Table Paket</li>
             </ol>
           </div>
@@ -96,7 +96,7 @@
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 'A'";
+                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_kategori'];
@@ -110,7 +110,7 @@
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM PROMO";
+                            $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_promo'];
@@ -123,8 +123,8 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                  <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit">Save</button>
+                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
                 </div>
               <!-- </form> -->
             </div>
@@ -161,7 +161,7 @@
 <script>
     $('#btnEdit').click(function () {
         let id = $(this).val();
-        let npaket = $('#Nmenu').val();
+        let npaket = $('#Npaket').val();
         let hpaket = $('#Hpaket').val();
         let kpaket = $('#Kpaket').val();
         let ppaket = $('#Ppaket').val();
@@ -178,7 +178,7 @@
                 },
                 success: function(result){   
                     alert(result);
-                    document.location.href = "../Paket.php";
+                    document.location.href = "Paket.php";
                 }
             });
         }else{
@@ -191,14 +191,14 @@
         if (r == true) {
             let id = $(this).val();
             $.ajax({
-                url: "deletePaket.php",
+                url: "Paket/deletePaket.php",
                 method: 'post',
                 data: {
                     id : id
                 },
                 success: function(result){   
                     alert(result);
-                    document.location.href = "../Paket.php";
+                    document.location.href = "Paket.php";
                 }
             });
         } 

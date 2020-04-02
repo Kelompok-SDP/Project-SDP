@@ -157,7 +157,7 @@
 <script>
   $('#Submit').click(function () {
     alert("Berhasil");
-    document.location.href = '../Menu.php';
+    document.location.href = 'Menu.php';
   });
 </script>
 </body>

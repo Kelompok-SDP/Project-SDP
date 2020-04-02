@@ -22,6 +22,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php
+  include("../sidebar.php");
+?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -68,7 +71,7 @@
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 'A'";
+                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_kategori'];
@@ -82,7 +85,7 @@
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM PROMO";
+                            $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_promo'];
