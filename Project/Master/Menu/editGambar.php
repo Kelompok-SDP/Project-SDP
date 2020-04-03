@@ -91,7 +91,7 @@
                         else{
                             $kembar = false;
                             if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
-                              echo "file ".basename($_FILES["gambar"]["name"])." terupload<br>";
+                              echo "File ".basename($_FILES["gambar"]["name"])." terupload<br>";
                               echo "<img src='$target_file' width='200' height='200'";
                             }          
                             $query3 = "SELECT * FROM MENU";
@@ -103,13 +103,13 @@
                                 }
                             }
                             if($kembar){
-                                echo "<script>alert('Path Kembar');</script>";
+                                echo "<script>alert('Path Kembar!');</script>";
                             }else{
                                 $query = "UPDATE MENU SET GAMBAR='$target_file' WHERE ID_MENU='$id'";
                                 if($conn->query($query) == true){
-                                    echo "<script>alert('Berhasil');</script>";
+                                    echo "<script>alert('Berhasil Meng-update Gambar');</script>";
                                 }else{
-                                    echo "<script>alert('Gagal');</script>";
+                                    echo "<script>alert('Gagal Meng-update Gambar');</script>";
                                 } 
                             }
                         }
@@ -120,7 +120,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></button>
                 </div>
               </form>
             </div>
@@ -156,7 +156,7 @@
 <!-- page script -->
 <script>
   $('#Submit').click(function () {
-    alert("Berhasil");
+    alert("Selesai");
     document.location.href = 'Menu.php';
   });
 </script>

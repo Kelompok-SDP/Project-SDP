@@ -1,5 +1,6 @@
 <?php
     require_once("../../config.php");
+    $id = $_GET["id"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,6 +52,21 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
           <div class="card card-primary">
               <div class="card-header">
+              <?php
+                $query = "SELECT * FROM MENU WHERE id_menu = '$id'";
+                $list = $conn->query($query);
+                foreach($list as $key=>$data){
+                    $nmenu = $data['nama_menu'];
+                    $angka = $data["harga_menu"];
+                    $hmenu = "Rp " . number_format($angka,2,',','.');
+                    $kmenu = $data['id_kategori'];
+                    $pmenu = $data['id_promo'];
+                    $dmenu = $data['deskripsi'];
+                }
+              ?>
+              <label for="exampleInputEmail1"><h4>Detail Menu </h4></label><br>
+              <label for="exampleInputEmail1">Nama Menu </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
+              <label for="exampleInputEmail1">Harga Menu </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -73,7 +89,7 @@
                         }
                         else{
                             if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
-                              echo "file ".basename($_FILES["gambar"]["name"])." terupload<br>";
+                              echo "File ".basename($_FILES["gambar"]["name"])." terupload<br>";
                               echo "<img src='$target_file' width='200' height='200'";
                             }
                         
@@ -104,13 +120,13 @@
                               }
                           }
                           if($kembar){
-                              echo "<script>alert('Path Kembar');</script>";
+                              echo "<script>alert('Path Kembar!');</script>";
                           }else{
                               $query = "UPDATE MENU SET GAMBAR='$target_file' WHERE ID_MENU='$string'";
                               if($conn->query($query) == true){
-                                  echo "<br><script>alert('Berhasil menambahkan gambar1');</script>";
+                                  echo "<br><script>alert('Berhasil Menambahkan Gambar');</script>";
                               }else{
-                                  echo "<br><script>alert('Gagal menambahkan gambar!');</script>";
+                                  echo "<br><script>alert('Gagal Menambahkan Gambar');</script>";
                               } 
                           }
                         }
@@ -121,7 +137,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit  <i class="fas fa-angle-right" style="margin-left:12px;"></button>
                 </div>
               </form>
             </div>
@@ -157,8 +173,8 @@
 <!-- page script -->
 <script>
   $('#Submit').click(function () {
-    alert('Berhasil');
-    document.location.href = '../Insert Menu.php';
+    alert('Selesai');
+    document.location.href = '../Insert_Menu.php';
   });
 </script>
 </body>

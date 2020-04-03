@@ -36,7 +36,6 @@
     if($kembar){
         echo "Data Kembar";
     }else{
-        echo $string;
         $query2 = "INSERT INTO PAKET VALUES('$string','$npaket',$hpaket,'$kpaket','$ppaket',1)";
         if($conn->query($query2) == true){
             echo "Berhasil Menambahkan Data";

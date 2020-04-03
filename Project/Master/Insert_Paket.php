@@ -1,31 +1,5 @@
 <?php 
 require_once("../config.php");
-    // if(isset($_POST['submit'])){
-    //     $npaket  = $_POST['nama'];
-    //     $hpaket = $_POST['harga'];
-    //     $idk = $_POST['idk'];
-    //     $idp = $_POST['idp'];
-    //     if($npaket == '' && $hpaket == '' && $idk == '' && $idp == ''){
-    //         echo "<script>alert('Terdapat isian yang kosong');</script>";
-    //     }else{
-    //         $jum2 = 0;
-    //         $query = "SELECT count(id_paket) jml FROM paket";
-    //         $rs = mysqli_query($conn,$query);
-    //         foreach($rs as $key=>$data) {
-    //             $jum2 = $data['jml'];
-    //         }
-    //         $jum2 ++;
-    //         $id_paket = "PK".$jum2;
-    //         $query = "INSERT INTO paket (`id_paket`, `nama_paket`, id_kategori, `harga_paket`, id_promo, status)VALUES ('$id_paket','$npaket', '$idk','$hpaket','$idp',1)";
-    //         if(mysqli_query($conn,$query) == true){
-    //             echo "<script>alert('Berhasil input data');</script>";
-    //             header("Location:InsertPaket.php");
-                
-    //         } else{
-    //             echo "<script>alert('Tidak Berhasil input data');</script>";
-    //         }
-    //     }
-    // }
 
 ?>
 
@@ -127,7 +101,7 @@ require_once("../config.php");
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></button>
                 </div>
               <!-- </form> -->
             </div>
@@ -180,7 +154,7 @@ require_once("../config.php");
                   success: function(result){   
                     alert(result);
                     if(result != "Data Kembar"){
-                      document.location.href = 'Insert Paket.php';
+                      document.location.href = 'Insert_Paket.php';
                     }
                   }
               });
