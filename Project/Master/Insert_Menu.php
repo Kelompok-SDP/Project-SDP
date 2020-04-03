@@ -27,11 +27,11 @@
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-  <section class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -102,11 +102,9 @@
                 
                 </div>
                 <!-- /.card-body -->
-
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></button>
+                  <button type="submit" class="btn btn-primary" id="Submit" name="submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 </div>
-              </form>
             </div>
         </div>
         <!-- /.col -->
