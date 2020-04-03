@@ -60,7 +60,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <button onclick="tambah()" class="btn btn-primary">Insert New Menu <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+            <button onclick="tambah()" class="btn btn-primary">Insert New Paket <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 <div class="card-tools">
                 
                   <div class="input-group input-group-sm" style="width: 350px;" >

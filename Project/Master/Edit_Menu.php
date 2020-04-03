@@ -33,8 +33,6 @@
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +133,6 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                   <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
-                </div>
                 </div>
             </div>
         </div>
