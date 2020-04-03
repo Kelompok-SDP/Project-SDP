@@ -3,36 +3,6 @@
 require_once("../config.php");
 
 
-    if(isset($_POST['submit'])){
-        $nama  = $_POST['nama'];
-        $jenis = $_POST['jenis'];
-        if($nama == ''){
-            echo "<script>alert('nama kategori tidak boleh kosong');</script>";
-            echo "<script>document.location.href='InsertKategori.php';</script>";
-        } else
-        if($jenis == ''){
-            echo "<script>alert('jenis kategori tidak boleh kosong');</script>";
-            echo "<script>document.location.href='InsertKategori.php';</script>";
-        } else{
-            $jum2 =0;
-            $query = "SELECT  count(id_kategori) jml FROM kategori";
-            $rs=  mysqli_query($conn,$query);
-            foreach($rs as $key=>$data) {
-                $jum2 = $data['jml'];
-            }
-            $jum2 ++;
-            $id_kategori = "KA".$jum2;
-            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis',1)";
-            if(mysqli_query($conn,$query) == true){
-                echo "<script>alert('Berhasil input data');</script>";
-                header("Location:InsertKategori.php");
-
-            } else{
-                echo "<script>alert('Tidak Berhasil input data');</script>";
-            }
-        }
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +58,7 @@ require_once("../config.php");
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post">
+              
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Kategori</label>
@@ -103,9 +73,9 @@ require_once("../config.php");
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="insert" name="submit">Submit</button>
                 </div>
-              </form>
+              
             </div>
         </div>
         <!-- /.col -->
@@ -138,7 +108,29 @@ require_once("../config.php");
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-
+$('#insert').click(function () {
+        let namkat = $('#namKat').val();
+        let jeniskat = $('#jenisKat').val();
+        
+        if(namkat != "" && jeniskat != "" ){
+            $.ajax({
+                url: "kategori/insertDatabase.php",
+                method: 'post',
+                data: {
+                    namkat: namkat,
+                    jeniskat : jeniskat
+                },
+                success: function(result){   
+                  alert(result);
+                  if(result != "Data Kembar"){
+                    document.location.href = 'kategori.php';
+                  }
+                }
+            });
+        }else{
+            alert("Terdapat isian yang kosong!");
+        }
+    });
 </script>
 </body>
 </html>

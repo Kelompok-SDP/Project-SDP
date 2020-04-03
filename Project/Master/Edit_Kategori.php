@@ -17,18 +17,36 @@
         $id = $_POST['id'];
         $query = "UPDATE `kategori` SET `nama_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
         if(mysqli_query($conn,$query) == true){
-           header("location:kategori.php");
+          echo "<script>alert('Berhasil meng-update data');</script>";
+          echo "<script>document.location.href='kategori.php';</script>";
         } else {
-            echo "alert('tidak Berhasil men-update');";
+          echo "<script>alert('Berhasil meng-update data');</script>";
         }   
      } 
       else if(isset($_POST['delete'])){
+        $r = confirm("Anda yakin?");
+        if ($r == true) {
+            let id = $(this).val();
+            $.ajax({
+                url: "Menu/deleteMenu.php",
+                method: 'post',
+                data: {
+                    id : id
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href = "Menu.php";
+                }
+            });
+        } 
         $id = $_POST['id'];
         $query = "UPDATE `kategori` SET `status_kategori`=0 WHERE id_kategori = '$id'";
         if(mysqli_query($conn,$query) == true){
-           header("location:kategori.php");
+          echo "<script>alert('Berhasil menon-aktifkan data');</script>";
+          echo "<script>document.location.href='kategori.php';</script>";
         }
       }
+      
 
 ?>
 

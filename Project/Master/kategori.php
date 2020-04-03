@@ -202,7 +202,7 @@
         $("#tKatHap").load("kategori/purgatoryKategori.php");
     }
     function tambah(){
-        document.location.href = 'InsertKategori.php';
+        document.location.href = 'insert_Kategori.php';
     }
     function showtable(){
             if($("#src").val()!= ''){

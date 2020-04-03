@@ -1,13 +1,13 @@
 <?php 
 
 require_once("../../config.php");
-$query="SELECT * from kategori where status_kategori = 1";
+$query="SELECT * from kategori where status_kategori = 1  ORDER BY 1 DESC";
 $hasil = mysqli_query($conn,$query);
 ?>
     <table class="table table-bordered text-nowrap" id = "tkategori">
             <thead>
                 <tr>
-                <th>Id Kategori</th>
+                <th> Id kategori </th>
                 <th>Nama Kategori</th>
                 <th>jenis Kategori</th>
                 <th>action</th>
