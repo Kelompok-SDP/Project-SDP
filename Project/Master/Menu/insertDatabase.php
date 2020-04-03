@@ -35,12 +35,11 @@
         }
     }
     if($kembar){
-        echo "Data Kembar";
+        echo "Data Kembar!";
     }else{
-        echo $string;
         $query2 = "INSERT INTO MENU VALUES('$string','$nmenu',$hmenu,'','$dmenu','$kmenu','$pmenu',1)";
         if($conn->query($query2) == true){
-            echo "Berhasil Menambahkan Data";
+            echo $string." -- Berhasil Menambahkan Data";
         }else{
             echo "Tidak Berhasil Menambahkan Data";
         } 

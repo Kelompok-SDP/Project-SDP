@@ -8,8 +8,8 @@
     $ppaket = $_POST['ppaket'];
     $query = "UPDATE PAKET SET NAMA_paket ='$npaket', HARGA_paket ='$hpaket', ID_KATEGORI = '$kpaket', ID_PROMO = '$ppaket' WHERE id_paket = '$id'";
     if(mysqli_query($conn,$query) == true){
-        echo "Berhasil meng-update data";
+        echo "Berhasil Meng-update Data";
     } else {
-        echo "Tidak Berhasil meng-update data";
+        echo "Tidak Berhasil Meng-update Data";
     }   
 ?>

@@ -19,7 +19,6 @@
         echo  "<table class='table table-bordered text-nowrap' id='showurut'>
         <thead>
         <tr>
-        <th>Id Menu</th>
         <th>Nama Menu</th>
         <th>Harga Menu</th>
         <th>Action</th>
@@ -31,7 +30,6 @@
             foreach ($hasil as $key=>$row){
                 $tmp = $row["id_menu"];
             echo" <tr>
-                <td>".$row['id_menu']."</td>
                 <td>".$row['nama_menu']."</td>
                 <td>".$row["harga_menu"]."</td>
                 <td>
@@ -46,7 +44,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,
@@ -67,7 +65,6 @@
         echo  "<table class='table table-bordered text-nowrap' id='purgatoryurut'>
         <thead>
         <tr>
-        <th>Id Menu</th>
         <th>Nama Menu</th>
         <th>Harga Menu</th>
         <th>Action</th>
@@ -79,7 +76,6 @@
             foreach ($hasil as $key=>$row){
                 $tmp = $row["id_menu"];
             echo" <tr>
-                <td>".$row['id_menu']."</td>
                 <td>".$row['nama_menu']."</td>
                 <td>".$row["harga_menu"]."</td>
                 <td>
@@ -94,7 +90,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,

@@ -1,7 +1,8 @@
 <?php
      require_once("../config.php");
      $id = '';
-     $id  = $_GET['id'];
+     $tmpid  = $_GET['id'];
+     $id = $tmpid;
      $query  = "SELECT * FROM PAKET WHERE id_paket = '$id'";
      $res = mysqli_query($conn,$query);
      $npaket = "";
@@ -92,7 +93,8 @@
                     <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
                   </div>
                   <div class="form-group">
-                        <label for="inputStatus">Kategori Menu Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label>
+                  <label for="inputStatus">Kategori Menu</label><br>
+                        <i><label for="inputStatus">Kategori Menu Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label></i>
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -106,7 +108,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label>
+                    <label for="inputStatus">Promo Menu</label><br>
+                        <i><label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label><i>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -124,7 +127,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" id="btnEdit" name="submit">Save</button>
-                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
                 </div>
               <!-- </form> -->
             </div>

@@ -19,7 +19,6 @@
         echo  "<table class='table table-head-fixed text-nowrap'>
         <thead>
         <tr>
-        <th>Id Paket</th>
         <th>Nama Paket</th>
         <th>Harga paket</th>
         <th>Action</th>
@@ -31,7 +30,6 @@
             foreach ($hasil as $key=>$row){
                 $tmp = $row["id_paket"];
             echo" <tr>
-                <td>".$row['id_paket']."</td>
                 <td>".$row['nama_paket']."</td>
                 <td>".$row["harga_paket"]."</td>
                 <td>
@@ -46,7 +44,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,
@@ -61,15 +59,12 @@
         $pb ='';
         if($filter ==1 ){
             $pb = "nama_paket";
-        } else{
-            $pb = "harga_paket";
         }
         $query="SELECT * from paket where $pb like '%$isi%' and status = 0";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-head-fixed text-nowrap'>
         <thead>
         <tr>
-        <th>Id Paket</th>
         <th>Nama Paket</th>
         <th>Harga Paket</th>
         <th>Action</th>
@@ -81,7 +76,6 @@
             foreach ($hasil as $key=>$row){
                 $tmp = $row["id_paket"];
             echo" <tr>
-                <td>".$row['id_paket']."</td>
                 <td>".$row['nama_paket']."</td>
                 <td>".$row["harga_paket"]."</td>
                 <td>
@@ -96,7 +90,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,
