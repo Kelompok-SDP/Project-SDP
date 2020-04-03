@@ -7,7 +7,6 @@ $hasil = mysqli_query($conn,$query);
     <table class="table table-bordered text-nowrap" id = "tkategori">
             <thead>
                 <tr>
-                <th> Id kategori </th>
                 <th>Nama Kategori</th>
                 <th>jenis Kategori</th>
                 <th>action</th>
@@ -22,7 +21,6 @@ $hasil = mysqli_query($conn,$query);
         $tmp = $row["id_kategori"];
         ?>
         <tr>
-            <td><?=$row["id_kategori"]?></td>
             <td><?=$row["nama_kategori"]?></td>
             <td><?=$row["jenis_kategori"]?></td>
             <td>
@@ -37,7 +35,7 @@ $hasil = mysqli_query($conn,$query);
       "paging": true,
       "lengthChange": false,
       "searching": false,
-      "ordering": true,
+      "ordering": false,
       "info": true,
       "autoWidth": false,
       "responsive": true,

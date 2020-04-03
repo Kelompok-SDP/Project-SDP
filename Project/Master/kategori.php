@@ -58,8 +58,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Kategori :</label>
-
+            <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 <div class="card-tools">
                 
                   <div class="input-group input-group-sm" style="width: 350px;" >
@@ -94,7 +93,6 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 </div>
           </div>
 
@@ -172,7 +170,7 @@
 <!-- page script -->
 <script>
     var tp = 1;
-    var tp2 = 2;
+    var tp2 =1;
     function ubah(id){
         if (id==1){
           let tmp = "Nama Kategori";
@@ -219,7 +217,7 @@
         }
     
     function edit(id){
-        var url  = "EditKategori.php?id="+id;
+        var url  = "Edit_Kategori.php?id="+id;
         document.location.href = url;
 
     }

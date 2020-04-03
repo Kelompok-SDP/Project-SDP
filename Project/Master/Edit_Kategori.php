@@ -11,42 +11,6 @@
          $jenis = $data['jenis_kategori'];
      }
 
-     if(isset($_POST['submit'])){
-        $nama  = $_POST['nama'];
-        $jenis = $_POST['jenis'];
-        $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `nama_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-          echo "<script>alert('Berhasil meng-update data');</script>";
-          echo "<script>document.location.href='kategori.php';</script>";
-        } else {
-          echo "<script>alert('Berhasil meng-update data');</script>";
-        }   
-     } 
-      else if(isset($_POST['delete'])){
-        $r = confirm("Anda yakin?");
-        if ($r == true) {
-            let id = $(this).val();
-            $.ajax({
-                url: "Menu/deleteMenu.php",
-                method: 'post',
-                data: {
-                    id : id
-                },
-                success: function(result){   
-                    alert(result);
-                    document.location.href = "Menu.php";
-                }
-            });
-        } 
-        $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `status_kategori`=0 WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-          echo "<script>alert('Berhasil menon-aktifkan data');</script>";
-          echo "<script>document.location.href='kategori.php';</script>";
-        }
-      }
-      
 
 ?>
 
@@ -116,15 +80,14 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">Jenis Kategori</label>
                     <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis" value=<?=$jenis?>>
-                    <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
                   </div>
                  
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                  <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                 <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $id ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $id ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
                 </div>
               </form>
             </div>
@@ -159,7 +122,46 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+ $('#btnEdit').click(function () {
+        let id = $(this).val();
+        let namkat = $('#namKat').val();
+        let jeniskat = $("#jenisKat").val();
+        if(namkat != "" && jeniskat != "" ){
+            $.ajax({
+                url: "kategori/updateDatabase.php",
+                method: 'post',
+                data: {
+                    id : id,
+                    namkat : namkat,
+                    jeniskat : jeniskat
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href ="kategori.php";
+                }
+            });
+        }else{
+            alert("Terdapat Isian yang kosong!");
+        }
+    });
 
+    $('#btnDelete').click(function () {
+        var r = confirm("Anda yakin?");
+        if (r == true) {
+            let id = $(this).val();
+            $.ajax({
+                url: "kategori/deleteKategori.php",
+                method: 'post',
+                data: {
+                    id : id
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href = "kategori.php";
+                }
+            });
+        } 
+    });
 </script>
 </body>
 </html>

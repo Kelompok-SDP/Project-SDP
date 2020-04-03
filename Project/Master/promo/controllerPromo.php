@@ -16,12 +16,11 @@
         } else{
             $pb = "harga_promo";
         }
-        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 1";
+        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 1 order by 1";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stkat'>
         <thead>
         <tr>
-                 <th>Id Promo</th>
                 <th>Nama Promo</th>
                 <th>Harga Promo</th>
                 <th>Awal Periode Promo</th>
@@ -36,24 +35,22 @@
             foreach ($hasil as $key=>$row){
                 //$tmp = $row["id_promo"];
             echo" <tr>
-                <td>".$row['id_promo']."</td>
-                <td>".$row['nama_promo']."</td>
+            <td>
+            <form action='promo/openDetail.php' method='post' target='_blank'>
+                   <button type='submit' name='detail' value=\"$row[id_promo]\" style='  background-color: Transparent;
+                   background-repeat:no-repeat;
+                   border: none;
+                   color: blue;
+                   cursor:pointer;
+                   overflow: hidden;
+                   outline:none;'>".$row['nama_promo']."</button>
+               </form>
+   
+                
+               </td>
                 <td>".$row["harga_promo"]."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
-                <td>
-                <form action='promo/openImage.php' method='post' target='_blank'>
-                       <button type='submit' name='gambar' value=\"$row[gambar_promo]\" style='  background-color: Transparent;
-                       background-repeat:no-repeat;
-                       border: none;
-                       color: blue;
-                       cursor:pointer;
-                       overflow: hidden;
-                       outline:none;'>".$row['gambar_promo']."</button>
-                   </form>
-       
-                    
-                   </td>
                 <td>";
              echo "<button onclick='edit(\"$row[id_promo]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
                echo " </tr> ";
@@ -88,17 +85,15 @@
         } else{
             $pb = "harga_promo";
         }
-        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 0";
+        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 0 order by 1 desc";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stpurg'>
         <thead>
         <tr>
-            <th>Id Promo</th>
             <th>Nama Promo</th>
             <th>Harga Promo</th>
             <th>Awal Periode Promo</th>
             <th>Akhir Periode Promo</th>
-            <th>Gambar</th>
             <th>Action</th>
         </tr>
             </thead>
@@ -108,24 +103,23 @@
             foreach ($hasil as $key=>$row){
                // $tmp = $row["id_kategori"];
             echo" <tr>
-                <td>".$row['id_promo']."</td>
-                <td>".$row['nama_promo']."</td>
+            <td>
+            <form action='promo/openDetail.php' method='post' target='_blank'>
+                   <button type='submit' name='detail' value=\"$row[id_promo]\" style='  background-color: Transparent;
+                   background-repeat:no-repeat;
+                   border: none;
+                   color: blue;
+                   cursor:pointer;
+                   overflow: hidden;
+                   outline:none;'>".$row['nama_promo']."</button>
+               </form>
+   
+                
+               </td>
                 <td>".$row["harga_promo"]."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
-                <td>
-         <form action='promo/openImage.php' method='post' target='_blank'>
-                <button type='submit' name='gambar' value=\"$row[gambar_promo]\" style='  background-color: Transparent;
-                background-repeat:no-repeat;
-                border: none;
-                color: blue;
-                cursor:pointer;
-                overflow: hidden;
-                outline:none;'>".$row['gambar_promo']."</button>
-            </form>
-
-             
-            </td>
+              
                     <td>
                 <button onclick='pulihkan(\"$row[id_promo]\")' class='btn btn-primary'>Pulihkan</button>
             </tr> '";
@@ -138,7 +132,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,

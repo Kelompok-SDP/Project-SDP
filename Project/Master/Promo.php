@@ -58,7 +58,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
+            <button onclick="tambah()" class="btn btn-primary">Insert New Promo <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
 
                 <div class="card-tools">
                 
@@ -94,7 +94,6 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Promo <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 </div>
           </div>
 
@@ -172,7 +171,7 @@
 <!-- page script -->
 <script>
     var tp = 1;
-    var tp2 = 2;
+    var tp2 = 1;
     function ubah(id){
         if (id==1){
           let tmp = "Nama Promo";
@@ -206,7 +205,7 @@
         $("#tKatHap").load("promo/purgatoryPromo.php");
     }
     function tambah(){
-        document.location.href = 'InsertPromo.php';
+        document.location.href = 'Insert_Promo.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
@@ -223,7 +222,7 @@
         }
     
     function edit(id){
-        var url  = "EditPromo.php?id="+id;
+        var url  = "Edit_Promo.php?id="+id;
         document.location.href = url;
 
     }
