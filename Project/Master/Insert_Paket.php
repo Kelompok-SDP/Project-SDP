@@ -101,7 +101,7 @@ require_once("../config.php");
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></button>
                 </div>
               <!-- </form> -->
             </div>

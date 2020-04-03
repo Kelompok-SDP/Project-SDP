@@ -133,8 +133,8 @@
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save</button>
-                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
                 </div>
                 </div>
             </div>
