@@ -7,44 +7,6 @@ include("../config.php");?>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NF7SB8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <?php include('Mcd/header.php')?>
-    
-<div class="section-cover-home animated fadeInUp">
-    <div id="carouselCoverResponsive" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators animated fadeInUp delayp3">
-            <li data-target="#carouselCoverResponsive" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselCoverResponsive" data-slide-to="1" class=""></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item carousel-item-next carousel-item-left">
-                <a href="https://mcdonalds.co.id/menu" target="">
-                    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/TxlxVcjeqUjrxHiMr7Nx.jfif" class="img-fluid w-100 d-none d-sm-block">
-                    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/Ab4eQIGMl2aEOPIW2uF6.jfif" class="img-fluid w-100 d-block d-sm-none">
-                <!-- <div class="cover cover-home cover-responsive" id="" style="background: url(https://nos.jkt-1.neo.id/mcdonalds/home-banners/November2019/TxlxVcjeqUjrxHiMr7Nx.jpg) no-repeat center;">
-                    <img src="https://nos.jkt-1.neo.id/mcdonalds/home-banners/November2019/Ab4eQIGMl2aEOPIW2uF6.jpg" alt="" class="cover-responsive-img" style="height: auto !important;">
-                </div> -->
-                </a>
-            </div>
-            <div class="carousel-item active carousel-item-left">
-                <a href="https://mcdonalds.co.id/app" target="">
-                    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/zaSa8xqec2KIt2GJjUXg.jfif" class="img-fluid w-100 d-none d-sm-block">
-                    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/3BQlSOUMkrzSfTdW8UAH.jfif" class="img-fluid w-100 d-block d-sm-none">
-                <!-- <div class="cover cover-home cover-responsive" id="" style="background: url(https://nos.jkt-1.neo.id/mcdonalds/home-banners/November2019/zaSa8xqec2KIt2GJjUXg.jpg) no-repeat center;">
-                    <img src="https://nos.jkt-1.neo.id/mcdonalds/home-banners/November2019/3BQlSOUMkrzSfTdW8UAH.jpg" alt="" class="cover-responsive-img" style="height: auto !important;">
-                </div> -->
-                </a>
-            </div>
-        </div>
-        <a class="carousel-control-prev hidden" href="#carouselCoverResponsive" role="button" data-slide="prev">
-            <i class="fal fa-angle-left" data-fa-transform="grow-20"></i>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next hidden" href="#carouselCoverResponsive" role="button" data-slide="next">
-            <i class="fal fa-angle-right" data-fa-transform="grow-20"></i>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
-
 <section class="py-main section-other-promo">
     <div class="container">
         <div class="heading text-center">

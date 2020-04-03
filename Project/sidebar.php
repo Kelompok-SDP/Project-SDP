@@ -61,6 +61,7 @@
                 <a href="Menu.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Menu</p>
+                    <i class="right fas fa-angle-left"></i>
                 </a>
                 <ul class="nav nav-treeview" style="margin-left:10%">
                   <li class="nav-item">
@@ -81,6 +82,7 @@
                 <a href="Paket.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Master Paket</p>
+                    <i class="right fas fa-angle-left"></i>
                 </a>
                 <ul class="nav nav-treeview" style="margin-left:10%">
                   <li class="nav-item">
