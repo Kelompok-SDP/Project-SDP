@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Apr 2020 pada 16.51
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Waktu pembuatan: 02 Apr 2020 pada 19.29
+-- Versi server: 10.4.8-MariaDB
+-- Versi PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -154,7 +154,7 @@ CREATE TABLE `menu` (
   `id_menu` varchar(10) NOT NULL,
   `nama_menu` varchar(50) NOT NULL,
   `harga_menu` int(11) NOT NULL,
-  `gambar` varchar(20) NOT NULL,
+  `gambar` varchar(200) NOT NULL,
   `deskripsi` varchar(50) NOT NULL,
   `id_kategori` varchar(10) NOT NULL,
   `id_promo` varchar(10) NOT NULL,
@@ -263,6 +263,7 @@ CREATE TABLE `promo` (
   `harga_promo` int(11) NOT NULL,
   `periode_awal` date NOT NULL,
   `periode_akhir` date NOT NULL,
+  `gambar_promo` varchar(200) NOT NULL,
   `status_promo` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -270,15 +271,18 @@ CREATE TABLE `promo` (
 -- Dumping data untuk tabel `promo`
 --
 
-INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `status_promo`) VALUES
-('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00', 1),
-('PR2', 'hihi', 0, '0000-00-00', '0000-00-00', 1),
-('PR3', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00', 1),
-('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00', 1),
-('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00', 1),
-('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26', 0),
-('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25', 0),
-('PR8', 'lalala', 2000000, '2020-04-16', '2020-04-25', 1);
+INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `gambar_promo`, `status_promo`) VALUES
+('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00', '', 1),
+('PR10', 'alsdkals', 2147483647, '2020-04-04', '2020-04-11', 'promo/PrImage/LennyFace.jpg', 1),
+('PR11', 'Chen', 2147483647, '2020-04-18', '2020-04-24', '', 1),
+('PR2', 'hihi', 0, '1970-01-01', '1970-01-01', 'promo/PrImage/LennyFace.jpg', 1),
+('PR3', 'kasjdkasd', 20000000, '1970-01-01', '1970-01-01', 'promo/PrImage/623548.jpg', 1),
+('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00', '', 1),
+('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00', '', 1),
+('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26', '', 0),
+('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25', '', 0),
+('PR8', 'lalala', 2000000, '2020-04-16', '2020-04-25', '', 1),
+('PR9', 'howew', 20000, '2020-04-17', '2020-04-25', '', 1);
 
 --
 -- Indexes for dumped tables

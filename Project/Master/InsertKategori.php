@@ -8,9 +8,11 @@ require_once("../config.php");
         $jenis = $_POST['jenis'];
         if($nama == ''){
             echo "<script>alert('nama kategori tidak boleh kosong');</script>";
+            echo "<script>document.location.href='InsertKategori.php';</script>";
         } else
         if($jenis == ''){
             echo "<script>alert('jenis kategori tidak boleh kosong');</script>";
+            echo "<script>document.location.href='InsertKategori.php';</script>";
         } else{
             $jum2 =0;
             $query = "SELECT  count(id_kategori) jml FROM kategori";
