@@ -1,19 +1,20 @@
 <?php
 require_once("../../config.php");
     $id  = $_POST['detail'];
-    $query="SELECT * from promo where id_promo = '$id'";
+    $query="SELECT * from menu where id_menu = '$id'";
     $hasil = mysqli_query($conn,$query);
     $gambar = "";
     $harga = "";
     $awalperiode ="";
     $akhirperiode = "";
     $nama = "";
+    $desk = "";
+
     foreach ($hasil as $key=>$data){
-        $harga = $data['harga_promo'];
-        $nama = $data['nama_promo'];
-        $awalperiode = $data['periode_awal'];
-        $akhirperiode = $data['periode_akhir'];
-        $gambar = $data['gambar_promo'];
+        $harga = $data['harga_menu'];
+        $nama = $data['nama_menu'];
+        $desk = $data['deskripsi'];
+        $gambar = $data['gambar'];
     }
    
      $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
@@ -60,19 +61,19 @@ require_once("../../config.php");
               <!-- form start -->
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Promo :<?php echo " ".$nama;?></label>
+                        <label for="exampleInputEmail1">Nama Menu :<?php echo " ".$nama;?></label>
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">
-                        <label for="inputSpentBudget">Harga Promo : Rp.<?php echo " ".$hasil_rupiah;?></label>
+                        <label for="inputSpentBudget">Harga Menu : Rp.<?php echo " ".$hasil_rupiah;?></label>
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Periode Promo : <?php echo " ".$awalperiode." - ".$akhirperiode;?></label>
+                        <label for="inputStatus">Deskripsi : <?php echo " ".$desk;?></label>
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Promo Image</label>
+                        <label for="inputStatus">Menu Image</label>
                         <br>
                         <img src=<?=$gambar?> style="width:500px;height:400px;" alt="image not Found">
                         <br>

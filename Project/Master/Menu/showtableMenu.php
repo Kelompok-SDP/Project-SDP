@@ -17,8 +17,16 @@ $hasil = mysqli_query($conn,$query);
     foreach ($hasil as $key=>$row){
         $tmp = $row["id_menu"];
         ?>
-        <tr>
-            <td><?=$row["nama_menu"]?></td>
+        <tr><td>
+        <form action="Menu/openDetail.php" method="post" target="_blank">
+                <button type="submit" name="detail" value="<?=$row['id_menu']?>"style="  background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                color: blue;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;"><?=$row['nama_menu']?></button>
+            </form></td>
             <?php 
                 $angka = $row["harga_menu"];
                 $hasil_rupiah = "Rp " . number_format($angka,2,',','.');

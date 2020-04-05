@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Apr 2020 pada 19.29
+-- Waktu pembuatan: 05 Apr 2020 pada 14.35
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -95,19 +95,15 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'juice', '', 0),
-('KA10', 'yy', 'yy', 1),
-('KA11', 'rtt', 'rtt', 1),
-('KA12', 'abc', 'abc', 1),
-('KA13', 'dd', 'dd', 1),
-('KA2', 'roi', '', 0),
-('KA3', 'woy', 'asaa', 0),
-('KA4', 'woah', 's', 1),
-('KA5', 'shan', 'eeel', 1),
-('KA6', 'a', 'asaa', 1),
-('KA7', 's', 'asaa', 1),
-('KA8', 'q', 'q', 1),
-('KA9', 'r', 'r', 1);
+('KAT001', 'Chinese Cuisene', 'Makanan', 1),
+('KAT002', 'Javanese Cuisine', 'Makanan', 1),
+('KAT003', 'Noodle', 'Makanan', 1),
+('KAT004', 'Porrridge', 'Makanan', 1),
+('KAT005', 'Penyetan', 'Makanan', 1),
+('KAT006', 'Steak', 'Makanan', 1),
+('KAT007', 'Tea', 'Minuman', 1),
+('KAT008', 'Coffe', 'Minuman', 1),
+('KAT009', 'Juice', 'Minuman', 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +171,8 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`,
 ('MEN007', 'Es Teh  Manis', 3000, 'Image/Screenshot (17', 'Dingin', 'KA4', 'PR3', 1),
 ('MEN008', 'Teh Hangat', 3000, 'Image/Screenshot (18', 'Hangat', 'KA4', 'PR8', 1),
 ('MEN009', 'Es Mega Mendung', 5000, 'Image/Screenshot (19', 'Soda', 'KA4', 'PR3', 1),
-('MEN010', 'Mega Mendung', 8000, 'Image/Screenshot (20', 'Bersoda', 'KA4', 'PR4', 1);
+('MEN010', 'Mega Mendung', 8000, 'Image/Screenshot (20', 'Bersoda', 'KA4', 'PR4', 1),
+('MEN011', 'b', 1, 'Image/623548.jpg', 'Po', 'KA12', 'PR11', 1);
 
 -- --------------------------------------------------------
 
@@ -272,17 +269,11 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `gambar_promo`, `status_promo`) VALUES
-('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00', '', 1),
-('PR10', 'alsdkals', 2147483647, '2020-04-04', '2020-04-11', 'promo/PrImage/LennyFace.jpg', 1),
-('PR11', 'Chen', 2147483647, '2020-04-18', '2020-04-24', '', 1),
-('PR2', 'hihi', 0, '1970-01-01', '1970-01-01', 'promo/PrImage/LennyFace.jpg', 1),
-('PR3', 'kasjdkasd', 20000000, '1970-01-01', '1970-01-01', 'promo/PrImage/623548.jpg', 1),
-('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00', '', 1),
-('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00', '', 1),
-('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26', '', 0),
-('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25', '', 0),
-('PR8', 'lalala', 2000000, '2020-04-16', '2020-04-25', '', 1),
-('PR9', 'howew', 20000, '2020-04-17', '2020-04-25', '', 1);
+('PR001', 'Hemat 1', 25000, '2020-04-01', '2020-04-30', 'PrImage/ayam-bakar-dengan-es.jpg', 1),
+('PR002', 'Hemat 2', 24000, '2020-04-02', '2020-04-30', 'PrImage/download.png', 1),
+('PR003', 'Beef Time', 85000, '2020-04-08', '2020-04-23', 'PrImage/16214324-beef-steak-on-a-wooden-table.jpg', 1),
+('PR004', 'Ramadhan Hemat', 15000, '2020-04-01', '2020-04-30', 'PrImage/ketupat-dan-opor-ayam-foto-resep-utama.jpg', 1),
+('PR005', 'Es Ceria', 50000, '2020-04-09', '2020-04-11', 'PrImage/easiest-ever-fruit-ice-cream-ghk-1532637317.jpg', 1);
 
 --
 -- Indexes for dumped tables
