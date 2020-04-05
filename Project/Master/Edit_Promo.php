@@ -21,65 +21,14 @@
      $np = date('Y-m-d',$awp);
      $nkp = date('Y-m-d',$akp);
 
-     if(isset($_POST['submit'])){
-        $id = $_POST['id'];
-        $nama  = $_POST['nama'];
-        $harga = $_POST['harga'];
-        $awalP = $_POST['awalP'];
-        $akhirP = $_POST['akhirP'];
-        $awalP  = strtotime($awalP);
-        $akhirP  = strtotime($akhirP);
-        $nawal = date('Y-m-d',$awalP);
-        $nakhir = date('Y-m-d',$akhirP);
-        $image = "";
-        $target_dir = "promo/PrImage/"; //<- ini folder tujuannya
-        $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
-        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if ($_FILES["gambar"]["name"]=="")
-        {
-            if(isset($_POST['ck'])){
-                $image ="";
-            } else {
-              $image = $_POST['hgambar'];
-            }
-        } else {
-        
-          if($file_type !="jpg" && $file_type !="png"){
-            echo "<script>alert('Tipe file hanya jpg dan png saja".$_FILES["gambar"]["name"]."');</script>";
-            echo "<script>document.location.href='Promo.php';</script>";
-          } else if($_FILES["gambar"]["size"] > 500000){
-              echo "File size terlalu besar";
-              echo "<script>alert('File size terlalu besar');</script>";
-              echo "<script>document.location.href='Promo.php';</script>";
-          } else{
-            if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
-             $image= $target_file;
-            } 
-          }
-        }
-        $query = "UPDATE `promo` SET `nama_promo`='$nama',`harga_promo`=$harga,`periode_awal`='$nawal', `periode_akhir`='$nakhir' , `gambar_promo` = '$image' WHERE id_promo = '$id'";
-        if(mysqli_query($conn,$query) == true){
-           header("location:Promo.php");
-        } else {
-            echo "<script>alert('tidak Berhasil men-update');</script>";
-            echo "<script>document.location.href='Promo.php';</script>";
-        }   
-     } 
-      else if(isset($_POST['delete'])){
-        $id = $_POST['id'];
-        $query = "UPDATE `promo` SET `status_promo`=0 WHERE id_promo = '$id'";
-        if(mysqli_query($conn,$query) == true){
-           header("location:Promo.php");
-        }
-      }
-
+     
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Promo</title>
+  <title>Edit Promo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -131,17 +80,15 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post"  enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Promo</label>
-                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Promo" name ="nama" value="<?=$nama?>">
-                    <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
+                    <input type="text" class="form-control" id="nampromo" placeholder="Masukan Nama Promo" name ="nama" value="<?=$nama?>">
                 </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Promo</label>
-                    <input type="number" class="form-control" id="jenisKat" placeholder="Masukan Harga Promo" name = "harga" value="<?=$harga?>">
+                    <input type="number" class="form-control" id="hrgpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$harga?>">
                   </div>
                          <!-- Date range -->
                     <div class="form-group">
@@ -153,7 +100,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="date" class="form-control float-right" name="awalP" value="<?=$np?>">
+                            <input type="date" class="form-control float-right" name="awalP" value="<?=$np?>" id="awalP">
                         </div>
                         <!-- /.input group -->
                      </div>
@@ -167,29 +114,19 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="date" class="form-control float-right" name="akhirP"  value="<?=$nkp?>">
+                            <input type="date" class="form-control float-right" name="akhirP"  value="<?=$nkp?>" id="akhirP">
                         </div>
                         <!-- /.input group -->
                      </div>
-                     <div class="input-group">
-                        Pilih Gambar :
-                        <input type="file" name="gambar" id="gambar" >
-                        <p>Gambar Sebelumnya : <?=$gbr?></p>
-                        
-                        <input type="hidden" value="<?=$gbr?>" name="hgambar">
-                     </div>
+                     
                         
                 </div>
-                <div class="input-group">
-                     <p style="margin-left:10vw;"> Reset gambar? <input type="checkbox" name="ck" value="delete"> </p>        
-                </div>
+              
                 <!-- /.card-body -->
                 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                  <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
-                </div>
-              </form>
+                <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $id ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $id ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button></div>
             </div>
         </div>
         <!-- /.col -->
@@ -224,7 +161,52 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+$('#btnEdit').click(function () {
+        let id = $(this).val();
+        let nampromo = $('#nampromo').val();
+        let hrgpromo = $('#hrgpromo').val();
+        let awalp = $('#awalP').val();
+        let akhirp = $('#akhirP').val();
+        if(nampromo != "" && hrgpromo !=0 && awalp <akhirp){
+            $.ajax({
+                url: "promo/updateDatabase.php",
+                method: 'post',
+                data: {
+                    id : id,
+                    nampromo : nampromo,
+                    hrgpromo : hrgpromo,
+                    awalp : awalp,
+                    akhirp : akhirp
+                },
+                success: function(result){   
+                    alert(result);
+                    let a = "promo/editGambar.php?id="+id;
+                    alert(a);
+                    document.location.href = a;
+                }
+            });
+        }else{
+            alert("Terdapat Isian yang kosong!");
+        }
+    });
 
+    $('#btnDelete').click(function () {
+        var r = confirm("Anda yakin?");
+        if (r == true) {
+            let id = $(this).val();
+            $.ajax({
+                url: "promo/deletePromo.php",
+                method: 'post',
+                data: {
+                    id : id
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href = "Promo.php";
+                }
+            });
+        } 
+    });
 </script>
 </body>
 </html>

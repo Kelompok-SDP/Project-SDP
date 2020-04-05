@@ -129,17 +129,45 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="Kategori.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Master Kategori</p>
+                  <p>Master Kategori<i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Kategori.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Kategori</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_Kategori.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Kategori</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="Promo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Master Promo</p>
+                  <p>Master Promo <i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Promo.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Promo</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_Promo.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Promo</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="Promo.php" class="nav-link">

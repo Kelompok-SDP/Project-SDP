@@ -10,7 +10,7 @@ require_once("../config.php");
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kategori</title>
+  <title>Insert Kategori</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -73,7 +73,7 @@ require_once("../config.php");
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" id="insert" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="insert" name="submit">Submit<i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 </div>
               
             </div>

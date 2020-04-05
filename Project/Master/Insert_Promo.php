@@ -1,67 +1,7 @@
-<?php 
+<?php
 
 require_once("../config.php");
 
-    if(isset($_POST['submit'])){
-        $nama  = $_POST['nama'];
-        $harga = $_POST['harga'];
-        $awalP = $_POST['awalP'];
-        $akhirP = $_POST['akhirP'];
-       $bx = false;
-        if($nama == ''){
-            echo "<script>alert('nama Promo tidak boleh kosong');</script>";
-             echo "<script>document.location.href='InsertPromo.php';</script>";
-        } else
-        if($harga == '' || $harga<1){
-            echo "<script>alert('harga tidak valid');</script>";
-            echo "<script>document.location.href='InsertPromo.php';</script>";
-        }  else if( $akhirP==''){
-            echo "<script>alert('tanggal tidak valid');</script>";  
-            echo "<script>document.location.href='InsertPromo.php';</script>";
-        }
-        else if ($awalP> $akhirP){
-            echo "<script>alert('tanggal tidak valid');</script>";
-            echo "<script>document.location.href='InsertPromo.php';</script>";
-        }
-        else{
-            $jum2 =0;
-            $query = "SELECT  count(id_promo) jml FROM promo";
-            $rs=  mysqli_query($conn,$query);
-            foreach($rs as $key=>$data) {
-                $jum2 = $data['jml'];
-            }
-            $target_dir = "promo/PrImage/"; //<- ini folder tujuannya
-            $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
-            $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            if($file_type !="jpg" && $file_type !="png"){
-                echo "<script>alert('Tipe file hanya jpg dan png saja');</script>";
-                echo "<script>document.location.href='InsertPromo.php';</script>";
-            } else if($_FILES["gambar"]["size"] > 500000){
-                echo "<script>alert('File size terlalu besar');</script>";
-                echo "<script>document.location.href='InsertPromo.php';</script>";
-            } else{
-              $gambar = '';
-              if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
-               $gambar= $target_file;
-              } 
-            }
-            $awalP  = strtotime($awalP);
-            $akhirP  = strtotime($akhirP);
-            $nawal = date('Y-m-d',$awalP);
-            $nakhir = date('Y-m-d',$akhirP);
-            $jum2 ++;
-            $id_promo = "PR".$jum2;
-            $query = "INSERT INTO promo (`id_promo`, `nama_promo`,`harga_promo`,`periode_awal`,`periode_akhir`,`gambar_promo`,`status_promo`)VALUES ('$id_promo','$nama',$harga,'$nawal','$nakhir','$gambar',1)";
-            if(mysqli_query($conn,$query) == true){
-                echo "<script>alert('Berhasil input data');</script>";
-                echo "<script>document.location.href='InsertPromo.php';</script>";
-
-            } else{
-                echo "<script>alert('Tidak Berhasil input data');</script>";
-                echo "<script>document.location.href='InsertPromo.php';</script>";
-            }
-        }
-    }
 
 ?>
 
@@ -85,14 +25,14 @@ require_once("../config.php");
   <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
    <!-- daterange picker -->
    <link rel="stylesheet" href="../AdminLTE-master/plugins/daterangepicker/daterangepicker.css">
- 
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -122,15 +62,14 @@ require_once("../config.php");
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Promo</label>
-                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Promo" name ="nama">
+                    <input type="text" class="form-control" id="nampromo" placeholder="Masukan Nama Promo" name ="nama">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Promo</label>
-                    <input type="number" class="form-control" id="jenisKat" placeholder="Masukan Harga Promo" name = "harga">
+                    <input type="number" class="form-control" id="hrgpromo" data-mask='___.___.___' placeholder="Masukan Harga Promo" name = "harga">
                   </div>
                          <!-- Date range -->
                     <div class="form-group">
@@ -142,11 +81,11 @@ require_once("../config.php");
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="date" class="form-control float-right" name="awalP">
+                            <input type="date" class="form-control float-right" name="awalP" id="awalP">
                         </div>
                         <!-- /.input group -->
                      </div>
-                      
+
                      <div class="form-group">
                         <label>Akhir Periode:</label>
 
@@ -156,22 +95,18 @@ require_once("../config.php");
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="date" class="form-control float-right" name="akhirP">
+                            <input type="date" class="form-control float-right" name="akhirP" id= "akhirP">
                         </div>
                         <!-- /.input group -->
                      </div>
-                     <div class="input-group">
-                        Pilih Gambar :
-                        <input type="file" name="gambar" id="gambar">
-                     </div>
-                        
+
+
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                </div>
-              </form>
+                  <button type="submit" class="btn btn-primary" id="Submit" name="submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>                </div>
+              <
             </div>
         </div>
         <!-- /.col -->
@@ -198,6 +133,7 @@ require_once("../config.php");
 <script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- date-range-picker -->
@@ -206,7 +142,36 @@ require_once("../config.php");
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-
+    $('#Submit').click(function () {
+        let nampromo = $('#nampromo').val();
+        let hrgpromo = $('#hrgpromo').val();
+        let awalp = $('#awalP').val();
+        let akhirp = $('#akhirP').val();
+        if(nampromo != "" && hrgpromo !=0 && awalp <akhirp){
+            $.ajax({
+                url: "promo/insertDatabase.php",
+                method: 'post',
+                data: {
+                    nampromo : nampromo,
+                    hrgpromo : hrgpromo,
+                    awalp : awalp,
+                    akhirp : akhirp
+                },
+                success: function(result){
+                  alert(result);
+                  if(result != "Data Kembar"){
+                    let a = "promo/uploadgambar.php?id=";
+                    let a2 = result.split(" ",1);
+                    let a3 = a.concat(a2);
+                    alert(a3);
+                    document.location.href = a3;
+                  }
+                }
+            });
+        }else{
+            alert("Terdapat isian yang kosong atau input tanggal tidak valid!");
+        }
+    });
 </script>
 </body>
 </html>

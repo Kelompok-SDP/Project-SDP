@@ -33,7 +33,8 @@
 
             $tmp ='';
             foreach ($hasil as $key=>$row){
-                //$tmp = $row["id_promo"];
+                $angka = $row["harga_promo"];
+                $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
             echo" <tr>
             <td>
             <form action='promo/openDetail.php' method='post' target='_blank'>
@@ -48,7 +49,7 @@
    
                 
                </td>
-                <td>".$row["harga_promo"]."</td>
+                <td>".$hasil_rupiah."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
                 <td>";
@@ -101,7 +102,8 @@
 
             $tmp ='';
             foreach ($hasil as $key=>$row){
-               // $tmp = $row["id_kategori"];
+                $angka = $row["harga_promo"];
+                $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
             echo" <tr>
             <td>
             <form action='promo/openDetail.php' method='post' target='_blank'>
@@ -116,7 +118,7 @@
    
                 
                </td>
-                <td>".$row["harga_promo"]."</td>
+                <td>".$hasil_rupiah."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
               

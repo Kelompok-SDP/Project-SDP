@@ -1,13 +1,25 @@
 <?php
     require_once("../../config.php");
-    $id = $_GET["id"];
+
+    $id = $_GET['id'];
+
+    $query = "SELECT * FROM promo WHERE ID_promo = '$id'";
+    $res = mysqli_query($conn,$query);
+    $row = mysqli_num_rows($res);
+    if($row > 0){
+        foreach ($res as $key => $value) {
+            $gbr = $value['gambar_promo'];
+        }
+    }else{
+        echo "<script>alert('Tidak ada hasil record!');</script>";
+    }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Upload Gambar</title>
+  <title>Edit Gambar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,12 +45,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Gambar Menu</h1>
+            <h1>Insert Gambar Promo</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item"><a href="../Menu.php">Back</a></li>
-              <li class="breadcrumb-item active">Table Menu</li> -->
+              <li class="breadcrumb-item"><a href="promo.php">Back</a></li>
+              <li class="breadcrumb-item active">Table Promo</li>
             </ol>
           </div>
         </div>
@@ -52,32 +64,21 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
           <div class="card card-primary">
               <div class="card-header">
-              <?php
-                $query = "SELECT * FROM MENU WHERE id_menu = '$id'";
-                $list = $conn->query($query);
-                foreach($list as $key=>$data){
-                    $nmenu = $data['nama_menu'];
-                    $angka = $data["harga_menu"];
-                    $hmenu = "Rp " . number_format($angka,2,',','.');
-                    $kmenu = $data['id_kategori'];
-                    $pmenu = $data['id_promo'];
-                    $dmenu = $data['deskripsi'];
-                }
-              ?>
-              <label for="exampleInputEmail1"><h4>Detail Menu </h4></label><br>
-              <label for="exampleInputEmail1">Nama Menu </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
-              <label for="exampleInputEmail1">Harga Menu </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
                 <div class="card-body">
+                <div class="form-group">
+                    <label for="inputDescription">Gambar Promo Sebelumnya</label><br>
+                    <?php echo "<img src='$gbr' width='200' height='200'"; ?>
+                </div>
                 <form role="form" action = "#" method ="post" enctype="multipart/form-data">
                     Pilih Gambar :
                     <input type="file" name="gambar" id="gambar">
                     <input type="submit" value="Upload" name="upload"><br>
-                <?php
+                    <?php
                     if(isset($_REQUEST['upload'])){
-                        $target_dir = "Image/"; //<- ini folder tujuannya
+                        $target_dir = "PrImage/"; //<- ini folder tujuannya
                         $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
                         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                         if($file_type !="jpg" && $file_type !="png"){
@@ -88,47 +89,29 @@
                             echo "File sudah ada";
                         }
                         else{
+                            $kembar = false;
                             if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
                               echo "File ".basename($_FILES["gambar"]["name"])." terupload<br>";
                               echo "<img src='$target_file' width='200' height='200'";
+                            }          
+                            $query3 = "SELECT * FROM promo";
+                            $list2 = $conn->query($query3);
+                            foreach($list2 as $key=>$data){
+                                $tmpnama = $data['gambar_promo'];
+                                if($target_file == $tmpnama){
+                                    $kembar = true;
+                                }
                             }
-                        
-                          $kembar = false;
-                          $string = '';
-                          $ctr2 = '';$ctr = 0;
-                          $query = "SELECT count(id_menu) jml FROM menu";
-                          $rs =  mysqli_query($conn,$query);
-                          foreach($rs as $key=>$data) {
-                              $ctr = $data['jml'];
-                          }
-                          if($ctr < 10){
-                            $ctr2 = strval($ctr);
-                            $string = 'MEN00'.$ctr2;
-                          }else if($ctr < 100){
-                              $ctr2 = strval($ctr);
-                              $string = 'MEN0'.$ctr2;
-                          }else{
-                              $ctr2 = strval($ctr);
-                              $string = 'MEN'.$ctr2;
-                          }             
-                          $query3 = "SELECT * FROM MENU";
-                          $list2 = $conn->query($query3);
-                          foreach($list2 as $key=>$data){
-                              $tmpnama = $data['gambar'];
-                              if($target_file == $tmpnama){
-                                  $kembar = true;
-                              }
-                          }
-                          if($kembar){
-                              echo "<script>alert('Path Kembar!');</script>";
-                          }else{
-                              $query = "UPDATE MENU SET GAMBAR='$target_file' WHERE ID_MENU='$string'";
-                              if($conn->query($query) == true){
-                                  echo "<br><script>alert('Berhasil Menambahkan Gambar');</script>";
-                              }else{
-                                  echo "<br><script>alert('Gagal Menambahkan Gambar');</script>";
-                              } 
-                          }
+                            if($kembar){
+                                echo "<script>alert('Path Kembar!');</script>";
+                            }else{
+                                $query = "UPDATE promo SET gambar_promo='$target_file' WHERE id_promo='$id'";
+                                if($conn->query($query) == true){
+                                    echo "<script>alert('Berhasil Meng-update Gambar');</script>";
+                                }else{
+                                    echo "<script>alert('Gagal Meng-update Gambar');</script>";
+                                } 
+                            }
                         }
                       }
                 ?>
@@ -137,7 +120,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit </button>
                 </div>
               </form>
             </div>
@@ -173,8 +156,8 @@
 <!-- page script -->
 <script>
   $('#Submit').click(function () {
-    alert('Selesai');
-    document.location.href = '../Insert_Menu.php';
+    alert("Selesai");
+    document.location.href = '../promo.php';
   });
 </script>
 </body>

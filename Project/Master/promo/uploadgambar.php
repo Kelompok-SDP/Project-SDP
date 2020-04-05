@@ -33,7 +33,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Gambar Menu</h1>
+            <h1>Insert Gambar Promo</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -53,20 +53,17 @@
           <div class="card card-primary">
               <div class="card-header">
               <?php
-                $query = "SELECT * FROM MENU WHERE id_menu = '$id'";
+                $query = "SELECT * FROM promo WHERE id_promo = '$id'";
                 $list = $conn->query($query);
                 foreach($list as $key=>$data){
-                    $nmenu = $data['nama_menu'];
-                    $angka = $data["harga_menu"];
-                    $hmenu = "Rp " . number_format($angka,2,',','.');
-                    $kmenu = $data['id_kategori'];
-                    $pmenu = $data['id_promo'];
-                    $dmenu = $data['deskripsi'];
+                    $npromo = $data['nama_promo'];
+                    $angka = $data["harga_promo"];
+                    $hpromo = "Rp " . number_format($angka,2,',','.');
                 }
               ?>
-              <label for="exampleInputEmail1"><h4>Detail Menu </h4></label><br>
-              <label for="exampleInputEmail1">Nama Menu </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
-              <label for="exampleInputEmail1">Harga Menu </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
+              <label for="exampleInputEmail1"><h4>Detail Promo </h4></label><br>
+              <label for="exampleInputEmail1">Nama Promo </label><label for="exampleInputEmail1"><?=": ".$npromo?></label><br>
+              <label for="exampleInputEmail1">Harga Promo </label><label for="exampleInputEmail1"><?=": ".$hpromo?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -77,7 +74,7 @@
                     <input type="submit" value="Upload" name="upload"><br>
                 <?php
                     if(isset($_REQUEST['upload'])){
-                        $target_dir = "Image/"; //<- ini folder tujuannya
+                        $target_dir = "PrImage/"; //<- ini folder tujuannya
                         $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
                         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                         if($file_type !="jpg" && $file_type !="png"){
@@ -96,25 +93,25 @@
                           $kembar = false;
                           $string = '';
                           $ctr2 = '';$ctr = 0;
-                          $query = "SELECT count(id_menu) jml FROM menu";
+                          $query = "SELECT count(id_promo) jml FROM promo";
                           $rs =  mysqli_query($conn,$query);
                           foreach($rs as $key=>$data) {
                               $ctr = $data['jml'];
                           }
                           if($ctr < 10){
                             $ctr2 = strval($ctr);
-                            $string = 'MEN00'.$ctr2;
+                            $string = 'PR00'.$ctr2;
                           }else if($ctr < 100){
                               $ctr2 = strval($ctr);
-                              $string = 'MEN0'.$ctr2;
+                              $string = 'PR0'.$ctr2;
                           }else{
                               $ctr2 = strval($ctr);
-                              $string = 'MEN'.$ctr2;
+                              $string = 'PR'.$ctr2;
                           }             
-                          $query3 = "SELECT * FROM MENU";
+                          $query3 = "SELECT * FROM promo";
                           $list2 = $conn->query($query3);
                           foreach($list2 as $key=>$data){
-                              $tmpnama = $data['gambar'];
+                              $tmpnama = $data['gambar_promo'];
                               if($target_file == $tmpnama){
                                   $kembar = true;
                               }
@@ -122,7 +119,7 @@
                           if($kembar){
                               echo "<script>alert('Path Kembar!');</script>";
                           }else{
-                              $query = "UPDATE MENU SET GAMBAR='$target_file' WHERE ID_MENU='$string'";
+                              $query = "UPDATE promo SET gambar_promo='$target_file' WHERE ID_promo='$string'";
                               if($conn->query($query) == true){
                                   echo "<br><script>alert('Berhasil Menambahkan Gambar');</script>";
                               }else{
@@ -137,7 +134,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit </button>
                 </div>
               </form>
             </div>
@@ -174,7 +171,7 @@
 <script>
   $('#Submit').click(function () {
     alert('Selesai');
-    document.location.href = '../Insert_Menu.php';
+    document.location.href = '../Insert_Promo.php';
   });
 </script>
 </body>

@@ -120,7 +120,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit </button>
                 </div>
               </form>
             </div>
@@ -157,7 +157,7 @@
 <script>
   $('#Submit').click(function () {
     alert("Selesai");
-    document.location.href = 'Menu.php';
+    document.location.href = '../Menu.php';
   });
 </script>
 </body>
