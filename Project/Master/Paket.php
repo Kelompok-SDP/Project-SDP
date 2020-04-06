@@ -60,8 +60,7 @@
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Paket :</label>
-
+            <button onclick="tambah()" class="btn btn-primary">Insert New Paket <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 <div class="card-tools">
                 
                   <div class="input-group input-group-sm" style="width: 350px;" >
@@ -96,7 +95,7 @@
 
             <!-- /.card-body -->
             <div class="card-footer">
-                  <button onclick="tambah()" class="btn btn-primary">Insert New Paket <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                  
                 </div>
           </div>
 
@@ -196,7 +195,7 @@
         $("#tKatHap").load("Paket/purgatoryPaket.php");
     }
     function tambah(){
-        document.location.href = 'Insert Paket.php';
+        document.location.href = 'Insert_Paket.php';
     }
     function showtable(){
             if($("#src").val()!= ''){
@@ -214,7 +213,7 @@
     
     function edit(id){
       //  alert("hoi");
-        var url  = "Edit Paket.php?id="+id;
+        var url  = "Edit_Paket.php?id="+id;
         document.location.href = url;
 
     }

@@ -1,43 +1,46 @@
 <?php
     require_once("../../config.php");
-    
-    $nmenu = $_POST["nmenu"];
-    $hmenu = $_POST["hmenu"];
-    $kmenu = $_POST["kmenu"];
-    $pmenu = $_POST["pmenu"];
-    $dmenu = $_POST["dmenu"];
+    $awalP =''; $akhirP =''; $nawal = ''; $nakhir = '';
+    $nampromo = $_POST["nampromo"];
+    $hrgpromo = $_POST["hrgpromo"];
+    $awalp = $_POST["awalp"];
+    $akhirp = $_POST["akhirp"];
+    $awalP  = strtotime($awalp);
+    $akhirP  = strtotime($akhirp);
+    $nawal = date('Y-m-d',$awalP);
+    $nakhir = date('Y-m-d',$akhirP);
     $kembar = false;
     $tmpnama = '';
     $string = '';
     $ctr2 = '';$ctr = 0;
-    $query = "SELECT count(id_menu) + 1 jml FROM menu";
+    $query = "SELECT count(id_promo) + 1 jml FROM promo";
     $rs =  mysqli_query($conn,$query);
     foreach($rs as $key=>$data) {
         $ctr = $data['jml'];
     }
     if($ctr < 10){
         $ctr2 = strval($ctr);
-        $string = 'MEN00'.$ctr2;
+        $string = 'PR00'.$ctr2;
     }else if($ctr < 100){
         $ctr2 = strval($ctr);
-        $string = 'MEN0'.$ctr2;
+        $string = 'PR0'.$ctr2;
     }else{
         $ctr2 = strval($ctr);
-        $string = 'MEN'.$ctr2;
+        $string = 'PR'.$ctr2;
     }
 
-    $query3 = "SELECT * FROM MENU";
+    $query3 = "SELECT * FROM promo";
     $list = $conn->query($query3);
     foreach($list as $key=>$data){
-        $tmpnama = $data['nama_menu'];
-        if($nmenu == $tmpnama){
+        $tmpnama = $data['nama_promo'];
+        if($nampromo == $tmpnama){
             $kembar = true;
         }
     }
     if($kembar){
         echo "Data Kembar!";
     }else{
-        $query2 = "INSERT INTO MENU VALUES('$string','$nmenu',$hmenu,'','$dmenu','$kmenu','$pmenu',1)";
+        $query2 = "INSERT INTO promo VALUES('$string','$nampromo',$hrgpromo,'$nawal','$nakhir','',1)";
         if($conn->query($query2) == true){
             echo $string." -- Berhasil Menambahkan Data";
         }else{

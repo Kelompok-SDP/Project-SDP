@@ -30,21 +30,7 @@
             $npro = $value['nama_promo'];
         }
      }
-
-     if(isset($_POST['submit'])){
-        
-     } 
-      else if(isset($_POST['delete'])){
-        $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `status_kategori`='NA' WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-           header("location:kategori.php");
-        }
-      }
-
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -110,7 +96,8 @@
                         <input type="number" id="Hmenu" class="form-control" placeholder="Harga Menu" name="hmenu" value="<?=$harga?>">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Kategori Menu Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label>
+                        <label for="inputStatus">Kategori Menu</label><br>
+                        <i><label for="inputStatus">Kategori Menu Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label></i>
                         <select class="form-control custom-select" id="Kmenu" name="kmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -124,7 +111,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label>
+                        <label for="inputStatus">Promo Menu</label><br>
+                        <i><label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label><i>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -143,9 +131,8 @@
                     </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save</button>
-                  <button type="submit" class="btn btn-primary" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
-                </div>
+                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
                 </div>
             </div>
         </div>
@@ -200,11 +187,15 @@
                 },
                 success: function(result){   
                     alert(result);
-                    document.location.href = "Menu.php";
+                    let a = "Menu/editGambar.php?id=";
+                    let a2 = result.split(" ",1);
+                    let a3 = a.concat(a2);
+                    alert(a3);
+                    document.location.href = a3;
                 }
             });
         }else{
-            alert("Terdapat isian yang kosong!");
+            alert("Terdapat Isian yang kosong!");
         }
     });
 

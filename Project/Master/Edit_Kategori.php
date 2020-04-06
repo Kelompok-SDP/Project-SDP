@@ -1,46 +1,28 @@
-<?php 
+<?php
+     require_once("../config.php");
+     $id = '';
+     $id  = $_GET['id'];
+     $query  = "SELECT * FROM KATEGORI WHERE id_kategori = '$id'";
+     $res = mysqli_query($conn,$query);
+     $nama = "";
+     $jenis = "";
+     foreach ($res as $key=>$data){
+         $nama  = $data['nama_kategori'];
+         $jenis = $data['jenis_kategori'];
+     }
 
-require_once("../config.php");
-
-
-    if(isset($_POST['submit'])){
-        $nama  = $_POST['nama'];
-        $jenis = $_POST['jenis'];
-        if($nama == ''){
-            echo "<script>alert('nama kategori tidak boleh kosong');</script>";
-            echo "<script>document.location.href='InsertKategori.php';</script>";
-        } else
-        if($jenis == ''){
-            echo "<script>alert('jenis kategori tidak boleh kosong');</script>";
-            echo "<script>document.location.href='InsertKategori.php';</script>";
-        } else{
-            $jum2 =0;
-            $query = "SELECT  count(id_kategori) jml FROM kategori";
-            $rs=  mysqli_query($conn,$query);
-            foreach($rs as $key=>$data) {
-                $jum2 = $data['jml'];
-            }
-            $jum2 ++;
-            $id_kategori = "KA".$jum2;
-            $query = "INSERT INTO kategori (`id_kategori`, `nama_kategori`,`jenis_kategori`,`status_kategori`)VALUES ('$id_kategori','$nama','$jenis',1)";
-            if(mysqli_query($conn,$query) == true){
-                echo "<script>alert('Berhasil input data');</script>";
-                header("Location:InsertKategori.php");
-
-            } else{
-                echo "<script>alert('Tidak Berhasil input data');</script>";
-            }
-        }
-    }
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Kategori</title>
+  <title>Edit Kategori.php</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,9 +38,10 @@ require_once("../config.php");
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- <?php include("../sidebar.php"); ?>
+ 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -66,7 +49,7 @@ require_once("../config.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Kategori</h1>
+            <h1>Edit Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -88,22 +71,23 @@ require_once("../config.php");
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "#" method ="post">
+              <form role="form" action = "" method ="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Kategori</label>
-                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama">
+                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama" value=<?=$nama?>>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Jenis Kategori</label>
-                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis">
+                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis" value=<?=$jenis?>>
                   </div>
                  
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                 <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $id ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $id ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
                 </div>
               </form>
             </div>
@@ -138,8 +122,46 @@ require_once("../config.php");
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+ $('#btnEdit').click(function () {
+        let id = $(this).val();
+        let namkat = $('#namKat').val();
+        let jeniskat = $("#jenisKat").val();
+        if(namkat != "" && jeniskat != "" ){
+            $.ajax({
+                url: "kategori/updateDatabase.php",
+                method: 'post',
+                data: {
+                    id : id,
+                    namkat : namkat,
+                    jeniskat : jeniskat
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href ="kategori.php";
+                }
+            });
+        }else{
+            alert("Terdapat Isian yang kosong!");
+        }
+    });
 
+    $('#btnDelete').click(function () {
+        var r = confirm("Anda yakin?");
+        if (r == true) {
+            let id = $(this).val();
+            $.ajax({
+                url: "kategori/deleteKategori.php",
+                method: 'post',
+                data: {
+                    id : id
+                },
+                success: function(result){   
+                    alert(result);
+                    document.location.href = "kategori.php";
+                }
+            });
+        } 
+    });
 </script>
 </body>
 </html>
-

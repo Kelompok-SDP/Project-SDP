@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | DataTables</title>
@@ -6,14 +8,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="AdminLTE-master/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -23,8 +25,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="AdminLTE-master/index3.html" class="brand-link">
-      <img src="AdminLTE-master/dist/img/AdminLTELogo.png"
+    <a href="../AdminLTE-master/index3.html" class="brand-link">
+      <img src="../AdminLTE-master/dist/img/AdminLTELogo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -36,7 +38,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../AdminLTE-master/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -127,17 +129,45 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="Kategori.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Master Kategori</p>
+                  <p>Master Kategori<i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Kategori.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Kategori</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_Kategori.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Kategori</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="Promo.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Master Promo</p>
+                  <p>Master Promo <i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Promo.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Promo</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_Promo.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Promo</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="Promo.php" class="nav-link">
@@ -544,7 +574,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="AdminLTE-master/starter.html" class="nav-link">
+                <a href="../AdminLTE-master/starter.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Starter Page</p>
                 </a>
@@ -661,17 +691,18 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="AdminLTE-master/dist/js/adminlte.min.js"></script>
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="AdminLTE-master/dist/js/demo.js"></script>
+<script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
-
+</body>
+</html>

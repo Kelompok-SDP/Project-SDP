@@ -27,11 +27,11 @@
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-  <section class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -39,7 +39,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../Menu.php">Back</a></li>
+              <li class="breadcrumb-item"><a href="Menu.php">Back</a></li>
               <li class="breadcrumb-item active">Table Menu</li>
             </ol>
           </div>
@@ -102,11 +102,9 @@
                 
                 </div>
                 <!-- /.card-body -->
-
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="Submit" name="submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 </div>
-              </form>
             </div>
         </div>
         <!-- /.col -->
@@ -159,7 +157,11 @@
                 success: function(result){   
                   alert(result);
                   if(result != "Data Kembar"){
-                    document.location.href = 'Menu/Uploadgambar.php';
+                    let a = "Menu/Uploadgambar.php?id=";
+                    let a2 = result.split(" ",1);
+                    let a3 = a.concat(a2);
+                    alert(a3);
+                    document.location.href = a3;
                   }
                 }
             });

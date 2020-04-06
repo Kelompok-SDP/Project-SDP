@@ -95,19 +95,15 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
-('KA1', 'juice', '', 0),
-('KA10', 'yy', 'yy', 1),
-('KA11', 'rtt', 'rtt', 1),
-('KA12', 'abc', 'abc', 1),
-('KA13', 'dd', 'dd', 1),
-('KA2', 'roi', '', 0),
-('KA3', 'woy', 'asaa', 0),
-('KA4', 'woah', 's', 1),
-('KA5', 'shan', 'eeel', 1),
-('KA6', 'a', 'asaa', 1),
-('KA7', 's', 'asaa', 1),
-('KA8', 'q', 'q', 1),
-('KA9', 'r', 'r', 1);
+('KAT001', 'Chinese Cuisene', 'Makanan', 1),
+('KAT002', 'Javanese Cuisine', 'Makanan', 1),
+('KAT003', 'Noodle', 'Makanan', 1),
+('KAT004', 'Porrridge', 'Makanan', 1),
+('KAT005', 'Penyetan', 'Makanan', 1),
+('KAT006', 'Steak', 'Makanan', 1),
+('KAT007', 'Tea', 'Minuman', 1),
+('KAT008', 'Coffe', 'Minuman', 1),
+('KAT009', 'Juice', 'Minuman', 1);
 
 -- --------------------------------------------------------
 

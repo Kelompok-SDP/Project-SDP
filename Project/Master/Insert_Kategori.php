@@ -1,46 +1,16 @@
-<?php
-     require_once("../config.php");
-     $id = '';
-     $id  = $_GET['id'];
-     $query  = "SELECT * FROM KATEGORI WHERE id_kategori = '$id'";
-     $res = mysqli_query($conn,$query);
-     $nama = "";
-     $jenis = "";
-     foreach ($res as $key=>$data){
-         $nama  = $data['nama_kategori'];
-         $jenis = $data['jenis_kategori'];
-     }
+<?php 
 
-     if(isset($_POST['submit'])){
-        $nama  = $_POST['nama'];
-        $jenis = $_POST['jenis'];
-        $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `nama_kategori`='$nama',`jenis_kategori`='$jenis' WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-           header("location:kategori.php");
-        } else {
-            echo "alert('tidak Berhasil men-update');";
-        }   
-     } 
-      else if(isset($_POST['delete'])){
-        $id = $_POST['id'];
-        $query = "UPDATE `kategori` SET `status_kategori`=0 WHERE id_kategori = '$id'";
-        if(mysqli_query($conn,$query) == true){
-           header("location:kategori.php");
-        }
-      }
+require_once("../config.php");
+
 
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>kategori.php</title>
+  <title>Insert Kategori</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -56,10 +26,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- 
+ <?php include("../sidebar.php"); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
@@ -67,7 +36,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Kategori</h1>
+            <h1>Insert Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -89,26 +58,24 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action = "" method ="post">
+              
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Kategori</label>
-                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama" value=<?=$nama?>>
+                    <input type="text" class="form-control" id="namKat" placeholder="Masukan Nama Kategori" name ="nama">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Jenis Kategori</label>
-                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis" value=<?=$jenis?>>
-                    <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
+                    <input type="text" class="form-control" id="jenisKat" placeholder="Masukan Jenis Kategori" name = "jenis">
                   </div>
                  
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                  <button type="submit" class="btn btn-primary" name="delete" style="background-color:red;">Delete <i class="fas fa-trash" style="left-padding:12px;"></i></button></button>
+                  <button type="submit" class="btn btn-primary" id="insert" name="submit">Submit<i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 </div>
-              </form>
+              
             </div>
         </div>
         <!-- /.col -->
@@ -141,7 +108,30 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-
+$('#insert').click(function () {
+        let namkat = $('#namKat').val();
+        let jeniskat = $('#jenisKat').val();
+        
+        if(namkat != "" && jeniskat != "" ){
+            $.ajax({
+                url: "kategori/insertDatabase.php",
+                method: 'post',
+                data: {
+                    namkat: namkat,
+                    jeniskat : jeniskat
+                },
+                success: function(result){   
+                  alert(result);
+                  if(result != "Data Kembar"){
+                    document.location.href = 'kategori.php';
+                  }
+                }
+            });
+        }else{
+            alert("Terdapat isian yang kosong!");
+        }
+    });
 </script>
 </body>
 </html>
+
