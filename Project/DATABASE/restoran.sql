@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Apr 2020 pada 19.29
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Generation Time: Apr 06, 2020 at 09:03 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -27,7 +27,7 @@ USE `restoran`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `djual`
+-- Table structure for table `djual`
 --
 
 DROP TABLE IF EXISTS `djual`;
@@ -41,7 +41,7 @@ CREATE TABLE `djual` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `djual`
+-- Dumping data for table `djual`
 --
 
 INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_hjual`) VALUES
@@ -54,7 +54,7 @@ INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_h
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hjual`
+-- Table structure for table `hjual`
 --
 
 DROP TABLE IF EXISTS `hjual`;
@@ -68,7 +68,7 @@ CREATE TABLE `hjual` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `hjual`
+-- Dumping data for table `hjual`
 --
 
 INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`, `id_pegawai`, `id_member`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 DROP TABLE IF EXISTS `kategori`;
@@ -91,7 +91,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `status_kategori`) VALUES
@@ -112,7 +112,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `statu
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `member`
+-- Table structure for table `member`
 --
 
 DROP TABLE IF EXISTS `member`;
@@ -131,12 +131,12 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `member`
+-- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`) VALUES
 ('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0'),
-('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '1'),
+('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '0'),
 ('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1'),
 ('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0'),
 ('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1'),
@@ -146,7 +146,7 @@ INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `n
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 DROP TABLE IF EXISTS `menu`;
@@ -157,30 +157,30 @@ CREATE TABLE `menu` (
   `gambar` varchar(200) NOT NULL,
   `deskripsi` varchar(50) NOT NULL,
   `id_kategori` varchar(10) NOT NULL,
-  `id_promo` varchar(10) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `id_promo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `id_promo`, `status`) VALUES
-('MEN001', 'Nasi Goreng', 20000, 'Image/Screenshot (14', 'Lezat', 'KA1', 'PR1', 1),
-('MEN002', 'Ayam goreng', 5000, 'Image/800px-Basement', 'Enak', 'KA1', 'PR1', 1),
-('MEN003', 'Iga Bakar', 20000, 'Image/Screenshot (9)', 'Matang', 'KA5', 'PR3', 1),
-('MEN004', 'Indomie', 5000, 'Image/Screenshot (12', 'Bergizi', 'KA4', 'PR1', 1),
-('MEN005', 'Mie', 15000, 'Image/Screenshot (13', 'Enak', 'KA4', 'PR4', 1),
-('MEN006', 'Ayam Geprek', 12000, 'Image/Screenshot (16', 'Pedas', 'KA4', 'PR5', 1),
-('MEN007', 'Es Teh  Manis', 3000, 'Image/Screenshot (17', 'Dingin', 'KA4', 'PR3', 1),
-('MEN008', 'Teh Hangat', 3000, 'Image/Screenshot (18', 'Hangat', 'KA4', 'PR8', 1),
-('MEN009', 'Es Mega Mendung', 5000, 'Image/Screenshot (19', 'Soda', 'KA4', 'PR3', 1),
-('MEN010', 'Mega Mendung', 8000, 'Image/Screenshot (20', 'Bersoda', 'KA4', 'PR4', 1);
+INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `id_promo`) VALUES
+('MEN001', 'Nasi Goreng', 20000, 'Image/Screenshot (14).png', 'Lezat', 'KA1', 'PR1'),
+('MEN002', 'Ayam goreng', 5000, 'Image/800px-Basement', 'Enak', 'KA1', 'PR1'),
+('MEN003', 'Iga Bakar', 20000, 'Image/Screenshot (9).png', 'Matang', 'KA5', 'PR3'),
+('MEN004', 'Indomie', 5000, 'Image/Screenshot (12).png', 'Bergizi', 'KA4', 'PR1'),
+('MEN005', 'Mie', 15000, 'Image/Screenshot (13).png', 'Enak', 'KA4', 'PR4'),
+('MEN006', 'Ayam Geprek', 12000, 'Image/Screenshot (16).png', 'Pedas', 'KA4', 'PR5'),
+('MEN007', 'Es Teh  Manis', 3000, 'Image/Screenshot (17).png', 'Dingin', 'KA4', 'PR3'),
+('MEN008', 'Teh Hangat', 3000, 'Image/Screenshot (18).png', 'Hangat', 'KA4', 'PR8'),
+('MEN009', 'Es Mega Mendung', 5000, 'Image/Screenshot (19).png', 'Soda', 'KA4', 'PR3'),
+('MEN010', 'Mega Mendung', 8000, 'Image/Screenshot (20).png', 'Bersoda', 'KA4', 'PR4'),
+('MEN011', 'Nasi Goreng banget', 20000, '', 'Enak', 'KA10', 'PR10');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `paket`
+-- Table structure for table `paket`
 --
 
 DROP TABLE IF EXISTS `paket`;
@@ -194,7 +194,7 @@ CREATE TABLE `paket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `paket`
+-- Dumping data for table `paket`
 --
 
 INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `id_kategori`, `id_promo`, `status`) VALUES
@@ -212,7 +212,7 @@ INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `id_kategori`, `id
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `paket_menu`
+-- Table structure for table `paket_menu`
 --
 
 DROP TABLE IF EXISTS `paket_menu`;
@@ -224,7 +224,7 @@ CREATE TABLE `paket_menu` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 DROP TABLE IF EXISTS `pegawai`;
@@ -239,7 +239,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `jabatan`, `email`, `nohp`, `password`, `status`) VALUES
@@ -253,7 +253,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama`, `jabatan`, `email`, `nohp`, `passwo
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `promo`
+-- Table structure for table `promo`
 --
 
 DROP TABLE IF EXISTS `promo`;
@@ -268,46 +268,50 @@ CREATE TABLE `promo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `promo`
+-- Dumping data for table `promo`
 --
 
 INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `gambar_promo`, `status_promo`) VALUES
-('PR1', 'woke', 2000000, '0000-00-00', '0000-00-00', '', 1),
 ('PR10', 'alsdkals', 2147483647, '2020-04-04', '2020-04-11', 'promo/PrImage/LennyFace.jpg', 1),
-('PR11', 'Chen', 2147483647, '2020-04-18', '2020-04-24', '', 1),
 ('PR2', 'hihi', 0, '1970-01-01', '1970-01-01', 'promo/PrImage/LennyFace.jpg', 1),
-('PR3', 'kasjdkasd', 20000000, '1970-01-01', '1970-01-01', 'promo/PrImage/623548.jpg', 1),
-('PR4', 'kasjdkasd', 20000000, '0000-00-00', '0000-00-00', '', 1),
-('PR5', ';alsla;dka', 200000, '0000-00-00', '0000-00-00', '', 1),
-('PR6', 'fendy', 2000000, '2020-03-09', '2020-03-26', '', 0),
-('PR7', 'asldaksd', 200000, '2020-03-02', '2020-03-25', '', 0),
-('PR8', 'lalala', 2000000, '2020-04-16', '2020-04-25', '', 1),
-('PR9', 'howew', 20000, '2020-04-17', '2020-04-25', '', 1);
+('PR3', 'kasjdkasd', 20000000, '1970-01-01', '1970-01-01', 'promo/PrImage/623548.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo_menu`
+--
+
+DROP TABLE IF EXISTS `promo_menu`;
+CREATE TABLE `promo_menu` (
+  `id_menu` varchar(10) NOT NULL,
+  `id_promo` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `djual`
+-- Indexes for table `djual`
 --
 ALTER TABLE `djual`
   ADD PRIMARY KEY (`id_djual`);
 
 --
--- Indeks untuk tabel `hjual`
+-- Indexes for table `hjual`
 --
 ALTER TABLE `hjual`
   ADD PRIMARY KEY (`id_hjual`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `member`
+-- Indexes for table `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`id_member`),
@@ -316,25 +320,25 @@ ALTER TABLE `member`
   ADD UNIQUE KEY `no_hp` (`no_hp`);
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `paket`
+-- Indexes for table `paket`
 --
 ALTER TABLE `paket`
   ADD PRIMARY KEY (`id_paket`);
 
 --
--- Indeks untuk tabel `paket_menu`
+-- Indexes for table `paket_menu`
 --
 ALTER TABLE `paket_menu`
   ADD PRIMARY KEY (`id_paket`,`id_menu`);
 
 --
--- Indeks untuk tabel `promo`
+-- Indexes for table `promo`
 --
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id_promo`);

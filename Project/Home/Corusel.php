@@ -11,10 +11,9 @@
             echo "<div class='carousel-inner'>";
                 echo "<div class='carousel-item carousel-item-next carousel-item-left'>";
                     echo " <a href='#' target=''>";
-                        echo "<img src='../master/$value[gambar_promo]' class='img-fluid w-100 d-none d-sm-block'>";
-                        echo  "<img src='../master/$value[gambar_promo]' class='img-fluid w-100 d-block d-sm-none'>";
-                        echo "</a>";
-                        
+                    echo "<img src='../master/$value[gambar_promo]' class='img-fluid w-100 d-none d-sm-block'>";
+                    echo  "<img src='../master/$value[gambar_promo]' class='img-fluid w-100 d-block d-sm-none'>";
+                    echo "</a>";
                 echo "</div>";
             echo "</div>";
         }
