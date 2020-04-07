@@ -45,7 +45,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Gambar Menu</h1>
+            <h1>Edit Gambar Menu</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -64,6 +64,21 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
           <div class="card card-primary">
               <div class="card-header">
+              <?php
+                $query = "SELECT * FROM MENU WHERE id_menu = '$id'";
+                $list = $conn->query($query);
+                foreach($list as $key=>$data){
+                    $nmenu = $data['nama_menu'];
+                    $angka = $data["harga_menu"];
+                    $hmenu = "Rp " . number_format($angka,2,',','.');
+                    $kmenu = $data['id_kategori'];
+                    //$pmenu = $data['id_promo'];
+                    $dmenu = $data['deskripsi'];
+                }
+              ?>
+              <label for="exampleInputEmail1"><h4>Detail Menu </h4></label><br>
+              <label for="exampleInputEmail1">Nama Menu </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
+              <label for="exampleInputEmail1">Harga Menu </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -107,9 +122,9 @@
                             }else{
                                 $query = "UPDATE MENU SET GAMBAR='$target_file' WHERE ID_MENU='$id'";
                                 if($conn->query($query) == true){
-                                    echo "<script>alert('Berhasil Meng-update Gambar');</script>";
+                                    echo "<br><script>alert('Berhasil Meng-update Gambar');</script>";
                                 }else{
-                                    echo "<script>alert('Gagal Meng-update Gambar');</script>";
+                                    echo "<br><script>alert('Gagal Meng-update Gambar');</script";
                                 } 
                             }
                         }

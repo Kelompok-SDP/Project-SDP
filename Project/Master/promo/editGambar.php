@@ -45,11 +45,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Insert Gambar Promo</h1>
+            <h1>Edit Gambar Promo</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="promo.php">Back</a></li>
+              <li class="breadcrumb-item"><a href="../promo.php">Back</a></li>
               <li class="breadcrumb-item active">Table Promo</li>
             </ol>
           </div>
@@ -64,6 +64,18 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
           <div class="card card-primary">
               <div class="card-header">
+              <?php
+                $query = "SELECT * FROM promo WHERE id_promo = '$id'";
+                $list = $conn->query($query);
+                foreach($list as $key=>$data){
+                    $npromo = $data['nama_promo'];
+                    $angka = $data["harga_promo"];
+                    $hpromo = "Rp " . number_format($angka,2,',','.');
+                }
+              ?>
+              <label for="exampleInputEmail1"><h4>Detail Promo </h4></label><br>
+              <label for="exampleInputEmail1">Nama Promo </label><label for="exampleInputEmail1"><?=": ".$npromo?></label><br>
+              <label for="exampleInputEmail1">Harga Promo </label><label for="exampleInputEmail1"><?=": ".$hpromo?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -107,9 +119,9 @@
                             }else{
                                 $query = "UPDATE promo SET gambar_promo='$target_file' WHERE id_promo='$id'";
                                 if($conn->query($query) == true){
-                                    echo "<script>alert('Berhasil Meng-update Gambar');</script>";
+                                  echo "<br><script>alert('Berhasil Meng-update Gambar');</script>";
                                 }else{
-                                    echo "<script>alert('Gagal Meng-update Gambar');</script>";
+                                    echo "<br><script>alert('Gagal Meng-update Gambar');</script";
                                 } 
                             }
                         }

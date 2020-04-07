@@ -4,7 +4,6 @@
     $nmenu = $_POST["nmenu"];
     $hmenu = $_POST["hmenu"];
     $kmenu = $_POST["kmenu"];
-    $pmenu = $_POST["pmenu"];
     $dmenu = $_POST["dmenu"];
     $kembar = false;
     $tmpnama = '';
@@ -37,7 +36,7 @@
     if($kembar){
         echo "Data Kembar!";
     }else{
-        $query2 = "INSERT INTO MENU VALUES('$string','$nmenu',$hmenu,'','$dmenu','$kmenu','$pmenu',1)";
+        $query2 = "INSERT INTO MENU VALUES('$string','$nmenu',$hmenu,'','$dmenu','$kmenu',1)";
         if($conn->query($query2) == true){
             echo $string." -- Berhasil Menambahkan Data";
         }else{

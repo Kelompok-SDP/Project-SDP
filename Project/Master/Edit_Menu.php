@@ -18,17 +18,17 @@
         $harga = $data['harga_menu'];
         $des = $data['deskripsi'];
         $idk = $data['id_kategori'];
-        $idp = $data['id_promo'];
+        //$idp = $data['id_promo'];
         $query2 = "SELECT * FROM KATEGORI WHERE id_kategori = '$idk'";
         $res2 = mysqli_query($conn,$query2);
         foreach ($res2 as $key => $value) {
             $nkat = $value['nama_kategori'];
         }
-        $query2 = "SELECT * FROM PROMO WHERE id_promo = '$idp'";
-        $res2 = mysqli_query($conn,$query2);
-        foreach ($res2 as $key => $value) {
-            $npro = $value['nama_promo'];
-        }
+        // $query2 = "SELECT * FROM PROMO WHERE id_promo = '$idp'";
+        // $res2 = mysqli_query($conn,$query2);
+        // foreach ($res2 as $key => $value) {
+        //     $npro = $value['nama_promo'];
+        // }
      }
 ?>
 
@@ -110,7 +110,7 @@
                         <?php } ?> 
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputStatus">Promo Menu</label><br>
                         <i><label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label><i>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
@@ -124,7 +124,7 @@
                             <option value="<?= $value['id_promo']?>"><?= $value['nama_promo']?></option>
                         <?php } ?> 
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="inputDescription">Deskripsi Menu</label>
                         <textarea id="Dmenu" class="form-control" rows="4" name="dmenu" value=""><?=$des?></textarea>
@@ -173,7 +173,7 @@
         let kmenu = $('#Kmenu').val();
         let pmenu = $('#Pmenu').val();
         let dmenu = $('#Dmenu').val();
-        if(nmenu != "" && hmenu != "" && kmenu != null && pmenu != null && dmenu != ""){
+        if(nmenu != "" && hmenu != "" && kmenu != null && dmenu != ""){
             $.ajax({
                 url: "Menu/updateDatabase.php",
                 method: 'post',
@@ -182,7 +182,6 @@
                     nmenu : nmenu,
                     hmenu : hmenu,
                     kmenu : kmenu,
-                    pmenu : pmenu,
                     dmenu : dmenu
                 },
                 success: function(result){   
@@ -190,7 +189,6 @@
                     let a = "Menu/editGambar.php?id=";
                     let a2 = result.split(" ",1);
                     let a3 = a.concat(a2);
-                    alert(a3);
                     document.location.href = a3;
                 }
             });

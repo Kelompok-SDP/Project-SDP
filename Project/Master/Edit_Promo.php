@@ -181,7 +181,6 @@ $('#btnEdit').click(function () {
                 success: function(result){   
                     alert(result);
                     let a = "promo/editGambar.php?id="+id;
-                    alert(a);
                     document.location.href = a;
                 }
             });

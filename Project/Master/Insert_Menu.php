@@ -80,7 +80,7 @@
                         <?php } ?> 
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="inputStatus">Promo Menu</label>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
@@ -93,7 +93,7 @@
                             <option value="<?= $value['id_promo']?>"><?= $value['nama_promo']?></option>
                         <?php } ?> 
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="inputDescription">Deskripsi Menu</label>
                         <textarea id="Dmenu" class="form-control" rows="4" name="dmenu"></textarea>
@@ -141,9 +141,8 @@
         let nmenu = $('#Nmenu').val();
         let hmenu = $('#Hmenu').val();
         let kmenu = $('#Kmenu').val();
-        let pmenu = $('#Pmenu').val();
         let dmenu = $('#Dmenu').val(); 
-        if(nmenu != "" && hmenu != "" && kmenu != null && pmenu != null && dmenu != ""){
+        if(nmenu != "" && hmenu != "" && kmenu != null && dmenu != ""){
             $.ajax({
                 url: "Menu/insertDatabase.php",
                 method: 'post',
@@ -151,7 +150,6 @@
                     nmenu : nmenu,
                     hmenu : hmenu,
                     kmenu : kmenu,
-                    pmenu : pmenu,
                     dmenu : dmenu
                 },
                 success: function(result){   
