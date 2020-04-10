@@ -51,6 +51,7 @@
             <h2 class="title"><?=$namkat?></h2>
         </div>
         <!-- for j-->
+        <div class="row animated fadeInUp delayp3">
         <?php 
         $query2 = "SELECT * FROM MENU WHERE ID_KATEGORI ='$idk' AND STATUS = 1";
         $list2 = mysqli_query($conn,$query2);
@@ -58,15 +59,14 @@
             $nmenu = $value["nama_menu"];
             $gambar = $value["gambar"];
         ?>
-        <div class="row animated fadeInUp delayp3">
             <div class="col-6 col-md-3">
                 <a href="https://mcdonalds.co.id/menu/egg-and-cheese-muffin" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
                     <img src="<?="../../../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
                     <p><?=$nmenu?></p>
                 </a>
             </div>
-        </div>
     <?php } ?><!-- for j tutup-->
+        </div>
     </div>
 
 </section>
