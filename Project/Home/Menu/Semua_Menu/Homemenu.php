@@ -1,3 +1,7 @@
+<?php
+    require_once("../../../config.php");
+?>
+
 <!DOCTYPE html>
 
 <link rel="stylesheet" href="Menu%20%20%20McDonald's%20Indonesia_files/main.css">
@@ -27,47 +31,47 @@
             
         </nav>
         <div class="cover-content">
-            <h1 class="cover-title animated fadeInUp delayp1">Nikmati menu <br>pilihan terbaik</h1>
+        <h1 class="cover-title animated fadeInUp delayp1"><center>Nikmati menu-menu pilihan terbaik<br>Hanya di <br>"Uwenak Resto"</center></h1>
         </div>
-        <img src="Menu%20%20%20McDonald's%20Indonesia_files/img-header-menu-2.png" class="cover-img-banner img-fluid animated fadeInRight delayp4">
+        <!-- <img src="Menu%20%20%20McDonald's%20Indonesia_files/img-header-menu-2.png" class="cover-img-banner img-fluid animated fadeInRight delayp4"> -->
     </div>
 </div>
 <!-- id ne iku  kategori ne-->
-<section class="py-main section-menu-list" id="Sarapan Pagi"><!-- for i-->
+<?php
+    $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 ORDER BY 1 ASC";
+    $list = mysqli_query($conn,$query);
+    foreach ($list as $key => $value) {
+        $idk = $value["id_kategori"];
+        $namkat = $value["nama_kategori"];
+?>
+<section class="py-main section-menu-list" id="<?=$idk?>"><!-- for i-->
 
     <div class="container">
         <div class="heading text-center animated fadeInUp delayp2">
-            <h2 class="title">Sarapan Pagi</h2>
+            <h2 class="title"><?=$namkat?></h2>
         </div>
         <!-- for j-->
         <div class="row animated fadeInUp delayp3">
+        <?php 
+        $query2 = "SELECT * FROM MENU WHERE ID_KATEGORI ='$idk' AND STATUS = 1";
+        $list2 = mysqli_query($conn,$query2);
+        foreach ($list2 as $key => $value) {
+            $nmenu = $value["nama_menu"];
+            $gambar = $value["gambar"];
+        ?>
             <div class="col-6 col-md-3">
                 <a href="https://mcdonalds.co.id/menu/egg-and-cheese-muffin" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
-                    <img src="Menu%20%20%20McDonald's%20Indonesia_files/9FcgMqqWSFYjE6edaOAL.png" class="img-fluid">
-                    <p>Egg and Cheese Muffin</p>
+                    <img src="<?="../../../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
+                    <p><?=$nmenu?></p>
                 </a>
             </div>
-        </div>
-        <!-- for j tutup-->
-    </div>
-
-</section><!-- for i tutup-->
-
-<section class="py-main section-menu-list" id="Daging Sapi"><!-- contoh tok apusen iki engkok-->
-    <div class="container">
-        <div class="heading text-center animated fadeInUp delayp2">
-            <h2 class="title">Daging Sapi</h2>
-        </div>
-        <div class="row animated fadeInUp delayp3">
-            <div class="col-6 col-md-3">
-                <a href="https://mcdonalds.co.id/menu/big-mac" data-id="20" data-name="Big Mac" data-category="Daging Sapi" data-position="1" class="card card-menu">
-                    <img src="Menu%20%20%20McDonald's%20Indonesia_files/nhj93oZApoMavF1lC6Wm.png" class="img-fluid">
-                    <p>Big Mac</p>
-                </a>
-            </div>                
+    <?php } ?><!-- for j tutup-->
         </div>
     </div>
-</section><!-- sampai kene-->
+
+</section>
+<?php } ?><!-- for i tutup-->
+
 
     <div id="app"></div>
     <script>

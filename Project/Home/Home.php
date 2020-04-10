@@ -3,8 +3,9 @@
 <?php include('Mcd/title.php');
 include("../config.php");?>
 <body>
+<?php include('Mcd/corusel.php');?>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NF7SB8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <!-- End Google Tag Manager (noscript) -->
     <?php include('Mcd/header.php')?>
 <section class="py-main section-other-promo">
@@ -60,7 +61,7 @@ include("../config.php");?>
 </section>
 
 <?php
-    include('Menu_favorite.php');
+    include('MCD/Menu_favorite.php');
 ?>
 
 <section class="section-celebrate-birthday">
@@ -317,25 +318,8 @@ tempat Anda berlatih keterampilan hidup dan sebagai wadah untuk mengejar
             $('.btn-floating').removeClass('start');
         }, 5000);
 
-        $.get("https://mcdonalds.co.id/home/datalayer", function (data) {
-            dataLayer.push({
-                'event': 'promoImpression',
-                'ecommerce': {
-                    'promoView': {
-                        'promotions': data
-                    }
-                }
-            });
-        });
-
-        $.get("https://mcdonalds.co.id/home/menu/datalayer", function (data) {
-            dataLayer.push({
-                'event': 'productImpression',
-                'ecommerce': {
-                    'impressions': data
-                }
-            });
-        });
+ 
+       
 
         $('.card-general').click(function () {
             dataLayer.push({
@@ -592,6 +576,3 @@ tempat Anda berlatih keterampilan hidup dan sebagai wadah untuk mengejar
     })();
     </script>
 
-
-<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script><iframe style="display: none; visibility: hidden;" src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/activityi.html" width="0" height="0"></iframe>
-<script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="spWorker" src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/worker.html"></iframe></body></html>
