@@ -13,7 +13,7 @@
                         foreach ($menu as $key => $value) {
                             echo "<div class='owl-item active' style='width: 255px; margin-right: 30px;'>";
                                 echo "<div class='item animated vp-fadeinup delayp1 visible fadeInUp'>";
-                                    echo "<a href='' data-id='20' data-name='$value[nama_menu]' data-category='$value[id_kategori]' data-slot='1' class='card card-menu'>";
+                                    echo "<a href='Menu/Detail_Menu/detail_menu.php?id=$value[id_menu]' data-id='20' data-name='$value[nama_menu]' data-category='$value[id_kategori]' data-slot='1' class='card card-menu'>";
                                         echo "<img src='../Master/Menu/$value[gambar]' style='max-width:300px;max-height:150px' class='img-fluid'>";
                                         echo "<p>$value[nama_menu]</p>";
                                     echo " </a>";
