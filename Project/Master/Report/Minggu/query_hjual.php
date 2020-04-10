@@ -1,7 +1,7 @@
 <?php
     include("../../../config.php");
     $date=$_POST["date"];
-    $query="SELECT h.id_hjual,h.tanggal_transaksi,h.total,h.jenis_pemesanan,p.nama from hjual h join pegawai p on h.id_pegawai=p.id_pegawai where tanggal_transaksi=date('$date')";
+    $query="SELECT h.id_hjual,h.tanggal_transaksi,h.total,h.jenis_pemesanan,p.nama from hjual h join pegawai p on h.id_pegawai=p.id_pegawai where tanggal_transaksi>=date('$date') and tanggal_transaksi<=(date('$date')+7)";
     $htrans= mysqli_query($conn,$query);
     echo "<table border='1'>";
             echo "<thead>";
