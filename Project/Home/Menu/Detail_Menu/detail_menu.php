@@ -1,5 +1,23 @@
 <!DOCTYPE html>
+<?php include("../../MCD/Header.php");
+include("../../../config.php");
+$ids = $_GET["id"];
+$query = "select *  from menu where id_menu = '$ids'";
+$menu = mysqli_query($conn,$query);
+$harga = 0;
+$nama = "";
+$deskripsi = "";
+$gambar = "";
+foreach($menu as $data=>$row){
+    $nama = $row["nama_menu"];
+    $deskripsi = $row["deskripsi"];
+    $gambar = $row['gambar'];
+    $harga = $row['harga_menu'];
+}
 
+$gambar = "../../../Master/Menu/".$gambar;
+
+?>
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="page" content="index" initial="index">
@@ -42,19 +60,16 @@
         </nav>
         <div class="row">
             <div class="col-md-5">
-                <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/nhj93oZApoMavF1lC6Wm.png" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
+                <img src="<?=$gambar?>" style="background-size: cover;width:255px;height:180px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
             </div>
             <div class="col-md-7 content-center">
                 <div class="heading">
-                    <h2 class="title animated fadeInUp delayp2">Big Mac</h2>
-                    <p class="subtitle animated fadeInUp delayp3 mb-0">Burger
- Ikonik McDonald's. Dua lapis daging sapi gurih disajikan dengan saus 
-spesial, selada segar, keju, acar timun, bawang, diapit roti bertabur 
-wijen</p>
+                    <h2 class="title animated fadeInUp delayp2"><?=$nama?></h2>
+                    <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
                 </div>
                 <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                                   <a href="https://www.mcdelivery.co.id/" data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow">
-                        <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/nhj93oZApoMavF1lC6Wm.png">
+                                   <a href="" data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow">
+                        <img src="<?=$gambar?>">
                         Pesan Sekarang
                     </a> 
 		  <!--	<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow mb-3 pesan-tag" target="_blank" rel="external">
@@ -105,31 +120,56 @@ wijen</p>
             <h2 class="title animated vp-fadeinup visible fadeInUp full-visible">Menu Rekomendasi Lainnya</h2>
         </div>
         <div class="owl-carousel owl-theme owl-top-menu-home-carousel content owl-loaded owl-drag">
-                        
+            <?php 
+                $query = "select id_menu from menu where status = 1";
+                $rek = mysqli_query($conn,$query);
+                $tmpid =[];
+                $ctr = 0;
+                    foreach($rek as $data=>$row){
+                        $tmpid[$ctr] = $row['id_menu'];
+                        $ctr++;
+                    }    
+                $tm = [];
+                for($i=0; $i<4; $i++) {
+                    $rand = rand(0,Count($tmpid)-1);
+                    $tm[$i] = $rand; 
+                    if($tmpid[$tm[$i]] == $ids ){
+                        $rand = rand(0,Count($tmpid)-1); 
+                    }
+                        for($j=0;$j<$i;$j++){
+                            if($tm[$j]== $tm[$i]){
+                                $rand = rand(0,Count($tmpid)-1);
+                            }
+                             if($tmpid[$tm[$j]]== $ids ){
+                                $rand = rand(0,Count($tmpid)-1); 
+                            }
+                           
+                        }
+                        $tm[$i] = $rand; 
+                } 
+
+
+                for($i=0;$i<4;$i++){
+                    $id =$tmpid[$tm[$i]];
+                    $query = "select * from menu where id_menu = '$id'";
+                    $m= mysqli_query($conn,$query);
+                    $gambar ="";
+                    $nama = "";
+                    foreach($m as $data=>$row){
+                        $gambar = $row['gambar'];
+                        $gambar = "../../../Master/Menu/".$gambar;
+            ?>            
                                     
                         
                         
                     <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1140px;"><div class="owl-item active" style="width: 255px; margin-right: 30px;"><div class="item animated vp-fadeinup delayp1 visible fadeInUp">
-                <a href="https://mcdonalds.co.id/menu/double-cheeseburger" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
-                    <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/apZ1DxDmKvwS2lV12Elp.png" class="img-fluid">
-                    <p>Double Cheeseburger</p>
+                <a href="" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
+                    <img src="<?=$gambar?>"style='max-width:300px;max-height:150px' class="img-fluid">
+                    <p><?=$row['nama_menu']?></p>
                 </a>
-            </div></div><div class="owl-item active" style="width: 255px; margin-right: 30px;"><div class="item animated vp-fadeinup delayp2 visible fadeInUp">
-                <a href="https://mcdonalds.co.id/menu/mcflurry-choco" data-id="58" data-name="McFlurry Choco" data-category="Makanan Penutup" data-position="2" class="card card-menu">
-                    <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/3n6NerIcVPz93T0j46Gj.png" class="img-fluid">
-                    <p>McFlurry Choco</p>
-                </a>
-            </div></div><div class="owl-item active" style="width: 255px; margin-right: 30px;"><div class="item animated vp-fadeinup delayp3 visible fadeInUp">
-                <a href="https://mcdonalds.co.id/menu/panas-1" data-id="107" data-name="PaNas 1" data-category="Ayam" data-position="3" class="card card-menu">
-                    <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/QhZI0YBTJ3VLWbAqcdIK.png" class="img-fluid">
-                    <p>PaNas 1</p>
-                </a>
-            </div></div><div class="owl-item active" style="width: 255px; margin-right: 30px;"><div class="item animated vp-fadeinup delayp4 visible fadeInUp">
-                <a href="https://mcdonalds.co.id/menu/mcnuggets" data-id="117" data-name="McNuggets" data-category="Ayam" data-position="4" class="card card-menu">
-                    <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/qFoLKbSe1R3OJ75zAm4B.png" class="img-fluid">
-                    <p>McNuggets</p>
-                </a>
-            </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+            </div></div>
+                    <?php }} ?>
+            </div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
         <div class="clearfix mt-3 text-center animated vp-fadeinup visible fadeInUp full-visible">
             <a href="https://mcdonalds.co.id/menu#Daging%20Sapi" class="btn btn-primary">Lihat Semua Menu</a>
         </div>
