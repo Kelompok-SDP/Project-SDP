@@ -18,6 +18,7 @@ foreach($menu as $data=>$row){
 $gambar = "../../../Master/Menu/".$gambar;
 
 ?>
+<?php include('../../Mcd/header.php'); ?>
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="page" content="index" initial="index">
@@ -176,7 +177,7 @@ $gambar = "../../../Master/Menu/".$gambar;
     </div>
 </section>
 
-
+<?php include('../../Mcd/footer.php'); ?>
     
 
     <div id="app"></div>
