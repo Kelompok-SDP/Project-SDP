@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include("../../MCD/Header.php");
+<?php 
 include("../../../config.php");
 $ids = $_GET["id"];
 $query = "select *  from menu where id_menu = '$ids'";
