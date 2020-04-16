@@ -101,7 +101,9 @@ include("../config.php");?>
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
     <span>Pesan Sekarang</span>
 </a>
-
+<?php 
+    include('Mcd/footer.php');
+?>
     
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
