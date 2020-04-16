@@ -4,23 +4,24 @@
     <div class="menu-slide light" id="menu-slide-1">
         <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1"><i class="far fa-angle-left"></i>Menu</label>
         <ul class="mega-menu-down">
-            <li><a href="https://mcdonalds.co.id/menu#Sarapan%20Pagi" class="animated menu-mobile-list fadeInUp delayp1">Sarapan Pagi</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Daging%20Sapi" class="animated menu-mobile-list fadeInUp delayp2">Daging Sapi</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Ayam" class="animated menu-mobile-list fadeInUp delayp3">Ayam</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Ikan" class="animated menu-mobile-list fadeInUp delayp4">Ikan</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Minuman" class="animated menu-mobile-list fadeInUp delayp5">Minuman</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Makanan%20Penutup" class="animated menu-mobile-list fadeInUp delayp6">Makanan Penutup</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Happy%20Meal" class="animated menu-mobile-list fadeInUp delayp7">Happy Meal</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Family%20Weekend" class="animated menu-mobile-list fadeInUp delayp8">Family Weekend</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#McCafe" class="animated menu-mobile-list fadeInUp delayp9">McCafe</a></li>
-            <li><a href="https://mcdonalds.co.id/menu#Camilan" class="animated menu-mobile-list fadeInUp delayp10">Camilan</a></li>
+            <?php
+                $query ="select id_kategori,nama_kategori from kategori";
+                $query=mysqli_query($conn,$query);
+                $ctr=1;
+                foreach ($query as $key => $value) {
+                    echo "<li><a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]' class='animated menu-mobile-list fadeInUp delayp$ctr'>$value[nama_kategori]</a></li>";
+                    $ctr++;
+                }
+               
+            ?>
+            
             <li><a href="https://mcdonalds.co.id/menu" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
         </ul>
     </div>
 
 <nav class="navbar navbar-mcd navbar-expand-md fixed-top light">
     <div class="container">
-        <a class="navbar-brand animated fadeInDown delayp4" href="https://mcdonalds.co.id/">
+        <a class="navbar-brand animated fadeInDown delayp4" href="Home.php">
             <img src="Home%20%20%20McDonald's%20Indonesia_files/logo_mcd.png" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,21 +41,29 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-6">
-                                            <a href="https://mcdonalds.co.id/menu#Sarapan%20Pagi">Sarapan Pagi</a>
-                                            <a href="https://mcdonalds.co.id/menu#Daging%20Sapi">Daging Sapi</a>
-                                            <a href="https://mcdonalds.co.id/menu#Ayam">Ayam</a>
-                                            <a href="https://mcdonalds.co.id/menu#Ikan">Ikan</a>
-                                            <a href="https://mcdonalds.co.id/menu#Minuman">Minuman</a>                                        
+                                        <?php
+                                            $query ="select id_kategori,nama_kategori from kategori order by 1 asc limit 5";
+                                            $query=mysqli_query($conn,$query);
+                                            foreach ($query as $key => $value) {
+                                                echo "<a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
+                                                
+                                            }
+                                        
+                                        ?>                                  
                                         </div>
                                         <div class="col-6">             
-                                            <a href="https://mcdonalds.co.id/menu#Makanan%20Penutup">Makanan Penutup</a>
-                                            <a href="https://mcdonalds.co.id/menu#Happy%20Meal">Happy Meal</a>
-                                            <a href="https://mcdonalds.co.id/menu#Family%20Weekend">Family Weekend</a>
-                                            <a href="https://mcdonalds.co.id/menu#McCafe">McCafe</a>
-                                            <a href="https://mcdonalds.co.id/menu#Camilan">Camilan</a>
+                                        <?php
+                                            $query ="select id_kategori,nama_kategori from kategori order by 1 desc limit 4";
+                                            $query=mysqli_query($conn,$query);
+                                            foreach ($query as $key => $value) {
+                                                echo "<a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
+                                                
+                                            }
+                                        
+                                        ?>   
                                         </div>
                                     </div>
-                                    <a href="https://mcdonalds.co.id/menu" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
+                                    <a href="menu/semua_menu/Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
@@ -64,14 +73,8 @@
                                         <div class="content-info">
                                             <h5>Hotcakes</h5>
                                             <p>Nikmati menu sarapan kami yang lainnya</p>
-                                            <!-- <h5>Gochujang Chicken McD</h5>
-                                            <p>Bikin HYPE jadi EZ</p> -->
                                         </div>
-                                        <!-- <a href="https://dev.mcdonalds.co.id/menu/hotcakes" class="btn btn-primary btn-sm"
-                                            target="_blank">
-                                            Order <i class="fa fa-arrow-right"></i>
-                                        </a> -->
-                                        <a href="https://www.mcdelivery.co.id/" class="btn btn-primary btn-sm" target="_blank">
+                                        <a href="#" class="btn btn-primary btn-sm" target="_blank">
                                             Pesan <span class="d-none d-xl-inline-block">Sekarang</span>
                                         </a>
                                     </div>
@@ -128,7 +131,7 @@
         </div>
         <div class="content">
             <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow mb-3 pesan-tag" target="_blank">
-                <img src="Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.svg" class="mcd-delivery-icon" alt="Yellow Element">
+                <img src="Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.jpg" class="mcd-delivery-icon" alt="Yellow Element">
                 <span>Pesan Sekarang</span>
             </a>
             <ul class="nav-slide-list">

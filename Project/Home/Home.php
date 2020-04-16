@@ -15,7 +15,7 @@ include("../config.php");?>
         </div>
         <div class="owl-carousel owl-theme owl-other-promo card-general-list content animated fadeInUp delayp3 owl-loaded owl-drag">
             <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 740px;"><div class="owl-item active" style="width: 370px;"><div class="item">
-                <a href="https://mcdonalds.co.id/promo/diskon-30-dengan-kartu-kredit-bca-visamastercard" data-id="23" data-name="Diskon 30% dengan Kartu Kredit BCA (Visa/MasterCard)" data-slot="1" data-slug="diskon-30-dengan-kartu-kredit-bca-visamastercard" class="card card-general">
+                <a href="#" data-id="23" data-name="Diskon 30% dengan Kartu Kredit BCA (Visa/MasterCard)" data-slot="1" data-slug="diskon-30-dengan-kartu-kredit-bca-visamastercard" class="card card-general">
                     <div class="img-container">
                         <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/TMOHwFH7Z45xzVsFoPcA.png" class="img-fluid">
                     </div>
@@ -34,7 +34,7 @@ include("../config.php");?>
                     </div>
                 </a>
             </div></div><div class="owl-item active" style="width: 370px;"><div class="item">
-                <a href="https://mcdonalds.co.id/promo/promo-gratis-ongkir-mcdelivery-dengan-menggunakan-linkaja" data-id="54" data-name="Promo Gratis Ongkir McDelivery dengan Menggunakan LinkAja" data-slot="2" data-slug="promo-gratis-ongkir-mcdelivery-dengan-menggunakan-linkaja" class="card card-general">
+                <a href="#" data-id="54" data-name="Promo Gratis Ongkir McDelivery dengan Menggunakan LinkAja" data-slot="2" data-slug="promo-gratis-ongkir-mcdelivery-dengan-menggunakan-linkaja" class="card card-general">
                     <div class="img-container">
                         <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/PADKVdxyKDd23UkzwK6v.jfif" class="img-fluid">
                     </div>
@@ -91,220 +91,17 @@ include("../config.php");?>
     <div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
 </section>
 
-<section class="mcd-instagram">
-    <div class="row-top py-main">
-        <div class="container vp-fadeinup visible animated fadeInUp full-visible">
-            <h2 class="title text-white">Instagram McDonald's Indonesia</h2>
-            <a href="https://www.instagram.com/mcdonaldsid" class="btn btn-primary flw-ig-tag" target="_blank">Ikuti
-                @mcdonaldsid</a>
-        </div>
-    </div>
-    <div class="owl-carousel owl-theme owl-instagram content owl-loaded owl-drag" id="rudr_instafeed">
-    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2698px, 0px, 0px); transition: all 0.25s ease 0s; width: 4317px;"><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-2.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-3.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-4.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-5.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-6.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-1.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-2.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-3.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-4.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-5.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item active" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-6.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned active" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-1.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned active" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-2.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned active" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-3.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned active" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-4.jfif" class="img-cover">
-            </div>
-        </div></div><div class="owl-item cloned" style="width: 269.8px;"><div class="item">
-            <div class="card card-instagram">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_ig-5.jfif" class="img-cover">
-            </div>
-        </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
-        <div class="owl-dots disabled"></div></div>
-</section>
 
-<section class="cookie-agreement animated fadeOutDown" style="bottom: 20px;">
-    <div class="p-box">
-        <h5>Situs Ini Menggunakan Cookies</h5>
-        <p>Kami menggunakan cookies untuk memberikan Anda pengalaman browsing yang terbaik. Dengan mengakses situs ini
-            lebih lanjut, Anda telah menyetujui penggunaan cookies dari kami</p>
-        <div class="clearfix">
-            <button id="btnAgreeCookie" class="btn btn-primary">Setuju</button>
-        </div>
-    </div>
-</section>
 
-<style>
-    .btn-floating {
-        display: none;
-    }
-
-</style>
-
-<section class="py-main section-menjadi-bagian-mcd">
-    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img-banner-career.png" class="graphic-background">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 order-md-last content-center">
-                <div class="heading">
-                    <h2 class="title vp-fadeinup visible animated fadeInUp full-visible">Jadilah bagian dari keluarga kami</h2>
-                    <p class="subtitle vp-fadeinup visible animated fadeInUp full-visible">Di
- McDonald's, kami lebih dari sekadar bisnis. Kami adalah komunitas 
-tempat Anda berlatih keterampilan hidup dan sebagai wadah untuk mengejar
- serta mewujudkan impianmu.</p>
-                    <a href="https://mcdonalds.co.id/career" class="btn btn-primary vp-fadeinup visible animated fadeInUp full-visible">Lihat Lowongan</a>
-                </div>
-            </div>
-            <div class="col-md-6 order-md-first position-relative">
-                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/img_staff.png" class="img-fluid img-staff animated vp-fadeinup delayp1 visible fadeInUp">
-            </div>
-        </div>
-    </div>
-</section>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
-    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.svg" class="mcd-delivery-icon" alt="Yellow Element">
+    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
     <span>Pesan Sekarang</span>
 </a>
 
-<footer class="light">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row footer-list">
-                <div class="col-md-7 col-lg-4 col-xl-5">
-                    <h5 class="footer-title">McDonald's</h5>
-                    <div class="footer-item mb-md-down-4">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <ul class="footer-links">
-                                    <li><a href="https://mcdonalds.co.id/contact">Hubungi Kami</a></li>
-                                    <li><a href="https://mcdonalds.co.id/about">Tentang Kami</a></li>
-                                    <li><a href="https://mcdonalds.co.id/newsroom">Newsroom</a></li>
-                                    <li><a href="https://mcdonalds.co.id/career">Karier</a></li>
-                                    <!-- <li><a href="/terms-condition">Syarat & Ketentuan</a></li> -->
-                                </ul>
-                            </div>
-                            <div class="col-md-7">
-                                <ul class="footer-links">
-                                    <!-- <li><a href="/news">What's On</a></li> -->
-                                    <li><a href="https://mcdonalds.co.id/services">Layanan</a></li>
-                                    <li><a href="https://mcdonalds.co.id/food-safety">Sertifikasi &amp; Jaminan Kualitas</a></li>
-                                    <li><a href="https://mcdonalds.co.id/csr">CSR</a></li>
-                                    <li><a href="https://mcdonalds.co.id/app">McD App</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-lg-3 col-xl-3">
-                    <div class="footer-item">
-                        <h5 class="footer-title">Hubungi Kami</h5>
-                        <ul class="footer-social">
-                            <li><a href="http://www.facebook.com/McDonaldsID" target="_blank" class="social-fb"><i class="fab fa-facebook-square"></i></a></li>
-                            <li><a href="https://twitter.com/mcdonalds_id" target="_blank" class="social-twitter"><i class="fab fa-twitter-square"></i></a></li>
-                            <li><a href="http://instagram.com/mcdonaldsid" target="_blank" class="social-instagram"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="https://www.youtube.com/user/McDonaldsID" target="_blank" class="social-youtube"><i class="fab fa-youtube"></i></a></li>
-                        </ul>
-                        <div class="btn-group-download">
-                            <a href="https://apps.apple.com/id/app/mcdonalds/id1217507712" target="_blank">
-                                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/button_appstore.png" class="img-fluid" alt="Play Store">
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.mcdonalds.mobileapp" target="_blank">
-                                <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/button_playstore.png" class="img-fluid" alt="Google Store">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-5 col-xl-4">
-                    <div class="footer-item footer-item-subscribe">
-                        <h5 class="footer-title">Berlangganan newsletter McD</h5>
-                        <form class="validation-footer" novalidate="">
-                            <div class="form-group mb-2">
-                                <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Masukkan email" required="" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
-                                            Daftar
-                                        </button>
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Harap masukkan email Anda
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="form-status status-footer"></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <ul class="text-md-right">
-                        <!-- <li><a href="/contact-us">Kontak Kami</a></li> -->
-                        <li><a href="https://mcdonalds.co.id/terms-conditions">Syarat &amp; Ketentuan</a></li>
-                        <li><a href="https://mcdonalds.co.id/privacy-policy">Kebijakan Privasi</a></li>
-                    </ul>
-                </div>
-                <div class="col-md order-md-first">
-                    © 2019 McDonald's Indonesia
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-    <div id="app"></div>
     
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
