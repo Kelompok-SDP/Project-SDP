@@ -72,12 +72,12 @@
     </div>
 
 </section>
-<?php 
-    include('Mcd/footer.php');
-?>
 <?php } ?><!-- for i tutup-->
 
 
+<?php 
+    include('Mcd/footer.php');
+?>
     <div id="app"></div>
     <script>
     document.addEventListener("DOMContentLoaded", function (event) {
