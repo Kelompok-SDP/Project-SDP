@@ -67,7 +67,7 @@
           <!-- KODING NYA DI SINI GAEESSSS -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title"><id id="total"></id></h3>
+              <h3 class="card-title"> </h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -106,8 +106,8 @@
                     <script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
                     <script>
                         function cetak(){
+                          $("#tampung2").html("");  
                           let tmp = $("#inpdate").val();
-                          alert(tmp);
                             $.ajax({
                                 method: "post",
                                 url: "Report/Laporan_Hari/query_hjual.php",
