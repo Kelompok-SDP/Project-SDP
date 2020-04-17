@@ -45,7 +45,7 @@
                                             $query ="select id_kategori,nama_kategori from kategori order by 1 asc limit 5";
                                             $query=mysqli_query($conn,$query);
                                             foreach ($query as $key => $value) {
-                                                echo "<a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
+                                                echo "<a href='Homemenu_kategori.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
                                                 
                                             }
                                         
@@ -56,14 +56,14 @@
                                             $query ="select id_kategori,nama_kategori from kategori order by 1 desc limit 4";
                                             $query=mysqli_query($conn,$query);
                                             foreach ($query as $key => $value) {
-                                                echo "<a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
+                                                echo "<a href='Homemenu_kategori.php?filter=$value[id_kategori]'>$value[nama_kategori]</a>";
                                                 
                                             }
                                         
                                         ?>   
                                         </div>
                                     </div>
-                                    <a href="menu/semua_menu/Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
+                                    <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
                                 </div>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
@@ -168,3 +168,8 @@
     </div>
 
 </nav>
+
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>

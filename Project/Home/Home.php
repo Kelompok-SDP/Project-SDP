@@ -91,12 +91,6 @@ include("../config.php");?>
     <div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
 </section>
 
-
-
-<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script>
-<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
-<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
-<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
     <span>Pesan Sekarang</span>

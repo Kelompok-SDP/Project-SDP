@@ -1,10 +1,12 @@
 <?php
-    require_once("../../../config.php");
+    require_once("../config.php");
+    require_once("mcd/title.php");
+    require_once("mcd/header.php");
 ?>
 
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="Menu%20%20%20McDonald's%20Indonesia_files/main.css">
+<link rel="stylesheet" href="menu/semua_menu/Menu%20%20%20McDonald's%20Indonesia_files/main.css">
         <link rel="dns-prefetch" href="https://https//mcdonalds.co.id/">
             <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -13,7 +15,7 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-5NF7SB8');</script>
         <!-- End Google Tag Manager -->
-    <link rel="stylesheet" type="text/css" href="Menu%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu%20%20%20McDonald's%20Indonesia_files/a"></script></head>
+    <link rel="stylesheet" type="text/css" href="menu/semua_menu/Menu%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu%20%20%20McDonald's%20Indonesia_files/a"></script></head>
 
 <body>
             <!-- Google Tag Manager (noscript) -->
@@ -38,7 +40,11 @@
 </div>
 <!-- id ne iku  kategori ne-->
 <?php
-    $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 ORDER BY 1 ASC";
+    $filter="";
+    if(isset($_GET["filter"])){
+        $filter=$_GET["filter"];
+    }
+    $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 and id_kategori='$filter' ORDER BY 1 ASC";
     $list = mysqli_query($conn,$query);
     foreach ($list as $key => $value) {
         $idk = $value["id_kategori"];
@@ -61,7 +67,7 @@
         ?>
             <div class="col-6 col-md-3">
                 <a href="https://mcdonalds.co.id/menu/egg-and-cheese-muffin" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
-                    <img src="<?="../../../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
+                    <img src="<?="../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
                     <p><?=$nmenu?></p>
                 </a>
             </div>
@@ -70,6 +76,9 @@
     </div>
 
 </section>
+<?php 
+    include('Mcd/footer.php');
+?>
 <?php } ?><!-- for i tutup-->
 
 
@@ -186,3 +195,7 @@
 
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
 <script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
