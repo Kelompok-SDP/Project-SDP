@@ -1,8 +1,11 @@
 <?php
     include("../../../config.php");
     $date=$_POST["date"];
+    $total = 0;
     $query = "SELECT * FROM HJUAL where tanggal_transaksi='$date'";
     $htrans= mysqli_query($conn,$query);
+    $row = mysqli_num_rows($htrans);
+    if($row > 0){
     echo "<table class='table table-bordered text-nowrap' style='margin-top:5vh;'>";
             echo "<thead>";
                 echo "<th>Tanggal Transaksi</th>";
@@ -15,18 +18,34 @@
             $id = $value["id_pegawai"];
             echo "<tr>";
             echo "<td>$value[tanggal_transaksi]</td>";
-            echo "<td>$value[total]</td>";
+            $angka = $value["total"];
+            $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+            echo "<td>$hasil_rupiah</td>";
+            $total = $total + $value["total"];
             echo "<td>$value[jenis_pemesanan]</td>";
             $query2 = "SELECT * FROM PEGAWAI WHERE ID_PEGAWAI = '$id'";
             $hasil = mysqli_query($conn,$query2);
-            foreach ($hasil as $key => $value2) {
-                echo "<td>$value2[nama]</td>";
+            $row2 = mysqli_num_rows($hasil);
+            if($row2 > 0){
+                foreach ($hasil as $key => $value2) {
+                    echo "<td>$value2[nama]</td>";
+                }
             }
             echo "<td><button onclick='detail(\"$value[id_hjual]\")'class='btn btn-primary'>Lihat Detail <i class='fas fa-angle-right' style='padding-left:12px;color:white;'></i></button></td>";
-                 
             echo "</tr>";
         }
     echo "</table>";
+    }
+    echo "<br>";
+    $totalangka = $total;
+    if($totalangka == 0){
+        echo "<p style='margin-left:25vw;color:grey; font-style:italic;'>Tidak ada hasil record</p>";
+        echo "<h4>Total Pendapatan : -</h4>";
+    }else{
+        $hasil_rupiah2 = "Rp " . number_format($totalangka,2,',','.');
+        echo "<h4>Total Pendapatan : $hasil_rupiah2</h4>";
+        echo "<br>";
+    }
 ?>
 <script>
     function detail(id){
@@ -37,7 +56,7 @@
                 id:id
             },
             success: function (response) {
-                $("#tampung2").html(response);  
+                $("#tampung2").html(response);
             }
         });
     }

@@ -1,11 +1,14 @@
 <?php
     include("../../../config.php");
-    $id=$_REQUEST["id"];
-    $total = 0;
-
+    $id = $_REQUEST["id"];
+    if($id == ""){
+        $id = "";
+    }
+    $stotal = 0;
     $query="SELECT * from djual where id_hjual='$id'";
     $htrans= mysqli_query($conn,$query);
-    
+    $row = mysqli_num_rows($htrans);
+    if($row > 0){
     echo "<table class='table table-bordered text-nowrap'>";
             echo "<thead>";
             echo "<th>Nama Menu</th>";
@@ -23,12 +26,13 @@
                 echo "<td>$value[harga]</td>";
                 echo "<td>$value[jumlah]</td>";
                 echo "<td>$value[subtotal]</td>";
-                $total = $total + $value["subtotal"];
+                $stotal = $stotal + $value["subtotal"];
                 echo "</tr>";
             }
             echo "<tr>";
-            echo "<td colspan = '3'><b>Total Pendapatan</b></td>";
-        echo "<td><b>$total</b></td>";
-        echo "</tr>";
-        echo "</table>";
+                echo "<td colspan = '3'><b>Subtotal Pendapatan</b></td>";
+                echo "<td><b>$stotal</b></td>";
+            echo "</tr>";
+    echo "</table>";
+    }
 ?>
