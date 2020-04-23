@@ -32,6 +32,7 @@
           <input type="text" id='fullname' class="form-control" placeholder="Full name">
           <div class="input-group-append">
             <div class="input-group-text">
+            <i class="fas fa-pen"></i>
             </div>
           </div>
         </div>
@@ -40,13 +41,15 @@
           <input type="text" id='username' class="form-control" placeholder="Username ">
           <div class="input-group-append">
             <div class="input-group-text">
+            <i class="fas fa-pen"></i>
             </div>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" id='nohp'  maxlength="13" class="form-control" onkeypress="NumberOnly(event)" placeholder="No.Telepon">
+          <input type="email" id='nohp'  data-mask  maxlength="13" class="form-control" onkeypress="NumberOnly(event)" placeholder="No.Telepon" >
           <div class="input-group-append">
-            <div class="input-group-text">
+            <div class="input-group-text" >
+            <i class="fas fa-phone"></i>
             </div>
           </div>
         </div>
@@ -54,6 +57,7 @@
           <input type="email" id='email'  class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
+            <i class="fas fa-envelope"></i>
             </div>
           </div>
         </div>
@@ -61,7 +65,7 @@
           <input type="password" id='password' class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock" onmousedown="showpassword('password')" onmouseup="hidepassword('password')"></span>
+              <span class="fas fa-eye" onmousedown="showpassword('password')" onmouseup="hidepassword('password')"></span>
             </div>
           </div>
         </div>
@@ -69,7 +73,7 @@
           <input type="password" id='conpassword' class="form-control" placeholder="Retype password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"  onmousedown="showpassword('conpassword')" onmouseup="hidepassword('conpassword')"></span>
+              <span class="fas fa-eye"  onmousedown="showpassword('conpassword')" onmouseup="hidepassword('conpassword')"></span>
             </div>
           </div>
         </div>
@@ -77,6 +81,7 @@
           <input type="email" id='alamat'  class="form-control" placeholder="Alamat">
           <div class="input-group-append">
             <div class="input-group-text">
+            <i class="fas fa-map-marker"></i>
             </div>
           </div>
         </div>
@@ -84,6 +89,7 @@
           <input type="email" id='kode'   maxlength="6" onkeypress="NumberOnly(event)" class="form-control" placeholder="Kode Pos">
           <div class="input-group-append">
             <div class="input-group-text">
+            <i class="fas fa-map-marker"></i>
             </div>
           </div>
         </div>
@@ -202,11 +208,12 @@ var balik=-1;
                   if(balik==1){check(nohp,'nohp');
                       if(balik==1){check(username,'username')
                           if(balik==1){
+                             
                               insertUser();
-                              alert('Anda Berhasil Register');
+                              Konfirm();
                               setTimeout(
-                                window.location.href = "login.php"
-                              , 2000);
+                              window.location.href = "confirmation.php?test=1"
+                              , 5000);
                           }
                       }
                   }
@@ -217,6 +224,24 @@ var balik=-1;
             alert('Ada field yang kosong');
         }
     }
+
+    function Konfirm(){
+        var kepada=$("#email").val();
+        
+      $.ajax({
+        method: "post",
+        url: "register/Emailregister.php",
+        data:{
+            kepada:kepada
+        },
+        success: function (response) {
+          if(response == "Berhasil"){
+            
+          }
+        }
+      });
+    }
+
     function insertUser(){
         var fullname=$("#fullname").val();
         var username=$("#username").val();
@@ -224,7 +249,7 @@ var balik=-1;
         var conpass=$("#conpassword").val();
         var alamat=$("#alamat").val();
         var kodepos=$("#kode").val();
-        var email=$("#email").val()
+        var email=$("#email").val();
         var nohp=$("#nohp").val();
         var kabupaten=$("#provinsi_value").val();
         var kota=$("#kota_value").val();
@@ -244,7 +269,7 @@ var balik=-1;
               kota:kota         
             },
             success: function (response) {
-                
+               // Konfirm();
             }
         });
     }
@@ -285,7 +310,7 @@ var balik=-1;
 
     function ValidateNohp(nohp) 
     {
-        if (nohp.length==13)
+        if (nohp.length<=13)
         {
             return true;
         }
