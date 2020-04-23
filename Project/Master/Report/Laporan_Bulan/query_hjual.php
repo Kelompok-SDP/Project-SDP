@@ -1,12 +1,23 @@
 <?php
     include("../../../config.php");
-    $date=$_POST["date"];
-    $query="SELECT h.id_hjual,h.tanggal_transaksi,h.total,h.jenis_pemesanan,p.nama from hjual h join pegawai p on h.id_pegawai=p.id_pegawai where month(tanggal_transaksi)=month('$date')";
-
+    $month=$_POST["month"];
+    $total = 0;
+    $totalangka = 0;
+    $query = "SELECT * FROM HJUAL where tanggal_transaksi like '%$month%'";
     $htrans= mysqli_query($conn,$query);
-    echo "<table border='1'>";
+    $row = mysqli_num_rows($htrans);
+    echo "<br>";
+    echo "<br>";
+    if($row > 0){
+        foreach ($htrans as $key => $value3) {
+            $total = $total + $value3["total"];
+        }
+        $totalangka = $total;
+        $hasil_rupiah2 = "Rp " . number_format($totalangka,2,',','.');
+        echo "<h4>Total Pendapatan : $hasil_rupiah2</h4>";
+        
+    echo "<table class='table table-bordered text-nowrap' style='margin-top:5vh;'>";
             echo "<thead>";
-                echo "<th>Id Hjual</th>";
                 echo "<th>Tanggal Transaksi</th>";
                 echo "<th>Total Penjualan</th>";
                 echo "<th>Jenis Pemesanan</th>";
@@ -14,27 +25,41 @@
                 echo "<th>Lihat Detail</th>";
             echo "</thead>";
         foreach ($htrans as $key => $value) {
+            $id = $value["id_pegawai"];
             echo "<tr>";
-                echo "<td>$value[id_hjual]</td>";
-                echo "<td>$value[tanggal_transaksi]</td>";
-                echo "<td>$value[total]</td>";
-                echo "<td>$value[jenis_pemesanan]</td>";
-                echo "<td>$value[nama]</td>";
-                echo "<td><button onclick='detail(\"$value[id_hjual]\")'>Lihat Detail</button></td>";
+            echo "<td>$value[tanggal_transaksi]</td>";
+            $angka = $value["total"];
+            $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+            echo "<td>$hasil_rupiah</td>";
+            echo "<td>$value[jenis_pemesanan]</td>";
+            $query2 = "SELECT * FROM PEGAWAI WHERE ID_PEGAWAI = '$id'";
+            $hasil = mysqli_query($conn,$query2);
+            $row2 = mysqli_num_rows($hasil);
+            if($row2 > 0){
+                foreach ($hasil as $key => $value2) {
+                    echo "<td>$value2[nama]</td>";
+                }
+            }
+            echo "<td><button onclick='detail(\"$value[id_hjual]\")'class='btn btn-primary'>Lihat Detail <i class='fas fa-angle-right' style='padding-left:12px;color:white;'></i></button></td>";
             echo "</tr>";
         }
     echo "</table>";
+    }else{
+        echo "<p style='margin-left:25vw;color:grey; font-style:italic;'>Tidak ada hasil record</p>";
+        echo "<h4>Total Pendapatan : -</h4>";
+    }
+    
 ?>
 <script>
     function detail(id){
         $.ajax({
             method: "post",
-            url: "query_djual.php",
+            url: "Report/Laporan_Hari/query_djual.php",
             data: {
                 id:id
             },
             success: function (response) {
-                $("#tampung2").html(response);  
+                $("#tampung4").html(response);
             }
         });
     }
