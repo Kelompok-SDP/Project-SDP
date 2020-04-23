@@ -4,12 +4,13 @@
 	require_once("../../config.php");
 	//-----------------EMAIL-----------------
 	$captcha = "";
-	if(isset($_SESSION["captcha"])){
-		$captcha = $_SESSION['captcha'];
-	}
+	$captcha_num = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';
+	$captcha_num = substr(str_shuffle($captcha_num), 0, 6);
+	$captcha = $captcha_num;
 	$mail             = new PHPMailer();
 	$address 		  = $_POST["kepada"];					
 	$_SESSION['email'] = $_POST["kepada"];
+	$_SESSION['captcha'] = $captcha_num;
    // $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT password FROM member where email='$address'"));
 	$mail->Subject    = "Konfirmasi Email";
 
