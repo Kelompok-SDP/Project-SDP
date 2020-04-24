@@ -93,6 +93,8 @@
                     <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Bulanan</a>
                     <a class="nav-item nav-link" id="product-comments-tab2" data-toggle="tab" href="#product-comments2" role="tab" aria-controls="product-comments2" aria-selected="false">Harian</a>
                     <a class="nav-item nav-link" id="product-comments-tab3" data-toggle="tab" href="#product-comments3" role="tab" aria-controls="product-comments3" aria-selected="false">Bulanan</a>
+                    <a class="nav-item nav-link" id="product-comments-tab4" data-toggle="tab" href="#product-comments4" role="tab" aria-controls="product-comments4" aria-selected="false">Pembeli Terbanyak (Member)</a>
+                    <a class="nav-item nav-link" id="product-comments-tab5" data-toggle="tab" href="#product-comments5" role="tab" aria-controls="product-comments5" aria-selected="false">Penjualan Terbanyak (Pemesanan)</a>
                   </div>
                 </nav>
                 <div class="tab-content p-3" id="nav-tabContent">
@@ -284,6 +286,82 @@
                                   },
                                   success: function (response) {
                                       $("#tampung8").html(response);  
+                                  }
+                              });
+                            }
+                          }
+                      </script>
+                  </div>
+                  <div class="tab-pane fade" id="product-comments4" role="tabpanel" aria-labelledby="product-comments-tab4"> 
+                    <div class="form-group">
+                        <label>Masukkan Bulan:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="month" class="form-control float-right" name="inpmonth3" id="inpmonth3">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                      <button onclick="cetak6()" class="btn btn-primary">Cetak <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                      <id id="tampung9"></id>
+                      <script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+                      <script>
+                          function cetak6(){
+                            $("#tampung9").html("");  
+                            let tmp = $("#inpmonth3").val();
+                            alert(tmp);
+                            if(tmp == ""){
+                              alert("Tidak ada bulan yang dipilih!");
+                            }else{
+                              $.ajax({
+                                  method: "post",
+                                  url: "Report/Laporan_Member_Pembeli_Terbanyak/query_hjual.php",
+                                  data: {
+                                      month: $("#inpmonth3").val()
+                                  },
+                                  success: function (response) {
+                                      $("#tampung9").html(response);  
+                                  }
+                              });
+                            }
+                          }
+                      </script>
+                  </div>
+                  <div class="tab-pane fade" id="product-comments5" role="tabpanel" aria-labelledby="product-comments-tab5"> 
+                    <div class="form-group">
+                        <label>Masukkan Bulan:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="month" class="form-control float-right" name="inpmonth4" id="inpmonth4">
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                      <button onclick="cetak7()" class="btn btn-primary">Cetak <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                      <id id="tampung10"></id>
+                      <script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+                      <script>
+                          function cetak7(){
+                            $("#tampung10").html("");  
+                            let tmp = $("#inpmonth4").val();
+                            alert(tmp);
+                            if(tmp == ""){
+                              alert("Tidak ada bulan yang dipilih!");
+                            }else{
+                              $.ajax({
+                                  method: "post",
+                                  url: "Report/Laporan_Penjualan_Terbanyak_Tiap_Jenis_Transaksi/query_hjual.php",
+                                  data: {
+                                      month: $("#inpmonth4").val()
+                                  },
+                                  success: function (response) {
+                                      $("#tampung10").html(response);  
                                   }
                               });
                             }

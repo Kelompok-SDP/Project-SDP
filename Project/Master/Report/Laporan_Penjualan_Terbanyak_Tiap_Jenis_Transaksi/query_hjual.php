@@ -1,41 +1,41 @@
 <?php
     include("../../../config.php");
-    $date=$_POST["date"];
-    // $jenis=$_POST["jenis"];
-
-    $query="SELECT jenis_pemesanan, sum(total) as \"total\" 
-    from hjual
-    where month(tanggal_transaksi)=month('$date')
-    group by jenis_pemesanan 
-    order by 1 desc";
-
-    
-
+    $month=$_POST["month"];
+    $query="SELECT jenis_pemesanan as jenis, count(jenis_pemesanan) as jumlah, sum(total) as total from hjual where tanggal_transaksi like '%$month%' group by jenis_pemesanan";
     $htrans= mysqli_query($conn,$query);
-    echo "<table border='1'>";
-            echo "<thead>";
-                echo "<th>Jenis Pemesanan</th>";
-                echo "<th>Total</th>";
-            echo "</thead>";
+    $row = mysqli_num_rows($htrans);
+    if($row > 0){
         foreach ($htrans as $key => $value) {
-            echo "<tr>";
-                echo "<td>$value[jenis_pemesanan]</td>";
-                echo "<td>$value[total]</td>";
-            echo "</tr>";
-        }
-    echo "</table>";
-?>
-<script>
-    function detail(id){
-        $.ajax({
-            method: "post",
-            url: "query_djual.php",
-            data: {
-                id:id
-            },
-            success: function (response) {
-                $("#tampung2").html(response);  
+            $tmp[$value["jenis"]] = $value["jumlah"];   
+            $tmp2[$value["jenis"]] = $value["total"]; 
+        }   
+        echo "<table class='table table-bordered text-nowrap' style='margin-top:5vh;'>";
+                echo "<thead>";
+                    echo "<th>No.</th>";
+                    echo "<th>Jenis Pemesanan</th>";
+                    echo "<th>Jumlah Transaksi</th>";
+                    echo "<th>Total</th>";
+                echo "</thead>";
+        $nomor = 0;
+        $ctr = 0;
+        arsort($tmp);
+        foreach ($tmp as $key => $value5) {
+            foreach ($tmp2 as $key2 => $value6) {
+                if($key2 == $key){
+                    $nomor = $nomor + 1;
+                    echo "<tr>";
+                        echo "<td>$nomor</td>";
+                        echo "<td>$key2</td>";
+                        echo "<td>$value5</td>";
+                        $angka = $value6;
+                        $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+                        echo "<td>$hasil_rupiah</td>";
+                    echo "</tr>";
+                }
             }
-        });
+        }
+        echo "</table>";
+    }else{
+        echo "<p style='margin-left:25vw;color:grey; font-style:italic;'>Tidak ada hasil record</p>";
     }
-</script>
+
