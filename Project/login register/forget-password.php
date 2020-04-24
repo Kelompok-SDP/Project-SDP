@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Forgot Password</title>
+  <title>Uwenak Restoran | Forgot Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../AdminLTE-master/index2.html"><b>Admin</b>LTE</a>
+    <b>Forget Password</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -38,7 +38,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="button" onclick='CheckEmail()' class="btn btn-primary btn-block">Request new password</button>
+            <button type="button" onclick='CheckEmail()' class="btn btn-primary btn-block">Check</button>
           </div>
           <!-- /.col -->
         </div>
@@ -62,7 +62,7 @@
 
 <script>
     function CheckEmail(){
-        var kepada=$("#email").val();
+       var kepada=$("#email").val();
         
       $.ajax({
         method: "post",
@@ -74,11 +74,12 @@
           if(response=='Email Anda Tidak Di Temukan'){
             alert(response);
           }else if (response=='Password Anda Sudah Kamu Ubah Tolong Check Email Anda'){
-            alert(response);
+           // alert(response);
             kirim();
             setTimeout(
-              window.location.href = "login.php"
-              , 5000);
+              window.location.href = "confirmation.php?test=0"
+             , 5000);
+
           }
         }
       });
@@ -93,7 +94,7 @@
             kepada:kepada
         },
         success: function (response) {
-            
+            //alert(response);
         }
     });
     }

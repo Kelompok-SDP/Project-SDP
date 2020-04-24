@@ -4,17 +4,21 @@
 	require_once("../../config.php");
 	//-----------------EMAIL-----------------
 	$captcha = "";
+	
+	if(isset($_SESSION["captcha"]) || isset($_SESSION["email"])){
+		session_destroy();
+	}
 	$captcha_num = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';
 	$captcha_num = substr(str_shuffle($captcha_num), 0, 6);
 	$captcha = $captcha_num;
+	$_SESSION["captcha"] = $captcha;
 	$mail             = new PHPMailer();
 	$address 		  = $_POST["kepada"];					
-	$_SESSION['email'] = $_POST["kepada"];
-	$_SESSION['captcha'] = $captcha_num;
+ 	$_SESSION['email'] = $_POST["kepada"];
    // $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT password FROM member where email='$address'"));
 	$mail->Subject    = "Konfirmasi Email";
 
-	$body			  = 'Pelanggan yang terhormat, kami menemukan adanya aktivitas login akun anda. Jika akun anda maka segera konfirmasi dengan kode :'.$captcha. ' Segera lakukan konfirmasi. Atas Perhatianya kami ucapkan terima kasih';
+	$body			  = 'Pelanggan yang terhormat, untuk melakukan register segera konfirmasi dengan kode :'.$captcha. ' Segera lakukan konfirmasi. Atas Perhatianya kami ucapkan terima kasih';
 
 	$mail->IsSMTP(); // telling the class to use SMTP
 	$mail->Host       = "mail.google.com"; // SMTP server
