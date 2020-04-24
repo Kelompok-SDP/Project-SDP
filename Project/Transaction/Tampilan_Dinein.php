@@ -21,21 +21,31 @@
     .biru{
         background-color: blue;
     }
+    .kategori{
+        float:left;
+    }
+    .kategori_box{
+        border-style: solid;
+        height: 5%;
+        padding-top:1%;
+        box-sizing: border-box;
+        text-align: center;
+        margin-right: 20px;
+    }
 </style>
 <body>
     <div class="tempat"></div>
-    <div class="ket"style="margin-top:300px;width:60%"></div>
+    <div class="ket"style="margin-top:300px;"></div>
     <button onclick="ubahMeja()">Pesan Kursi</button>
-    <div class="makanan" style="width:60%">
-        <select id="kategori" onchange="callMenu()">
-        </select>
+    <div class="makanan" >
+        <div class="kategori"></div>
         <div class="menu"></div>
     </div>
-    <div class="detail">
+    <div style="float:right"class="detail">
     </div>
-    <div class="harga"></div>
+    <div style="clear:both;float:right" class="harga"></div>
 </body>
-<script src="../../AdminLTE-master\plugins\jquery\jquery.min.js"></script>
+<script src="../AdminLTE-master\plugins\jquery\jquery.min.js"></script>
 <script>
     callMeja();
     callKategori();
@@ -43,7 +53,7 @@
     function callMeja(){
         $.ajax({
             method: "post",
-            url: "getKursi.php",
+            url: "General/getMeja.php",
             success: function (response) {
                 $(".tempat").html(response);
             }
@@ -52,19 +62,19 @@
     function callKategori(){
         $.ajax({
             method: "post",
-            url: "getKategori.php",
+            url: "Dine_In/getKategori.php",
             success: function (response) {
-                $("#kategori").html(response);
-                callMenu();
+                $(".kategori").html(response);
+                callMenu("KAT001");
             }
         });
     }
-    function callMenu(){
+    function callMenu(kategori){
         $.ajax({
             method: "post",
-            url: "getMenu.php",
+            url: "Dine_In/getMenu.php",
             data:{
-                kategori:$("#kategori").val()
+                kategori:kategori
             },
             success: function (response) {
                 $(".menu").html(response);
@@ -74,7 +84,7 @@
     function callDetail(){
         $.ajax({
             method: "post",
-            url: "detail_keterangan.php",
+            url: "General/getDetail_keterangan_kursi.php",
             success: function (response) {
                 $(".ket").html(response);
             }
@@ -83,7 +93,7 @@
     function getHarga(){
         $.ajax({
             method: "post",
-            url: "getHarga.php",
+            url: "General/getHarga.php",
             success: function (response) {
                 $(".harga").html(response);
             }
@@ -92,20 +102,21 @@
     function ubahJumlah(nama,ctr){
         $.ajax({
             method: "post",
-            url: "ubahJumlah.php",
+            url: "General/setJumlah_pesanan.php",
             data: {
                 nama:nama,
                 jumlah:$("#inp"+ctr).val()
             },
             success: function (response) {
                 getHarga();
+                getDetail_menu();
             }
         });
     }
     function ubahMeja(){
         $.ajax({
             method: "post",
-            url: "statusMeja.php",
+            url: "General/setMeja_pesan.php",
             success: function (response) {
                 callMeja();
                 callDetail();
@@ -115,7 +126,7 @@
     function ambilMenu(nama){
         $.ajax({
             method: "post",
-            url: "setMenu.php",
+            url: "General/setSession_menu.php",
             data:{
                 nama_menu:nama
             },
@@ -127,7 +138,7 @@
     function pesanMakanan(){
         $.ajax({
             method: "post",
-            url: "pesanMakanan.php",
+            url: "Dine_In/doTransaksi.php",
             success: function (response) {
                 callMeja();
                 getDetail_menu();
@@ -138,7 +149,7 @@
     function getDetail_menu(){
         $.ajax({
             method: "post",
-            url: "getDetail_menu.php",
+            url: "General/getDetail_pesanan.php",
             success: function (response) {
                 $(".detail").html(response);
                 getHarga();
@@ -151,7 +162,7 @@
             $("#meja"+ke).removeClass("biru");
             $.ajax({
                 method: "post",
-                url: "pilihMeja.php",
+                url: "General/setSession_meja.php",
                 data: {
                     nomor:ke,
                     warna:"biru"
@@ -166,7 +177,7 @@
             $("#meja"+ke).removeClass("hijau");
             $.ajax({
                 method: "post",
-                url: "pilihMeja.php",
+                url: "General/setSession_meja.php",
                 data: {
                     nomor:ke,
                     warna:"hijau"
@@ -179,7 +190,7 @@
             if(confirm("Meja "+ke+" Sudah Selesai ?")){
                 $.ajax({
                     method: "post",
-                    url: "update_meja_selesai.php",
+                    url: "General/setMeja_selesai.php",
                     data: {
                         nomor:ke
                     },
