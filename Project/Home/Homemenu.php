@@ -62,7 +62,7 @@
             $gambar = $value["gambar"];
         ?>
             <div class="col-6 col-md-3">
-                <a href="https://mcdonalds.co.id/menu/egg-and-cheese-muffin" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
+                <a href="<?="detail_menu.php?id=".$value["id_menu"]?>" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
                     <img src="<?="../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
                     <p><?=$nmenu?></p>
                 </a>

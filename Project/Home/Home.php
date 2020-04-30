@@ -97,6 +97,7 @@ include("../config.php");?>
 </a>
 <?php 
     include('Mcd/footer.php');
+    include('ChatTawkTo.php');
 ?>
     
 <script>

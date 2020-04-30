@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-include("../../../config.php");
+include("../config.php");
 $ids = $_GET["id"];
 $query = "select *  from menu where id_menu = '$ids'";
 $menu = mysqli_query($conn,$query);
@@ -15,10 +15,9 @@ foreach($menu as $data=>$row){
     $harga = $row['harga_menu'];
 }
 
-$gambar = "../../../Master/Menu/".$gambar;
+$gambar = "../Master/Menu/".$gambar;
 
 ?>
-<?php include('../../Mcd/header.php'); ?>
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="page" content="index" initial="index">
@@ -30,10 +29,10 @@ $gambar = "../../../Master/Menu/".$gambar;
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<script type="text/javascript" async="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/ec.js"></script><script type="text/javascript" async="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/conversion_async.js"></script><script type="text/javascript" async="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/analytics.js"></script><script src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/723821301303563.js" async=""></script><script async="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/fbevents.js"></script><script async="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/gtm.js"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>
+<script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/ec.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/conversion_async.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/analytics.js"></script><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/723821301303563.js" async=""></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/fbevents.js"></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/gtm.js"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>
 
 
-<link rel="stylesheet" href="Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css">
+<link rel="stylesheet" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css">
         <link rel="dns-prefetch" href="https://https//mcdonalds.co.id/">
             <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -42,77 +41,73 @@ $gambar = "../../../Master/Menu/".$gambar;
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-5NF7SB8');</script>
         <!-- End Google Tag Manager -->
-    <link rel="stylesheet" type="text/css" href="Big%20Mac%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/a"></script></head>
+    <link rel="stylesheet" type="text/css" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/a"></script></head>
 
-<body>
-            <!-- Google Tag Manager (noscript) -->
+    <?php include('Mcd/header.php'); ?>
+<body style='margin-top:5.5%'>
+<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
+    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
+    <span>Pesan Sekarang</span>
+</a>
+        <!-- Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
-                  <div class="loader-wrapper loader-light">
-      <div class="loader" style="display: none;"></div>
+    <div class="loader-wrapper loader-light">
+        <div class="loader" style="display: none;"></div>
     </div> 
     
     <section class="section-menu-detail-cover bg-cream">
     <div class="container position-relative py-main">
-        <nav aria-label="breadcrumb" class="general-breadcrumb">
-            <ol class="breadcrumb">
-                
-                <!-- <li class="breadcrumb-item"><a href="/">Menu</a></li> -->
-            </ol>
-        </nav>
-        <div class="row">
-            <div class="col-md-5">
-                <img src="<?=$gambar?>" style="background-size: cover;width:255px;height:180px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
+
+    <nav aria-label="breadcrumb" class="general-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/menu"><i class="fa fa-arrow-left"></i> Menu</a></li>
+            <!-- <li class="breadcrumb-item"><a href="/">Menu</a></li> -->
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="<?=$gambar?>" style="background-size: cover;width:445px;height:339px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
+        </div>
+        <div class="col-md-7 content-center">
+            <div class="heading">
+                <h2 class="title animated fadeInUp delayp2"><?=$nama?></h2>
+                <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
-            <div class="col-md-7 content-center">
-                <div class="heading">
-                    <h2 class="title animated fadeInUp delayp2"><?=$nama?></h2>
-                    <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
-                </div>
-                <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                                   <a href="" data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow">
-                        <img src="<?=$gambar?>">
-                        Pesan Sekarang
-                    </a> 
-		  <!--	<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow mb-3 pesan-tag" target="_blank" rel="external">
-                        <img src="https://nos.jkt-1.neo.id/mcdonalds/assets/img/icon/ic_mcdelivery.svg" class="mcd-delivery-icon" alt="Yellow Element">
-                        <span>Pesan Sekarang</span> -->
-                    
-                                </div>
+            <div class="clearfix btn-placeholder animated fadeInUp delayp4">
+                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$nama?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
             </div>
         </div>
     </div>
 </section>
-<section class="d-none">
-    <div class="container">
+<!-- <section class="d-none"> -->
+    <!-- <div class="container">
         <div class="row">
-            <div class=" col-md-7 order-md-last ">
-                                <div></div>
-                            </div>
+            <div class=" col-md-7 order-md-last "></div>
 
-                        <div class="col-md-5 order-md-first">
+                <div class="col-md-5 order-md-first">
                 <div class="menu-detail-package">
                     <h5 class="animated animated fadeInUp delayp4">Lebih hemat dengan paket</h5>
                     <div class="card-package-list animated fadeInUp delayp5">
                         <div class="card-package">
-                            <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/french-froes.png" class="img-fluid">
+                            <img src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/french-froes.png" class="img-fluid">
                             <span>Fries</span>
                         </div>
                         <div class="card-package-plus">
                             +
                         </div>
                         <div class="card-package">
-                            <img src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/coca-cola.png" class="img-fluid">
+                            <img src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/coca-cola.png" class="img-fluid">
                             <span>Cola</span>
                         </div>
                     </div>
-                                                            <p class="package-info animated fadeInUp delayp6">Tersedia dalam <a href="https://mcdonalds.co.id/paket-hemat"><strong>Paket Hemat <i class="far fa-angle-right"></i></strong></a></p>
+                    <p class="package-info animated fadeInUp delayp6">Tersedia dalam <a href="https://mcdonalds.co.id/paket-hemat"><strong>Paket Hemat <i class="far fa-angle-right"></i></strong></a></p>
 
-                                    </div>
+                </div>
             </div>
             
 
         </div>
-    </div>
+    </div> -->
 </section>
 
 <section class="py-main section-other-menu">
@@ -121,6 +116,8 @@ $gambar = "../../../Master/Menu/".$gambar;
             <h2 class="title animated vp-fadeinup visible fadeInUp full-visible">Menu Rekomendasi Lainnya</h2>
         </div>
         <div class="owl-carousel owl-theme owl-top-menu-home-carousel content owl-loaded owl-drag">
+        <div class="owl-stage-outer">
+        <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1140px;">
             <?php 
                 $query = "select id_menu from menu where status = 1";
                 $rek = mysqli_query($conn,$query);
@@ -158,30 +155,28 @@ $gambar = "../../../Master/Menu/".$gambar;
                     $nama = "";
                     foreach($m as $data=>$row){
                         $gambar = $row['gambar'];
-                        $gambar = "../../../Master/Menu/".$gambar;
-                    }
+                        $gambar = "../Master/Menu/".$gambar;
             ?>            
-                                    
-                        
-                        
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1140px;"><div class="owl-item active" style="width: 255px; margin-right: 30px;"><div class="item animated vp-fadeinup delayp1 visible fadeInUp">
-                <a href="" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
-                    <img src="<?=$gambar?>"style='max-width:300px;max-height:150px' class="img-fluid">
-                    <p><?=$row['nama_menu']?></p>
-                </a>
-            </div></div>
-                    <?php } ?>
-            </div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
+            
+                    <div class="owl-item active" style="width: 255px; margin-right: 30px;">
+                        <div class="item animated vp-fadeinup delayp1 visible fadeInUp">
+                            <a href="" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
+                                <img src="<?=$gambar?>"style='max-width:300px;max-height:150px' class="img-fluid">
+                                <p><?=$row['nama_menu']?></p>
+                            </a>
+                        </div>
+                    </div>
+                    <?php }} ?>
+                    
+                </div>
+            </div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
         <div class="clearfix mt-3 text-center animated vp-fadeinup visible fadeInUp full-visible">
             <a href="https://mcdonalds.co.id/menu#Daging%20Sapi" class="btn btn-primary">Lihat Semua Menu</a>
         </div>
     </div>
 </section>
 
-<?php include('../../Mcd/footer.php'); ?>
-    
-
-    <div id="app"></div>
+<?php include('Mcd/footer.php'); ?>
     <script>
     document.addEventListener("DOMContentLoaded", function (event) {
         $(".loader").fadeOut('slow');
@@ -329,4 +324,19 @@ $gambar = "../../../Master/Menu/".$gambar;
 
 
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
-<script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Big%20Mac%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
+<script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
+
+<script>
+    function Add_To_Cart(nama){
+        $.ajax({
+            method: "post",
+            url: "../Transaction/General/setSession_menu.php",
+            data:{
+                nama_menu:nama
+            },
+            success: function (response) {
+                alert("berhasil");
+            }
+        });
+    }
+</script>
