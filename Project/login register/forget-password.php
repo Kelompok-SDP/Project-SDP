@@ -71,10 +71,11 @@
             kepada:kepada
         },
         success: function (response) {
+          //alert(response);
           if(response=='Email Anda Tidak Di Temukan'){
             alert(response);
           }else if (response=='Password Anda Sudah Kamu Ubah Tolong Check Email Anda'){
-           // alert(response);
+            //alert(response);
             kirim();
             setTimeout(
               window.location.href = "confirmation.php?test=0"
