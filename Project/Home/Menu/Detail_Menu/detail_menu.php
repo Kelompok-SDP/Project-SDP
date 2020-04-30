@@ -159,6 +159,7 @@ $gambar = "../../../Master/Menu/".$gambar;
                     foreach($m as $data=>$row){
                         $gambar = $row['gambar'];
                         $gambar = "../../../Master/Menu/".$gambar;
+                    }
             ?>            
                                     
                         
@@ -169,7 +170,7 @@ $gambar = "../../../Master/Menu/".$gambar;
                     <p><?=$row['nama_menu']?></p>
                 </a>
             </div></div>
-                    <?php }} ?>
+                    <?php } ?>
             </div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
         <div class="clearfix mt-3 text-center animated vp-fadeinup visible fadeInUp full-visible">
             <a href="https://mcdonalds.co.id/menu#Daging%20Sapi" class="btn btn-primary">Lihat Semua Menu</a>
