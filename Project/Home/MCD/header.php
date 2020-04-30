@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
-                                        <img src="Home%20%20%20McDonald's%20Indonesia_files/aQB38R7W6WDUj6jYxYbP.jfif" class="img-fluid" alt="Location">
+                                            
                                     </div>
                                     <div class="content">
                                         <div class="content-info">
@@ -102,7 +102,7 @@
                 <li class="nav-item">
                     <a class="nav-link border-left" href="https://mcdonalds.co.id/location">
                         <i class="far fa-map-marked-alt"></i>
-                        Lokasi
+                        Cart
                     </a>
                 </li>
                 <li class="nav-item hidden">
@@ -115,15 +115,6 @@
     </div>
 
     <div class="navbar-slide light">
-        <!-- <a class="navbar-brand-sidebar animated fadeInDown delayp4" href="">
-            <img src="https://mcdonalds.co.id/assets/img/brand/mcd.png" alt="Logo">
-        </a> -->
-        <!-- <a class="nav-link" href="#">
-            <img src="https://mcdonalds.co.id/assets/img/icon/location.png" class="img-fluid icon-location-sidebar" alt="Location">
-        </a>
-        <a class="nav-link" href="#">
-            <img src="https://mcdonalds.co.id/assets/img/icon/search.png" class="img-fluid icon-search-sidebar" alt="Search Bar">
-        </a> -->
         <div class="navbar-slide-close">
             <span class="icon-bar icon-bar-1"></span>
             <span class="icon-bar icon-bar-2"></span>
