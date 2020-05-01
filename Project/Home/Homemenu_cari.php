@@ -56,43 +56,58 @@
         <p class="form-status status-footer"></p>
 </div>
 <?php
-    $filter="";
-    $nmenu = "";
-    if(isset($_GET["filter"])){
-        $filter=$_GET["filter"];
-        $nmenu=$_GET["nama"];
-    }
-    $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 and id_kategori='$filter' ORDER BY 1 ASC";
+    $nmenu="";
+    $snmenu = $_GET["nmenu"];
+    $query = "SELECT M.ID_MENU AS IDMEN, K.ID_KATEGORI AS IDKAT, K.NAMA_KATEGORI AS NAMAKAT FROM MENU M, KATEGORI K WHERE M.NAMA_MENU LIKE '$snmenu%' AND M.ID_KATEGORI = K.ID_KATEGORI AND M.STATUS = 1 AND K.STATUS_KATEGORI = 1 ORDER BY 1 ASC";
     $list = mysqli_query($conn,$query);
+    $row = mysqli_num_rows($list);
+    if($row > 0){ ?>
+        <section class="py-main section-menu-list" id="" style="width: 80vw;">
+            <div class="container">
+                <div class="heading text-center animated fadeInUp delayp2">
+                    <h2 class="title">Hasil pencarian untuk "<?= $snmenu ?>"</h2>
+                </div>        
+            </div>
+        </section>
+    <?php
     foreach ($list as $key => $value) {
-        $idk = $value["id_kategori"];
-        $namkat = $value["nama_kategori"];
-?>
-<section class="py-main section-menu-list" id="<?=$filter?>" style="width: 80vw;"><!-- for i-->
-    <p id="tmpkat" style="display:none;"><?=$filter?></p>
-    <div class="container">
-        <div class="heading text-center animated fadeInUp delayp2">
+        $idm = $value["IDMEN"];
+        $idk = $value["IDKAT"];
+        $namkat = $value["NAMAKAT"];
+        ?>
+<section class="py-main section-menu-list" id="<?=$idk?>" style="width: 80vw;"><!-- for i-->
+
+<div class="container">
+    <div class="heading text-center animated fadeInUp delayp2">
             <h2 class="title"><?=$namkat?></h2>
         </div>
         <!-- for j-->
-        <div class="row animated fadeInUp delayp3">
-        <?php 
-        $query2 = "SELECT * FROM MENU WHERE ID_KATEGORI ='$idk' AND NAMA_MENU LIKE '$nmenu%' AND STATUS = 1";
-        $list2 = mysqli_query($conn,$query2);
-        foreach ($list2 as $key => $value) {
-            $nmenu = $value["nama_menu"];
-            $gambar = $value["gambar"];
+        <?php
+            $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$idm'";
+            $list2 = mysqli_query($conn,$query2);
+            foreach ($list2 as $key => $value) {
+                $nmenu = $value["nama_menu"];
+                $gambar = $value["gambar"];
         ?>
+        <div class="row animated fadeInUp delayp3">
             <div class="col-6 col-md-3">
-                <a href="https://mcdonalds.co.id/menu/egg-and-cheese-muffin" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
+                <a href="<?="detail_menu.php?id=".$value["id_menu"]?>" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
                     <img src="<?="../Master/Menu/".$gambar?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
                     <p><?=$nmenu?></p>
                 </a>
             </div>
-    <?php }?><!-- for j tutup-->
+    <?php } ?><!-- for j tutup-->
         </div>
     </div>
 
+</section>
+<?php }} else{ ?><!-- for i tutup-->
+<section class="py-main section-menu-list" id="" style="width: 80vw;">
+    <div class="container">
+        <div class="heading text-center animated fadeInUp delayp2">
+            <h2 class="title">Tidak ada hasil pencarian untuk "<?= $snmenu ?>"</h2>
+        </div>        
+    </div>
 </section>
 <?php } ?>
 <?php 
@@ -149,9 +164,8 @@
 
         $("#button-addon-footer").click(function () {
             var nmenu = $("#nmenu").val();
-            var kat = $("#tmpkat").text();
             if(nmenu != ""){
-                document.location.href = "Homemenu_kategori.php?filter=" + kat +"&nama=" + nmenu;
+                document.location.href = "Homemenu_cari.php?nmenu=" + nmenu;
             }else{
                 $("#err").css("display","inline");
             }

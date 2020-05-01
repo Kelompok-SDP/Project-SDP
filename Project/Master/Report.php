@@ -2,18 +2,6 @@
     require_once("../config.php");
 ?>
 
-<!-- <a href="Hari/Penjualan.php">penjualan perhari</a> <br>
-
-<input type="button" value="penjualan perbulan"> <br> <br>
-<input type="button" value="penjualan perminggu"> <br>
-<input type="button" value="penjualan terbanyak tiap jenis transaksi"> <br>
-<input type="button" value="pilih rentang laporan penjualan"> <br>
-<input type="button" value="menu terfavorit perhari"> <br>
-<input type="button" value="menu terfavorit perminggu"> <br>
-<input type="button" value="menu terfavorit perbulan"> <br>
-<input type="button" value="10 member pembeli terbanyak"> <br> -->
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
 </head>
 <style>
 .sticky{
@@ -61,7 +40,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="Menu.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="Report.php">Home</a></li>
             </ol>
           </div>
         </div>
@@ -86,22 +65,29 @@
             <div class="card-header">
               <div class="row mt-4">
                 <nav class="w-100">
-                <div style="margin-left: 22vw;">Menu Favorit</div>
+                <div>
+                  <div style="margin-left:7.3vw;Text-align:center;float:left;color:green;">
+                  <b>Laporan</b></div>
+                  <div style="Text-align:left;margin-left:11vw;float:left;color:orange;">
+                  <b>Menu Favorit</b></div>
+                  <div style="Text-align:left;margin-left:11vw;float:left;color:brown;">
+                  <b>Terbanyak</b></div>
+                </div><br>
                   <div class="nav nav-tabs" id="product-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Harian</a>
-                    <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Mingguan</a>
-                    <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Bulanan</a>
-                    <a class="nav-item nav-link" id="product-comments-tab2" data-toggle="tab" href="#product-comments2" role="tab" aria-controls="product-comments2" aria-selected="false">Harian</a>
-                    <a class="nav-item nav-link" id="product-comments-tab3" data-toggle="tab" href="#product-comments3" role="tab" aria-controls="product-comments3" aria-selected="false">Bulanan</a>
-                    <a class="nav-item nav-link" id="product-comments-tab4" data-toggle="tab" href="#product-comments4" role="tab" aria-controls="product-comments4" aria-selected="false">Pembeli Terbanyak (Member)</a>
-                    <a class="nav-item nav-link" id="product-comments-tab5" data-toggle="tab" href="#product-comments5" role="tab" aria-controls="product-comments5" aria-selected="false">Penjualan Terbanyak (Pemesanan)</a>
+                    <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true" style="color: green;">Harian</a>
+                    <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false" style="color: green;">Mingguan</a>
+                    <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false" style="color: green;">Bulanan</a>
+                    <a class="nav-item nav-link" id="product-comments-tab2" data-toggle="tab" href="#product-comments2" role="tab" aria-controls="product-comments2" aria-selected="false" style="color: orange;">Harian</a>
+                    <a class="nav-item nav-link" id="product-comments-tab3" data-toggle="tab" href="#product-comments3" role="tab" aria-controls="product-comments3" aria-selected="false" style="color: orange;">Bulanan</a>
+                    <a class="nav-item nav-link" id="product-comments-tab4" data-toggle="tab" href="#product-comments4" role="tab" aria-controls="product-comments4" aria-selected="false" style="color: brown;">Pembeli (Member)</a>
+                    <a class="nav-item nav-link" id="product-comments-tab5" data-toggle="tab" href="#product-comments5" role="tab" aria-controls="product-comments5" aria-selected="false" style="color: brown;">Penjualan (Jenis Pemesanan)</a>
                   </div>
                 </nav>
                 <div class="tab-content p-3" id="nav-tabContent">
                     
                   <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
                     <div class="form-group">
-                        <label>Masukkan Tanggal:</label>
+                        <label><div style="color: green;">Masukkan Tanggal:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -140,7 +126,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab">
                     <div class="form-group">
-                        <label>Masukkan Tanggal:</label>
+                        <label><div style="color: green;">Masukkan Tanggal:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -179,7 +165,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> 
                     <div class="form-group">
-                        <label>Masukkan Bulan:</label>
+                        <label><div style="color: green;">Masukkan Bulan:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -218,7 +204,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-comments2" role="tabpanel" aria-labelledby="product-comments-tab2"> 
                     <div class="form-group">
-                        <label>Masukkan Tanggal:</label>
+                        <label><div style="color: orange;">Masukkan Tanggal:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -256,7 +242,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-comments3" role="tabpanel" aria-labelledby="product-comments-tab3"> 
                     <div class="form-group">
-                        <label>Masukkan Bulan:</label>
+                        <label><div style="color: orange;">Masukkan Bulan:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -294,7 +280,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-comments4" role="tabpanel" aria-labelledby="product-comments-tab4"> 
                     <div class="form-group">
-                        <label>Masukkan Bulan:</label>
+                        <label><div style="color: brown;">Masukkan Bulan:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -332,7 +318,7 @@
                   </div>
                   <div class="tab-pane fade" id="product-comments5" role="tabpanel" aria-labelledby="product-comments-tab5"> 
                     <div class="form-group">
-                        <label>Masukkan Bulan:</label>
+                        <label><div style="color: brown;">Masukkan Bulan:</div></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
@@ -409,16 +395,4 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../AdminLTE-master/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../AdminLTE-master/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../AdminLTE-master/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../AdminLTE-master/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../AdminLTE-master/dist/js/demo.js"></script>
 

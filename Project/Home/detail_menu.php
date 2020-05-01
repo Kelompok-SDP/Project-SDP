@@ -60,7 +60,7 @@ $gambar = "../Master/Menu/".$gambar;
 
     <nav aria-label="breadcrumb" class="general-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/menu"><i class="fa fa-arrow-left"></i> Menu</a></li>
+            <li class="breadcrumb-item"><a href="Homemenu.php"><i class="fa fa-arrow-left"></i> Menu</a></li>
             <!-- <li class="breadcrumb-item"><a href="/">Menu</a></li> -->
         </ol>
     </nav>
@@ -171,7 +171,7 @@ $gambar = "../Master/Menu/".$gambar;
                 </div>
             </div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
         <div class="clearfix mt-3 text-center animated vp-fadeinup visible fadeInUp full-visible">
-            <a href="https://mcdonalds.co.id/menu#Daging%20Sapi" class="btn btn-primary">Lihat Semua Menu</a>
+            <a href="Homemenu.php" class="btn btn-primary">Lihat Semua Menu</a>
         </div>
     </div>
 </section>

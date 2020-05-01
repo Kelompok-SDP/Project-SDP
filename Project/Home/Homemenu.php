@@ -16,7 +16,8 @@
         })(window,document,'script','dataLayer','GTM-5NF7SB8');</script>
         <!-- End Google Tag Manager -->
     <link rel="stylesheet" type="text/css" href="menu/semua_menu/Menu%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu%20%20%20McDonald's%20Indonesia_files/a"></script></head>
-
+<head>
+</head>
 <body>
             <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NF7SB8" 
@@ -39,6 +40,21 @@
     </div>
 </div>
 <!-- id ne iku  kategori ne-->
+<br>
+<div class="footer-item footer-item-subscribe" style="float: right;width: 20vw;margin-right:2vw;">
+        <div class="form-group mb-2">
+            <h5 class="footer-title">Cari Menu</h5>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Masukkan nama menu" required="" name="nmenu" id="nmenu">
+            </div>
+            <div id="err" style="display:none; color: red">Masukkan nama menu</div>
+            <br>
+        </div>
+        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
+           Cari
+        </button>
+        <p class="form-status status-footer"></p>
+</div>
 <?php
     $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 ORDER BY 1 ASC";
     $list = mysqli_query($conn,$query);
@@ -46,7 +62,7 @@
         $idk = $value["id_kategori"];
         $namkat = $value["nama_kategori"];
 ?>
-<section class="py-main section-menu-list" id="<?=$idk?>"><!-- for i-->
+<section class="py-main section-menu-list" id="<?=$idk?>" style="width: 80vw;"><!-- for i-->
 
     <div class="container">
         <div class="heading text-center animated fadeInUp delayp2">
@@ -126,6 +142,15 @@
             $("#menu-slide-1").css("display","none");
             $(".navbar-slide").removeClass("is-open");
         })
+
+        $("#button-addon-footer").click(function () {
+            var nmenu = $("#nmenu").val();
+            if(nmenu != ""){
+                document.location.href = "Homemenu_cari.php?nmenu=" + nmenu;
+            }else{
+                $("#err").css("display","inline");
+            }
+        })
     });
 </script>
     <script>
@@ -187,7 +212,17 @@
         }, false);
     })();
     </script>
-
+    
+<!-- jQuery -->
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../AdminLTE-master/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../AdminLTE-master/dist/js/demo.js"></script>
 
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
 <script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
