@@ -55,7 +55,7 @@
     function detail(id){
         $.ajax({
             method: "post",
-            url: "Report/Laporan_Hari/query_djual.php",
+            url: "Report/Laporan_Minggu/query_djual.php",
             data: {
                 id:id
             },

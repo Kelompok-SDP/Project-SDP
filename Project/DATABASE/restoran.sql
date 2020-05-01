@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Apr 2020 pada 16.56
+-- Waktu pembuatan: 01 Bulan Mei 2020 pada 07.56
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -64,7 +64,9 @@ INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_h
 ('DJ017', 'MEN001', 8000, 1, 8000, 'H009'),
 ('DJ018', 'MEN001', 12000, 2, 24000, 'H009'),
 ('DJ019', 'MEN001', 15000, 2, 30000, 'H010'),
-('DJ020', 'MEN001', 12000, 2, 24000, 'H010');
+('DJ020', 'MEN001', 12000, 2, 24000, 'H010'),
+('DJ021', 'MEN001', 5000, 1, 5000, 'H011'),
+('DJ022', 'MEN002', 5000, 1, 5000, 'H011');
 
 -- --------------------------------------------------------
 
@@ -87,16 +89,17 @@ CREATE TABLE `hjual` (
 --
 
 INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`, `id_pegawai`, `id_member`) VALUES
-('H001', '2020-02-14', 10000, 'dine-in', 'PEG001', 'AM001'),
-('H002', '2020-03-18', 20000, 'take away', 'PEG001', 'AM001'),
-('H003', '2020-02-14', 20000, 'delivery', 'PEG002', 'fa00001'),
-('H004', '2020-02-18', 150000, 'Take-away', 'W00002', 'AB00001'),
-('H005', '2020-03-18', 150000, 'Dine-in', 'W00002', 'AB00001'),
-('H006', '2020-04-18', 150000, 'Dine-in', 'W00002', 'AB00001'),
-('H007', '2020-05-18', 150000, 'Dine-in', 'W00002', 'AB00001'),
-('H008', '2020-06-18', 150000, 'Delivery', 'W00002', 'AB00001'),
-('H009', '2020-07-18', 150000, 'Delivery', 'W00002', 'AB00001'),
-('H010', '2020-08-18', 150000, 'Dine-in', 'W00002', 'AB00001');
+('H001', '2020-02-14', 10000, 'dine-in', 'W00002', 'AM001'),
+('H002', '2020-03-18', 20000, 'take away', 'W00002', 'AM001'),
+('H003', '2020-02-14', 40000, 'delivery', 'W00002', 'fa00001'),
+('H004', '2020-02-18', 70000, 'Take-away', 'W00002', 'AB00001'),
+('H005', '2020-03-18', 10000, 'Dine-in', 'W00002', 'AB00001'),
+('H006', '2020-04-18', 20000, 'Dine-in', 'W00002', 'AB00001'),
+('H007', '2020-05-18', 20000, 'Dine-in', 'W00002', 'AB00001'),
+('H008', '2020-06-18', 18000, 'Delivery', 'W00002', 'AB00001'),
+('H009', '2020-07-18', 20000, 'Delivery', 'W00002', 'AB00001'),
+('H010', '2020-08-18', 27000, 'Dine-in', 'W00002', 'AB00001'),
+('H011', '2020-02-15', 10000, 'delivery', 'W00002', 'AB00001');
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,8 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`,
 ('MEN008', 'Es Lemon Tea', 5000, 'Image/Lteh.jpg', 'Jeruk Lemon', 'KAT007', 1),
 ('MEN009', 'Es Mega Mendung', 8000, 'Image/Megmen.jpg', 'Soda', 'KAT008', 1),
 ('MEN010', 'Kopi Luwak', 8000, 'Image/kopi.jpg', 'Luwak asli', 'KAT008', 1),
-('MEN011', 'Es Campur', 10000, 'Image/Scampur.jpg', 'Campur', 'KAT009', 1);
+('MEN011', 'Jus Alpukat', 20000, 'Image/Jusalpukat.jpg', 'Alpukat terpercaya', 'KAT009', 1),
+('MEN012', 'Bubur Ayam', 15000, 'Image/Bubur.jpg', 'Lembut', 'KAT004', 1);
 
 -- --------------------------------------------------------
 
@@ -216,16 +220,16 @@ CREATE TABLE `paket` (
 --
 
 INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `id_kategori`, `id_promo`, `status`) VALUES
-('PK001', 'Subuh', 20000, 'KA5', 'PR1', 1),
-('PK002', 'Dini', 25000, 'KA4', 'PR1', 1),
-('PK003', 'Siang', 10000, 'KA5', 'PR3', 1),
-('PK004', 'Sore', 15000, 'KA4', 'PR1', 1),
-('PK005', 'Malam', 25000, 'KA4', 'PR1', 1),
-('PK006', 'Tengah malam', 30000, 'KA5', 'PR1', 1),
-('PK007', 'Panas 1', 25000, 'KA5', 'PR3', 1),
-('PK008', 'Panas 2', 20000, 'KA5', 'PR2', 1),
-('PK009', 'Panas 3', 10000, 'KA5', 'PR1', 1),
-('PK010', 'Panas 4', 56000, 'KA5', 'PR2', 1);
+('PK001', 'Subuh', 20000, 'KAT005', 'PR001', 1),
+('PK002', 'Dini', 25000, 'KAT004', 'PR001', 1),
+('PK003', 'Siang', 10000, 'KAT005', 'PR003', 1),
+('PK004', 'Sore', 15000, 'KAT004', 'PR001', 1),
+('PK005', 'Malam', 25000, 'KAT004', 'PR001', 1),
+('PK006', 'Tengah malam', 30000, 'KAT005', 'PR001', 1),
+('PK007', 'Panas 1', 25000, 'KAT005', 'PR003', 1),
+('PK008', 'Panas 2', 20000, 'KAT005', 'PR002', 1),
+('PK009', 'Panas 3', 10000, 'KAT005', 'PR001', 1),
+('PK010', 'Panas 4', 56000, 'KAT005', 'PR002', 1);
 
 -- --------------------------------------------------------
 

@@ -9,6 +9,8 @@
      $hpaket = "";
      $kpaket = "";
      $ppaket = "";
+     $nkat = "";
+     $npro = "";
      foreach ($res as $key=>$data){
          $npaket  = $data['nama_paket'];
          $hpaket = $data['harga_paket'];

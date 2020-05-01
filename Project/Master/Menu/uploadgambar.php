@@ -1,6 +1,7 @@
 <?php
     require_once("../../config.php");
     $id = $_GET["id"];
+    $aa = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,7 +61,6 @@
                     $angka = $data["harga_menu"];
                     $hmenu = "Rp " . number_format($angka,2,',','.');
                     $kmenu = $data['id_kategori'];
-                    $pmenu = $data['id_promo'];
                     $dmenu = $data['deskripsi'];
                 }
               ?>
@@ -91,6 +91,7 @@
                             if(move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)){
                               echo "File ".basename($_FILES["gambar"]["name"])." terupload<br>";
                               echo "<img src='$target_file' width='200' height='200'";
+                              $aa = "aaa";
                             }
                         
                           $kembar = false;
@@ -137,7 +138,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary" name="submit" id="Submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="submit" id="Submit" value="<?= $aa ?>">Submit</button>
                 </div>
               </form>
             </div>
@@ -173,8 +174,13 @@
 <!-- page script -->
 <script>
   $('#Submit').click(function () {
+    var a = $(this).val();
+    if(a == ""){
+      alert("Mohon Pilih Gambar!");
+    }else{
     alert('Selesai');
     document.location.href = '../Insert_Menu.php';
+    }
   });
 </script>
 </body>

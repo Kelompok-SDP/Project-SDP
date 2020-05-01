@@ -88,7 +88,7 @@
     password=$("#password").val();
     $.ajax({
       method: "post",
-      url: "login/checkLogin.php",
+      url: "login/checkLogin.php?tipe=1",
       data: {
         user:user,
         password:password

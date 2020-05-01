@@ -158,7 +158,6 @@
                     let a = "Menu/Uploadgambar.php?id=";
                     let a2 = result.split(" ",1);
                     let a3 = a.concat(a2);
-                    alert(a3);
                     document.location.href = a3;
                   }
                 }
