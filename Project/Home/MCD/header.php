@@ -45,7 +45,7 @@
                                             $query ="select id_kategori,nama_kategori from kategori order by 1 asc limit 5";
                                             $query=mysqli_query($conn,$query);
                                             foreach ($query as $key => $value) {
-                                                echo "<a href='Homemenu_kategori.php?filter=$value[id_kategori]&nama='>$value[nama_kategori]</a>";
+                                                echo "<a href='Homemenu.php#$value[id_kategori]'>$value[nama_kategori]</a>";
                                                 
                                             }
                                         
@@ -56,7 +56,7 @@
                                             $query ="select id_kategori,nama_kategori from kategori order by 1 desc limit 4";
                                             $query=mysqli_query($conn,$query);
                                             foreach ($query as $key => $value) {
-                                                echo "<a href='Homemenu_kategori.php?filter=$value[id_kategori]&nama='>$value[nama_kategori]</a>";
+                                                echo "<a href='Homemenu.php?#$value[id_kategori]'>$value[nama_kategori]</a>";
                                                 
                                             }
                                         
