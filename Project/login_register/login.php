@@ -28,7 +28,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../AdminLTE-master/index3.html" method="post">
+      <!-- <form action="../AdminLTE-master/index3.html" method="post"> -->
         <div class="input-group mb-3">
           <input type="email" id='username'class="form-control" placeholder="Username/Email/Nohp">
           <div class="input-group-append">
@@ -60,7 +60,7 @@
           </div>
           <!-- /.col -->
         </div>
-      </form>
+      <!-- </form> -->
       <p class="mb-0">
         <a href="forget-password.php" class="text-center">Forget Password</a>
       </p>
@@ -94,7 +94,17 @@
         password:password
       },
       success: function (response) {
-        alert(response);
+        if(response == "berhasil login"){
+          alert(response);
+          setTimeout(
+              window.location.href = "../Home/Home.php"
+             , 5000);
+        }else if(response == "berhasil login v2"){
+          alert("Berhasil Login Silahkan konfirmasi email terlebih dahulu");
+          setTimeout(
+              window.location.href = "confirm-passw2.php"
+             , 5000);
+        }
       }
     });
   }

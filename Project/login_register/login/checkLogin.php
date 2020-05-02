@@ -12,11 +12,18 @@
             $query=mysqli_fetch_assoc($query);
             if($query["status"]==1){
                 if($query["password"]==$password){
-                    echo "behasil login";
+                    echo "berhasil login";
                 }else{
                     echo "password salah";
                 }
-            }else{
+            }else if ($query["status"]==2){
+                if($query["password"]==$password){
+                    echo "berhasil login v2";
+                }else{
+                    echo "password salah";
+                }
+            }
+            else{
                 echo "akun anda telah di banned";
             }
         }else{
