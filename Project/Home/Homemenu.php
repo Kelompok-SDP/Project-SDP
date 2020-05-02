@@ -45,16 +45,17 @@
         <div class="form-group mb-2">
             <h5 class="footer-title">Cari Menu</h5>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Masukkan nama menu" required="" name="nmenu" id="nmenu">
+                <input type="text" class="form-control" placeholder="Masukkan nama menu" name="nmenu" id="nmenu">
             </div>
-            <div id="err" style="display:none; color: red">Masukkan nama menu</div>
+            <!-- <div id="err" style="display:none; color: red">Masukkan nama menu</div> -->
             <br>
         </div>
-        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
+        <!-- <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
            Cari
-        </button>
+        </button> -->
         <p class="form-status status-footer"></p>
 </div>
+<div id="search">
 <?php
     $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 ORDER BY 1 ASC";
     $list = mysqli_query($conn,$query);
@@ -89,7 +90,7 @@
 
 </section>
 <?php } ?><!-- for i tutup-->
-
+</div>
 
 <?php 
     include('Mcd/footer.php');
@@ -142,15 +143,33 @@
             $("#menu-slide-1").css("display","none");
             $(".navbar-slide").removeClass("is-open");
         })
-
-        $("#button-addon-footer").click(function () {
-            var nmenu = $("#nmenu").val();
-            if(nmenu != ""){
-                document.location.href = "Homemenu_cari.php?nmenu=" + nmenu;
-            }else{
-                $("#err").css("display","inline");
-            }
+        
+        $("#nmenu").keyup(function () {
+            var a = $(this).val();
+            $.ajax({
+                url: "Homemenu_cari.php",
+                method: 'post',
+                data: {
+                    a : a
+                },
+                success: function(result){   
+                  $("#search").html(result);
+                }
+            });
         })
+
+        // $("#nmenu").focus(function () {
+        //     $("#err").css("display","none");
+        // })
+
+        // $("#button-addon-footer").click(function () {
+        //     var nmenu = $("#nmenu").val();
+        //     if(nmenu != ""){
+        //         document.location.href = "Homemenu_cari.php?nmenu=" + nmenu;
+        //     }else{
+        //         $("#err").css("display","inline");
+        //     }
+        // })
     });
 </script>
     <script>

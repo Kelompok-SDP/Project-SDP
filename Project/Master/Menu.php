@@ -54,21 +54,25 @@
             <button onclick="tambah()" class="btn btn-primary">Insert New Menu <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group input-group-sm" style="width: 450px;" >
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr">
-                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
+                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;">Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Menu</li>
-                      <!-- <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Jenis Menu</li> -->
+                      <li class="dropdown-item" onclick="ubah(2)" style="cursor:pointer;">Harga Menu</li>
                     </ul>
                   </div>
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
-                    <div class="input-group-append">
-                      <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
+                  <div class="col-sm-8" id="harga" style="display: none; margin-left: 1vw;">
+                    <input id="range_1" type="text" name="range_1" value="">
+                  </div>
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" style="display:none;">
+                  <div class="input-group-append" id="search" style="display:none;">
+                    <button type="submit" id="submitnmenu" onclick = "showtable(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submitharga" onclick = "showtable(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -98,7 +102,7 @@
 
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group input-group-sm" style="width: 450px;" >
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
                     </button>
@@ -106,14 +110,17 @@
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Menu</li>
-                      <!-- <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Jenis Menu</li> -->
+                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Menu</li>
                     </ul>
                   </div>
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
-
-                    <div class="input-group-append">
-                      <button type="submit" onclick = "showtable2()" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
+                  <div class="col-sm-8" id="harga2" style="display: none; margin-left: 1vw;">
+                    <input id="range_12" type="text" name="range_1" value="">
+                  </div>
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" style="display:none;">
+                  <div class="input-group-append" id="search2" style="display:none;">
+                    <button type="submit" id="submitnmenu2" onclick = "showtable2(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submitharga2" onclick = "showtable2(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -139,6 +146,7 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
+        
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -148,17 +156,49 @@
     var tp = 1;
     var tp2 = 1;
     function ubah(id){
-        if (id==1){
+        if (id == 1){
             let tmp = "Nama Menu";
             tp = 1;
             document.getElementById("Btnfilter").innerHTML=tmp;
+            $("#harga").css("display","none");
+            $("#src").css("display","inline");
+            $("#range_1").val("");
+            $("#search").css("display","inline");
+            $("#submitnmenu").css("display","inline");
+            $("#submitharga").css("display","none");
+        }else{
+          let tmp = "Harga Menu";
+          tp = 2;
+          document.getElementById("Btnfilter").innerHTML=tmp;
+          $("#harga").css("display","inline");
+          $("#src").css("display","none");
+          $("#src").val("");
+          $("#search").css("display","inline");
+          $("#submitnmenu").css("display","none");
+          $("#submitharga").css("display","inline");
         }
     }
     function ubah2(id){
-        if (id==1){
+      if (id == 1){
             let tmp = "Nama Menu";
-            tp2 = 1;
+            tp = 1;
             document.getElementById("Btnfilter2").innerHTML=tmp;
+            $("#harga2").css("display","none");
+            $("#src2").css("display","inline");
+            $("#range_12").val("");
+            $("#search2").css("display","inline");
+            $("#submitnmenu2").css("display","inline");
+            $("#submitharga2").css("display","none");
+        }else{
+          let tmp = "Harga Menu";
+          tp = 2;
+          document.getElementById("Btnfilter2").innerHTML=tmp;
+          $("#harga2").css("display","inline");
+          $("#src2").css("display","none");
+          $("#src2").val("");
+          $("#search2").css("display","inline");
+          $("#submitnmenu2").css("display","none");
+          $("#submitharga2").css("display","inline");
         }
     }
     function loadTable(){
@@ -170,19 +210,36 @@
     function tambah(){
         document.location.href = 'Insert_Menu.php';
     }
-    function showtable(){
-            if($("#src").val()!= ''){
-                $.post("Menu/controllerMenu.php",{
-                    "action" : "showdata",
-                    "source": $("#src").val(),
-                    "fillter":tp
-                },function(data){
-                        $("#tKat").html(data);
-                });
-            } else{
-                $("#tKat").load("Menu/showtableMenu.php");
-            }
+    
+    function showtable(st){
+      if(st == 1){
+        let nama = $("#src").val();
+        if(nama != ""){
+          $.post("Menu/controllerMenu.php",{
+                "action" : "showdata",
+                "source": nama,
+                "fillter":st
+            },function(data){
+                $("#tKat").html(data);
+          });
+        }else{
+          alert("Kosong");
         }
+      } else{
+        let harga = $("#range_1").val();
+        if(harga != ""){
+          $.post("Menu/controllerMenu.php",{
+                "action" : "showdata",
+                "source": harga,
+                "fillter":st
+            },function(data){
+                $("#tKat").html(data);
+          });
+        }else{
+          alert("Kosong");
+        }
+      }
+    }
     
     function edit(id){
         var url  = "Edit_Menu.php?id="+id;
@@ -201,19 +258,35 @@
     }
 
 
-    function showtable2(){
-            if($("#src2").val()!= ''){
-                $.post("Menu/controllerMenu.php",{
-                    "action" : "showdata2",
-                    "source": $("#src2").val(),
-                    "fillter":tp2
-                },function(data){
-                        $("#tKatHap").html(data);
-                });
-            } else{
-                $("#tKatHap").load("Menu/purgatoryMenu.php");
-            }
+    function showtable2(st){
+      if(st == 1){
+        let nama = $("#src2").val();
+        if(nama != ""){
+          $.post("Menu/controllerMenu.php",{
+                "action" : "showdata2",
+                "source": nama,
+                "fillter":st
+            },function(data){
+                $("#tKatHap").html(data);
+          });
+        }else{
+          alert("Kosong");
         }
+      } else{
+        let harga = $("#range_12").val();
+        if(harga != ""){
+          $.post("Menu/controllerMenu.php",{
+                "action" : "showdata2",
+                "source": harga,
+                "fillter":st
+            },function(data){
+                $("#tKatHap").html(data);
+          });
+        }else{
+          alert("Kosong");
+        }
+      }
+    }
     
     $(document).ready(function(){
         loadTable();

@@ -8,13 +8,19 @@
      mysqli_query($conn,$query) ;
     } else
     if($_POST["action"]=="showdata"){
-        $isi  = $_POST['source'];
+        $isi = $_POST['source'];
         $filter = $_POST['fillter'];
         $pb ='';
-        if($filter ==1 ){
+        if($filter == 1){
             $pb = "nama_menu";
+            $query="SELECT * FROM MENU WHERE $pb LIKE '$isi%' AND STATUS = 1";
+        }else{
+            $tmp = explode(";", $isi);
+            $min = $tmp[0];
+            $max = $tmp[1];
+            $pb = "harga_menu";
+            $query="SELECT * FROM MENU WHERE $pb >= $min AND $pb <= $max AND STATUS = 1";
         }
-        $query="SELECT * FROM MENU WHERE $pb LIKE '%$isi%' AND STATUS = 1";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='showurut'>
         <thead>
@@ -44,8 +50,8 @@
              </form> </td>
                 <td>".$hasil_rupiah."</td>
                 <td>
-                    <button onclick='edit('".$row["id_menu"].")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
-            </tr> '";
+                    <button onclick='edit(\"$row[id_menu]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
+            </tr>";
         }
         echo " </tbody>
         </table>
@@ -62,16 +68,21 @@
             });
             });
         </script>";
-
     }
     else if($_POST["action"]=="showdata2"){
-        $isi  = $_POST['source'];
+        $isi = $_POST['source'];
         $filter = $_POST['fillter'];
         $pb ='';
-        if($filter ==1 ){
+        if($filter == 1){
             $pb = "nama_menu";
-        } 
-        $query="SELECT * FROM MENU WHERE $pb LIKE '%$isi%' AND STATUS = 0";
+            $query="SELECT * FROM MENU WHERE $pb LIKE '$isi%' AND STATUS = 0";
+        }else{
+            $tmp = explode(";", $isi);
+            $min = $tmp[0];
+            $max = $tmp[1];
+            $pb = "harga_menu";
+            $query="SELECT * FROM MENU WHERE $pb >= $min AND $pb <= $max AND STATUS = 0";
+        }
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='purgatoryurut'>
         <thead>
@@ -101,23 +112,23 @@
              </form> </td>
                 <td>".$hasil_rupiah."</td>
                 <td>
-                    <button onclick='pulihkan('".$row["id_menu"].")' class='btn btn-primary'>Pulihkan <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
-            </tr> '";
+                <button onclick='pulihkan(\"$row[id_menu]\")' class='btn btn-primary'>Pulihkan</button>
+            </tr>";
         }
         echo " </tbody>
         </table>
         <script>
-            $(function(){
-                $('#purgatoryurut').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': false,
-            'info': true,
-            'autoWidth': false,
-            'responsive': true,
-            });
-            });
+        $(function(){
+            $('#purgatoryurut').DataTable({
+        'paging': true,
+        'lengthChange': false,
+        'searching': false,
+        'ordering': false,
+        'info': true,
+        'autoWidth': false,
+        'responsive': true,
+        });
+        });
         </script>";
     }
      

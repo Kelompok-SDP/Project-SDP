@@ -11,12 +11,12 @@
         $isi  = $_POST['source'];
         $filter = $_POST['fillter'];
         $pb ='';
-        if($filter ==1 ){
+        if($filter == 1){
             $pb = "nama_kategori";
         } else{
             $pb = "jenis_kategori";
         }
-        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 1 order by 1 desc";
+        $query="SELECT * from kategori where $pb like '$isi%' and status_kategori = 1 order by 1 desc";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stkat'>
         <thead>
@@ -68,7 +68,7 @@
         } else{
             $pb = "jenis_kategori";
         }
-        $query="SELECT * from kategori where $pb like '%$isi%' and status_kategori = 0 order by 1 desc";
+        $query="SELECT * from kategori where $pb like '$isi%' and status_kategori = 0 order by 1 desc";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stpurg'>
         <thead>
@@ -88,7 +88,7 @@
                 <td>".$row["jenis_kategori"]."</td>
                 <td>
                 <button onclick='pulihkan(\"$row[id_kategori]\")' class='btn btn-primary'>Pulihkan</button>
-            </tr> '";
+            </tr>";
         }
         echo " </tbody>
         </table>

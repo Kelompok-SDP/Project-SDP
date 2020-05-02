@@ -22,7 +22,7 @@
 <nav class="navbar navbar-mcd navbar-expand-md fixed-top light">
     <div class="container">
         <a class="navbar-brand animated fadeInDown delayp4" href="Home.php">
-            <img src="Home%20%20%20McDonald's%20Indonesia_files/logo_mcd.png" alt="Logo">
+            <img src="MCD/logo.png" style="width:100px;height:60px;" alt="Logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
