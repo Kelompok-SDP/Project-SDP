@@ -35,12 +35,11 @@
 </style>
 <?php
 session_start();
-if(!isset($_SESSION["nama_menu"])){
-    $_SESSION["isi_kursi"]="";
-    $_SESSION["nama_menu"]="";
-    $_SESSION["pilih_menu"]="";
-    $_SESSION["ctr"]="";
+if(isset($_SESSION["isi_kursi"])==false){
+    $_SESSION["isi_kursi"]=" ";
+    $_SESSION["ctr"]=" ";
 }
+
 ?>
 <body>
     <div class="tempat"></div>

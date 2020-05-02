@@ -16,6 +16,7 @@
     }
 
     if(count($arrMenu)>1){
+        @
         $total="Rp " . number_format($total,2,',','.');;
         echo"<p>Total : ".$total."</p>";
         echo "<button onclick='pesanMakanan()'>Pesan Menu</button>";
