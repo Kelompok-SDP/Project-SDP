@@ -172,7 +172,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="month" class="form-control float-right" name="inpmonth" id="inpmonth">
+                            <input type="month" id="month" class="form-control float-right" name="inpmonth" id="inpmonth">
                         </div>
                         <!-- /.input group -->
                     </div>
