@@ -1,3 +1,11 @@
+<?php
+session_start();
+	if(!isset($_SESSION["nama_menu"])){
+		$_SESSION["isi_kursi"]="";
+		$_SESSION["nama_menu"]="";
+		$_SESSION["pilih_menu"]="";
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,12 +39,6 @@
 <!-- 
 Body Section 
 -->
-<?php
-session_start();
-$nama=$_SESSION["nama_menu"];
-$arrMenu=explode(" ,",$nama);
-$jumlah=count($arrMenu)-1;
-?>
 	<div class="row">
 	<div class="span12">
     <ul class="breadcrumb">
