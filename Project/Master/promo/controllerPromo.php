@@ -8,15 +8,19 @@
      mysqli_query($conn,$query) ;
     } else
     if($_POST["action"]=="showdata"){
-        $isi  = $_POST['source'];
+        $isi = $_POST['source'];
         $filter = $_POST['fillter'];
         $pb ='';
-        if($filter ==1 ){
+        if($filter == 1){
             $pb = "nama_promo";
-        } else{
+            $query="SELECT * FROM PROMO WHERE $pb LIKE '$isi%' AND STATUS_PROMO = 1";
+        }else{
+            $tmp = explode(";", $isi);
+            $min = $tmp[0];
+            $max = $tmp[1];
             $pb = "harga_promo";
+            $query="SELECT * FROM PROMO WHERE $pb >= $min AND $pb <= $max AND STATUS_PROMO = 1";
         }
-        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 1 order by 1";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stkat'>
         <thead>
@@ -25,7 +29,6 @@
                 <th>Harga Promo</th>
                 <th>Awal Periode Promo</th>
                 <th>Akhir Periode Promo</th>
-                <th>Gambar</th>
                 <th>Action</th>
         </tr>
             </thead>
@@ -46,8 +49,6 @@
                    overflow: hidden;
                    outline:none;'>".$row['nama_promo']."</button>
                </form>
-   
-                
                </td>
                 <td>".$hasil_rupiah."</td>
                 <td>".$row["periode_awal"]."</td>
@@ -64,7 +65,7 @@
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false,
             'responsive': true,
@@ -78,15 +79,19 @@
 
     }
     else if($_POST["action"]=="showdata2"){
-        $isi  = $_POST['source'];
+        $isi = $_POST['source'];
         $filter = $_POST['fillter'];
         $pb ='';
-        if($filter ==1 ){
+        if($filter == 1){
             $pb = "nama_promo";
-        } else{
+            $query="SELECT * FROM PROMO WHERE $pb LIKE '$isi%' AND STATUS_PROMO = 0";
+        }else{
+            $tmp = explode(";", $isi);
+            $min = $tmp[0];
+            $max = $tmp[1];
             $pb = "harga_promo";
+            $query="SELECT * FROM PROMO WHERE $pb >= $min AND $pb <= $max AND STATUS_PROMO = 0";
         }
-        $query="SELECT * from promo where $pb like '%$isi%' and status_promo = 0 order by 1 desc";
         $hasil = mysqli_query($conn,$query);
         echo  "<table class='table table-bordered text-nowrap' id='stpurg'>
         <thead>
@@ -124,7 +129,7 @@
               
                     <td>
                 <button onclick='pulihkan(\"$row[id_promo]\")' class='btn btn-primary'>Pulihkan</button>
-            </tr> '";
+            </tr>";
         }
         echo " </tbody>
         </table>

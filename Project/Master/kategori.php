@@ -26,7 +26,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="Kategori.php">Home</a></li>
             </ol>
           </div>
         </div>
@@ -52,22 +52,23 @@
             <button onclick="tambah()" class="btn btn-primary">Insert New Kategori <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group input-group-sm" style="width: 450px;" >
                   <div class="input-group-prepend">
                     <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr">
-                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
+                     <li class="dropdown-item" style="pointer-events:none;opacity:0.6;">Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Kategori</li>
-                      <li class="dropdown-item" onclick="ubah(2)"  style="cursor:pointer;">Jenis Kategori</li>
+                      <li class="dropdown-item" onclick="ubah(2)" style="cursor:pointer;">Jenis Kategori</li>
                     </ul>
                   </div>
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" >
-                
-                    <div class="input-group-append">
-                      <button type="submit" onclick = "showtable()" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" style="display:none;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" style="display:none;">
+                  <div class="input-group-append" id="search" style="display:none;">
+                    <button type="submit" id="submitnkat" onclick = "showtable(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submithkat" onclick = "showtable(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -102,22 +103,23 @@
 
                 <div class="card-tools">
                 
-                  <div class="input-group input-group-sm" style="width: 350px;" >
+                  <div class="input-group input-group-sm" style="width: 450px;" >
                   <div class="input-group-prepend">
-                  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" id="Btnfilter2">Filter By
                     </button>
                     <ul class="dropdown-menu" id="filtr2">
                      <li class="dropdown-item" style="pointer-events:none;opacity:0.6;" >Filter By</li>
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Kategori</li>
-                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Jenis Kategori</li>
+                      <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Kategori</li>
                     </ul>
                   </div>
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" >
-
-                    <div class="input-group-append">
-                      <button type="submit" onclick = "showtable2()" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src3" style="display:none;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src4" style="display:none;">
+                  <div class="input-group-append" id="search2" style="display:none;">
+                    <button type="submit" id="submitnkat2" onclick = "showtable2(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submithkat2" onclick = "showtable2(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -152,25 +154,49 @@
     var tp = 1;
     var tp2 =1;
     function ubah(id){
-        if (id==1){
-          let tmp = "Nama Kategori";
+        if (id == 1){
+            let tmp = "Nama Kategori";
             tp = 1;
             document.getElementById("Btnfilter").innerHTML=tmp;
-        } else{
+            $("#src").css("display","inline");
+            $("#src2").css("display","none");
+            $("#src2").val("");
+            $("#search").css("display","inline");
+            $("#submitnkat").css("display","inline");
+            $("#submithkat").css("display","none");
+        }else{
           let tmp = "Jenis Kategori";
-            tp = 2;
-            document.getElementById("Btnfilter").innerHTML=tmp;
+          tp = 2;
+          document.getElementById("Btnfilter").innerHTML=tmp;
+          $("#src").css("display","none");
+          $("#src2").css("display","inline");
+          $("#src").val("");
+          $("#search").css("display","inline");
+          $("#submitnkat").css("display","none");
+          $("#submithkat").css("display","inline");
         }
     }
     function ubah2(id){
-        if (id==1){
-            let tmp = "Nama Kategori";  
-            tp2 = 1;
+      if (id == 1){
+            let tmp = "Nama Kategori";
+            tp = 1;
             document.getElementById("Btnfilter2").innerHTML=tmp;
-        } else{
-          let tmp = "Jenis Kategori";
-            tp2 = 2;
-           document.getElementById("Btnfilter2").innerHTML=tmp;
+            $("#src3").css("display","inline");
+            $("#src4").css("display","none");
+            $("#src4").val("");
+            $("#search2").css("display","inline");
+            $("#submitnkat2").css("display","inline");
+            $("#submithkat2").css("display","none");
+        }else{
+          let tmp = "Harga Kategori";
+          tp = 2;
+          document.getElementById("Btnfilter2").innerHTML=tmp;
+          $("#src3").css("display","none");
+          $("#src4").css("display","inline");
+          $("#src3").val("");
+          $("#search2").css("display","inline");
+          $("#submitnkat2").css("display","none");
+          $("#submithkat2").css("display","inline");
         }
     }
     function loadTable(){
@@ -182,19 +208,35 @@
     function tambah(){
         document.location.href = 'insert_Kategori.php';
     }
-    function showtable(){
-            if($("#src").val()!= ''){
-                $.post("kategori/controllerKategori.php",{
-                    "action" : "showdata",
-                    "source": $("#src").val(),
-                    "fillter":tp
-                },function(data){
-                        $("#tKat").html(data);
-                });
-            } else{
-                $("#tKat").load("kategori/showtableKategori.php");
-            }
+    function showtable(st){
+      if(st == 1){
+        let nama = $("#src").val();
+        if(nama != ""){
+          $.post("kategori/controllerKategori.php",{
+                "action" : "showdata",
+                "source": nama,
+                "fillter":st
+            },function(data){
+                $("#tKat").html(data);
+          });
+        }else{
+          alert("Kosong");
         }
+      } else{
+        let nama2 = $("#src2").val();
+        if(nama2 != ""){
+          $.post("kategori/controllerKategori.php",{
+                "action" : "showdata",
+                "source": nama2,
+                "fillter":st
+            },function(data){
+                $("#tKat").html(data);
+          });
+        }else{
+          alert("Kosong");
+        }
+      }
+    }
     
     function edit(id){
         var url  = "Edit_Kategori.php?id="+id;
@@ -213,19 +255,35 @@
     }
 
 
-    function showtable2(){
-            if($("#src2").val()!= ''){
-                $.post("kategori/controllerKategori.php",{
-                    "action" : "showdata2",
-                    "source": $("#src2").val(),
-                    "fillter":tp2
-                },function(data){
-                        $("#tKatHap").html(data);
-                });
-            } else{
-                $("#tKatHap").load("kategori/purgatoryKategori.php");
-            }
+    function showtable2(st){
+      if(st == 1){
+        let nama = $("#src3").val();
+        if(nama != ""){
+          $.post("kategori/controllerKategori.php",{
+                "action" : "showdata2",
+                "source": nama,
+                "fillter":st
+            },function(data){
+                $("#tKatHap").html(data);
+          });
+        }else{
+          alert("Kosong");
         }
+      } else{
+        let nama2 = $("#src4").val();
+        if(nama2 != ""){
+          $.post("kategori/controllerKategori.php",{
+                "action" : "showdata2",
+                "source": nama2,
+                "fillter":st
+            },function(data){
+                $("#tKatHap").html(data);
+          });
+        }else{
+          alert("Kosong");
+        }
+      }
+    }
     
     $(document).ready(function(){
             

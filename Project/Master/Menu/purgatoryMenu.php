@@ -1,6 +1,6 @@
 <?php 
 require_once("../../config.php");
-$query="SELECT * FROM MENU WHERE STATUS = 0 ORDER BY id_menu DESC";
+$query="SELECT * FROM MENU WHERE STATUS = 0 ORDER BY ID_MENU DESC";
 $hasil = mysqli_query($conn,$query);
 ?>
     <table class="table table-bordered text-nowrap" id="purgatoryurut">

@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="../AdminLTE-master/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
+  <!-- Ion Slider -->
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+  <!-- bootstrap slider -->
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -703,6 +707,41 @@
 <script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
+<!-- Ion Slider -->
+<script src="../AdminLTE-master/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+<!-- Bootstrap slider -->
+<script src="../AdminLTE-master/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
 <!-- page script -->
+<script>
+  $(function () {
+    /* BOOTSTRAP SLIDER */
+    $('.slider').bootstrapSlider()
+
+    /* ION SLIDER */
+    $('#range_1').ionRangeSlider({
+      min     : 2000,
+      max     : 50000,
+      from    : 0,
+      to      : 0,
+      type    : 'double',
+      step    : 1000,
+      prefix  : 'Rp ',
+      prettify: false,
+      hasGrid : true
+    })
+
+    $('#range_12').ionRangeSlider({
+      min     : 2000,
+      max     : 50000,
+      from    : 0,
+      to      : 0,
+      type    : 'double',
+      step    : 1000,
+      prefix  : 'Rp ',
+      prettify: false,
+      hasGrid : true
+    })
+  })
+</script>
 </body>
 </html>

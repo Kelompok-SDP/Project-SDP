@@ -45,16 +45,17 @@
         <div class="form-group mb-2">
             <h5 class="footer-title">Cari Menu</h5>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Masukkan nama menu" required="" name="nmenu" id="nmenu">
+                <input type="text" class="form-control" placeholder="Masukkan nama menu" required="" name="nmenu" id="nmenu2">
             </div>
-            <div id="err" style="display:none; color: red">Masukkan nama menu</div>
+            <!-- <div id="err" style="display:none; color: red">Masukkan nama menu</div> -->
             <br>
         </div>
-        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
+        <!-- <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
             Cari
-        </button>
+        </button> -->
         <p class="form-status status-footer"></p>
 </div>
+<div id="search2">
 <?php
     $filter="";
     $nmenu = "";
@@ -67,8 +68,8 @@
     foreach ($list as $key => $value) {
         $idk = $value["id_kategori"];
         $namkat = $value["nama_kategori"];
-?>
-<section class="py-main section-menu-list" id="<?=$filter?>" style="width: 80vw;"><!-- for i-->
+        ?>
+<section id="<?=$filter?>" style="width: 80vw;"><!-- for i-->
     <p id="tmpkat" style="display:none;"><?=$filter?></p>
     <div class="container">
         <div class="heading text-center animated fadeInUp delayp2">
@@ -79,6 +80,8 @@
         <?php 
         $query2 = "SELECT * FROM MENU WHERE ID_KATEGORI ='$idk' AND NAMA_MENU LIKE '$nmenu%' AND STATUS = 1";
         $list2 = mysqli_query($conn,$query2);
+        $row = mysqli_num_rows($list2);
+        if($row > 0){
         foreach ($list2 as $key => $value) {
             $nmenu = $value["nama_menu"];
             $gambar = $value["gambar"];
@@ -91,10 +94,12 @@
             </div>
     <?php }?><!-- for j tutup-->
         </div>
+    <?php } ?>
     </div>
 
 </section>
 <?php } ?>
+</div>
 <?php 
     include('Mcd/footer.php');
 ?>
@@ -147,15 +152,34 @@
             $(".navbar-slide").removeClass("is-open");
         })
 
-        $("#button-addon-footer").click(function () {
-            var nmenu = $("#nmenu").val();
-            var kat = $("#tmpkat").text();
-            if(nmenu != ""){
-                document.location.href = "Homemenu_kategori.php?filter=" + kat +"&nama=" + nmenu;
-            }else{
-                $("#err").css("display","inline");
-            }
+        $("#nmenu2").keyup(function () {
+            var a = $(this).val();
+            var b = $("#tmpkat").text();
+            $.ajax({
+                url: "Homemenu_kategori_cari.php",
+                method: 'post',
+                data: {
+                    a : a,
+                    b : b,
+                },
+                success: function(result){   
+                  $("#search2").html(result);
+                }
+            });
         })
+        // $("#nmenu").focus(function () {
+        //     $("#err").css("display","none");
+        // })
+        
+        // $("#button-addon-footer").click(function () {
+        //     var nmenu = $("#nmenu").val();
+        //     var kat = $("#tmpkat").text();
+        //     if(nmenu != ""){
+        //         document.location.href = "Homemenu_kategori.php?filter=" + kat +"&nama=" + nmenu;
+        //     }else{
+        //         $("#err").css("display","inline");
+        //     }
+        // })
     });
 </script>
     <script>
