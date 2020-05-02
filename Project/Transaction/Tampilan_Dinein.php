@@ -33,6 +33,14 @@
         margin-right: 20px;
     }
 </style>
+<?php
+session_start();
+if(isset($_SESSION["isi_kursi"])==false){
+    $_SESSION["isi_kursi"]=" ";
+    $_SESSION["ctr"]=" ";
+}
+
+?>
 <body>
     <div class="tempat"></div>
     <div class="ket"style="margin-top:300px;"></div>

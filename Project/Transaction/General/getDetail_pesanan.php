@@ -8,6 +8,7 @@
     $gt=0;
     foreach ($arrMenu as $key => $value) {
         if($ctr<count($arrMenu)-1){
+          print_r($_SESSION["pilih_menu"][$value]);
             $jumlah=$_SESSION["pilih_menu"][$value];
             $query="select * from menu where nama_menu='$value'";
             $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
@@ -32,6 +33,9 @@
         }
         $ctr++;
     }
+    echo"<tr style='visibility:hidden'>";
+    echo"<td id='total-harga'>$gt</td>";
+    echo"</tr>";
     $gt="Rp " . number_format($gt,2,',','.');
       echo"<tr>
     ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
