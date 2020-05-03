@@ -1,12 +1,15 @@
-<?php
-session_start();
+<?php 
+include('Mcd/title.php');
+include("../config.php");
+include('Mcd/header.php');
 	if(!isset($_SESSION["nama_menu"])){
 		$_SESSION["isi_kursi"]="";
 		$_SESSION["nama_menu"]="";
-		$_SESSION["pilih_menu"]="";
+		$_SESSION["pilih_menu"]= array();
 	}
 	// session_destroy();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +19,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- <link href="assets/css/bootstrap.css" rel="stylesheet"/> -->
     <!-- Customize styles -->
     <link href="style.css" rel="stylesheet"/>
     <!-- font awesome styles -->
@@ -35,7 +38,7 @@ session_start();
 <body>
 
 
-<div class="container">
+<div class="container" style="padding-top:80px">
 
 <!-- 
 Body Section 
@@ -104,7 +107,7 @@ Body Section
 	function getDetailPesanan(){
 		$.ajax({
 			type: "post",
-			url: "General/getDetail_pesanan.php",
+			url: "../Transaction/General/getDetail_pesanan.php",
 			success: function (response) {
 				$("#detailTable").html(response);
 				displayQTY();
@@ -114,7 +117,7 @@ Body Section
 	function qtyMenu(nama,mode,qty){
 		$.ajax({
 			type: "post",
-			url: "General/ChangeJumlah_menu.php",
+			url: "../Transaction/General/ChangeJumlah_menu.php",
 			data:{
 				nama:nama,
 				mode:mode,
@@ -134,7 +137,7 @@ Body Section
 	function displayQTY(){
 		$.ajax({
 			type: "post",
-			url: "General/getQty.php",
+			url: "../Transaction/General/getQty.php",
 			success: function (response) {
 				$("#displayQTY").html(response);
 			}

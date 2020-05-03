@@ -3,11 +3,12 @@
 <?php include('Mcd/title.php');
 include("../config.php");?>
 <body>
+<?php include('Mcd/header.php')?>
 <?php include('Mcd/corusel.php');?>
     <!-- Google Tag Manager (noscript) -->
     
     <!-- End Google Tag Manager (noscript) -->
-    <?php include('Mcd/header.php')?>
+    
 <section class="py-main section-other-promo">
     <div class="container">
         <div class="heading text-center">

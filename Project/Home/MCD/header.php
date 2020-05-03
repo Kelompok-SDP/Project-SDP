@@ -100,8 +100,8 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link border-left" href="https://mcdonalds.co.id/location">
-                        <i class="far fa-map-marked-alt"></i>
+                    <a class="nav-link border-left" href="cart.php">
+                        <i class=""></i>
                         Cart
                     </a>
                 </li>

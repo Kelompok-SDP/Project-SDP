@@ -45,7 +45,7 @@ if($tmp[0]== "MEN"){
             $deskripsi = $deskripsi. $key['nama_menu'];
         }
     }
-    $gambar = "../Master/Paket/".$gambar;
+    $gambar = "../Master/menu/".$gambar;
 
 }
 
@@ -111,7 +111,7 @@ if($tmp[0]== "MEN"){
                 <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$nama?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
+                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
             </div>
         </div>
     </div>

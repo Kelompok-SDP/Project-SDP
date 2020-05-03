@@ -2,9 +2,8 @@
     include_once("../../config.php");    
     session_start();
     $nama=$_POST["nama_menu"];
-    if(isset($_SESSION["nama_menu"])){
-        $nama_menu=$_SESSION["nama_menu"];
-    }
+    print_r($_SESSION["nama_menu"]);
+    print_r($_SESSION["pilih_menu"]);
     if(isset($_SESSION["pilih_menu"][$nama])){
         $_SESSION["pilih_menu"][$nama]++;
     }else{
@@ -12,4 +11,6 @@
         $jumlah=$_SESSION["pilih_menu"][$nama];
         $_SESSION["nama_menu"].=$nama." ,";
     }
+    print_r($_SESSION["nama_menu"]);
+    print_r($_SESSION["pilih_menu"]);
 ?>

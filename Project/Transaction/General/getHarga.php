@@ -8,8 +8,13 @@
     foreach ($arrMenu as $key => $value) {
         if($ctr<count($arrMenu)-1){
             $jumlah=$_SESSION["pilih_menu"][$value];
-            $query=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from menu where nama_menu='$value'"));
-            $total+=$query["harga_menu"]*$jumlah;
+            if(substr($value,0,2)=="ME"){
+                $query=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from menu where nama_menu='$value'"));
+                $total+=$query["harga_menu"]*$jumlah;
+            }else{
+                $query=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * from paket where nama_paket='$value'"));
+                $total+=$query["harga_paket"]*$jumlah;
+            }
             $ctr++;
         }
         
