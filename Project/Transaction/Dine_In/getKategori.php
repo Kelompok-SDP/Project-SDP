@@ -4,6 +4,21 @@
     $query="SELECT * from kategori";
     $query=mysqli_query($conn,$query);
     foreach ($query as $key => $value) {
-        echo"<div class='kategori_box'onclick='callMenu(\"$value[id_kategori]\")'>$value[nama_kategori]</div>";
+        echo"
+        
+        
+            <!-- small box -->
+            <div class='small-box bg-warning haha' onclick='callMenu(\"$value[id_kategori]\")'>
+              <div class='inner'>
+
+                <p> $value[nama_kategori]</p>
+              </div>
+             
+            </div>
+          </div>
+        
+        
+        
+        ";
     }
 ?>

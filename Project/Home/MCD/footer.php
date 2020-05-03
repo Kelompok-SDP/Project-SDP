@@ -1,4 +1,39 @@
+<style>
+.input_hidden {
+    position: absolute;
+    left: -9999px;
+}
 
+.selected {
+    background-color: orange;
+    border-radius: 10%;
+}
+
+#sites label {
+    display: inline-block;
+    cursor: pointer;
+}
+.warn{
+    font-size:8pt;
+    color: red;
+    width:200px;
+    height:10px;
+    font-weight: bold;
+    display : none;
+}
+.gbr{
+    width : 80px;
+    height: 80px;
+}
+#sites label:hover {
+    background-color:yellow;
+    border-radius: 10%;
+}
+
+#sites label img {
+    padding: 3px;
+}
+</style>
 <footer class="light">
     <div class="footer-top">
         <div class="container">
@@ -8,7 +43,7 @@
                     <div class="footer-item mb-md-down-4">
                         <div class="row">
                             <div class="col-md-5">
-                               
+
                     <ul class="footer-links">
                                     <li><a href="https://mcdonalds.co.id/contact">Kode Promo</a></li>
                                     <li><a href="https://mcdonalds.co.id/about">Tentang Kami</a></li>
@@ -30,20 +65,29 @@
                 </div>
                 <div class="col-md-5 col-lg-3 col-xl-4">
                     <div class="footer-item footer-item-subscribe">
-                    <h5 class="footer-title">Kritik dan Saran</h5>
+                    <h5 class="footer-title">Tidak Puas dengan Pelayanan Kami ? Yuk Komen di Bawah!!</h5>
                         <form class="validation-footer" novalidate="">
                             <div class="form-group mb-2">
+
+                            <div id="sites">
+                                <input type="radio" name="site" id="so" value="puas" style="margin:10px;" class="warna"/><label for="so" ><img class="gbr" src="MCD/bagus.png" alt="happy" /><br>Cukup Puas</label>
+                                <input type="radio" name="site" id="sf" value="tidak puas"  style="margin:10px;" class="warna" /><label for="sf"  ><img  class="gbr" src="MCD/jelek.png" alt="Anger" /> <br>Tidak Puas</label>
+                            </div>
                                 <div class="input-group">
+
+
+
                                     <input type="email" class="form-control" placeholder="Kritik dan Saran" required="" name="saran" id="subscribe-footer" >
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
+                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" onclick="kirimsaran()" type="submit" id="button-addon-footer">
                                            Kirim
                                         </button>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Harap masukkan Saran anda
-                                    </div>
+                                    
                                 </div>
+                                <div class= "warn" id="x">
+                                        Anda Belum Memberi feedback!
+                                    </div>
                             </div>
                             <p class="form-status status-footer"></p>
                         </form>
@@ -57,13 +101,11 @@
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="Masukkan email" required="" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
+                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"  type="submit" id="button-addon-footer">
                                             Daftar
                                         </button>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Harap masukkan email Anda
-                                    </div>
+
                                 </div>
                             </div>
                             <p class="form-status status-footer"></p>
@@ -81,7 +123,7 @@
         </div>
 
     </div>
-   
+
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
@@ -89,7 +131,7 @@
                     <ul class="text-md-right">
                          <li><a href="">+62-85-00000</a></li>
                          <li><a href="">UwenakResto@ciamik.com</a></li>
-                         <li><a href="">Jl Untung Suropati no 2B</a></li> 
+                         <li><a href="">Jl Untung Suropati no 2B</a></li>
                     </ul>
                 </div>
                 <div class="col-md order-md-first">
@@ -99,3 +141,52 @@
         </div>
     </div>
 </footer>
+
+
+<script src="MCD/jquery/jquery.min.js"></script>
+
+<script>
+    $('#sites input:radio').addClass('input_hidden');
+$('#sites label').click(function() {
+    $(this).addClass('selected').siblings().removeClass('selected');
+});
+
+var rating= "";
+function kirimsaran(){
+    if (document.getElementById('so').checked) {
+        rating = document.getElementById('so').value;
+     }else if (document.getElementById('sf').checked) {
+         rating = document.getElementById('sf').value;
+    }
+var cek = false;
+   var isi = document.getElementById('subscribe-footer').value;
+  if(isi != ''){
+    cek = true;
+  }
+  if(rating != ''){
+      cek = true;
+  }
+  if(cek==true){
+    document.getElementById("x").style.display = "none";
+    $.ajax({
+        method: "post",
+        url: "MCD/kirimsaran.php",
+        data:{
+            isi : isi,
+            rating : rating
+        },
+        success: function (response) {
+            alert(response);
+        }
+        
+    });
+    document.getElementById('sf').checked = false;
+    $('#sites label').removeClass('selected')
+        document.getElementById('so').checked = false;
+        document.getElementById('subscribe-footer').value = "";
+  }else{
+    document.getElementById("x").style.display = "block";
+  }
+
+}
+</script>

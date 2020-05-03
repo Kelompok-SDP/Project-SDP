@@ -119,6 +119,25 @@
                     }
                 }
             });
+           } else if($("#ts").val()== "2"){
+            var kepada=$("#email").val();
+            $.ajax({
+                method: "post",
+                url: "register/EmailUpdate.php",
+                data:{
+                    kepada:kepada
+                },
+                success: function (response) {
+                    if(response == "Berhasil Register"){
+                        alert(response);
+                        setTimeout(
+                              window.location.href = "../Home/Home.php"
+                              , 5000);
+                    }else{
+                        alert(response); 
+                    }
+                }
+            });
            }
         } else {
             alert("Captcha Salah");
