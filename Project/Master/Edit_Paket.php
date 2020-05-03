@@ -129,7 +129,7 @@
                         <select class="form-control custom-select" id="Mpaket" name="mpaket">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$kpaket' AND STATUS = 1";
+                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_menu'];
@@ -144,7 +144,7 @@
                         <select class="form-control custom-select" id="Mpaket2" name="mpaket2">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$kpaket' AND STATUS = 1";
+                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
                                 $kat = $value['nama_menu'];
@@ -268,25 +268,25 @@
             });
         } 
     });
-    $("#Kpaket").change(function () {
-        let a = $('#Kpaket').val();
-        $.ajax({
-            url: "Paket/Load_menu.php",
-            method: 'post',
-            data: {
-                a : a
-            },
-            success: function(result){   
-              if(result.includes("alert")){
-                $("#Menupaket").html(result);
-                $("#Menupaket").css("display","none");
-              }else{
-                $("#Menupaket").css("display","inline");
-                $("#Menupaket").html(result);
-              }
-            }
-        });
-    });
+    // $("#Kpaket").change(function () {
+    //     let a = $('#Kpaket').val();
+    //     $.ajax({
+    //         url: "Paket/Load_menu.php",
+    //         method: 'post',
+    //         data: {
+    //             a : a
+    //         },
+    //         success: function(result){   
+    //           if(result.includes("alert")){
+    //             $("#Menupaket").html(result);
+    //             $("#Menupaket").css("display","none");
+    //           }else{
+    //             $("#Menupaket").css("display","inline");
+    //             $("#Menupaket").html(result);
+    //           }
+    //         }
+    //     });
+    // });
 </script>
 </body>
 </html>
