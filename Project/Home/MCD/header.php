@@ -1,3 +1,23 @@
+<?php
+    // session_start();
+  //  require_once("../config.php");
+   
+    $nama = "Login";
+    $id = "null";
+    if(isset($_SESSION['pelanggan'])){
+        $id= $_SESSION['pelanggan'];
+
+        $query = "select * from member where id_member= '$id'";
+        $data = mysqli_query($conn,$query);
+        $nama = "Hello, ";
+        foreach($data as $key=>$row){
+            $nama = $nama.$row['fullname'];
+        }
+    }
+
+   $hr = "MCD/ubahinfo.php?id=".$id;
+?>
+<input type="hidden" value = "<?php echo $id; ?>" id="custid">
 <div class="loader-wrapper loader-light">
     <div class="loader" style="display: none;"></div>
     </div> 
@@ -94,8 +114,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mcdonalds.co.id/whats-on">
-                        Berita Terkini
+                    <a class="nav-link" href="<?php echo $hr; ?>">
+                        <?php echo $nama; ?>
                     </a>
                 </li>
                 
@@ -164,3 +184,8 @@
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
+
+<script>
+    
+    
+</script>

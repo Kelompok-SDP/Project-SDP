@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php 
+session_start();
 include("../config.php");
 $ids = $_GET["id"];
 $tmp = [];
@@ -35,22 +36,22 @@ if($tmp[0]== "MEN"){
   
     }
     $deskripsi= "paket ini memiliki menu antara lain : ";
-    $query = "select * from paket_menu  where id_menu = '$ids'";
+    $query = "select * from paket_menu  where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
-    $nama= [];
+    $namas= [];
     $ctr = 0;
     foreach($menu as $data=>$row){
         $id_menu = $row['id_menu'];
         $query = "select *  from  menu  where id_menu = '$id_menu'";
         $isimenu = mysqli_query($conn,$query);
         foreach($isimenu as $data=>$key){
-          $nama[$ctr] = $key['nama_menu'];
+          $namas[$ctr] = $key['nama_menu'];
           $ctr++;
         }
-        for($i=0; $i<$ctr-1; $i++){
-            $deskripsi= $deskripsi.$nama[$i].", ";
+        for($i=0; $i<$ctr-2; $i++){
+            $deskripsi= $deskripsi.$namas[$i].", ";
         }
-        $deskripsi= $deskripsi.$nama[$ctr];
+        $deskripsi= $deskripsi.$namas[$ctr-1];
     }
     $gambar = "../Master/Paket/".$gambar;
 

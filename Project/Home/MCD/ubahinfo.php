@@ -1,8 +1,15 @@
 <?php
-        session_start();
-    require_once("../config.php");
-    require_once("mcd/title.php");
-    require_once("mcd/header.php");
+    require_once("../../config.php");
+    session_start();
+    $id= $_GET['id'];
+    if($id== "null"){
+        header("location: ../../login_register/login.php");
+    } 
+?>
+
+<?php
+    require_once("title.php");
+    require_once("header.php");
 ?>
 
 <!DOCTYPE html>
@@ -256,15 +263,15 @@
     </script>
     
 <!-- jQuery -->
-<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<script src="../../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
-<script src="../AdminLTE-master/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="../../AdminLTE-master/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
+<script src="../../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../AdminLTE-master/dist/js/demo.js"></script>
+<script src="../../AdminLTE-master/dist/js/demo.js"></script>
 
 <script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
 <script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
