@@ -84,7 +84,34 @@ require_once("../config.php");
                       </select>
                   </div>
                   <div id="Menupaket">
-                    
+                  <div class="form-group">
+                    <label for="inputStatus">Menu 1</label><br>
+                        <select class="form-control custom-select" id="Mpaket" name="mpaket">
+                        <option selected disabled>Pilih satu</option>
+                        <?php  
+                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
+                            $list3 = $conn->query($query3);
+                            foreach ($list3 as $key => $value) {
+                                $kat = $value['nama_menu'];
+                                ?>        
+                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
+                        <?php } ?> 
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="inputStatus">Menu 2</label><br>
+                        <select class="form-control custom-select" id="Mpaket2" name="mpaket2">
+                        <option selected disabled>Pilih satu</option>
+                        <?php  
+                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
+                            $list3 = $conn->query($query3);
+                            foreach ($list3 as $key => $value) {
+                                $kat = $value['nama_menu'];
+                                ?>        
+                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
+                        <?php } ?> 
+                        </select>
+                    </div>
                   </div>
                   <div class="form-group">
                       <label for="inputStatus">Promo Paket</label>
@@ -180,19 +207,19 @@ require_once("../config.php");
         }
     });
 
-    $("#Kpaket").change(function () {
-      let a = $('#Kpaket').val();
-      $.ajax({
-          url: "Paket/Load_menu.php",
-          method: 'post',
-          data: {
-              a : a
-          },
-          success: function(result){   
-            $("#Menupaket").html(result);
-          }
-      });
-    });
+    // // $("#Kpaket").change(function () {
+    // //   let a = $('#Kpaket').val();
+    // //   $.ajax({
+    // //       url: "Paket/Load_menu.php",
+    // //       method: 'post',
+    // //       data: {
+    // //           a : a
+    // //       },
+    // //       success: function(result){   
+    // //         $("#Menupaket").html(result);
+    // //       }
+    // //   });
+    // });
 </script>
 </body>
 </html>

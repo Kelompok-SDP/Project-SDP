@@ -95,7 +95,7 @@
         ?>
             <div class="col-6 col-md-3">
                 <a href="<?="detail_menu.php?id=".$value["id_paket"]?>" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
-                    <img src="<?="../Master/menu/".$gpaket?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
+                    <img src="<?="../Master/Paket/".$gpaket?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
                     <p><?=$npaket?></p>
                 </a>
             </div>

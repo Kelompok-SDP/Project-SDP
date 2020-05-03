@@ -2,6 +2,7 @@
     require_once("../../config.php");
     $id = $_GET["id"];
     $aa = "";
+    $dmenu = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,13 +61,22 @@
                     $nmenu = $data['nama_paket'];
                     $angka = $data["harga_paket"];
                     $hmenu = "Rp " . number_format($angka,2,',','.');
-                    $kmenu = $data['id_kategori'];
+                    
+                }
+                $query2 = "SELECT * FROM PAKET_MENU WHERE ID_PAKET = '$id'";
+                $list2 = $conn->query($query2);
+                foreach ($list2 as $key => $value) {
+                  $tmp = $value["id_menu"];
+                  $query3 = "SELECT * FROM MENU WHERE ID_MENU = '$tmp'";
+                  $list3 = $conn->query($query3);
+                  foreach ($list3 as $key => $value) {
+                  $dmenu .= $value["nama_menu"];
                 }
               ?>
               <label for="exampleInputEmail1"><h4>Detail Paket </h4></label><br>
               <label for="exampleInputEmail1">Nama Paket </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
               <label for="exampleInputEmail1">Harga Paket </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
-              <label for="exampleInputEmail1">Kategori Paket </label><label for="exampleInputEmail1"><?=": ".$kmenu?></label><br>
+              <label for="exampleInputEmail1">Menu </label><label for="exampleInputEmail1"><?=": ".$dmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
