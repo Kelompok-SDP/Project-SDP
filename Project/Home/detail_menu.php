@@ -7,10 +7,11 @@ $tmp = [];
 $tmp = explode('0',$ids,2);
 $harga = 0;
 $nama = "";
+$tdeskripsi = "";
 $deskripsi = "";
 $gambar = "";
 if($tmp[0]== "MEN"){
-    $query = "select *  from menu where id_menu = '$ids'";
+    $query = "select * from menu where id_menu = '$ids'";
     $menu = mysqli_query($conn,$query);
 
     foreach($menu as $data=>$row){
@@ -24,37 +25,35 @@ if($tmp[0]== "MEN"){
     $gambar = "../Master/Menu/".$gambar;
 
 } else{
-    $query = "select *  from paket where id_paket = '$ids'";
+    $query = "select * from paket where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
     $idpaket  = "";
     foreach($menu as $data=>$row){
-        $idpaket = $row['id_paket'];
         $nama = $row["nama_paket"];
         $gambar = $row['gambar'];
         $harga = $row['harga_paket'];
         $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
   
     }
-    $deskripsi= "paket ini memiliki menu antara lain : ";
-    $query = "select * from paket_menu  where id_paket = '$ids'";
+    $query = "select * from paket_menu where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
     $namas= [];
     $ctr = 0;
     foreach($menu as $data=>$row){
         $id_menu = $row['id_menu'];
-        $query = "select *  from  menu  where id_menu = '$id_menu'";
+        $query = "select *  from  menu where id_menu = '$id_menu'";
         $isimenu = mysqli_query($conn,$query);
         foreach($isimenu as $data=>$key){
-          $namas[$ctr] = $key['nama_menu'];
-          $ctr++;
+           $namas[$ctr] = $key['nama_menu'];
+           $ctr++;
         }
         for($i=0; $i<$ctr-2; $i++){
             $deskripsi= $deskripsi.$namas[$i].", ";
         }
         $deskripsi= $deskripsi.$namas[$ctr-1];
     }
-    $gambar = "../Master/Paket/".$gambar;
-
+    $gambar = "../Master/Menu/".$gambar;
+    $deskripsi = explode(".", $tdeskripsi);
 }
 
 
@@ -116,10 +115,11 @@ if($tmp[0]== "MEN"){
                 <h2 class="title animated fadeInUp delayp2"><?=$nama?></h2>
                 <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
 
-                <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
+                <p class="subtitle animated fadeInUp delayp3 mb-0">Menu: </p>
+                <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi[0] . "<br> " . $deskripsi[1]?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$nama?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
+                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
             </div>
         </div>
     </div>

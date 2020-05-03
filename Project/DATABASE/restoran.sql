@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2020 pada 13.18
+-- Waktu pembuatan: 03 Bulan Mei 2020 pada 16.58
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -186,7 +186,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `status`) VALUES
-('MEN001', 'Nasi Goreng Jawa', 20000, 'Image/Nasgor.jpg', 'Dengan Bumbu Jawa', 'KAT002', 0),
+('MEN001', 'Nasi Goreng Jawa', 20000, 'Image/Nasgor.jpg', 'Dengan Bumbu Jawa', 'KAT002', 1),
 ('MEN002', 'Ayam goreng', 5000, 'Image/Aygor.jpg', 'Dengan tambahan rempah-rempah', 'KAT001', 1),
 ('MEN003', 'Iga Bakar', 20000, 'Image/Igbak.jpg', 'Iga daging sapi yang berkualitas', 'KAT006', 1),
 ('MEN004', 'Cumi Goreng', 30000, 'Image/Cumgor.jpg', 'Bergizi, nikmat, dan krispi', 'KAT001', 1),
@@ -196,7 +196,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`,
 ('MEN008', 'Es Lemon Tea', 5000, 'Image/Lteh.jpg', 'Jeruk Lemon', 'KAT007', 1),
 ('MEN009', 'Es Mega Mendung', 8000, 'Image/Megmen.jpg', 'Soda', 'KAT008', 1),
 ('MEN010', 'Kopi Luwak', 8000, 'Image/kopi.jpg', 'Luwak asli', 'KAT008', 1),
-('MEN011', 'Jus Alpukat', 20000, 'Image/Jusalpukat.jpg', 'Alpukat terpercaya', 'KAT009', 0),
+('MEN011', 'Jus Alpukat', 20000, 'Image/Jusalpukat.jpg', 'Alpukat terpercaya', 'KAT009', 1),
 ('MEN012', 'Bubur Ayam', 15000, 'Image/Bubur.jpg', 'Lembut', 'KAT004', 1);
 
 -- --------------------------------------------------------
@@ -221,17 +221,14 @@ CREATE TABLE `paket` (
 --
 
 INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `gambar`, `id_kategori`, `id_promo`, `status`) VALUES
-('PK001', 'Subuh', 20000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK002', 'Dini', 25000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK003', 'Siang', 10000, 'Image/paket.png', 'KAT005', 'PR003', 1),
-('PK004', 'Sore', 15000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK005', 'Malam', 25000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK006', 'Tengah malam', 30000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK007', 'Panas 1', 25000, 'Image/paket.png', 'KAT005', 'PR003', 1),
-('PK008', 'Panas 2', 20000, 'Image/paket.png', 'KAT005', 'PR002', 1),
-('PK009', 'Panas 3', 10000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK010', 'Panas 4', 56000, 'Image/paket.png', 'KAT005', 'PR002', 1),
-('PK011', 'Coba', 10000, 'Image/paket.png', 'KAT001', '', 1);
+('PK001', 'Steak', 50000, 'Image/beef-steak.jpg', 'KAT006', '', 1),
+('PK002', 'Bubur', 10000, 'Image/pkt-b.jpg', 'KAT004', '', 1),
+('PK003', 'Siang', 20000, 'Image/nasi-ayam-hemat.jpg', 'KAT001', '', 1),
+('PK004', 'Agep Murmer', 15000, 'Image/aybak.jpg', 'KAT005', '', 1),
+('PK005', 'Namikun', 25000, 'Image/pkt-nasi-kuning-ayam-goreng-suwir.jpg', 'KAT003', '', 1),
+('PK006', 'Mie-Aygep', 22000, 'Image/mie.jpg', 'KAT005', '', 1),
+('PK007', 'Ayam Kremes', 25000, 'Image/nasi-kotak-ayam-kremes.jpg', 'KAT005', '', 1),
+('PK008', 'Nasgor', 12000, 'Image/nasgor.jpg', 'KAT002', '', 1);
 
 -- --------------------------------------------------------
 
@@ -250,8 +247,22 @@ CREATE TABLE `paket_menu` (
 --
 
 INSERT INTO `paket_menu` (`id_paket`, `id_menu`) VALUES
-('PK011', 'MEN002'),
-('PK011', 'MEN004');
+('PK001', 'MEN003'),
+('PK001', 'MEN008'),
+('PK002', 'MEN011'),
+('PK002', 'MEN012'),
+('PK003', 'MEN002'),
+('PK003', 'MEN007'),
+('PK004', 'MEN006'),
+('PK004', 'MEN008'),
+('PK005', 'MEN005'),
+('PK005', 'MEN009'),
+('PK006', 'MEN005'),
+('PK006', 'MEN006'),
+('PK007', 'MEN002'),
+('PK007', 'MEN008'),
+('PK008', 'MEN001'),
+('PK008', 'MEN007');
 
 -- --------------------------------------------------------
 

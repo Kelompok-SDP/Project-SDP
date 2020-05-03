@@ -1,10 +1,6 @@
 <?php 
     require_once("../../config.php");
     $idk = $_POST["a"];
-    $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$idk' AND STATUS = 1";
-    $list3 = $conn->query($query3);
-    $row = mysqli_num_rows($list3);
-    if($row > 1){
 ?>
 <div class="form-group">
     <label for="inputStatus">Menu 1</label>
@@ -12,7 +8,7 @@
     <option selected disabled>Pilih satu</option>
     <?php  
         $idk = $_POST["a"];
-        $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$idk' AND STATUS = 1";
+        $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
         $list3 = $conn->query($query3);
         foreach ($list3 as $key => $value) {
             $kat = $value['nama_menu'];
@@ -27,7 +23,7 @@
     <option selected disabled>Pilih satu</option>
     <?php  
         $idk = $_POST["a"];
-        $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$idk' AND STATUS = 1";
+        $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
         $list3 = $conn->query($query3);
         foreach ($list3 as $key => $value) {
             $kat = $value['nama_menu'];
@@ -36,8 +32,3 @@
     <?php } ?> 
     </select>
 </div>
-
-<?php }else{
-        echo "<script>alert('Menu kurang, Tidak dapat dipaketkan!');</script>";
-    }
-?>
