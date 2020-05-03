@@ -2,19 +2,31 @@
 <?php 
 include("../config.php");
 $ids = $_GET["id"];
-$query = "select *  from menu where id_menu = '$ids'";
+if(substr($ids,0,2)=="ME"){
+    $query = "select *  from menu where id_menu = '$ids'";
+}else{
+    $query = "select *  from paket where id_paket = '$ids'";
+}
 $menu = mysqli_query($conn,$query);
 $harga = 0;
 $nama = "";
 $deskripsi = "";
 $gambar = "";
-foreach($menu as $data=>$row){
-    $nama = $row["nama_menu"];
-    $deskripsi = $row["deskripsi"];
-    $gambar = $row['gambar'];
-    $harga = $row['harga_menu'];
+if(substr($ids,0,2)=="ME"){
+    foreach($menu as $data=>$row){
+        $nama = $row["nama_menu"];
+        $deskripsi = $row["deskripsi"];
+        $gambar = $row['gambar'];
+        $harga = $row['harga_menu'];
+    }
+}else{
+    foreach($menu as $data=>$row){
+        $nama = $row["nama_paket"];
+        $deskripsi = "";
+        $gambar = $row['gambar'];
+        $harga = $row['harga_paket'];
+    }
 }
-
 $gambar = "../Master/Menu/".$gambar;
 
 ?>

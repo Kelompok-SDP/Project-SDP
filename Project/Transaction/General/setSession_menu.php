@@ -7,7 +7,6 @@
     }
     if(isset($_SESSION["pilih_menu"][$nama])){
         $_SESSION["pilih_menu"][$nama]++;
-        echo $_SESSION["pilih_menu"][$nama];
     }else{
         $_SESSION["pilih_menu"][$nama]=1;
         $jumlah=$_SESSION["pilih_menu"][$nama];

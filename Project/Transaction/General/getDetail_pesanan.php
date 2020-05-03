@@ -8,9 +8,12 @@
     $gt=0;
     foreach ($arrMenu as $key => $value) {
         if($ctr<count($arrMenu)-1){
-          print_r($_SESSION["pilih_menu"][$value]);
             $jumlah=$_SESSION["pilih_menu"][$value];
-            $query="select * from menu where nama_menu='$value'";
+            if(substr($value,0,2)=="ME"){
+              $query="select * from menu where nama_menu='$value'";
+            }else{
+              $query="select * from promo where nama_promo='$value'";
+            }
             $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
             $total="Rp " . number_format($query["harga_menu"],2,',','.');
             $grandtotal="Rp " . number_format($query["harga_menu"]*$jumlah,2,',','.');
