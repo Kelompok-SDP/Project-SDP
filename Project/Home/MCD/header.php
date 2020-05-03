@@ -15,7 +15,7 @@
         }
     }
 
-   $hr = "MCD/ubahinfo.php?id=".$id;
+   $hr = "ubahinfo.php?id=".$id;
 ?>
 <input type="hidden" value = "<?php echo $id; ?>" id="custid">
 <div class="loader-wrapper loader-light">

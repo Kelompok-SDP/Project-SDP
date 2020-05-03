@@ -166,12 +166,14 @@ var cek = false;
   if(rating != ''){
       cek = true;
   }
+  var idmember= document.getElementById("custid").value;
   if(cek==true){
     document.getElementById("x").style.display = "none";
     $.ajax({
         method: "post",
         url: "MCD/kirimsaran.php",
         data:{
+            idmember: idmember,
             isi : isi,
             rating : rating
         },
