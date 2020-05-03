@@ -11,6 +11,8 @@
      $ppaket = "";
      $nkat = "";
      $npro = "";
+     $stmp = "";
+     $stmp2 = "";
      foreach ($res as $key=>$data){
          $npaket  = $data['nama_paket'];
          $hpaket = $data['harga_paket'];
@@ -27,6 +29,17 @@
               $npro = $value['nama_promo'];
           }
      }
+    $query2 = "SELECT * FROM PAKET_MENU WHERE ID_PAKET = '$id'";
+    $res2 = mysqli_query($conn,$query2);
+    foreach ($res2 as $key => $value) {
+      $stmp = $value['id_menu'];
+      $query3 = "SELECT * FROM MENU WHERE ID_MENU = '$stmp'";
+      $res3 = mysqli_query($conn,$query3);
+      foreach ($res3 as $key => $value) {
+        $stmp2 .= $value['nama_menu'] . ".";
+      }
+    }
+    $stmenu = explode(".", $stmp2);
 ?>
 
 
@@ -91,13 +104,13 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Paket</label>
-                    <input type="text" class="form-control" id="Hpaket" placeholder="Masukan Jenis Paket" name = "hpaket" value=<?=$hpaket?>>
+                    <input type="number" class="form-control" id="Hpaket" placeholder="Masukan Harga Paket" name = "hpaket" value=<?=$hpaket?>>
                     <input type="hidden" class="form-control" id="jenisKat" name = "id" value=<?=$id?>>
                   </div>
                   <div class="form-group">
-                  <label for="inputStatus">Kategori Menu</label><br>
-                        <i><label for="inputStatus">Kategori Menu Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label></i>
-                        <select class="form-control custom-select" id="Kmenu" name="kmenu">
+                  <label for="inputStatus">Kategori Paket</label><br>
+                        <i><label for="inputStatus">Kategori Paket Sebelumnya </label><label for="inputStatus"><?=": ".$nkat?></label></i>
+                        <select class="form-control custom-select" id="Kpaket" name="kpaket">
                         <option selected disabled>Pilih satu</option>
                         <?php  
                             $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
@@ -109,10 +122,42 @@
                         <?php } ?> 
                         </select>
                     </div>
+                    <div id="Menupaket">
+                    <div class="form-group">
+                    <label for="inputStatus">Menu 1</label><br>
+                        <i><label for="inputStatus">Menu 1 Sebelumnya </label><label for="inputStatus"><?=": ".$stmenu[0]?></label></i>
+                        <select class="form-control custom-select" id="Mpaket" name="mpaket">
+                        <option selected disabled>Pilih satu</option>
+                        <?php  
+                            $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$kpaket' AND STATUS = 1";
+                            $list3 = $conn->query($query3);
+                            foreach ($list3 as $key => $value) {
+                                $kat = $value['nama_menu'];
+                                ?>        
+                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
+                        <?php } ?> 
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="inputStatus">Menu 2</label><br>
+                        <i><label for="inputStatus">Menu 2 Sebelumnya </label><label for="inputStatus"><?=": ".$stmenu[1]?></label></i>
+                        <select class="form-control custom-select" id="Mpaket2" name="mpaket2">
+                        <option selected disabled>Pilih satu</option>
+                        <?php  
+                            $query3 = "SELECT * FROM MENU WHERE ID_KATEGORI = '$kpaket' AND STATUS = 1";
+                            $list3 = $conn->query($query3);
+                            foreach ($list3 as $key => $value) {
+                                $kat = $value['nama_menu'];
+                                ?>        
+                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
+                        <?php } ?> 
+                        </select>
+                    </div>
+                    </div>
                     <div class="form-group">
                     <label for="inputStatus">Promo Menu</label><br>
                         <i><label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label><i>
-                        <select class="form-control custom-select" id="Pmenu" name="pmenu">
+                        <select class="form-control custom-select" id="Ppaket" name="ppaket">
                         <option selected disabled>Pilih satu</option>
                         <?php  
                             $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
@@ -128,7 +173,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                  <button type="submit" class="btn btn-primary" id="btnEdit" name="submit" value="<?= $tmpid ?>">Save <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                   <button type="submit" class="btn btn-danger" id="btnDelete" name="delete" value="<?= $tmpid ?>" style="float:right;">Delete <i class="fas fa-trash" style="margin-left:12px;"></i></button>
                 </div>
               <!-- </form> -->
@@ -169,23 +214,38 @@
         let npaket = $('#Npaket').val();
         let hpaket = $('#Hpaket').val();
         let kpaket = $('#Kpaket').val();
+        let mpaket = $('#Mpaket').val();
+        let mpaket2 = $('#Mpaket2').val();
         let ppaket = $('#Ppaket').val();
-        if(npaket != "" && hpaket != "" && kpaket != null && ppaket != null){
-            $.ajax({
-                url: "Paket/updateDatabase.php",
-                method: 'post',
-                data: {
-                    id : id,
-                    npaket : npaket,
-                    hpaket : hpaket,
-                    kpaket : kpaket,
-                    ppaket : ppaket
-                },
-                success: function(result){   
-                    alert(result);
-                    document.location.href = "Paket.php";
-                }
-            });
+        if(npaket != "" && hpaket != "" && kpaket != null){
+          if(mpaket != null && mpaket2 != null){
+            if(mpaket != mpaket2){
+              $.ajax({
+                  url: "Paket/updateDatabase.php",
+                  method: 'post',
+                  data: {
+                      id : id,
+                      npaket : npaket,
+                      hpaket : hpaket,
+                      kpaket : kpaket,
+                      mpaket : mpaket,
+                      mpaket2 : mpaket2,
+                      ppaket : ppaket
+                  },
+                  success: function(result){   
+                      alert(result);
+                      let a = "Paket/editGambar.php?id=";
+                      let a2 = result.split(" ",1);
+                      let a3 = a.concat(a2);
+                      document.location.href = a3;
+                  }
+              });
+            }else{
+              alert("Menu Kembar!");
+            }
+          }else{
+            alert("Menu Kurang!");
+          }
         }else{
             alert("Terdapat isian yang kosong!");
         }
@@ -207,6 +267,25 @@
                 }
             });
         } 
+    });
+    $("#Kpaket").change(function () {
+        let a = $('#Kpaket').val();
+        $.ajax({
+            url: "Paket/Load_menu.php",
+            method: 'post',
+            data: {
+                a : a
+            },
+            success: function(result){   
+              if(result.includes("alert")){
+                $("#Menupaket").html(result);
+                $("#Menupaket").css("display","none");
+              }else{
+                $("#Menupaket").css("display","inline");
+                $("#Menupaket").html(result);
+              }
+            }
+        });
     });
 </script>
 </body>

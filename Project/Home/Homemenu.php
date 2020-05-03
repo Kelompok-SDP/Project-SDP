@@ -45,23 +45,22 @@
         <div class="form-group mb-2">
             <h5 class="footer-title">Cari Menu</h5>
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Masukkan nama menu" name="nmenu" id="nmenu">
+                <input type="text" class="form-control" placeholder="Masukkan nama menu" name="nmenu" id="Nmenu">
             </div>
-            <!-- <div id="err" style="display:none; color: red">Masukkan nama menu</div> -->
             <br>
         </div>
-        <!-- <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" type="submit" id="button-addon-footer">
-           Cari
-        </button> -->
         <p class="form-status status-footer"></p>
 </div>
 <div id="search">
 <?php
     $query = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1 ORDER BY 1 ASC";
+    $ctr = 0;
+    $ctr2 = 0;
     $list = mysqli_query($conn,$query);
     foreach ($list as $key => $value) {
         $idk = $value["id_kategori"];
         $namkat = $value["nama_kategori"];
+        
 ?>
 <section class="py-main section-menu-list" id="<?=$idk?>" style="width: 80vw;"><!-- for i-->
 
@@ -74,6 +73,7 @@
         <?php 
         $query2 = "SELECT * FROM MENU WHERE ID_KATEGORI ='$idk' AND STATUS = 1";
         $list2 = mysqli_query($conn,$query2);
+        $ctr = mysqli_num_rows($list2);
         foreach ($list2 as $key => $value) {
             $nmenu = $value["nama_menu"];
             $gambar = $value["gambar"];
@@ -84,11 +84,33 @@
                     <p><?=$nmenu?></p>
                 </a>
             </div>
+    <?php } ?>
+    <?php 
+        $query3 = "SELECT * FROM PAKET WHERE ID_KATEGORI ='$idk' AND STATUS = 1";
+        $list3 = mysqli_query($conn,$query3);
+        $ctr2 = mysqli_num_rows($list3);
+        foreach ($list3 as $key => $value) {
+            $npaket = $value["nama_paket"];
+            $gpaket = $value["gambar"];
+        ?>
+            <div class="col-6 col-md-3">
+                <a href="<?="detail_menu.php?id=".$value["id_paket"]?>" data-id="9" data-name="Egg and Cheese Muffin" data-category="Sarapan Pagi" data-position="1" class="card card-menu">
+                    <img src="<?="../Master/Paket/".$gpaket?>" class="img-fluid" style='background-size: cover;width:255px;height:180px'>
+                    <p><?=$npaket?></p>
+                </a>
+            </div>
     <?php } ?><!-- for j tutup-->
         </div>
     </div>
 
 </section>
+<?php 
+    if($ctr == 0 && $ctr2 == 0){
+        echo "<script>
+            $('#".$idk."').css('display','none');
+        </script>";
+    }
+?>
 <?php } ?><!-- for i tutup-->
 </div>
 
@@ -144,7 +166,7 @@
             $(".navbar-slide").removeClass("is-open");
         })
         
-        $("#nmenu").keyup(function () {
+        $("#Nmenu").keyup(function () {
             var a = $(this).val();
             $.ajax({
                 url: "Homemenu_cari.php",

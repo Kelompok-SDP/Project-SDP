@@ -83,6 +83,9 @@ require_once("../config.php");
                       <?php } ?> 
                       </select>
                   </div>
+                  <div id="Menupaket">
+                    
+                  </div>
                   <div class="form-group">
                       <label for="inputStatus">Promo Paket</label>
                       <select class="form-control custom-select" id="Ppaket" name="ppaket">
@@ -136,31 +139,60 @@ require_once("../config.php");
 <!-- page script -->
 <script>
     $('#Submit').click(function () {
-          let npaket = $('#Npaket').val();
-          let hpaket = $('#Hpaket').val();
-          let kpaket = $('#Kpaket').val();
-          let ppaket = $('#Ppaket').val();
-          if(npaket != "" && hpaket != "" && kpaket != null && ppaket != null){
-              $.ajax({
-                  url: "Paket/insertDatabase.php",
-                  method: 'post',
-                  data: {
-                      npaket : npaket,
-                      hpaket : hpaket,
-                      kpaket : kpaket,
-                      ppaket : ppaket
-                  },
-                  success: function(result){   
-                    alert(result);
-                    if(result != "Data Kembar"){
-                      document.location.href = 'Insert_Paket.php';
-                    }
+        let npaket = $('#Npaket').val();
+        let hpaket = $('#Hpaket').val();
+        let kpaket = $('#Kpaket').val();
+        let ppaket = $('#Ppaket').val();
+        let mpaket = $('#Mpaket').val();
+        let mpaket2 = $('#Mpaket2').val();
+        if(npaket != "" && hpaket != "" && kpaket != null){
+          if(mpaket != null && mpaket2 != null){
+            if(mpaket != mpaket2){
+            $.ajax({
+                url: "Paket/insertDatabase.php",
+                method: 'post',
+                data: {
+                    npaket : npaket,
+                    hpaket : hpaket,
+                    kpaket : kpaket,
+                    ppaket : ppaket,
+                    mpaket : mpaket,
+                    mpaket2 : mpaket2
+                },
+                success: function(result){   
+                  alert(result);
+                  if(result != "Data Kembar"){
+                    let a = "Paket/Uploadgambar.php?id=";
+                    let a2 = result.split(" ",1);
+                    let a3 = a.concat(a2);
+                    document.location.href = a3;
                   }
-              });
+                }
+            });
+            }else{
+              alert("Menu Kembar!");
+            }
           }else{
-              alert("Terdapat isian yang kosong!");
+            alert("Menu Kurang!");
+          }
+        }else{
+            alert("Terdapat isian yang kosong!");
+        }
+    });
+
+    $("#Kpaket").change(function () {
+      let a = $('#Kpaket').val();
+      $.ajax({
+          url: "Paket/Load_menu.php",
+          method: 'post',
+          data: {
+              a : a
+          },
+          success: function(result){   
+            $("#Menupaket").html(result);
           }
       });
+    });
 </script>
 </body>
 </html>

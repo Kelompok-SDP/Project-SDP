@@ -21,7 +21,16 @@ $hasil = mysqli_query($conn,$query);
         $tmp = $row["id_paket"];
         ?>
         <tr>
-            <td><?=$row["nama_paket"]?></td>
+        <td>
+        <form action="Paket/openDetail.php" method="post" target="_blank">
+                <button type="submit" name="detail" value="<?=$row['id_paket']?>"style="background-color: Transparent;
+                background-repeat:no-repeat;
+                border: none;
+                color: blue;
+                cursor:pointer;
+                overflow: hidden;
+                outline:none;"><?=$row['nama_paket']?></button>
+            </form></td>
             <?php 
                 $angka = $row["harga_paket"];
                 $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
