@@ -40,12 +40,12 @@ if($tmp[0]== "MEN"){
         $id_menu = $row['id_menu'];
         $query = "select *  from  menu where id_menu = '$id_menu'";
         $isimenu = mysqli_query($conn,$query);
+        $counter=1;
         foreach($isimenu as $data=>$key){
-            $tdeskripsi = $tdeskripsi. $key['nama_menu'].".";
+            $deskripsi = $counter." ".$deskripsi. $key['nama_menu']."<br>";
         }
     }
     $gambar = "../Master/Menu/".$gambar;
-    $deskripsi = explode(".", $tdeskripsi);
 }
 
 
@@ -108,7 +108,7 @@ if($tmp[0]== "MEN"){
                 <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
 
                 <p class="subtitle animated fadeInUp delayp3 mb-0">Menu: </p>
-                <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi[0] . "<br> " . $deskripsi[1]?></p>
+                <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
                 <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
@@ -197,7 +197,7 @@ if($tmp[0]== "MEN"){
             
                     <div class="owl-item active" style="width: 255px; margin-right: 30px;">
                         <div class="item animated vp-fadeinup delayp1 visible fadeInUp">
-                            <a href="" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
+                            <a href="<?="detail_menu.php?id=".$id?>" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
                                 <img src="<?=$gambar?>"style='max-width:300px;max-height:150px' class="img-fluid">
                                 <p><?=$row['nama_menu']?></p>
                             </a>
