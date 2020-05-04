@@ -44,9 +44,9 @@ if($tmp[0]== "MEN"){
         $id_menu = $row['id_menu'];
         $query = "select *  from  menu where id_menu = '$id_menu'";
         $isimenu = mysqli_query($conn,$query);
-        $counter=1;
+       // $counter=1;
         foreach($isimenu as $data=>$key){
-            $deskripsi = $counter." ".$deskripsi. $key['nama_menu']."<br>";
+            $deskripsi = $deskripsi."- ". $key['nama_menu']."<br>";
         }
         
           
