@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <?php 
+session_start();
 include("../config.php");
 $ids = $_GET["id"];
 $tmp = [];
 $tmp = explode('0',$ids,2);
 $harga = 0;
-$nama = "";
+$nama_menu = "";
 $tdeskripsi = "";
 $deskripsi = "";
 $gambar = "";
@@ -14,7 +15,7 @@ if($tmp[0]== "MEN"){
     $menu = mysqli_query($conn,$query);
 
     foreach($menu as $data=>$row){
-        $nama = $row["nama_menu"];
+        $nama_menu = $row["nama_menu"];
         $deskripsi = $row["deskripsi"];
         $gambar = $row['gambar'];
         $harga = $row['harga_menu'];
@@ -28,7 +29,7 @@ if($tmp[0]== "MEN"){
     $menu = mysqli_query($conn,$query);
     $idpaket  = "";
     foreach($menu as $data=>$row){
-        $nama = $row["nama_paket"];
+        $nama_menu = $row["nama_paket"];
         $gambar = $row['gambar'];
         $harga = $row['harga_paket'];
         $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
@@ -36,6 +37,9 @@ if($tmp[0]== "MEN"){
     }
     $query = "select * from paket_menu where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
+    $nama_menus= [];
+    $ctr = 0;
+    $deskripsi= "Memiliki Menu :<br>";
     foreach($menu as $data=>$row){
         $id_menu = $row['id_menu'];
         $query = "select *  from  menu where id_menu = '$id_menu'";
@@ -44,6 +48,8 @@ if($tmp[0]== "MEN"){
         foreach($isimenu as $data=>$key){
             $deskripsi = $counter." ".$deskripsi. $key['nama_menu']."<br>";
         }
+        
+          
     }
     $gambar = "../Master/Menu/".$gambar;
 }
@@ -104,10 +110,9 @@ if($tmp[0]== "MEN"){
         </div>
         <div class="col-md-7 content-center">
             <div class="heading">
-                <h2 class="title animated fadeInUp delayp2"><?=$nama?></h2>
+                <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2>
                 <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
 
-                <p class="subtitle animated fadeInUp delayp3 mb-0">Menu: </p>
                 <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
@@ -189,7 +194,7 @@ if($tmp[0]== "MEN"){
                     $query = "select * from menu where id_menu = '$id'";
                     $m= mysqli_query($conn,$query);
                     $gambar ="";
-                    $nama = "";
+                    $nama_menu = "";
                     foreach($m as $data=>$row){
                         $gambar = $row['gambar'];
                         $gambar = "../Master/Menu/".$gambar;

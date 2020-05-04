@@ -13,15 +13,16 @@
             $query=mysqli_fetch_assoc($query);
             if($query["status"]==1){
                 if($query["password"]==$password){
-                    echo "berhasil login";
                     $_SESSION['pelanggan'] = $query['id_member'];
+                    echo "berhasil login";
                 }else{
                     echo "password salah";
                 }
             }else if ($query["status"]==2){
                 if($query["password"]==$password){
-                    echo "berhasil login v2";
                     $_SESSION['pelanggan'] = $query['id_member'];
+
+                    echo "berhasil login v2";
 
                 }else{
                     echo "password salah";
@@ -41,8 +42,8 @@
             $query=mysqli_fetch_assoc($query);
             if($query["status"]==1){
                 if($query["password"]==$password){
-                    echo "berhasil login";
                     $_SESSION["pegawai"] = $query['id_pegawai'];
+                    echo "berhasil login";
                 }else{
                     echo "password salah";
                 }

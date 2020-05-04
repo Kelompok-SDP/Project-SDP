@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <?php include('Mcd/title.php');
-include("../config.php");?>
+include("../config.php");
+session_start();
+?>
 <body>
 <?php include('Mcd/header.php')?>
 <?php include('Mcd/corusel.php');?>
