@@ -39,24 +39,19 @@ if($tmp[0]== "MEN"){
     $menu = mysqli_query($conn,$query);
     $nama_menus= [];
     $ctr = 0;
-    $deskripsi= "memiliki Menu :<br>";
+    $deskripsi= "Memiliki Menu :<br>";
     foreach($menu as $data=>$row){
         $id_menu = $row['id_menu'];
         $query = "select *  from  menu where id_menu = '$id_menu'";
         $isimenu = mysqli_query($conn,$query);
+        $counter=1;
         foreach($isimenu as $data=>$key){
-           $nama_menus[$ctr] = $key['nama_menu'];
-           $ctr++;
+            $deskripsi = $counter." ".$deskripsi. $key['nama_menu']."<br>";
         }
         
           
     }
-    
-    for($i=0; $i<$ctr; $i++){
-        $deskripsi= $deskripsi."- ".$nama_menus[$i]."<br>";
-    }
-    $gambar = "../Master/paket/".$gambar;
-   
+    $gambar = "../Master/Menu/".$gambar;
 }
 
 
@@ -207,7 +202,7 @@ if($tmp[0]== "MEN"){
             
                     <div class="owl-item active" style="width: 255px; margin-right: 30px;">
                         <div class="item animated vp-fadeinup delayp1 visible fadeInUp">
-                            <a href="" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
+                            <a href="<?="detail_menu.php?id=".$id?>" data-id="24" data-name="Double Cheeseburger" data-category="Daging Sapi" data-position="1" class="card card-menu">
                                 <img src="<?=$gambar?>"style='max-width:300px;max-height:150px' class="img-fluid">
                                 <p><?=$row['nama_menu']?></p>
                             </a>

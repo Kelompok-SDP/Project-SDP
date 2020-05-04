@@ -30,8 +30,8 @@
 <?php
 session_start();
 if(isset($_SESSION["isi_kursi"])==false){
-    $_SESSION["isi_kursi"]=" ";
-    $_SESSION["ctr"]=" ";
+    $_SESSION["isi_kursi"]="";
+    $_SESSION["ctr"]="";
 }
 
 ?>
@@ -78,7 +78,7 @@ if(isset($_SESSION["isi_kursi"])==false){
     <!-- Main content -->
         <div class="row">
                 <!-- Left col -->
-                <section class="col-lg-5 connectedSortable">
+                <section class="col-lg-6 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card">
                     <div class="card-header">
@@ -105,6 +105,7 @@ if(isset($_SESSION["isi_kursi"])==false){
                     <div class="card-body" style="height:75vh;">
                         <div class="tab-content p-0">
                         <!-- Morris chart - Sales -->
+                        
                         <div class="tempat"></div>
 
                         </div>
@@ -112,9 +113,9 @@ if(isset($_SESSION["isi_kursi"])==false){
 
                 </section>
 
-                <section class="col-lg-7 connectedSortable">
-                    <!-- Custom tabs (Charts with tabs)-->
-                    <div class="card">
+                <section class="col-lg-6 connectedSortable">
+                <div class="ket"style="float:left;" ></div>
+                    <!-- <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
                         <i class="fas fa-chart-spoon mr-1"></i>
@@ -134,10 +135,9 @@ if(isset($_SESSION["isi_kursi"])==false){
                            
                         </ul>
                         </div>
-                    </div><!-- /.card-header -->
+                    </div>
                     <div class="card-body" style="height:auto;">
                         <div class="tab-content p-0">
-                        <!-- Morris chart - Sales -->
                         
                             <div class="row" >
                                 
@@ -147,7 +147,7 @@ if(isset($_SESSION["isi_kursi"])==false){
                             </div>
                         
                         </div>
-                    </div><!-- /.card-body -->
+                    </div> -->
                 </section>
 
              </div>
@@ -156,9 +156,8 @@ if(isset($_SESSION["isi_kursi"])==false){
    
 </section>
     
-    <div class="ket"style="float:left;" ></div>
-    <div class="makanan" >
-    </div>
+   
+
     <div style="float:right"class="detail">
     </div>
     <div style="clear:both;float:right" class="harga"></div>
@@ -180,8 +179,8 @@ if(isset($_SESSION["isi_kursi"])==false){
 
 <script>
     callMeja();
-    callKategori();
-    callDetail();
+    // callKategori();
+    // callDetail();
     function callMeja(){
         $.ajax({
             method: "post",
@@ -191,28 +190,28 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    function callKategori(){
-        $.ajax({
-            method: "post",
-            url: "Dine_In/getKategori.php",
-            success: function (response) {
-                $(".kategori").html(response);
-                callMenu("KAT001");
-            }
-        });
-    }
-    function callMenu(kategori){
-        $.ajax({
-            method: "post",
-            url: "Dine_In/getMenu.php",
-            data:{
-                kategori:kategori
-            },
-            success: function (response) {
-                $(".menu").html(response);
-            }
-        });
-    }
+    // function callKategori(){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "Dine_In/getKategori.php",
+    //         success: function (response) {
+    //             $(".kategori").html(response);
+    //             callMenu("KAT001");
+    //         }
+    //     });
+    // }
+    // function callMenu(kategori){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "Dine_In/getMenu.php",
+    //         data:{
+    //             kategori:kategori
+    //         },
+    //         success: function (response) {
+    //             $(".menu").html(response);
+    //         }
+    //     });
+    // }
     function callDetail(){
         $.ajax({
             method: "post",
@@ -222,29 +221,29 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    function getHarga(){
-        $.ajax({
-            method: "post",
-            url: "General/getHarga.php",
-            success: function (response) {
-                $(".harga").html(response);
-            }
-        });
-    }
-    function ubahJumlah(nama,ctr){
-        $.ajax({
-            method: "post",
-            url: "General/setJumlah_pesanan.php",
-            data: {
-                nama:nama,
-                jumlah:$("#inp"+ctr).val()
-            },
-            success: function (response) {
-                getHarga();
-                getDetail_menu();
-            }
-        });
-    }
+    // function getHarga(){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "General/getHarga.php",
+    //         success: function (response) {
+    //             $(".harga").html(response);
+    //         }
+    //     });
+    // }
+    // function ubahJumlah(nama,ctr){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "General/setJumlah_pesanan.php",
+    //         data: {
+    //             nama:nama,
+    //             jumlah:$("#inp"+ctr).val()
+    //         },
+    //         success: function (response) {
+    //             getHarga();
+    //             getDetail_menu();
+    //         }
+    //     });
+    // }
     function ubahMeja(){
         $.ajax({
             method: "post",
@@ -255,39 +254,39 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    function ambilMenu(nama){
-        $.ajax({
-            method: "post",
-            url: "General/setSession_menu.php",
-            data:{
-                nama_menu:nama
-            },
-            success: function (response) {
-                getDetail_menu();
-            }
-        });
-    }
-    function pesanMakanan(){
-        $.ajax({
-            method: "post",
-            url: "Dine_In/doTransaksi.php",
-            success: function (response) {
-                callMeja();
-                getDetail_menu();
-                callDetail();
-            }
-        });
-    }
-    function getDetail_menu(){
-        $.ajax({
-            method: "post",
-            url: "General/getDetail_pesanan.php",
-            success: function (response) {
-                $(".detail").html(response);
-                getHarga();
-            }
-        });
-    }
+    // function ambilMenu(nama){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "General/setSession_menu.php",
+    //         data:{
+    //             nama_menu:nama
+    //         },
+    //         success: function (response) {
+    //             getDetail_menu();
+    //         }
+    //     });
+    // }
+    // function pesanMakanan(){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "Dine_In/doTransaksi.php",
+    //         success: function (response) {
+    //             callMeja();
+    //             getDetail_menu();
+    //             callDetail();
+    //         }
+    //     });
+    // }
+    // function getDetail_menu(){
+    //     $.ajax({
+    //         method: "post",
+    //         url: "General/getDetail_pesanan.php",
+    //         success: function (response) {
+    //             $(".detail").html(response);
+    //             getHarga();
+    //         }
+    //     });
+    // }
     function pesanDinein(ke){
         if($("#meja"+ke).hasClass("biru")){
             $("#meja"+ke).addClass("hijau");

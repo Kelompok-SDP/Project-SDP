@@ -7,9 +7,14 @@ include('Mcd/header.php');
 		$_SESSION["nama_menu"]="";
 		$_SESSION["pilih_menu"]= array();
 	}
-	// session_destroy();
 ?>
-
+<style>
+	.btn-kcl{
+		width:40px;
+		height:25px;
+		padding:0px;
+	}
+</style>
 <!DOCTYPE html>
 <html lang="en">
   <head>
