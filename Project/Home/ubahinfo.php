@@ -1,3 +1,8 @@
+<style>
+    .save:hover{
+        background-color: blue;
+    }
+</style>
 <?php
     require_once("../config.php");
     session_start();
@@ -52,6 +57,8 @@
 
     <?php include('Mcd/header.php'); ?>
 <body style='margin-top:5.5%;'>
+<input type="hidden" value = "<?php echo $id; ?>" id="custid">
+
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
     <span>Pesan Sekarang</span>
@@ -59,40 +66,39 @@
         <!-- Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
    
-
 <section class="py-main section-other-menu">
     <div class="container" style="margin-top:-5vh;">
     <h3 style="margin:30px; font-size:50pt;"> Your Personal Info </h3>
-    <div class="col-md-8 col-lg-6 col-xl-4 " >
+    <div class="col-md-8  " >
             <div class="form-group ">
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Name: </h5>
-                    <input type="text" class="form-control" placeholder="Fullname" required="" value="<?=$nama?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="text" class="form-control" placeholder="Fullname" required="" value="<?=$nama?>" name="email" id= "fullname" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Alamat: </h5>
-                    <input type="text" class="form-control" placeholder="Alamat" required=""value="<?=$email?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="text" class="form-control" placeholder="Alamat" required=""value="<?=$alamat?>" name="email"  id="alamat" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Email: </h5>
-                    <input type="text" class="form-control" placeholder="Email" required="" value="<?=$alamat?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="text" class="form-control" placeholder="Email" required="" value="<?=$email?>" name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Telp: </h5>
-                    <input type="number" class="form-control" placeholder="Telepon" required="" value="<?=$notlp?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="number" class="form-control" placeholder="Telepon" required="" value="<?=$notlp?>" name="email" id="telp" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Kota: </h5>
-                    <input type="text" class="form-control" placeholder="Kota" required="" value="<?=$kota?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="text" class="form-control" placeholder="Kota" required="" value="<?=$kota?>" name="email"  id = "kota" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
                 <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Kode Pos: </h5>
-                    <input type="Number" class="form-control" placeholder="Kode Pos" required="" value="<?=$kodepos?>" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                    <input type="Number" class="form-control" placeholder="Kode Pos" required="" value="<?=$kodepos?>" name="email"  id="pos" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                        
@@ -101,13 +107,15 @@
 
 
         <div class="col-md-8 col-lg-6 col-xl-4 " >
-            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" onclick="" type="submit" id="button-addon-footer">
+            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag save"  style="border-color:green;background-color:green;"onclick="kirimup()" type="submit" id="button-addon-footer">
                                             Save
             </button>
-     
+            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"style="margin-left:50px;" onclick="destroy()" type="submit" id="button-addon-footer">
+                                            Sign Out
+            </button>
                
         </div>
-       
+      
     </div>
 </section>
 <footer class="light">
@@ -129,3 +137,49 @@
     </div>
 </footer>
 </body>
+<script src="MCD/jquery/jquery.min.js"></script>
+<script>
+    function kirimup(){
+        var nama = document.getElementById('fullname').value;
+        var alamat= document.getElementById('alamat').value;
+        var telp= document.getElementById('telp').value;
+        var kota= document.getElementById('kota').value;
+        var pos= document.getElementById('pos').value;
+        var email= document.getElementById('email').value;
+        var id = document.getElementById('custid').value
+        $.ajax({
+        method: "post",
+        url: "MCD/updateinfo.php",
+        data:{
+            id: id,
+            nama:nama,
+            email:email,
+            alamat: alamat,
+            kota:kota,
+            pos:pos,
+            telp:telp
+        },
+        success: function (response) {
+            alert(response);
+        }
+        
+    });
+    }
+
+    function destroy(){
+        $.ajax({
+        method: "post",
+        url: "MCD/logout.php",
+        data:{
+           
+        },
+        success: function (response) {
+            setTimeout(
+              window.location.href = "Home.php"
+             , 5000);
+        }
+        
+    });
+    }
+
+</script>

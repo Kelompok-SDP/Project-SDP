@@ -17,7 +17,6 @@
 
    $hr = "ubahinfo.php?id=".$id;
 ?>
-<input type="hidden" value = "<?php echo $id; ?>" id="custid">
 <div class="loader-wrapper loader-light">
     <div class="loader" style="display: none;"></div>
     </div> 
