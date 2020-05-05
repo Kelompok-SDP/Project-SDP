@@ -71,7 +71,7 @@
         }
         $ctr++;
     }
-    $gtt=$gt;
+    $_SESSION["harga_akhir_Pesanan"]=$gt+15000;
     $gt="Rp " . number_format($gt,2,',','.');
       echo"<tr>
     ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
@@ -89,7 +89,7 @@
     ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
     ";echo"    <td class='label label-primary' style='font-weight:bold'>$gt </td>
     ";echo"</tr>";    
-    echo"<div id='total-harga' <style='visibility:hidden'>>$gtt</div>";
+    
 
 ?>
 

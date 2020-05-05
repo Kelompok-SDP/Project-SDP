@@ -1,12 +1,15 @@
 <?php 
+session_start();
 include('Mcd/title.php');
 include("../config.php");
 include('Mcd/header.php');
-	if(!isset($_SESSION["nama_menu"])){
-		$_SESSION["isi_kursi"]="";
+	if(isset($_SESSION["nama_menu"])==false){
+		$_SESSION["isi_kursi"]=" ";
+		$_SESSION["ctr"]="";
 		$_SESSION["nama_menu"]="";
 		$_SESSION["pilih_menu"]= array();
 	}
+	// session_destroy();
 ?>
 <style>
 	.btn-kcl{
@@ -80,18 +83,38 @@ Body Section
 			<tbody>
 				<tr>
 					<td> 
-						<form class="form-inline">
-							<label style="min-width:159px"> VOUCHERS Code: </label> 
-							<input type="text" class="input-medium" placeholder="CODE">
-							<button type="submit" class="shopBtn"> ADD</button>
-						</form>
+						<label style="min-width:159px"> VOUCHERS Code: </label> 
+						<input type="text" class="input-medium" placeholder="CODE">
+						<button type="submit" class="shopBtn"> ADD</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>	
 
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td> 
+						<input type="radio" name="radioButton"id="Reservasi" onchange="inisialisasi()"> Reservasi
+					</td>
+					<td> 
+						<input type="radio" name="radioButton"id="Take" onchange="inisialisasi()"> Take Away
+					</td>
+					<td> 
+						<input type="radio" name="radioButton"id="Delivery" onchange="inisialisasi()"> Delivery
+					</td>
+					<td> 
+						<input type="radio" name="radioButton"id="Dine" onchange="inisialisasi()"> Dine In
+					</td>
+				</tr>
+				<tr>
+					<td class="tempat" colspan="4"></td>
+				</tr>
+			</tbody>
+		</table>	
+
 	<a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
-	<button class="shopBtn btn-large pull-right" id="pay-button">Pay! <span class="icon-arrow-right"></span></button>
+	<button class="shopBtn btn-large pull-right" onclick="Pay()"id="pay-button">Pay! <span class="icon-arrow-right"></span></button>
 </div>
 </div>
 </div>
@@ -108,7 +131,78 @@ Body Section
   </body>
 </html>
 <script>
-	getDetailPesanan();
+	var ctr=0;
+	start();
+	function start(){
+		getDetailPesanan();
+		$("#Reservasi").prop("checked",true);
+		$.ajax({
+			method: "post",
+			url: "ajaxFile/getReservasi.php",
+			success: function (response) {
+				$(".tempat").html(response);
+				getDetail_kursi();
+				getDateNow();
+				getTimeNow();
+			}
+		});
+	}
+	function inisialisasi(){
+		if(document.getElementById("Reservasi").checked ){
+			$.ajax({
+				method: "post",
+				url: "ajaxFile/getReservasi.php",
+				success: function (response) {
+					$(".tempat").html(response);
+					getDetail_kursi();
+					getDateNow();
+					getTimeNow();
+				}
+			});
+		}
+		if(document.getElementById("Take").checked ){
+			$.ajax({
+				method: "post",
+				url: "ajaxFile/getTake.php",
+				success: function (response) {
+					$(".tempat").html(response);
+					getTimeNow();
+				}
+			});
+		}
+		if(document.getElementById("Delivery").checked ){
+			$.ajax({
+				method: "post",
+				url: "ajaxFile/getDelivery.php",
+				success: function (response) {
+					$(".tempat").html(response);
+					getTimeNow();
+				}
+			});
+		}
+		if(document.getElementById("Dine").checked ){
+			$.ajax({
+				method: "post",
+				url: "ajaxFile/getDinein.php",
+				success: function (response) {
+					$(".tempat").html(response);
+					getDetail_kursi();
+				}
+			});
+		}
+	}
+	function getDetail_kursi(){
+		$.ajax({
+			method: "post",
+			url: "ajaxFile/getDetail_meja.php",
+			success: function (response) {
+				$("#keterangan_meja").html(response);
+			}
+		});
+	}
+	function tomeja(){
+		window.location.assign("../transaction/tampilan_dinein.php")
+	}
 	function getDetailPesanan(){
 		$.ajax({
 			type: "post",
@@ -148,45 +242,131 @@ Body Section
 			}
 		});
 	}
-</script>
-<!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-X8sfx9fsFwJfRQOp"></script>
-<script type="text/javascript">
-  document.getElementById('pay-button').onclick = function(){
-    // This is minimal request body as example.
-    // Please refer to docs for all available options: https://snap-docs.midtrans.com/#json-parameter-request-body
-    // TODO: you should change this gross_amount and order_id to your desire. 
-	var harga= $("#total-harga").html();
-	alert(harga);
-    var requestBody = 
-    {
-      transaction_details: {
-        gross_amount: harga,
-        // as example we use timestamp as order ID
-        order_id: 'T-'+Math.round((new Date()).getTime() / 1000) 
-      }
-    }
-    
-    getSnapToken(requestBody, function(response){
-      var response = JSON.parse(response);
-      console.log("new token response", response);
-      // Open SNAP payment popup, please refer to docs for all available options: https://snap-docs.midtrans.com/#snap-js
-      snap.pay(response.token);
-    })
-  };
-  /**
-  * Send AJAX POST request to checkout.php, then call callback with the API response
-  * @param {object} requestBody: request body to be sent to SNAP API
-  * @param {function} callback: callback function to pass the response
-  */
-  function getSnapToken(requestBody, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-      if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-        callback(xmlHttp.responseText);
-      }
-    }
-    xmlHttp.open("post", "http://localhost/Project-SDP/Project/Iplaymu/Ipay/checkout.php");
-    xmlHttp.send(JSON.stringify(requestBody));
-  }
+	function getValidate_time(time){
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/check/check_valid_time.php",
+			data: {
+				time:time
+			},
+			success: function (response) {
+				if(response=="berhasil"){
+					return 1;
+				}else{
+					alert(response);
+				}
+			}
+		});
+	}
+	function getDateNow(){
+		var date = new Date();
+		var currentDate = date.toISOString().slice(0,10);
+
+		document.getElementById('date_res').value = currentDate;
+	}
+	function getTimeNow(){
+		var date = new Date();
+		var currentTime = date.getHours()+2 + ':' + date.getMinutes();
+
+		document.getElementById('time_res').value = currentTime;
+	}
+	function getValidate_date(date){
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/check/check_valid_day.php",
+			data: {
+				tanggal:date
+			},
+			success: function (response) {
+				if(response=="berhasil"){
+					ctr++;
+				}else{
+					alert(response);
+				}
+			}
+		});
+	}
+	function Pay(){
+		ctr=0;
+		var jumlah_meja="<?= $_SESSION["ctr"]?>";
+		if(document.getElementById("Reservasi").checked ){
+			var date = new Date($('#date_res').val());
+			day = date.getDate();
+			month = date.getMonth()+1;
+			year = date.getFullYear();
+			date=[day, month, year].join('/');
+			time=$("#time_res").val();
+			$.ajax({
+				type: "post",
+				url: "ajaxFile/check/check_valid_day.php",
+				data: {
+					tanggal:date
+				},
+				success: function (response) {
+					if(response=="berhasil"){
+						$.ajax({
+							type: "post",
+							url: "ajaxFile/check/check_valid_time.php",
+							data: {
+								time:time
+							},
+							success: function (response) {
+								if(response=="berhasil" && jumlah_meja>0){
+									window.open("../iplaymu/ipay/index.php");
+								}else{
+									alert(response);
+								}
+							}
+						});
+					}else{
+						alert(response);
+					}
+				}
+			});
+			if(ctr==2&&jumlah_meja>0){
+				window.open("../iplaymu/ipay/index.php");
+			}
+		}else if(document.getElementById("Take").checked ){
+			time=$("#time_res").val();
+			$.ajax({
+				type: "post",
+				url: "ajaxFile/check/check_valid_time.php",
+				data: {
+					time:time
+				},
+				success: function (response) {
+					if(response=="berhasil"){
+						window.open("../iplaymu/ipay/index.php");
+					}else{
+						alert(response);
+					}
+				}
+			});
+		}else if(document.getElementById("Delivery").checked ){
+			time=$("#time_res").val();
+			alamat=$("#alamat").val();
+			$.ajax({
+				type: "post",
+				url: "ajaxFile/check/check_valid_time.php",
+				data: {
+					time:time
+				},
+				success: function (response) {
+					if(response=="berhasil"){
+						if(alamat!=""){
+							window.open("../iplaymu/ipay/index.php");
+						}
+					}else{
+						alert(response);
+					}
+				}
+			});
+		}else if(document.getElementById("Dine").checked ){
+			if(jumlah_meja>0){
+				window.open("../iplaymu/ipay/index.php");
+			}else{
+				alert("Pilih Meja ");
+			}
+		}
+	}
 </script>

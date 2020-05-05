@@ -251,6 +251,7 @@ if(isset($_SESSION["isi_kursi"])==false){
             success: function (response) {
                 callMeja();
                 callDetail();
+                window.location.assign("../home/cart.php");
             }
         });
     }
