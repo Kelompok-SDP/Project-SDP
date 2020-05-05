@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	//session_start();
 	require_once('../../email/mailer2/class.phpmailer.php');
 	require_once("../../config.php");
 	//-----------------EMAIL-----------------
