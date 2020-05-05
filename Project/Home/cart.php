@@ -61,7 +61,9 @@ Body Section
 		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
 	<hr class="soften"/>	
 
-	<table class="table table-bordered table-condensed">
+	<div id="detailTable"></div>
+
+	<!-- <table class="table table-bordered table-condensed">
 			<thead>
 			<tr>
 				<th>Product</th>
@@ -75,7 +77,7 @@ Body Section
 			
 				
 			</tbody>
-		</table>
+	</table> -->
 		<br/>
 	
 	

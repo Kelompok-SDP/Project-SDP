@@ -52,22 +52,36 @@
             $grandtotal="Rp " . number_format($harga*$jumlah,2,',','.');
             $gt+=$harga*$jumlah;
             echo $nama;
-              echo"<tr>
-            ";echo"    <td><img width='100' src='$gambar' alt=''></td>
-            ";echo"    <td>$nama <br>$deskripsi</td>
-            ";echo"    <td>$total</td>
-            ";echo"    <td>
-            ";echo"        
-            ";echo"        <div class='input-append' >
-            <input class='span1' onkeypress='NumberOnly(event)' onchange='qtyMenu(\"$value\",4,this.value)' style='max-width:34px' placeholder='1' value='$jumlah' size='16' type='text'>
-            ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",2,0)' type='button'>-</button>
-            ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",1,0)' type='button'>+</button>
-            ";echo"            <button class='btn btn-mini btn-kcl btn-danger'onclick='qtyMenu(\"$value\",3,0)' type='button'>
-            ";echo"            <span >X</span></button>
-            ";echo"        </div>
-            ";echo"        </td>
-            ";echo"    <td>$grandtotal</td>
-            ";echo"</tr>";
+?>
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">CPU Traffic</span>
+                <span class="info-box-number">
+                  10
+                  <small>%</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- //   echo"<tr>
+            // ";echo"    <td><img width='100' src='$gambar' alt=''></td>
+            // ";echo"    <td>$nama <br>$deskripsi</td>
+            // ";echo"    <td>$total</td>
+            // ";echo"    <td>
+            // ";echo"        
+            // ";echo"        <div class='input-append' >
+            // <input class='span1' onkeypress='NumberOnly(event)' onchange='qtyMenu(\"$value\",4,this.value)' style='max-width:34px' placeholder='1' value='$jumlah' size='16' type='text'>
+            // ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",2,0)' type='button'>-</button>
+            // ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",1,0)' type='button'>+</button>
+            // ";echo"            <button class='btn btn-mini btn-kcl btn-danger'onclick='qtyMenu(\"$value\",3,0)' type='button'>
+            // ";echo"            <span >X</span></button>
+            // ";echo"        </div>
+            // ";echo"        </td>
+            // ";echo"    <td>$grandtotal</td>
+            // ";echo"</tr>"; -->
+        <?php
         }
         $ctr++;
     }
