@@ -167,7 +167,7 @@ var cek = false;
   if(rating != ''){
       cek = true;
   }
-  var idmember= document.getElementById("custid").value;
+  var idmember = document.getElementById("custid").value;
   if(cek==true){
     document.getElementById("x").style.display = "none";
     
