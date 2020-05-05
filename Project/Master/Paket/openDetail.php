@@ -27,10 +27,9 @@ require_once("../../config.php");
       $query3 = "SELECT * from menu where id_menu = '$idm'";
       $hasil3 = mysqli_query($conn,$query3);
       foreach ($hasil3 as $key=>$data){
-        $sdpaket .= $data["nama_menu"] . ".";
+        $dmenu = $dmenu."- ". $data['nama_menu']."<br>";
       }
   }
-  $dpaket = explode(".",$sdpaket);
 ?>
 
 <!DOCTYPE html>
@@ -80,13 +79,13 @@ require_once("../../config.php");
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">
-                        <label for="inputSpentBudget">Deskripsi Paket :<?php echo " ".$dpaket[0]. ", " . $dpaket[1];?></label>
+                        <label for="inputSpentBudget">Deskripsi Paket :<?php echo "<br>". $dmenu;?></label>
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">
                         <label for="inputStatus">Menu Image</label>
                         <br>
-                        <img src=<?=$gambar?> style="width:500px;height:400px;" alt="image not Found">
+                        <img src=<?="../Menu/".$gambar?> style="width:500px;height:400px;" alt="image not Found">
                         <br>
                         <label for="inputStatus">Source :<?=$gambar;?></label>
                     </div>
