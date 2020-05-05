@@ -2,7 +2,7 @@
 
 <?php include('Mcd/title.php');
 include("../config.php");
-session_start();
+//session_start();
 ?>
 <body>
 <?php include('Mcd/header.php')?>

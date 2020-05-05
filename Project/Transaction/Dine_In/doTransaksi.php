@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");    
-    session_start();
+    //session_start();
     
     $_SESSION["isi_kursi"]=" ";
     $_SESSION["ctr"]=0;

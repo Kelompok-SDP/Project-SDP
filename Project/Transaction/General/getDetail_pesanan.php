@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");    
-    session_start();
+   // session_start();
 	// session_destroy();
     $nama=$_SESSION["nama_menu"];
     $arrMenu=explode(" ,",$nama);

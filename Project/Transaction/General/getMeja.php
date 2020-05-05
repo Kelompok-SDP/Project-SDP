@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");    
-    session_start();
+    //session_start();
     $kursi = mysqli_query($conn_detail,"SELECT * from meja order by kolom asc,baris asc");
     $cek=1;
     $cek_sebelum=1;

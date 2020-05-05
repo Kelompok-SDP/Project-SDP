@@ -1,6 +1,6 @@
 <?php
     // session_start();
-  //  require_once("../config.php");
+   require_once("../config.php");
    
     $nama = "Login";
     $id = "null";
@@ -113,7 +113,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $hr; ?>">
+                    <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>
                     </a>
                 </li>
