@@ -1,7 +1,11 @@
 <?php
     require_once("../../config.php");
-    session_start();
     $kursi=substr($_SESSION["isi_kursi"],0,strlen($_SESSION["isi_kursi"])-2);
-    echo "Jumlah Kursi Yang Dipesan : ".$_SESSION["ctr"]."<br>";
-    echo "Kursi Nomor : ".$kursi;
+    if($kursi != ""){
+        echo "Jumlah Kursi Yang Dipesan : ".$_SESSION["ctr"]."<br>";
+        echo "Kursi Nomor : ".$kursi;
+        echo "<script>document.getElementById('radioPrimary1').checked = true;</script>";
+    } else{
+        echo "<script>document.getElementById('radioPrimary1').checked = false;</script>";
+    }
 ?>
