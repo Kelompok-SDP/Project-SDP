@@ -1,12 +1,83 @@
 
 <style>
-    .save:hover{
-        background-color: blue;
+    .bx:hover{
+        background-color:#BEBEBE;
     }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #808080;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #808080;
+  color: white;
+}
 </style>
 <?php
    // session_start();
     require_once("../config.php");
+    require_once("../Source.php");
     $id= $_GET['id'];
     if($id== "null"){
         header("location: ../login_register/login.php");
@@ -59,7 +130,7 @@
     <?php include('Mcd/header.php'); ?>
     </div>
 
-<body style='margin-top:5.5%;'>
+<body style='margin-top:2.5%; '>
 <input type="hidden" value = "<?php echo $id; ?>" id="custid">
 
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
@@ -72,35 +143,38 @@
 <section class="py-main section-other-menu">
     <div class="container" style="margin-top:-5vh;">
     <h3 style="margin:30px; font-size:50pt;"> Your Personal Info </h3>
-    <div class="col-md-8  " >
+    <hr>
+    <div class="row">
+        <div class="col-8  " >
+     
             <div class="form-group ">
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Name: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Name </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="text" class="form-control" placeholder="Fullname" required="" value="<?=$nama_full?>" name="email" id= "fullname" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Alamat: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Alamat </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="text" class="form-control" placeholder="Alamat" required=""value="<?=$alamat?>" name="email"  id="alamat" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Email: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Email </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="text" class="form-control" placeholder="Email" required="" value="<?=$email?>" name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Telp: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Telp </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="number" class="form-control" placeholder="Telepon" required="" value="<?=$notlp?>" name="email" id="telp" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Kota: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Kota </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="text" class="form-control" placeholder="Kota" required="" value="<?=$kota?>" name="email"  id = "kota" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
                 <div class="input-group" style="margin:10px;">
-                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:80px;">Kode Pos: </h5>
+                <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Kode Pos </h5><h1 style="margin-right:10px; font-weight:1px;">:</h1>
                     <input type="Number" class="form-control" placeholder="Kode Pos" required="" value="<?=$kodepos?>" name="email"  id="pos" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                 
                 </div>
@@ -108,40 +182,79 @@
                </div>
         </div>
 
+        <div class="col-4">
+                
+    
+        
+                    <div class="info-box elevation-2">
+                        <div class="info-box-content" style="width: 150px;height:290px;">
+                            <span class="info-box-text" style="font-weight:bold;"><h3>Recent History</h3></span>
+                            <hr>
+                                <div id="historia" style="height:350px;">
+                                </div>
 
-        <div class="col-md-8 col-lg-6 col-xl-4 " >
-            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag save"  style="border-color:green;background-color:green;"onclick="kirimup()" type="submit" id="button-addon-footer">
+                        </div>
+                    </div>
+         
+    
+        
+    
+    
+    
+        </div>
+
+
+
+
+    </div>
+
+        <div class="row">
+        <div class="col-8  " >
+            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag save"  style="margin-left:20px;border-color:green;background-color:green;"onclick="kirimup()" type="submit" id="button-addon-footer">
                                             Save
             </button>
-            <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"style="margin-left:50px;" onclick="destroy()" type="submit" id="button-addon-footer">
-                                            Sign Out
-            </button>
+           
                
         </div>
+        <div class="col-4 " >
+           
+        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"style="float:right;margin-left:50px;" onclick="destroy()" type="submit" id="button-addon-footer">
+                                            Sign Out
+        </button>
+               
+        </div>
+        </div>
+       
       
     </div>
-</section>
-<footer class="light">
-<div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md">
-                    <ul class="text-md-right">
-                         <li><a href="">+62-85-00000</a></li>
-                         <li><a href="">UwenakResto@ciamik.com</a></li>
-                         <li><a href="">Jl Untung Suropati no 2B</a></li>
-                    </ul>
-                </div>
-                <div class="col-md order-md-first">
-                    © 2019 PT Merugi-Bahagia
-                </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+           
+            <h2 >Detail Transaksi</h2>
+            <span class="close">&times;</span>
             </div>
+            <div class="modal-body" id="detilhistory">
+             
+            </div>
+          
         </div>
-    </div>
-</footer>
+
+        </div>
+
+    
+</section>
+<hr>
+<?php require_once("MCD/footer.php") ?>
 </body>
 <script src="MCD/jquery/jquery.min.js"></script>
 <script>
+   $( document ).ready(function() {
+        history();
+    });
     function kirimup(){
         var nama = document.getElementById('fullname').value;
         var alamat= document.getElementById('alamat').value;
@@ -149,7 +262,7 @@
         var kota= document.getElementById('kota').value;
         var pos= document.getElementById('pos').value;
         var email= document.getElementById('email').value;
-        var id = document.getElementById('custid').value
+        var id = document.getElementById('custid').value;
         $.ajax({
         method: "post",
         url: "MCD/updateinfo.php",
@@ -172,7 +285,7 @@
         
     });
     }
-
+    
     function destroy(){
         $.ajax({
         method: "post",
@@ -189,4 +302,40 @@
     });
     }
 
+    var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("myModal");
+
+        span.onclick = function() {
+            modal.style.display = "none";
+            }
+
+// When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+
+    function detailhj(iddjual){
+       
+        modal.style.display = "block";
+        $("#detilhistory").load("MCD/detilhistory.php?id="+iddjual);
+    }
+
+    function history(){
+        var id = document.getElementById('custid').value;
+        $.ajax({
+            method: "post",
+            url: "MCD/history.php",
+            data:{
+            id : id 
+        },
+        success: function (response) {
+           // alert(response);
+           
+            $("#historia").html(response);
+        }
+        
+    });
+    }
 </script>
