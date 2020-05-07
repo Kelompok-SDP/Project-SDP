@@ -61,7 +61,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item dropdown menu-large">
+                <li class="nav-item dropdown menu-large" id="dropmenu">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                     <ul class="dropdown-menu megamenu animated fadeInDown">
                         <div class="container">
@@ -112,7 +112,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mcdonalds.co.id/promo">
+                    <a class="nav-link" href="Homepromo.php">
                         Promo
                     </a>
                 </li>
@@ -158,7 +158,7 @@
                     <a class="nav-link">Menu</a>
                 </li>
                 <li class="nav-slide-item animated fadeInUp delayp3" id="navPromoMobile">
-                    <a href="https://mcdonalds.co.id/promo" class="nav-link">
+                    <a href="Homepromo.php" class="nav-link">
                         Promo
                     </a>
                 </li>

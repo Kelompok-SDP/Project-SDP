@@ -1,5 +1,6 @@
 <?php
     require_once("../../config.php");
+    require_once("../../Source.php");
     $kursi=substr($_SESSION["isi_kursi"],0,strlen($_SESSION["isi_kursi"])-2);
     if($kursi != ""){
         echo "Jumlah Kursi Yang Dipesan : ".$_SESSION["ctr"]."<br>";

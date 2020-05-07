@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2020 pada 15.09
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Waktu pembuatan: 07 Bulan Mei 2020 pada 16.16
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,17 +66,7 @@ INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_h
 ('DJ019', 'MEN001', 15000, 2, 30000, 'H010'),
 ('DJ020', 'MEN001', 12000, 2, 24000, 'H010'),
 ('DJ021', 'MEN001', 5000, 1, 5000, 'H011'),
-('DJ022', 'MEN002', 5000, 1, 5000, 'H011'),
-('DJ023', 'MEN002', 5000, 6, 30000, 'H012'),
-('DJ024', 'MEN002', 5000, 6, 30000, 'H013'),
-('DJ025', 'MEN002', 5000, 6, 30000, 'H014'),
-('DJ026', 'MEN002', 5000, 6, 30000, 'H015'),
-('DJ027', 'MEN002', 5000, 6, 30000, 'H016'),
-('DJ028', 'MEN002', 5000, 6, 30000, 'H017'),
-('DJ029', 'MEN002', 5000, 13, 65000, 'H018'),
-('DJ030', 'MEN002', 5000, 13, 65000, 'H019'),
-('DJ031', 'MEN002', 5000, 12, 60000, 'H020'),
-('DJ032', 'MEN002', 5000, 12, 60000, 'H021');
+('DJ022', 'MEN002', 5000, 1, 5000, 'H011');
 
 -- --------------------------------------------------------
 
@@ -91,36 +81,25 @@ CREATE TABLE `hjual` (
   `total` int(11) NOT NULL,
   `jenis_pemesanan` varchar(10) NOT NULL,
   `id_pegawai` varchar(10) NOT NULL,
-  `id_member` varchar(10) NOT NULL,
-  `keterangan` varchar(500) NOT NULL
+  `id_member` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `hjual`
 --
 
-INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`, `id_pegawai`, `id_member`, `keterangan`) VALUES
-('H001', '2020-02-14', 10000, 'dine-in', 'W00002', 'AM001', ''),
-('H002', '2020-03-18', 20000, 'take away', 'W00002', 'AM001', ''),
-('H003', '2020-02-14', 40000, 'delivery', 'W00002', 'fa00001', ''),
-('H004', '2020-02-18', 70000, 'Take-away', 'W00002', 'AB00001', ''),
-('H005', '2020-03-18', 10000, 'Dine-in', 'W00002', 'AB00001', ''),
-('H006', '2020-04-18', 20000, 'Dine-in', 'W00002', 'AB00001', ''),
-('H007', '2020-05-18', 20000, 'Dine-in', 'W00002', 'AB00001', ''),
-('H008', '2020-06-18', 18000, 'Delivery', 'W00002', 'AB00001', ''),
-('H009', '2020-07-18', 20000, 'Delivery', 'W00002', 'AB00001', ''),
-('H010', '2020-08-18', 27000, 'Dine-in', 'W00002', 'AB00001', ''),
-('H011', '2020-02-15', 10000, 'delivery', 'W00002', 'AB00001', ''),
-('H012', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H013', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H014', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H015', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H016', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H017', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H018', '2020-05-07', 40000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H019', '2020-05-07', 40000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H020', '2020-05-07', 35000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H021', '2020-05-07', 35000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada');
+INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`, `id_pegawai`, `id_member`) VALUES
+('H001', '2020-02-14', 10000, 'dine-in', 'W00002', 'AM001'),
+('H002', '2020-03-18', 20000, 'take away', 'W00002', 'AM001'),
+('H003', '2020-02-14', 40000, 'delivery', 'W00002', 'fa00001'),
+('H004', '2020-02-18', 70000, 'Take-away', 'W00002', 'AB00001'),
+('H005', '2020-03-18', 10000, 'Dine-in', 'W00002', 'AB00001'),
+('H006', '2020-04-18', 20000, 'Dine-in', 'W00002', 'AB00001'),
+('H007', '2020-05-18', 20000, 'Dine-in', 'W00002', 'AB00001'),
+('H008', '2020-06-18', 18000, 'Delivery', 'W00002', 'AB00001'),
+('H009', '2020-07-18', 20000, 'Delivery', 'W00002', 'AB00001'),
+('H010', '2020-08-18', 27000, 'Dine-in', 'W00002', 'AB00001'),
+('H011', '2020-02-15', 10000, 'delivery', 'W00002', 'AB00001');
 
 -- --------------------------------------------------------
 
@@ -169,22 +148,22 @@ CREATE TABLE `member` (
   `kecematan` varchar(50) NOT NULL,
   `kode_pos` int(8) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `status` varchar(1) NOT NULL,
-  `point` int(11) NOT NULL
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `member`
 --
 
-INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`, `point`) VALUES
-('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0', 0),
-('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '0', 0),
-('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1', 0),
-('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0', 0),
-('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1', 0),
-('FA00001', 'Fabian Suryajaya S', '123', 'fab@gmail.com', 'jalan 30', 891234567894, '', 'Jawa Timur', 123123, 'fabiansuryajayas', '1', 10000),
-('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1', 0);
+INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`) VALUES
+('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0'),
+('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '0'),
+('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1'),
+('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0'),
+('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1'),
+('FA00001', 'Fabian Suryajaya S', '123', 'fab@gmail.com', 'jalan 30', 891234567894, '', 'Jawa Timur', 123123, 'fabiansuryajayas', '1'),
+('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1'),
+('FE00001', 'Fendy ganteng', 'aaa', 'fendysugiartog@gmail.com', 'Jalan Sekawan Nyaman', 123456789, 'Surabaya', 'Jawa Timur', 61232, 'Fendy', '2');
 
 -- --------------------------------------------------------
 
@@ -208,7 +187,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`, `id_kategori`, `status`) VALUES
-('MEN001', 'Nasi Goreng Jawa', 20000, 'Image/Nasgor.jpg', 'Dengan Bumbu Jawa', 'KAT002', 0),
+('MEN001', 'Nasi Goreng Jawa', 20000, 'Image/Nasgor.jpg', 'Dengan Bumbu Jawa', 'KAT002', 1),
 ('MEN002', 'Ayam goreng', 5000, 'Image/Aygor.jpg', 'Dengan tambahan rempah-rempah', 'KAT001', 1),
 ('MEN003', 'Iga Bakar', 20000, 'Image/Igbak.jpg', 'Iga daging sapi yang berkualitas', 'KAT006', 1),
 ('MEN004', 'Cumi Goreng', 30000, 'Image/Cumgor.jpg', 'Bergizi, nikmat, dan krispi', 'KAT001', 1),
@@ -218,7 +197,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga_menu`, `gambar`, `deskripsi`,
 ('MEN008', 'Es Lemon Tea', 5000, 'Image/Lteh.jpg', 'Jeruk Lemon', 'KAT007', 1),
 ('MEN009', 'Es Mega Mendung', 8000, 'Image/Megmen.jpg', 'Soda', 'KAT008', 1),
 ('MEN010', 'Kopi Luwak', 8000, 'Image/kopi.jpg', 'Luwak asli', 'KAT008', 1),
-('MEN011', 'Jus Alpukat', 20000, 'Image/Jusalpukat.jpg', 'Alpukat terpercaya', 'KAT009', 0),
+('MEN011', 'Jus Alpukat', 20000, 'Image/Jusalpukat.jpg', 'Alpukat terpercaya', 'KAT009', 1),
 ('MEN012', 'Bubur Ayam', 15000, 'Image/Bubur.jpg', 'Lembut', 'KAT004', 1);
 
 -- --------------------------------------------------------
@@ -243,17 +222,14 @@ CREATE TABLE `paket` (
 --
 
 INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `gambar`, `id_kategori`, `id_promo`, `status`) VALUES
-('PK001', 'Subuh', 20000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK002', 'Dini', 25000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK003', 'Siang', 10000, 'Image/paket.png', 'KAT005', 'PR003', 1),
-('PK004', 'Sore', 15000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK005', 'Malam', 25000, 'Image/paket.png', 'KAT004', 'PR001', 1),
-('PK006', 'Tengah malam', 30000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK007', 'Panas 1', 25000, 'Image/paket.png', 'KAT005', 'PR003', 1),
-('PK008', 'Panas 2', 20000, 'Image/paket.png', 'KAT005', 'PR002', 1),
-('PK009', 'Panas 3', 10000, 'Image/paket.png', 'KAT005', 'PR001', 1),
-('PK010', 'Panas 4', 56000, 'Image/paket.png', 'KAT005', 'PR002', 1),
-('PK011', 'Coba', 10000, 'Image/paket.png', 'KAT001', '', 1);
+('PK001', 'Steak', 50000, 'Image/beef-steak.jpg', 'KAT006', 'PR001', 1),
+('PK002', 'Bubur', 10000, 'Image/pkt-b.jpg', 'KAT004', '', 1),
+('PK003', 'Siang', 20000, 'Image/nasi-ayam-hemat.jpg', 'KAT001', '', 1),
+('PK004', 'Agep Murmer', 15000, 'Image/aybak.jpg', 'KAT005', '', 1),
+('PK005', 'Namikun', 25000, 'Image/pkt-nasi-kuning-ayam-goreng-suwir.jpg', 'KAT003', '', 1),
+('PK006', 'Mie-Aygep', 22000, 'Image/mie.jpg', 'KAT005', '', 1),
+('PK007', 'Ayam Kremes', 25000, 'Image/nasi-kotak-ayam-kremes.jpg', 'KAT005', '', 1),
+('PK008', 'Nasgor', 12000, 'Image/nasgor2.jpg', 'KAT002', '', 1);
 
 -- --------------------------------------------------------
 
@@ -272,8 +248,22 @@ CREATE TABLE `paket_menu` (
 --
 
 INSERT INTO `paket_menu` (`id_paket`, `id_menu`) VALUES
-('PK011', 'MEN002'),
-('PK011', 'MEN004');
+('PK001', 'MEN003'),
+('PK001', 'MEN008'),
+('PK002', 'MEN011'),
+('PK002', 'MEN012'),
+('PK003', 'MEN002'),
+('PK003', 'MEN007'),
+('PK004', 'MEN006'),
+('PK004', 'MEN008'),
+('PK005', 'MEN005'),
+('PK005', 'MEN009'),
+('PK006', 'MEN005'),
+('PK006', 'MEN006'),
+('PK007', 'MEN002'),
+('PK007', 'MEN008'),
+('PK008', 'MEN001'),
+('PK008', 'MEN007');
 
 -- --------------------------------------------------------
 
@@ -328,13 +318,13 @@ CREATE TABLE `promo` (
 --
 
 INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `gambar_promo`, `detail_promo`, `jenis_promo`, `status_promo`) VALUES
-('PR001', 'Hemat 1', 25000, '2020-04-01', '2020-06-30', 'PrImage/ayam-bakar-dengan-es.jpg', 'enak', 'H', 1),
-('PR002', 'Hemat 2', 24000, '2020-04-02', '2020-04-30', 'PrImage/download.png', 'enak', 'H', 0),
+('PR001', 'Hemat 1', 25000, '2020-04-01', '2020-05-20', 'PrImage/ayam-bakar-dengan-es.jpg', 'enak', 'H', 1),
+('PR002', 'Hemat 2', 24000, '2020-04-02', '2020-05-20', 'PrImage/download.png', 'enak', 'H', 0),
 ('PR003', 'Beef Time', 85000, '2020-04-08', '2020-04-23', 'PrImage/16214324-beef-steak-on-a-wooden-table.jpg', 'enak', 'M', 1),
 ('PR004', 'Ramadhan Hemat', 15000, '2020-04-01', '2020-04-30', 'PrImage/ketupat-dan-opor-ayam-foto-resep-utama.jpg', 'enak', 'HR', 1),
 ('PR005', 'Es Ceria', 50000, '2020-04-09', '2020-04-11', 'PrImage/easiest-ever-fruit-ice-cream-ghk-1532637317.jpg', 'enak', 'M', 1),
 ('PR006', 'Hari Raya Penuh berkah', 2000000, '2020-05-11', '2020-05-23', 'PrImage/LennyFace.jpg', 'Promo Ini sangat bagus dan hebat', 'HR', 0),
-('PR007', 'Promo Enak', 10000, '2020-05-28', '2020-05-31', '', 'lalala', 'H', 1);
+('PR007', 'Promo Enak', 10000, '2020-05-28', '2020-05-31', 'PrImage/promoenak.jpg', 'lalala', 'H', 1);
 
 -- --------------------------------------------------------
 
@@ -396,6 +386,12 @@ ALTER TABLE `paket`
 --
 ALTER TABLE `paket_menu`
   ADD PRIMARY KEY (`id_paket`,`id_menu`);
+
+--
+-- Indeks untuk tabel `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`id_pegawai`);
 
 --
 -- Indeks untuk tabel `promo`

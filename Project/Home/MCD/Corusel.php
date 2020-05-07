@@ -7,7 +7,13 @@
         </ol>
         <div class='carousel-inner'>
         <?php
-        $menu=mysqli_query($conn,'SELECT * from promo where status_promo = 1 order by 1 desc limit 2');
+        $datenow = date('Y-m-d');
+        $monthnow = date('m');
+        $query = "SELECT * from promo where periode_akhir >= '$datenow' AND periode_akhir like '%$monthnow%' AND status_promo = 1 ORDER BY RAND() LIMIT 2";
+        $menu=mysqli_query($conn,$query);
+        echo $query;
+        $row = mysqli_num_rows($menu);
+        if($row > 0){
         $ctr=0;
         foreach ($menu as $key => $value) {
             if($ctr==0){
@@ -24,6 +30,9 @@
                     echo "</a>";
                 echo "</div>";
             }
+        }
+        }else{
+            echo "Kosong";
         }
         ?>
         </div>
