@@ -1,18 +1,12 @@
+<!DOCTYPE html>
 <?php 
-include('Mcd/title.php');
-include("../config.php");
-include('Mcd/header.php');
-require_once("../Source.php");
+    include("../config.php");
+    include("Mcd/title.php");
+	include("../Source.php");
+	include("Mcd/header.php");
 	// session_destroy();
 ?>
-<style>
-	.btn-kcl{
-		width:40px;
-		height:25px;
-		padding:0px;
-	}
-</style>
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -35,12 +29,18 @@ require_once("../Source.php");
 		<![endif]-->
 
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="assets/ico/favicon.ico">
+	<!-- <link rel="shortcut icon" href="assets/ico/favicon.ico"> -->
 </head>
+<style>
+	.btn-kcl{
+		width:40px;
+		height:25px;
+		padding:0px;
+	}
+</style>
 <body>
-
-
-<div class="container" style="padding-top:50px">
+<?php  ?>
+<div class="container" style="padding-top:80px">
 
 <!-- 
 Body Section 
@@ -103,10 +103,10 @@ Body Section
 		</div>
 	<!-- <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
 	<button class="shopBtn btn-large pull-right" onclick="Pay()"id="pay-button">Pay! <span class="icon-arrow-right"></span></button> -->
-</div>
-</div>
-</div>
-</div>
+	</div>
+	</div>
+	</div>
+	</div>
 
 </div><!-- /container -->
 <hr>
@@ -122,6 +122,10 @@ Body Section
 </html>
 <script>
 	// Get the modal
+	$(document).ready(function () {
+		$("#dropmenu").html(
+			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
+	});
 	var modal = document.getElementById("myModal");
 
 	$('input[type="radio"]').click(function(){
@@ -196,7 +200,7 @@ Body Section
 			}
 		});
 		var login="<?=$_SESSION["login"]?>";
-		alert(login);
+		// alert(login);
 		if(login=="kosong"){
 			window.location.href="Home.php";
 		}

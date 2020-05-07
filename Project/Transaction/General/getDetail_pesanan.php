@@ -74,9 +74,9 @@
                 ?>
                     </div>
                     <div style="margin-left:20px;margin-top:37px;float:left; width:200px;" class="input-group append">
-                    <h4 style="font-size:15pt;"><?= $grandtotal?></h4>
+                    <h4 style="font-size:15pt; width: 110px;"><?= $grandtotal?></h4>
                 <?php
-                echo"            <div style='margin-left: 60px;'><button class='btn btn-danger' style='width:30px; height:30px;' onclick='qtyMenu(\"$value\",3,0)' type='button'><i class='fas fa-trash' style='color: white; margin-left:-5px;'></i></button></div>
+                echo"            <div style='margin-left: 60px; margin-top: -3px;'><button class='btn btn-danger' style='width:30px; height:35px;' onclick='qtyMenu(\"$value\",3,0)' type='button'><i class='fas fa-trash' style='color: white; margin-left:-5px;'></i></button></div>
                 ";
                 ?>
                     </div>

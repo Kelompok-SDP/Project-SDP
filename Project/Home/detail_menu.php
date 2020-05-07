@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 include("../config.php");
+include('Mcd/title.php');
 include('Mcd/header.php');
 $ids = $_GET["id"];
 $tmp = [];
@@ -72,7 +73,7 @@ if($tmp[0]== "MEN"){
 <script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/ec.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/conversion_async.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/analytics.js"></script><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/723821301303563.js" async=""></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/fbevents.js"></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/gtm.js"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>
 
 
-<link rel="stylesheet" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css">
+<!-- <link rel="stylesheet" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css"> -->
         <link rel="dns-prefetch" href="https://https//mcdonalds.co.id/">
             <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

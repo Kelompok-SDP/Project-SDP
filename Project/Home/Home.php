@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-
-<?php include('Mcd/title.php');
-include("../config.php");
+<?php 
+    include('Mcd/title.php');
+    include("../config.php");
+    include('Mcd/header.php');
+    include('Mcd/corusel.php');
 //session_start();
 ?>
+
 <body>
-<?php include('Mcd/header.php')?>
-<?php include('Mcd/corusel.php');?>
     <!-- Google Tag Manager (noscript) -->
     
     <!-- End Google Tag Manager (noscript) -->
@@ -103,6 +104,15 @@ include("../config.php");
     include('ChatTawkTo.php');
 ?>
     
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
+<script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
+
+
+<!-- <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script> -->
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
         $(".loader").fadeOut('slow');

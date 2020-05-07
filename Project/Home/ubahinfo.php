@@ -1,4 +1,3 @@
-
 <style>
     .bx:hover{
         background-color:#BEBEBE;
@@ -255,6 +254,8 @@
 <script>
    $( document ).ready(function() {
         history();
+        $("#dropmenu").html(
+			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
     });
     function kirimup(){
         var nama = document.getElementById('fullname').value;
