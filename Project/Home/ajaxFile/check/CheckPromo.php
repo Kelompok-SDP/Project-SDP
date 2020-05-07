@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    // session_start();
     include("../../../config.php");
     $getNama=$_POST["nama"];
     $date_now= date("Y-m-d");

@@ -40,7 +40,7 @@ require_once("../Source.php");
 <body>
 
 
-<div class="container" style="padding-top:50px">
+<div class="container" style="padding-top:80px">
 
 <!-- 
 Body Section 
@@ -53,8 +53,8 @@ Body Section
 	<hr class="soften"/>	
 	<div class="col-12 elevation-2" style="padding: 10px;">
 			<label style="min-width:159px"> VOUCHER Code: </label> 
-			<input type="text" class="input-medium" placeholder="Code" id="vcode">
-			<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" style="margin-top: -5px;">ADD</button><br>
+			<input type="text" class="input-medium" placeholder="Code"  id="kode">
+			<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="CheckPromo()" style="margin-top: -5px;">ADD</button><br>
 			<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
 	</div>
 	<br>
@@ -169,7 +169,7 @@ Body Section
 	start();
 	ubahradio(0);
 	$("#subvcode").click(function () {
-		var vkode = $("#vcode").val();
+		var vkode = $("#kode").val();
 		if(vkode == ""){
 			$("#err").fadeIn();
     		$("#err").fadeIn("slow");
@@ -177,7 +177,7 @@ Body Section
 		}
 	});
 
-	$("#vcode").focus(function () {
+	$("#kode").focus(function () {
 		$("#err").fadeOut();
 		$("#err").fadeOut("slow");
 		$("#err").fadeOut(3000);
@@ -196,7 +196,6 @@ Body Section
 			}
 		});
 		var login="<?=$_SESSION["login"]?>";
-		alert(login);
 		if(login=="kosong"){
 			window.location.href="Home.php";
 		}
@@ -338,12 +337,20 @@ Body Section
 	}
 	function getTimeNow(){
 		var date = new Date();
-		var currentTime = date.getHours()+2 + ':' + date.getMinutes();
-
+		menit=date.getMinutes();
+		jam=date.getHours()+2;
+		if(date.getMinutes()<10){
+			menit="0"+date.getMinutes();
+		}
+		if(date.getHours()+2<10){
+			jam="0"+(date.getHours()+2);
+		}
+		var currentTime = jam + ':' + menit;
 		document.getElementById('time_res').value = currentTime;
 	}
 	function Pay(){
 		ctr=0;
+		var jenis_pembayaran=$("#jenis_pembayaran").val();
 		var jumlah_meja="<?= $_SESSION["ctr"]?>";
 		if(document.getElementById("radioPrimary1").checked ){
 			open(2);
@@ -353,40 +360,41 @@ Body Section
 			year = date.getFullYear();
 			date=[day, month, year].join('/');
 			time=$("#time_res").val();
-			$.ajax({
-				type: "post",
-				url: "ajaxFile/check/check_valid_day.php",
-				data: {
-					tanggal:date
-				},
-				success: function (response) {
-					if(response=="berhasil"){
-						$.ajax({
-							type: "post",
-							url: "ajaxFile/check/check_valid_time.php",
-							data: {
-								time:time
-							},
-							success: function (response) {
-								if(response=="berhasil" ){
-									if(jumlah_meja>0){
-										window.open("../iplaymu/ipay/index.php");
+			if(date!="NaN/NaN/NaN"){
+				$.ajax({
+					type: "post",
+					url: "ajaxFile/check/check_valid_day.php",
+					data: {
+						tanggal:date
+					},
+					success: function (response) {
+						if(response=="berhasil"){
+							$.ajax({
+								type: "post",
+								url: "ajaxFile/check/check_valid_time.php",
+								data: {
+									time:time
+								},
+								success: function (response) {
+									if(response=="berhasil" ){
+										if(jumlah_meja>0){
+											if(jenis_pembayaran=="cash"){
+												window.location.href="window_perantara.php";
+											}
+											bayar();
+										}else{
+											alert("Pilih Kursi");
+										}
 									}else{
-										alert("Pilih Kursi");
+										alert(response);
 									}
-								}else{
-									alert(response);
 								}
-							}
-						});
-					}else{
-						alert(response);
+							});
+						}else{
+							alert(response);
+						}
 					}
-				}
-			});
-			if(ctr==2&&jumlah_meja>0){
-				window.open("../iplaymu/ipay/index.php");
-				bayar();
+				});
 			}
 		}else if(document.getElementById("radioPrimary2").checked ){
 			time=$("#time_res").val();
@@ -398,7 +406,9 @@ Body Section
 				},
 				success: function (response) {
 					if(response=="berhasil"){
-						window.open("../iplaymu/ipay/index.php");
+						if(jenis_pembayaran=="cash"){
+							window.location.href="window_perantara.php";
+						}
 						bayar();
 					}else{
 						alert(response);
@@ -417,7 +427,9 @@ Body Section
 				success: function (response) {
 					if(response=="berhasil"){
 						if(alamat!=""){
-							window.open("../iplaymu/ipay/index.php");
+							if(jenis_pembayaran=="cash"){
+								window.location.href="window_perantara.php";
+							}
 							bayar();
 						}
 					}else{
@@ -428,7 +440,9 @@ Body Section
 		}else if(document.getElementById("radioPrimary4").checked){
 			open(2);
 			if(jumlah_meja>0){
-				window.open("../iplaymu/ipay/index.php");
+				if(jenis_pembayaran=="cash"){
+					window.location.href="window_perantara.php";
+				}
 				bayar();
 			}else{
 				alert("Pilih Meja ");
@@ -437,6 +451,7 @@ Body Section
 		
 	}
 	function bayar(){
+		var jenis_pembayaran=$("#jenis_pembayaran").val();
 		if(document.getElementById("radioPrimary1").checked ){
 			var alamat="";
 			var time=$("#time_res").val();
@@ -459,6 +474,7 @@ Body Section
 			var date="";
 		}
 		// alert(alamat+ " "+ time+" "+keterangan_meja+" "+date);
+		alert(jenis_pembayaran);
 		$.ajax({
 			type: "post",
 			url: "ajaxFile/transaksi.php",
@@ -466,10 +482,11 @@ Body Section
 				alamat:alamat,
 				time:time,
 				keterangan_meja:keterangan_meja,
-				date:date
+				date:date,
+				method:jenis_pembayaran
 			},
 			success: function (response) {
-				
+				alert(response);
 			}
 		});
 	}
