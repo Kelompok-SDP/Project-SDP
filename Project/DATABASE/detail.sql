@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2020 pada 11.33
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Generation Time: May 07, 2020 at 10:35 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -27,7 +27,7 @@ USE `detail`;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `daerah`
+-- Table structure for table `daerah`
 --
 
 DROP TABLE IF EXISTS `daerah`;
@@ -37,7 +37,7 @@ CREATE TABLE `daerah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `daerah`
+-- Dumping data for table `daerah`
 --
 
 INSERT INTO `daerah` (`kode_daerah`, `nama_daerah`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `daerah` (`kode_daerah`, `nama_daerah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jabatan`
+-- Table structure for table `jabatan`
 --
 
 DROP TABLE IF EXISTS `jabatan`;
@@ -58,7 +58,7 @@ CREATE TABLE `jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jabatan`
+-- Dumping data for table `jabatan`
 --
 
 INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kota`
+-- Table structure for table `kota`
 --
 
 DROP TABLE IF EXISTS `kota`;
@@ -79,7 +79,7 @@ CREATE TABLE `kota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kota`
+-- Dumping data for table `kota`
 --
 
 INSERT INTO `kota` (`kode_kota`, `nama_kota`, `kode_daerah`) VALUES
@@ -102,31 +102,7 @@ INSERT INTO `kota` (`kode_kota`, `nama_kota`, `kode_daerah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kritik`
---
-
-DROP TABLE IF EXISTS `kritik`;
-CREATE TABLE `kritik` (
-  `id_saran` varchar(10) NOT NULL,
-  `isi_saran` varchar(500) DEFAULT NULL,
-  `tanggal` date NOT NULL,
-  `email_pelanggan` varchar(100) DEFAULT NULL,
-  `rating` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `kritik`
---
-
-INSERT INTO `kritik` (`id_saran`, `isi_saran`, `tanggal`, `email_pelanggan`, `rating`) VALUES
-('KR00003', '', '2020-05-03', '', 'puas'),
-('KR00004', 'wawa', '2020-05-03', '', 'tidak puas'),
-('KR00005', '', '2020-05-03', '', 'tidak puas');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `meja`
+-- Table structure for table `meja`
 --
 
 DROP TABLE IF EXISTS `meja`;
@@ -134,59 +110,55 @@ CREATE TABLE `meja` (
   `id_meja` int(11) NOT NULL,
   `baris` int(11) NOT NULL,
   `kolom` int(11) NOT NULL,
-  `status` varchar(3) NOT NULL
+  `status` varchar(3) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `time` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `meja`
+-- Dumping data for table `meja`
 --
 
-INSERT INTO `meja` (`id_meja`, `baris`, `kolom`, `status`) VALUES
-(1, 1, 1, '1'),
-(2, 2, 1, '1'),
-(3, 5, 1, '1'),
-(4, 6, 1, '1'),
-(5, 1, 4, '1'),
-(6, 2, 4, '1'),
-(7, 5, 4, '1'),
-(8, 6, 4, '1'),
-(9, 1, 2, '1'),
-(10, 3, 2, '1'),
-(11, 4, 2, '1'),
-(12, 6, 2, '1'),
-(13, 1, 3, '1'),
-(14, 3, 3, '1'),
-(15, 4, 3, '1'),
-(16, 6, 3, '1');
+INSERT INTO `meja` (`id_meja`, `baris`, `kolom`, `status`, `date`, `time`) VALUES
+(1, 1, 1, '2', '', ''),
+(2, 2, 1, '2', '', ''),
+(3, 5, 1, '2', '', ''),
+(4, 6, 1, '2', '', ''),
+(5, 1, 4, '1', '', ''),
+(6, 2, 4, '1', '', ''),
+(7, 5, 4, '1', '', ''),
+(8, 6, 4, '1', '', ''),
+(9, 1, 2, '2', '', ''),
+(10, 3, 2, '2', '', ''),
+(11, 4, 2, '2', '', ''),
+(12, 6, 2, '2', '', ''),
+(13, 1, 3, '2', '', ''),
+(14, 3, 3, '2', '', ''),
+(15, 4, 3, '2', '', ''),
+(16, 6, 3, '1', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `jabatan`
+-- Indexes for table `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
 
 --
--- Indeks untuk tabel `kritik`
---
-ALTER TABLE `kritik`
-  ADD PRIMARY KEY (`id_saran`);
-
---
--- Indeks untuk tabel `meja`
+-- Indexes for table `meja`
 --
 ALTER TABLE `meja`
   ADD PRIMARY KEY (`id_meja`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `meja`
+-- AUTO_INCREMENT for table `meja`
 --
 ALTER TABLE `meja`
   MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;

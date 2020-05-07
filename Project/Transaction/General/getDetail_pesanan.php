@@ -89,6 +89,7 @@
     $_SESSION["harga_akhir_Pesanan"]=$gt+15000-$promo;
     $Tampgt=$gt;
     $gt="Rp " . number_format($gt,2,',','.');
+    $gtt="Rp " . number_format($Tampgt,2,',','.');
     $ongkir=$_SESSION["ongkir"];
     $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
     $promoTampil="Rp " . number_format($promo,2,',','.');
@@ -107,13 +108,13 @@
             <div class="row" style="padding:15px;">
                 <div class="col-8">
                     <p> Subtotal products: </p>
-                    <p> Discount products: </p> 
+                    <!-- <p> Discount products: </p>  -->
                     <p> Promo products:	</p>
                     <p> Shipping cost: </p>
                 </div>  
                 <div class="col-4">
-                    <p><?= $gt ?></p>
-                    <p>Rp 0,00 </p>
+                    <p><?= $gtt ?></p>
+                    <!-- <p>Rp 0,00 </p> -->
                     <p><?= $promoTampil ?></p>
                     <p><?=$ongkirTampil ?></p>
                 </div>
@@ -126,6 +127,10 @@
                 <div class="col-4">
                     <p style="font-weight: bold;"><?= $gt ?></p>
                 </div>
+                <select name="" id="jenis_pembayaran">
+                    <option value="cash">Payment</option>
+                    <option value="poin">Poin Member</option>
+                </select>
                     <button type="submit" class="btn btn-block btn-primary" id="Submit" name="submit" onclick="Pay()">Pay! <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 
             </div>
