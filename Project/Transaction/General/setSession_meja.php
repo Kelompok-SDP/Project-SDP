@@ -23,6 +23,5 @@
         $_SESSION["isi_kursi"]=$isi_kursi;
         $ctr++;
         $_SESSION["ctr"]=$ctr;
-        echo $_SESSION["ctr"];
     }
 ?>

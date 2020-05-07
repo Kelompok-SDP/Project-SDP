@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
-session_start();
 include("../config.php");
+include('Mcd/header.php');
 $ids = $_GET["id"];
 $tmp = [];
 $tmp = explode('0',$ids,2);
@@ -83,7 +83,6 @@ if($tmp[0]== "MEN"){
         <!-- End Google Tag Manager -->
     <link rel="stylesheet" type="text/css" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/a"></script></head>
 
-    <?php include('Mcd/header.php'); ?>
 <body style='margin-top:5.5%'>
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">

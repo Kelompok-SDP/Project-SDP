@@ -3,3 +3,8 @@
 <input type="time" id="time_res" name="appt" min="10:00" max="20:00" required><br>
 <div id='keterangan_meja'></div><br>
 <button onclick="tomeja()">Pesan Kursi</button>
+<?php
+    session_start();
+    $_SESSION["ongkir"]=0;
+    $_SESSION["jenis"]="Reservasi"
+?>

@@ -11,15 +11,12 @@
 
         if($ctr<count($arrMenu)-1){
             $jumlah=$_SESSION["pilih_menu"][$value];
-            print_r($_SESSION["pilih_menu"]);
-            echo $value;
             $nama = "";
             $deskripsi = "";
             $gambar = "";
             if(substr($value,0,2)=="ME"){
                 $query = "select *  from menu where id_menu = '$value'";
                 $menu = mysqli_fetch_assoc(mysqli_query($conn,$query));
-                echo "a";
                 $nama = $menu["nama_menu"];
                 $deskripsi = $menu["deskripsi"];
                 $gambar = $menu['gambar'];
@@ -34,7 +31,6 @@
                 $harga = $menu['harga_paket'];
                 $gambar = "../Master/Menu/".$gambar;
 
-                echo "b";
                 $deskripsi= "paket ini memiliki menu antara lain : <br>";
                 $query = "select * from paket_menu  where id_paket = '$value'";
                 $menu = mysqli_query($conn,$query);
@@ -51,7 +47,6 @@
             $total="Rp " . number_format($harga,2,',','.');
             $grandtotal="Rp " . number_format($harga*$jumlah,2,',','.');
             $gt+=$harga*$jumlah;
-            echo $nama;
               echo"<tr>
             ";echo"    <td><img width='100' src='$gambar' alt=''></td>
             ";echo"    <td>$nama <br>$deskripsi</td>
@@ -71,21 +66,35 @@
         }
         $ctr++;
     }
-    $_SESSION["harga_akhir_Pesanan"]=$gt+15000;
+    $promo=$_SESSION["promo"];
+    $_SESSION["harga_akhir_Pesanan"]=$gt+15000-$promo;
+    $Tampgt=$gt;
     $gt="Rp " . number_format($gt,2,',','.');
+    $ongkir=$_SESSION["ongkir"];
+    $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
+    $promoTampil="Rp " . number_format($promo,2,',','.');
       echo"<tr>
     ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
     ";echo"    <td>$gt </td>
     ";echo"</tr>
     ";echo"<tr>
     ";echo"    <td colspan='4' class='alignR'>Discount products:	</td>
-    ";echo"    <td> Rp 0,00</td>
+    ";echo"    <td>$promoTampil</td>
     ";echo"</tr>
     ";echo"<tr>
-    ";echo"    <td colspan='4' class='alignR'>Promo products:	</td>
-    ";echo"    <td> Rp 0,00</td>
+    ";echo"    <td colspan='4' class='alignR'>Ongkos Kirim:	</td>
+    ";echo"    <td> $ongkirTampil</td>
     ";echo"</tr>
-    ";echo"<tr>
+    ";
+   
+    if($Tampgt-$promo+$ongkir<=0){
+        $_SESSION["harga_akhir_Pesanan"]=0;
+        $gt="Rp " . number_format(0,2,',','.');
+    }else{
+        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$promo;
+        $gt="Rp " . number_format($Tampgt-$promo,2,',','.');
+    }
+    echo"<tr>
     ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
     ";echo"    <td class='label label-primary' style='font-weight:bold'>$gt </td>
     ";echo"</tr>";    

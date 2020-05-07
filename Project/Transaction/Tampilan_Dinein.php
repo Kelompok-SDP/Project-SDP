@@ -179,8 +179,6 @@ if(isset($_SESSION["isi_kursi"])==false){
 
 <script>
     callMeja();
-    // callKategori();
-    // callDetail();
     function callMeja(){
         $.ajax({
             method: "post",
@@ -190,28 +188,6 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    // function callKategori(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/getKategori.php",
-    //         success: function (response) {
-    //             $(".kategori").html(response);
-    //             callMenu("KAT001");
-    //         }
-    //     });
-    // }
-    // function callMenu(kategori){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/getMenu.php",
-    //         data:{
-    //             kategori:kategori
-    //         },
-    //         success: function (response) {
-    //             $(".menu").html(response);
-    //         }
-    //     });
-    // }
     function callDetail(){
         $.ajax({
             method: "post",
@@ -221,73 +197,16 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    // function getHarga(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/getHarga.php",
-    //         success: function (response) {
-    //             $(".harga").html(response);
-    //         }
-    //     });
-    // }
-    // function ubahJumlah(nama,ctr){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/setJumlah_pesanan.php",
-    //         data: {
-    //             nama:nama,
-    //             jumlah:$("#inp"+ctr).val()
-    //         },
-    //         success: function (response) {
-    //             getHarga();
-    //             getDetail_menu();
-    //         }
-    //     });
-    // }
     function ubahMeja(){
         $.ajax({
             method: "post",
             url: "General/setMeja_pesan.php",
             success: function (response) {
                 callMeja();
-                callDetail();
                 window.location.assign("../home/cart.php");
             }
         });
     }
-    // function ambilMenu(nama){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/setSession_menu.php",
-    //         data:{
-    //             nama_menu:nama
-    //         },
-    //         success: function (response) {
-    //             getDetail_menu();
-    //         }
-    //     });
-    // }
-    // function pesanMakanan(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/doTransaksi.php",
-    //         success: function (response) {
-    //             callMeja();
-    //             getDetail_menu();
-    //             callDetail();
-    //         }
-    //     });
-    // }
-    // function getDetail_menu(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/getDetail_pesanan.php",
-    //         success: function (response) {
-    //             $(".detail").html(response);
-    //             getHarga();
-    //         }
-    //     });
-    // }
     function pesanDinein(ke){
         if($("#meja"+ke).hasClass("biru")){
             $("#meja"+ke).addClass("hijau");

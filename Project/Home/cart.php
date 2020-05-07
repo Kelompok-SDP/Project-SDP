@@ -1,14 +1,7 @@
 <?php 
-session_start();
 include('Mcd/title.php');
 include("../config.php");
 include('Mcd/header.php');
-	if(isset($_SESSION["nama_menu"])==false){
-		$_SESSION["isi_kursi"]=" ";
-		$_SESSION["ctr"]="";
-		$_SESSION["nama_menu"]="";
-		$_SESSION["pilih_menu"]= array();
-	}
 	// session_destroy();
 ?>
 <style>
@@ -84,8 +77,8 @@ Body Section
 				<tr>
 					<td> 
 						<label style="min-width:159px"> VOUCHERS Code: </label> 
-						<input type="text" class="input-medium" placeholder="CODE">
-						<button type="submit" class="shopBtn"> ADD</button>
+						<input type="text" class="input-medium" id="kode"placeholder="CODE">
+						<button class="shopBtn" onclick="CheckPromo()"> ADD</button>
 					</td>
 				</tr>
 			</tbody>
@@ -146,6 +139,11 @@ Body Section
 				getTimeNow();
 			}
 		});
+		var login="<?=$_SESSION["login"]?>";
+		alert(login);
+		if(login=="kosong"){
+			window.location.href="Home.php";
+		}
 	}
 	function inisialisasi(){
 		if(document.getElementById("Reservasi").checked ){
@@ -190,6 +188,7 @@ Body Section
 				}
 			});
 		}
+		getDetailPesanan();
 	}
 	function getDetail_kursi(){
 		$.ajax({
@@ -242,22 +241,6 @@ Body Section
 			}
 		});
 	}
-	function getValidate_time(time){
-		$.ajax({
-			type: "post",
-			url: "ajaxFile/check/check_valid_time.php",
-			data: {
-				time:time
-			},
-			success: function (response) {
-				if(response=="berhasil"){
-					return 1;
-				}else{
-					alert(response);
-				}
-			}
-		});
-	}
 	function getDateNow(){
 		var date = new Date();
 		var currentDate = date.toISOString().slice(0,10);
@@ -269,22 +252,6 @@ Body Section
 		var currentTime = date.getHours()+2 + ':' + date.getMinutes();
 
 		document.getElementById('time_res').value = currentTime;
-	}
-	function getValidate_date(date){
-		$.ajax({
-			type: "post",
-			url: "ajaxFile/check/check_valid_day.php",
-			data: {
-				tanggal:date
-			},
-			success: function (response) {
-				if(response=="berhasil"){
-					ctr++;
-				}else{
-					alert(response);
-				}
-			}
-		});
 	}
 	function Pay(){
 		ctr=0;
@@ -311,8 +278,12 @@ Body Section
 								time:time
 							},
 							success: function (response) {
-								if(response=="berhasil" && jumlah_meja>0){
-									window.open("../iplaymu/ipay/index.php");
+								if(response=="berhasil" ){
+									if(jumlah_meja>0){
+										window.open("../iplaymu/ipay/index.php");
+									}else{
+										alert("Pilih Kursi");
+									}
 								}else{
 									alert(response);
 								}
@@ -325,6 +296,7 @@ Body Section
 			});
 			if(ctr==2&&jumlah_meja>0){
 				window.open("../iplaymu/ipay/index.php");
+				bayar();
 			}
 		}else if(document.getElementById("Take").checked ){
 			time=$("#time_res").val();
@@ -337,6 +309,7 @@ Body Section
 				success: function (response) {
 					if(response=="berhasil"){
 						window.open("../iplaymu/ipay/index.php");
+						bayar();
 					}else{
 						alert(response);
 					}
@@ -355,6 +328,7 @@ Body Section
 					if(response=="berhasil"){
 						if(alamat!=""){
 							window.open("../iplaymu/ipay/index.php");
+							bayar();
 						}
 					}else{
 						alert(response);
@@ -364,9 +338,61 @@ Body Section
 		}else if(document.getElementById("Dine").checked ){
 			if(jumlah_meja>0){
 				window.open("../iplaymu/ipay/index.php");
+				bayar();
 			}else{
 				alert("Pilih Meja ");
 			}
 		}
+	}
+	function bayar(){
+		if(document.getElementById("Reservasi").checked ){
+			var alamat="";
+			var time=$("#time_res").val();
+			var keterangan_meja="ada";
+			var date=$("#date_res").val();
+		}else if(document.getElementById("Take").checked ){
+			var alamat="";
+			var time=$("#time_res").val();
+			var keterangan_meja="";
+			var date="";
+		}else if(document.getElementById("Delivery").checked ){
+			var alamat=$("#alamat").val();
+			var time=$("#time_res").val();
+			var keterangan_meja="";
+			var date="";
+		}else if(document.getElementById("Dine").checked ){
+			var alamat="";
+			var time="";
+			var keterangan_meja="ada";
+			var date="";
+		}
+		// alert(alamat+ " "+ time+" "+keterangan_meja+" "+date);
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/transaksi.php",
+			data:{
+				alamat:alamat,
+				time:time,
+				keterangan_meja:keterangan_meja,
+				date:date
+			},
+			success: function (response) {
+				
+			}
+		});
+	}
+	function CheckPromo(){
+		var kode=$("#kode").val();
+		alert(kode);
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/check/CheckPromo.php",
+			data: {
+				nama:kode
+			},
+			success: function (response) {
+				alert(response);
+			}
+		});
 	}
 </script>
