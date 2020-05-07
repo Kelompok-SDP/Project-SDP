@@ -1,6 +1,6 @@
 <?php
-    session_start();
-  //  require_once("../config.php");
+   // session_start();
+   require_once("../config.php");
     if(isset($_SESSION["nama_menu"])==false){
         $_SESSION["isi_kursi"]=" ";
         $_SESSION["ctr"]=0;

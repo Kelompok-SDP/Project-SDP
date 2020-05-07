@@ -76,14 +76,15 @@
 </style>
 <?php
    // session_start();
+  
     require_once("../config.php");
-    require_once("../Source.php");
+   
     $id= $_GET['id'];
     if($id== "null"){
         header("location: ../login_register/login.php");
     }
-
-    require_once("MCD/title.php"); 
+    require_once("MCD/title.php");
+    require_once("../Source.php");
     $nama_full = "";
     $email = "";
     $alamat = "";
