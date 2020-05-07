@@ -92,19 +92,6 @@
     $ongkir=$_SESSION["ongkir"];
     $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
     $promoTampil="Rp " . number_format($promo,2,',','.');
-      echo"<tr>
-    ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
-    ";echo"    <td>$gt </td>
-    ";echo"</tr>
-    ";echo"<tr>
-    ";echo"    <td colspan='4' class='alignR'>Discount products:	</td>
-    ";echo"    <td>$promoTampil</td>
-    ";echo"</tr>
-    ";echo"<tr>
-    ";echo"    <td colspan='4' class='alignR'>Ongkos Kirim:	</td>
-    ";echo"    <td> $ongkirTampil</td>
-    ";echo"</tr>
-    ";
    
     if($Tampgt-$promo+$ongkir<=0){
         $_SESSION["harga_akhir_Pesanan"]=0;
@@ -113,11 +100,6 @@
         $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$promo;
         $gt="Rp " . number_format($Tampgt-$promo,2,',','.');
     }
-    echo"<tr>
-    ";echo"    <td colspan='4' class='alignR'>Total products:	</td>
-    ";echo"    <td class='label label-primary' style='font-weight:bold'>$gt </td>
-    ";echo"</tr>";    
-    
 
 ?>
             </div>
@@ -127,11 +109,13 @@
                     <p> Subtotal products: </p>
                     <p> Discount products: </p> 
                     <p> Promo products:	</p>
+                    <p> Shipping cost: </p>
                 </div>  
                 <div class="col-4">
                     <p><?= $gt ?></p>
                     <p>Rp 0,00 </p>
-                    <p>Rp 0,00 </p>
+                    <p><?= $promoTampil ?></p>
+                    <p><?=$ongkirTampil ?></p>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -148,21 +132,5 @@
             </div>
         
     </div>
-            <!-- //   echo"<tr>
-            // ";echo"    <td><img width='100' src='$gambar' alt=''></td>
-            // ";echo"    <td>$nama <br>$deskripsi</td>
-            // ";echo"    <td>$total</td>
-            // ";echo"    <td>
-            // ";echo"        
-            // ";echo"        <div class='input-append' >
-            // <input class='span1' onkeypress='NumberOnly(event)' onchange='qtyMenu(\"$value\",4,this.value)' style='max-width:34px' placeholder='1' value='$jumlah' size='16' type='text'>
-            // ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",2,0)' type='button'>-</button>
-            // ";echo"            <button class='btn btn-mini btn-kcl btn-secondary' onclick='qtyMenu(\"$value\",1,0)' type='button'>+</button>
-            // ";echo"            <button class='btn btn-mini btn-kcl btn-danger'onclick='qtyMenu(\"$value\",3,0)' type='button'>
-            // ";echo"            <span >X</span></button>
-            // ";echo"        </div>
-            // ";echo"        </td>
-            // ";echo"    <td>$grandtotal</td>
-            // ";echo"</tr>"; -->
 
 

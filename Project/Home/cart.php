@@ -437,22 +437,22 @@ Body Section
 		
 	}
 	function bayar(){
-		if(document.getElementById("Reservasi").checked ){
+		if(document.getElementById("radioPrimary1").checked ){
 			var alamat="";
 			var time=$("#time_res").val();
 			var keterangan_meja="ada";
 			var date=$("#date_res").val();
-		}else if(document.getElementById("Take").checked ){
+		}else if(document.getElementById("radioPrimary2").checked ){
 			var alamat="";
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
-		}else if(document.getElementById("Delivery").checked ){
+		}else if(document.getElementById("radioPrimary3").checked ){
 			var alamat=$("#alamat").val();
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
-		}else if(document.getElementById("Dine").checked ){
+		}else if(document.getElementById("radioPrimary4").checked ){
 			var alamat="";
 			var time="";
 			var keterangan_meja="ada";
