@@ -46,7 +46,7 @@
             <li><a href="https://mcdonalds.co.id/menu" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
         </ul>
     </div>
-
+<input type="hidden" id="custid" value="<?=$id?>" >
 <nav class="navbar navbar-mcd navbar-expand-md fixed-top light">
     <div class="container">
         <a class="navbar-brand animated fadeInDown delayp4" href="Home.php">
@@ -122,7 +122,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $hr; ?>">
+                    <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>
                     </a>
                 </li>

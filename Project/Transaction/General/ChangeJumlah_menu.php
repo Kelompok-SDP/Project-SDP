@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");    
-    session_start();
+    //session_start();
     $nama=$_POST["nama"];
     $mode=$_POST["mode"];
     $qty=$_POST["qty"];

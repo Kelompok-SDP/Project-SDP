@@ -2,6 +2,7 @@
 include('Mcd/title.php');
 include("../config.php");
 include('Mcd/header.php');
+require_once("../Source.php");
 	// session_destroy();
 ?>
 <style>
@@ -34,86 +35,82 @@ include('Mcd/header.php');
 		<![endif]-->
 
 	<!-- Favicons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-  </head>
+	<link rel="shortcut icon" href="assets/ico/favicon.ico">
+</head>
 <body>
 
 
-<div class="container" style="padding-top:80px">
+<div class="container" style="padding-top:50px">
 
 <!-- 
 Body Section 
 -->
 	<div class="row">
+	<div class="col-12">
 	<div class="span12">
-    <ul class="breadcrumb">
-		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
-		<li class="active">Check Out</li>
-    </ul>
 	<div class="well well-small">
 		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
 	<hr class="soften"/>	
+	<div class="col-12 elevation-2" style="padding: 10px;">
+			<label style="min-width:159px"> VOUCHER Code: </label> 
+			<input type="text" class="input-medium" placeholder="Code" id="vcode">
+			<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" style="margin-top: -5px;">ADD</button><br>
+			<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
+	</div>
+	<br>
+	<div class="col-12 elevation-2" style="padding: 10px;">
+		<div class="icheck-primary d-inline">
+			<input type="radio" id="radioPrimary1" name="r1">
+			<label for="radioPrimary1">Reservasi
+			</label>
+		</div>
+		<div class="icheck-primary d-inline" style="margin-left: 100px;">
+			<input type="radio" id="radioPrimary2" name="r1">
+			<label for="radioPrimary2">Take Away
+			</label>
+		</div>
+		<div class="icheck-primary d-inline" style="margin-left: 100px;">
+			<input type="radio" id="radioPrimary3" name="r1">
+			<label for="radioPrimary3">Delivery
+			</label>
+		</div>
+		<div class="icheck-primary d-inline"style="margin-left: 100px;">
+			<input type="radio" id="radioPrimary4" name="r1">
+			<label for="radioPrimary4">Dine In
+			</label>
+		</div>
+	</div>
+	<br>
+	<div id="detailTable"></div>
+	<br/>
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
 
-	<table class="table table-bordered table-condensed">
-			<thead>
-			<tr>
-				<th>Product</th>
-				<th>Description</th>
-				<th>Unit price</th>
-				<th>Qty </th>
-				<th>Total</th>
-			</tr>
-			</thead>
-			<tbody id="detailTable">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+			<h2 id="header"></h2>
+			<span class="close">&times;</span>
+			</div>
+			<div class="modal-body" id="tempat">
 			
-				
-			</tbody>
-		</table>
-		<br/>
-	
-	
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-					<td> 
-						<label style="min-width:159px"> VOUCHERS Code: </label> 
-						<input type="text" class="input-medium" id="kode"placeholder="CODE">
-						<button class="shopBtn" onclick="CheckPromo()"> ADD</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>	
+			</div>
+			<div class="modal-footer">
+			<h3 id="footer"></h3>
+			</div>
+		</div>
 
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-					<td> 
-						<input type="radio" name="radioButton"id="Reservasi" onchange="inisialisasi()"> Reservasi
-					</td>
-					<td> 
-						<input type="radio" name="radioButton"id="Take" onchange="inisialisasi()"> Take Away
-					</td>
-					<td> 
-						<input type="radio" name="radioButton"id="Delivery" onchange="inisialisasi()"> Delivery
-					</td>
-					<td> 
-						<input type="radio" name="radioButton"id="Dine" onchange="inisialisasi()"> Dine In
-					</td>
-				</tr>
-				<tr>
-					<td class="tempat" colspan="4"></td>
-				</tr>
-			</tbody>
-		</table>	
-
-	<a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
-	<button class="shopBtn btn-large pull-right" onclick="Pay()"id="pay-button">Pay! <span class="icon-arrow-right"></span></button>
+		</div>
+	<!-- <a href="products.html" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
+	<button class="shopBtn btn-large pull-right" onclick="Pay()"id="pay-button">Pay! <span class="icon-arrow-right"></span></button> -->
+</div>
 </div>
 </div>
 </div>
 
 </div><!-- /container -->
-
+<hr>
+<?php include('Mcd/footer.php'); ?>
 <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -124,8 +121,67 @@ Body Section
   </body>
 </html>
 <script>
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	$('input[type="radio"]').click(function(){
+		if ($("#radioPrimary1").is(':checked'))
+		{
+			open(1);
+		}
+		else if ($("#radioPrimary2").is(':checked'))
+		{
+			open(1);
+		}
+		else if ($("#radioPrimary3").is(':checked'))
+		{
+			open(1);
+		}
+		else if ($("#radioPrimary4").is(':checked'))
+		{
+			open(1);
+		}
+	});
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	function open(pilihan) {
+		if(pilihan == 1){
+			modal.style.display = "block";
+			inisialisasi();
+		}
+	};
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	modal.style.display = "none";
+	}
+
+	//When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
 	var ctr=0;
+	var pilihan = 0;
 	start();
+	ubahradio(0);
+	$("#subvcode").click(function () {
+		var vkode = $("#vcode").val();
+		if(vkode == ""){
+			$("#err").fadeIn();
+    		$("#err").fadeIn("slow");
+			$("#err").fadeIn(5000);
+		}
+	});
+
+	$("#vcode").focus(function () {
+		$("#err").fadeOut();
+		$("#err").fadeOut("slow");
+		$("#err").fadeOut(3000);
+	});
 	function start(){
 		getDetailPesanan();
 		$("#Reservasi").prop("checked",true);
@@ -145,46 +201,79 @@ Body Section
 			window.location.href="Home.php";
 		}
 	}
+
+	function ubahradio(berubah){
+        $.ajax({
+            url: "ajaxFile/radio_jpemesanan.php?id="+berubah,
+            method: "post",
+			data : {
+				berubah : berubah
+			},
+            success: function (response) {
+                if(response == "Berhasil"){
+                    document.getElementById('radioPrimary1').checked = true;
+                }else if(response == "Gagal"){
+                	document.getElementById('radioPrimary1').checked = false;
+                }else if(response == "Berhasil4"){
+					document.getElementById('radioPrimary4').checked = true;
+				}else if (response == "Gagal4"){
+					document.getElementById('radioPrimary4').checked = false;
+
+				}
+				
+            }
+        });
+    }
 	function inisialisasi(){
-		if(document.getElementById("Reservasi").checked ){
+		if(document.getElementById("radioPrimary1").checked ){
 			$.ajax({
 				method: "post",
 				url: "ajaxFile/getReservasi.php",
 				success: function (response) {
-					$(".tempat").html(response);
-					getDetail_kursi();
-					getDateNow();
-					getTimeNow();
+					$("#header").html("Reservasi");
+					$("#footer").html("Reservasi");
+						$("#tempat").html(response);
+						getDetail_kursi();
+						getDateNow();
+						getTimeNow(); 
+						ubahradio(1);
 				}
 			});
 		}
-		if(document.getElementById("Take").checked ){
+		if(document.getElementById("radioPrimary2").checked ){
 			$.ajax({
 				method: "post",
 				url: "ajaxFile/getTake.php",
 				success: function (response) {
-					$(".tempat").html(response);
+					$("#header").html("Take Away");
+					$("#footer").html("Take Away");
+					$("#tempat").html(response);
 					getTimeNow();
 				}
 			});
 		}
-		if(document.getElementById("Delivery").checked ){
+		if(document.getElementById("radioPrimary3").checked ){
 			$.ajax({
 				method: "post",
 				url: "ajaxFile/getDelivery.php",
 				success: function (response) {
-					$(".tempat").html(response);
+					$("#header").html("Delivery");
+					$("#footer").html("Delivery");
+					$("#tempat").html(response);
 					getTimeNow();
 				}
 			});
 		}
-		if(document.getElementById("Dine").checked ){
+		if(document.getElementById("radioPrimary4").checked ){
 			$.ajax({
 				method: "post",
 				url: "ajaxFile/getDinein.php",
 				success: function (response) {
-					$(".tempat").html(response);
+					$("#header").html("Dine In");
+					$("#footer").html("Dine In");
+					$("#tempat").html(response);
 					getDetail_kursi();
+					ubahradio(4);
 				}
 			});
 		}
@@ -256,7 +345,8 @@ Body Section
 	function Pay(){
 		ctr=0;
 		var jumlah_meja="<?= $_SESSION["ctr"]?>";
-		if(document.getElementById("Reservasi").checked ){
+		if(document.getElementById("radioPrimary1").checked ){
+			open(2);
 			var date = new Date($('#date_res').val());
 			day = date.getDate();
 			month = date.getMonth()+1;
@@ -298,7 +388,7 @@ Body Section
 				window.open("../iplaymu/ipay/index.php");
 				bayar();
 			}
-		}else if(document.getElementById("Take").checked ){
+		}else if(document.getElementById("radioPrimary2").checked ){
 			time=$("#time_res").val();
 			$.ajax({
 				type: "post",
@@ -315,7 +405,7 @@ Body Section
 					}
 				}
 			});
-		}else if(document.getElementById("Delivery").checked ){
+		}else if(document.getElementById("radioPrimary3").checked ){
 			time=$("#time_res").val();
 			alamat=$("#alamat").val();
 			$.ajax({
@@ -335,7 +425,8 @@ Body Section
 					}
 				}
 			});
-		}else if(document.getElementById("Dine").checked ){
+		}else if(document.getElementById("radioPrimary4").checked){
+			open(2);
 			if(jumlah_meja>0){
 				window.open("../iplaymu/ipay/index.php");
 				bayar();
@@ -343,6 +434,7 @@ Body Section
 				alert("Pilih Meja ");
 			}
 		}
+		
 	}
 	function bayar(){
 		if(document.getElementById("Reservasi").checked ){

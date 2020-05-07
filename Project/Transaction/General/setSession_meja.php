@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");  
-    session_start();
+    //session_start();
     // session_destroy();
     if(isset($_SESSION["ctr"])){
         $ctr=$_SESSION["ctr"];

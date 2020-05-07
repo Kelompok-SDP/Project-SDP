@@ -153,6 +153,7 @@ $('#sites label').click(function() {
 
 var rating= "";
 function kirimsaran(){
+    
     if (document.getElementById('so').checked) {
         rating = document.getElementById('so').value;
      }else if (document.getElementById('sf').checked) {
@@ -169,6 +170,7 @@ var cek = false;
   var idmember = document.getElementById("custid").value;
   if(cek==true){
     document.getElementById("x").style.display = "none";
+    
     $.ajax({
         method: "post",
         url: "MCD/kirimsaran.php",
@@ -187,6 +189,7 @@ var cek = false;
         document.getElementById('so').checked = false;
         document.getElementById('subscribe-footer').value = "";
   }else{
+      alert("howi");
     document.getElementById("x").style.display = "block";
   }
 

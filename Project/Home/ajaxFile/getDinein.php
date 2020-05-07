@@ -4,4 +4,4 @@
    $_SESSION["jenis"]="Dine-in";
 ?>
 <div id='keterangan_meja'></div><br>
-<button onclick="tomeja()">Pesan Kursi</button>
+<button onclick="tomeja()" id="orderTable2">Pesan Kursi</button>

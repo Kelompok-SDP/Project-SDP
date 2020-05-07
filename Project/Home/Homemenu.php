@@ -107,16 +107,15 @@
 <?php 
     if($ctr == 0 && $ctr2 == 0){
         echo "<script>
-            $('#".$idk."').css('display','none');
+        $('#".$idk."').css('display','none');
         </script>";
     }
-?>
+    ?>
 <?php } ?><!-- for i tutup-->
 </div>
-
 <?php 
     include('Mcd/footer.php');
-?>
+    ?>
     <div id="app"></div>
     <script>
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -125,6 +124,7 @@
     });
 
     $(document).ready(function(){
+
         $.get("https://mcdonalds.co.id/menu/datalayer", function (data) {
             if(data.length > 0){
                 var maxProducts = 35;
