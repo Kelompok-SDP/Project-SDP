@@ -10,6 +10,8 @@ $hasil = mysqli_query($conn,$query);
                 <tr>
                 <th>Nama Promo</th>
                 <th>Harga Promo</th>
+                <th>Detail Promo </th>
+                <th>Jenis Promo </th>
                 <th>Awal Periode Promo</th>
                 <th>Akhir Periode Promo</th>
                 <th>Action</th>
@@ -38,6 +40,22 @@ $hasil = mysqli_query($conn,$query);
                 $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
             ?>
             <td><?=$hasil_rupiah?></td>
+            <td><?=$row["detail_promo"]?></td>
+            <td>
+                <?php
+                    if($row["jenis_promo"]=="H"){
+                        echo "Promo Hemat";
+                    }else if($row["jenis_promo"]== "M"){
+                        echo "Promo Menu";
+                    }else {
+                        echo "Promo Hari Raya";
+                    }
+                
+                
+                
+                ?>
+            
+             </td>
             <td><?=$row["periode_awal"]?></td>
             <td><?=$row["periode_akhir"]?></td>
             <?php ?>

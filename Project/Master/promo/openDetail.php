@@ -8,12 +8,24 @@ require_once("../../config.php");
     $awalperiode ="";
     $akhirperiode = "";
     $nama = "";
+    $detail = "";
+    $jenis = "";
     foreach ($hasil as $key=>$data){
         $harga = $data['harga_promo'];
         $nama = $data['nama_promo'];
         $awalperiode = $data['periode_awal'];
         $akhirperiode = $data['periode_akhir'];
         $gambar = $data['gambar_promo'];
+        $detail = $data["detail_promo"];
+        $jenis = $data['jenis_promo'];
+    }
+    $jwnis ='';
+    if($jenis =="M"){
+      $jwnis = "Promo Menu"; 
+    }else if($jenis=="H"){
+      $jwnis = "Promo Hemat";
+    }else{
+      $jwnis = "Promo Hari Raya";
     }
    
      $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
@@ -59,6 +71,14 @@ require_once("../../config.php");
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Promo :<?php echo " ".$nama;?></label>
+                        <hr style="border-width:3px;color:grey;">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSpentBudget">Detail Promo :<br><?php echo $detail;?></label>
+                        <hr style="border-width:3px;color:grey;">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSpentBudget">Jenis Promo :<br><?php echo $jwnis;?></label>
                         <hr style="border-width:3px;color:grey;">
                     </div>
                     <div class="form-group">

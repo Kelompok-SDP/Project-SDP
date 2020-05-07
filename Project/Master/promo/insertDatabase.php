@@ -4,6 +4,8 @@
     $nampromo = $_POST["nampromo"];
     $hrgpromo = $_POST["hrgpromo"];
     $awalp = $_POST["awalp"];
+    $jenispromo = $_POST["jenispromo"];
+    $detpromo = $_POST["detpromo"];
     $akhirp = $_POST["akhirp"];
     $awalP  = strtotime($awalp);
     $akhirP  = strtotime($akhirp);
@@ -40,7 +42,7 @@
     if($kembar){
         echo "Data Kembar!";
     }else{
-        $query2 = "INSERT INTO promo VALUES('$string','$nampromo',$hrgpromo,'$nawal','$nakhir','',1)";
+        $query2 = "INSERT INTO promo VALUES('$string','$nampromo',$hrgpromo,'$nawal','$nakhir','','$detpromo','$jenispromo',1)";
         if($conn->query($query2) == true){
             echo $string." -- Berhasil Menambahkan Data";
         }else{
