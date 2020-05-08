@@ -19,9 +19,14 @@
     $time=$_POST["time"];
     $date=$_POST["date"];
     $ket_meja=$_POST["keterangan_meja"];
-    $keterangan="Alamat:$alamat,Waktu:$time,Hari:$date,Keterangan Meja:$ket_meja";
     $type=$_POST["method"];
     $ctr=0;
+    $Detail_meja="";
+    if($ket_meja=="ada"){
+        $Detail_meja=$_SESSION["isi_kursi"];
+    }
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja";
+
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
         $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
