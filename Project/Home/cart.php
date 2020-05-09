@@ -5,10 +5,6 @@
 	include("../Source.php");
 	include("Mcd/header.php");
 	// session_destroy();
-	
-	
-	
-	
 ?>
 
 <html lang="en">
@@ -206,10 +202,7 @@ Body Section
 		});
 		var login="<?=$_SESSION["login"]?>";
 		if(login=="kosong"){
-			alert("mohon login terlebih dahulu sebelum melanjutkan Pembayaran")
-		
-				window.location.href="../login_register/login.php"
-           
+			window.location.href="Home.php";
 		}
 	}
 
@@ -394,6 +387,7 @@ Body Section
 												window.location.href="window_perantara.php";
 											}
 											bayar();
+											kirimemail();
 										}else{
 											alert("Pilih Kursi");
 										}
@@ -512,6 +506,22 @@ Body Section
 				nama:kode
 			},
 			success: function (response) {
+				alert(response);
+			}
+		});
+	}
+
+
+	function kirimemail(){
+		var id =$("#custid").val();
+		$.ajax({
+			async :false,
+			type: "post",
+			url : "ajaxFile/sendReservation.php",
+			data:{
+				id : id
+			},
+			success : function(response){
 				alert(response);
 			}
 		});
