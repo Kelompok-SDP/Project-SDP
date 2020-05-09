@@ -208,12 +208,11 @@ var balik=-1;
                   if(balik==1){check(nohp,'nohp');
                       if(balik==1){check(username,'username')
                           if(balik==1){
-                             
-                              insertUser();
-                              Konfirm();
-                              setTimeout(
-                              window.location.href = "confirmation.php?test=1"
-                              , 5000);
+                            insertUser();
+                            Konfirm();
+                            setTimeout(
+                            window.location.href = "confirmation.php?test=1"
+                            , 5000);
                           }
                       }
                   }
@@ -227,7 +226,6 @@ var balik=-1;
 
     function Konfirm(){
         var kepada=$("#email").val();
-        
       $.ajax({
         method: "post",
         url: "register/Emailregister.php",
@@ -277,6 +275,7 @@ var balik=-1;
     function check(check,jenis){
         
         $.ajax({
+            async:false,
             method: "post",
             url: "register/check_valid.php",
             data: {
