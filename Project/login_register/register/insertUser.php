@@ -19,7 +19,7 @@
     if($id==''){
         $id=strtoupper(substr($fullname,0,2)).'00001';
     }
-    $query="INSERT into member values('$id','$fullname','$password','$email','$alamat',$nohp,'$kota','$kabupaten',$kodepos,'$username',2)";
+    $query="INSERT into member values('$id','$fullname','$password','$email','$alamat',$nohp,'$kota','$kabupaten',$kodepos,'$username',2,0)";
     mysqli_query($conn,$query);
     echo $query;
 ?>
