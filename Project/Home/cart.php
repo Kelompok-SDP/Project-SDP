@@ -5,6 +5,10 @@
 	include("../Source.php");
 	include("Mcd/header.php");
 	// session_destroy();
+	
+	
+	
+	
 ?>
 
 <html lang="en">
@@ -202,7 +206,10 @@ Body Section
 		});
 		var login="<?=$_SESSION["login"]?>";
 		if(login=="kosong"){
-			window.location.href="Home.php";
+			alert("mohon login terlebih dahulu sebelum melanjutkan Pembayaran")
+		
+				window.location.href="../login_register/login.php"
+           
 		}
 	}
 

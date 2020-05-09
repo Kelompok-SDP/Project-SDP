@@ -94,18 +94,19 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4">
+                    <form action="../login_register/register.php" method="post">
                     <div class="footer-item footer-item-subscribe">
                         <h5 class="footer-title">Ingin Menjadi Member kami ?</h5>
                         <form class="validation-footer" novalidate="">
                             <div class="form-group mb-2">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Masukkan email" required="" name="email" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
+                                    <input type="email" class="form-control" placeholder="Masukkan email" required="" name="emailfooter" id="subscribe-footer" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"  type="submit" id="button-addon-footer">
+                                        <button name='footerregis' class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag"  type="submit" id="button-addon-footer">
                                             Daftar
                                         </button>
                                     </div>
-
+                                    </form>
                                 </div>
                             </div>
                             <p class="form-status status-footer"></p>
