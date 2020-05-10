@@ -63,7 +63,7 @@
 <script>
     function CheckEmail(){
        var kepada=$("#email").val();
-        
+        alert(kepada);
       $.ajax({
         method: "post",
         url: "forget/getEmail.php",
@@ -75,7 +75,7 @@
           if(response=='Email Anda Tidak Di Temukan'){
             alert(response);
           }else if (response=='Password Anda Sudah Kamu Ubah Tolong Check Email Anda'){
-            //alert(response);
+            alert(response);
             kirim();
             setTimeout(
               window.location.href = "confirmation.php?test=0"
@@ -95,7 +95,7 @@
             kepada:kepada
         },
         success: function (response) {
-            //alert(response);
+            alert(response);
         }
     });
     }

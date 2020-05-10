@@ -368,6 +368,7 @@ Body Section
 												window.location.href="window_perantara.php";
 											}
 											bayar();
+											kirimemail();
 										}else{
 											alert("Pilih Kursi");
 										}
@@ -497,6 +498,21 @@ Body Section
 			url: "ajaxFile/getRadioButton.php",
 			success: function (response) {
 				$("#place_radio").html(response);
+			}
+		});
+	}
+
+	function kirimemail(){
+		var id =$("#custid").val();
+		$.ajax({
+			async :false,
+			type: "post",
+			url : "ajaxFile/sendReservation.php",
+			data:{
+				id : id
+			},
+			success : function(response){
+				alert(response);
 			}
 		});
 	}

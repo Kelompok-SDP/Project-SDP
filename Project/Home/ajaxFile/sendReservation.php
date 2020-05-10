@@ -4,18 +4,37 @@
 	require_once("../../config.php");
 	//-----------------EMAIL-----------------
 	$captcha = "";
-	if($_POST["kepada"] != ""){
-		$captcha_num = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';
-		$captcha_num = substr(str_shuffle($captcha_num), 0, 6);
-		$captcha = $captcha_num;
+	if($_POST["id"] != ""){
+        $id = $_POST["id"];
+        $nama  = "";
+        $query = "select * from member where id= '$id'";
+        $email = "";
+        $mys = mysqli_query($conn,$query);
+        foreach($mys as $data=>$row){
+            $nama = $row['fullname'];
+            $email = $row['email'];
+        }
+
+        $keterangan = "";
+        $koderev = "RESVXX-;"
+        $query = "select * from hjual where id_member ='$id' and jenis_pemesanan ='Reservasi'  order by tanggal_transaksi desc";
+        $mysqli = mysqli_query($conn,$query);
+        foreach($mysqli as $data=>$row){
+            $koderev = $koderev.$row['id_hjual'];
+            $keterangan = $row["keterangan"];
+        }
+
+
+
+
+
 		$mail             = new PHPMailer();
-		$address 		  = $_POST["kepada"];					
-		$_SESSION["email"] = $_POST["kepada"];
-		$_SESSION["captcha"] = $captcha;
+		$address 		  = $email;					
+		
 	// $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT password FROM member where email='$address'"));
 		$mail->Subject    = "Konfirmasi Email";
 
-		$body			  = 'Pelanggan yang terhormat, untuk melakukan register segera konfirmasi dengan kode :'.$captcha. ' Segera lakukan konfirmasi. Atas Perhatianya kami ucapkan terima kasih';
+		$body			  = 'Dear '.$nama. ' Berikut kode untuk reservasi anda : '.$koderev.'<br><br>'.$keterangan.'<br> silahkan menujukan kode teersebut ke pegawai kami. Terima Kasih';
 
 		$mail->IsSMTP(); // telling the class to use SMTP
 		$mail->Host       = "mail.google.com"; // SMTP server

@@ -2,7 +2,7 @@
 	require_once("../../config.php");
     $data=$_POST["data"];
     $jenis=$_POST["jenis"];
-    $kembali='';
+    $kembali=0;
     if($jenis=='email'){
         $query=mysqli_query($conn,"SELECT * from member where email=$data");
         $row_cnt =0;
