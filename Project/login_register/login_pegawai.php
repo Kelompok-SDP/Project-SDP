@@ -115,10 +115,10 @@
             password:pass
         },
         success: function (response) {
-   alert(response);
-   if(response== "berhasil login"){
-    window.location.href="../home/home.php";
-   }
+			alert(response);
+			if(response== "berhasil login"){
+				window.location.href="../home/home.php";
+			}
         }
         });
     }
