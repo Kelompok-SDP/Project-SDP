@@ -59,27 +59,8 @@ Body Section
 			<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
 	</div>
 	<br>
-	<div class="col-12 elevation-2" style="padding: 10px;">
-		<div class="icheck-primary d-inline">
-			<input type="radio" id="radioPrimary1" name="r1">
-			<label for="radioPrimary1">Reservasi
-			</label>
-		</div>
-		<div class="icheck-primary d-inline" style="margin-left: 100px;">
-			<input type="radio" id="radioPrimary2" name="r1">
-			<label for="radioPrimary2">Take Away
-			</label>
-		</div>
-		<div class="icheck-primary d-inline" style="margin-left: 100px;">
-			<input type="radio" id="radioPrimary3" name="r1">
-			<label for="radioPrimary3">Delivery
-			</label>
-		</div>
-		<div class="icheck-primary d-inline"style="margin-left: 100px;">
-			<input type="radio" id="radioPrimary4" name="r1">
-			<label for="radioPrimary4">Dine In
-			</label>
-		</div>
+	<div class="col-12 elevation-2" id="place_radio"style="padding: 10px;">
+		
 	</div>
 	<br>
 	<div id="detailTable"></div>
@@ -202,7 +183,7 @@ Body Section
 		});
 		var login="<?=$_SESSION["login"]?>";
 		if(login=="kosong"){
-			window.location.href="Home.php";
+			window.location.href="../login_register/login.php";
 		}
 	}
 
@@ -506,6 +487,16 @@ Body Section
 			},
 			success: function (response) {
 				alert(response);
+			}
+		});
+	}
+	getRadio();
+	function getRadio(){
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/getRadioButton.php",
+			success: function (response) {
+				$("#place_radio").html(response);
 			}
 		});
 	}
