@@ -11,7 +11,8 @@ $nama_menu = "";
 $tdeskripsi = "";
 $deskripsi = "";
 $gambar = "";
-if($tmp[0]== "MEN"){
+$hargapromo = 0;
+if(strpos($ids, "MEN") !== false){
     $query = "select * from menu where id_menu = '$ids'";
     $menu = mysqli_query($conn,$query);
 
@@ -24,7 +25,15 @@ if($tmp[0]== "MEN"){
 
     }
     $gambar = "../Master/Menu/".$gambar;
-
+    $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$ids'";
+    $menu2 = mysqli_query($conn,$query2);
+    $row = mysqli_num_rows($menu2);
+    if($row > 0){
+        foreach ($menu2 as $key => $value) {
+            $hargapromo = $value["harga_promo_paket"];
+            $hasil_rupiah2 = "Rp " . number_format($hargapromo,2,',','.');
+        }
+    }
 } else{
     $query = "select * from paket where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
@@ -110,9 +119,21 @@ if($tmp[0]== "MEN"){
         </div>
         <div class="col-md-7 content-center">
             <div class="heading">
-                <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2>
-                <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
-
+                <?php 
+                    if($hargapromo != ""){
+                ?>
+                    <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2> 
+                    <p style="background-color: red; color: white; font-weight: bold; padding: 5px; width: 90px;">!!PROMO!!</p>
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt; text-decoration: line-through;"><?=$hasil_rupiah?></h2>
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah2?></h2>
+                <?php 
+                    }else{   
+                ?>
+                    <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2> 
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
+                <?php 
+                    }
+                ?>
                 <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">

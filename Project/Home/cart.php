@@ -368,7 +368,7 @@ Body Section
 									if(response=="berhasil" ){
 										if(jumlah_meja>0){
 											if(jenis_pembayaran=="cash"){
-												window.location.href="window_perantara.php";
+												document.location.href="window_perantara.php";
 											}
 											bayar();
 											kirimemail();
@@ -397,7 +397,7 @@ Body Section
 				success: function (response) {
 					if(response=="berhasil"){
 						if(jenis_pembayaran=="cash"){
-							window.location.href="window_perantara.php";
+							document.location.href="window_perantara.php";
 						}
 						bayar();
 					}else{
@@ -418,7 +418,7 @@ Body Section
 					if(response=="berhasil"){
 						if(alamat!=""){
 							if(jenis_pembayaran=="cash"){
-								window.location.href="window_perantara.php";
+								document.location.href="window_perantara.php";
 							}
 							bayar();
 						}

@@ -38,13 +38,26 @@
     if($kembar){
         echo "Data Kembar";
     }else{
-        $query2 = "INSERT INTO PAKET VALUES('$string','$npaket',$hpaket,'','$kpaket','$ppaket',1)";
+        $query2 = "INSERT INTO PAKET VALUES('$string','$npaket',$hpaket,'','$kpaket',1)";
         $query3 = "INSERT INTO PAKET_MENU VALUES('$string','$mpaket')";
         $query4 = "INSERT INTO PAKET_MENU VALUES('$string','$mpaket2')";
-        if($conn->query($query2) == true && $conn->query($query3) == true && $conn->query($query4) == true){
-            echo $string." -- Berhasil Menambahkan Data";
+        if($ppaket != ""){
+            $tharga = [10,15,20,25,40,50];
+            $rand = rand(0,5);
+            $persen = round($hpaket * $tharga[$rand] / 100);
+            $hpromo = $hpaket - $persen;
+            $query5 = "INSERT INTO PROMO_PAKET VALUES('$ppaket','$string',$hpromo)";
+            if($conn->query($query2) == true && $conn->query($query3) == true && $conn->query($query4) == true && $conn->query($query5) == true){
+                echo $string." -- Berhasil Menambahkan Data";
+            }else{
+                echo "Tidak Berhasil Menambahkan Data";
+            } 
         }else{
-            echo "Tidak Berhasil Menambahkan Data";
-        } 
+            if($conn->query($query2) == true && $conn->query($query3) == true && $conn->query($query4) == true){
+                echo $string." -- Berhasil Menambahkan Data";
+            }else{
+                echo "Tidak Berhasil Menambahkan Data";
+            } 
+        }
     }
 ?>

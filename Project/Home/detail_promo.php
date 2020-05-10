@@ -133,23 +133,33 @@
 <section class="py-main section-other-promo pt-0">
     <div class="container">
         <div class="heading text-center vp-fadeinup visible animated fadeInUp full-visible">
-            <h2 class="title">Promo Paket <?=$namapromo ?></h2>
+            <h2 class="title">Promo Menu dan Paket <?=$namapromo ?></h2>
         </div>
         <div class="owl-carousel owl-theme owl-other-promo card-general-list content animated fadeInUp delayp3 owl-loaded owl-drag">  
             <div class="owl-stage-outer">
                 <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1110px;">
                     <?php
-                        $query = "SELECT * FROM PAKET WHERE ID_PROMO = '$id' AND STATUS = 1";
+                        $pt = 0;
+                        $query = "SELECT * FROM PROMO_PAKET WHERE ID_PROMO = '$id'";
                         $promo = mysqli_query($conn,$query);
                         $row = mysqli_num_rows($promo);
                         if($row > 0){
                         foreach ($promo as $key => $value) {
-                            $idp = $value["id_paket"];
-                            $hrefpaket = "detail_menu.php?id=".$idp;
+                            $tmpid = $value["id_paket"];
+                            if(strpos($tmpid, "MEN") !== false){
+                                $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$tmpid'";
+                                $pt = 1;
+                            }else{
+                                $query2 = "SELECT * FROM PAKET WHERE ID_PAKET = '$tmpid'";
+                                $pt = 2;
+                            }
+                            $hrefpromo = "detail_menu.php?id=".$tmpid;
+                            $list = mysqli_query($conn,$query2);
+                            foreach ($list as $key => $value) {
                     ?>
                     <div class="owl-item active" style="width: 370px;">
                         <div id="rekomendasi-promo" class="item">
-                            <a href="<?= $hrefpaket ?>" data-id="118" data-name="Paket Hemat Banget" data-slot="1" data-slug="paket-hemat-banget" class="card card-general">
+                            <a href="<?= $hrefpromo ?>" data-id="118" data-name="Paket Hemat Banget" data-slot="1" data-slug="paket-hemat-banget" class="card card-general">
                                 <div class="img-container">
                                 <?php
                                     $gambar = $value["gambar"];
@@ -157,13 +167,22 @@
                                     <img src="<?="../Master/Menu/".$gambar?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
                                 </div>
                                 <div class="card-body">
-                                    <h5><?=$value["nama_paket"]?></h5>
+                                    <?php
+                                        if($pt == 1){
+                                            $nama = $value["nama_menu"];
+                                        }else{
+                                            $nama = $value["nama_paket"];
+                                        }
+                                    ?>
+                                    <h5><?=$nama?></h5>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <?php
-                    }}else{ ?>
+                            }
+                        }
+                        }else{ ?>
                         <div class="heading text-center vp-fadeinup visible animated fadeInUp full-visible">
                             <h2 class="title">Tidak ada Paket dalam Promo Ini</h2>
                         </div>

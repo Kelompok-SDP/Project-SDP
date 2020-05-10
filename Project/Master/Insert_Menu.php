@@ -80,8 +80,8 @@
                         <?php } ?> 
                         </select>
                     </div>
-                    <!-- <div class="form-group">
-                        <label for="inputStatus">Promo Menu</label>
+                    <div class="form-group">
+                        <label for="inputStatus">Promo Paket</label>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -93,7 +93,7 @@
                             <option value="<?= $value['id_promo']?>"><?= $value['nama_promo']?></option>
                         <?php } ?> 
                         </select>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <label for="inputDescription">Deskripsi Menu</label>
                         <textarea id="Dmenu" class="form-control" rows="4" name="dmenu"></textarea>
@@ -141,6 +141,7 @@
         let nmenu = $('#Nmenu').val();
         let hmenu = $('#Hmenu').val();
         let kmenu = $('#Kmenu').val();
+        let pmenu = $('#Pmenu').val();
         let dmenu = $('#Dmenu').val(); 
         if(nmenu != "" && hmenu != "" && kmenu != null && dmenu != ""){
             $.ajax({
@@ -150,11 +151,12 @@
                     nmenu : nmenu,
                     hmenu : hmenu,
                     kmenu : kmenu,
+                    pmenu : pmenu,
                     dmenu : dmenu
                 },
                 success: function(result){   
                   alert(result);
-                  if(result != "Data Kembar"){
+                  if(result.includes("MEN")){
                     let a = "Menu/Uploadgambar.php?id=";
                     let a2 = result.split(" ",1);
                     let a3 = a.concat(a2);

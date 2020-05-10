@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Bulan Mei 2020 pada 13.49
+-- Waktu pembuatan: 10 Bulan Mei 2020 pada 14.19
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -66,7 +66,10 @@ INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_h
 ('DJ019', 'MEN001', 15000, 2, 30000, 'H010'),
 ('DJ020', 'MEN001', 12000, 2, 24000, 'H010'),
 ('DJ021', 'MEN001', 5000, 1, 5000, 'H011'),
-('DJ022', 'MEN002', 5000, 1, 5000, 'H011');
+('DJ022', 'MEN002', 5000, 1, 5000, 'H011'),
+('DJ026', 'MEN002', 5000, 1, 5000, 'H025'),
+('DJ027', 'MEN002', 5000, 1, 5000, 'H026'),
+('DJ028', 'MEN002', 5000, 1, 5000, 'H027');
 
 -- --------------------------------------------------------
 
@@ -101,16 +104,7 @@ INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`
 ('H009', '2020-07-18', 20000, 'Delivery', 'W00002', 'AB00001', ''),
 ('H010', '2020-08-18', 27000, 'Dine-in', 'W00002', 'AB00001', ''),
 ('H011', '2020-02-15', 10000, 'delivery', 'W00002', 'AB00001', ''),
-('H012', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H013', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H014', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H015', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H016', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H017', '2020-05-07', 5000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H018', '2020-05-07', 40000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H019', '2020-05-07', 40000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H020', '2020-05-07', 35000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada'),
-('H021', '2020-05-07', 35000, 'Reservasi', '', 'FA00001', 'Alamat:,Waktu:17:50,Hari:2020-05-07,Keterangan Meja:ada');
+('H012', '2020-05-08', 35000, 'Reservasi', '', 'FA00001', 'Alamat:||Waktu:09:23||Hari:2020-05-10||Keterangan Meja:ada||detail_meja: 16, 8, ');
 
 -- --------------------------------------------------------
 
@@ -225,7 +219,6 @@ CREATE TABLE `paket` (
   `harga_paket` int(11) NOT NULL,
   `gambar` varchar(100) NOT NULL,
   `id_kategori` varchar(10) NOT NULL,
-  `id_promo` varchar(10) DEFAULT NULL,
   `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -233,15 +226,15 @@ CREATE TABLE `paket` (
 -- Dumping data untuk tabel `paket`
 --
 
-INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `gambar`, `id_kategori`, `id_promo`, `status`) VALUES
-('PK001', 'Steak', 50000, 'Image/beef-steak.jpg', 'KAT006', 'PR001', 1),
-('PK002', 'Bubur', 10000, 'Image/pkt-b.jpg', 'KAT004', '', 1),
-('PK003', 'Siang', 20000, 'Image/nasi-ayam-hemat.jpg', 'KAT001', '', 1),
-('PK004', 'Agep Murmer', 15000, 'Image/aybak.jpg', 'KAT005', '', 1),
-('PK005', 'Namikun', 25000, 'Image/pkt-nasi-kuning-ayam-goreng-suwir.jpg', 'KAT003', '', 1),
-('PK006', 'Mie-Aygep', 22000, 'Image/mie.jpg', 'KAT005', '', 1),
-('PK007', 'Ayam Kremes', 25000, 'Image/nasi-kotak-ayam-kremes.jpg', 'KAT005', '', 1),
-('PK008', 'Nasgor', 12000, 'Image/nasgor2.jpg', 'KAT002', '', 1);
+INSERT INTO `paket` (`id_paket`, `nama_paket`, `harga_paket`, `gambar`, `id_kategori`, `status`) VALUES
+('PK001', 'Steak', 50000, 'Image/beef-steak.jpg', 'KAT006', 1),
+('PK002', 'Bubur', 10000, 'Image/pkt-b.jpg', 'KAT004', 1),
+('PK003', 'Siang', 20000, 'Image/nasi-ayam-hemat.jpg', 'KAT001', 1),
+('PK004', 'Agep Murmer', 15000, 'Image/aybak.jpg', 'KAT005', 1),
+('PK005', 'Namikun', 25000, 'Image/pkt-nasi-kuning-ayam-goreng-suwir.jpg', 'KAT003', 1),
+('PK006', 'Mie-Aygep', 22000, 'Image/mie.jpg', 'KAT005', 1),
+('PK007', 'Ayam Kremes', 25000, 'Image/nasi-kotak-ayam-kremes.jpg', 'KAT005', 1),
+('PK008', 'Nasgor', 12000, 'Image/nasgor2.jpg', 'KAT002', 1);
 
 -- --------------------------------------------------------
 
@@ -276,8 +269,19 @@ INSERT INTO `paket_menu` (`id_paket`, `id_menu`) VALUES
 ('PK007', 'MEN008'),
 ('PK008', 'MEN001'),
 ('PK008', 'MEN007'),
+('PK009', 'MEN002'),
 ('PK009', 'MEN003'),
-('PK009', 'MEN011');
+('PK009', 'MEN005'),
+('PK009', 'MEN011'),
+('PK009', 'MEN012'),
+('PK010', 'MEN013'),
+('PK010', 'MEN014'),
+('PK011', 'MEN009'),
+('PK011', 'MEN012'),
+('PK012', 'MEN012'),
+('PK012', 'MEN014'),
+('PK013', 'MEN010'),
+('PK013', 'MEN014');
 
 -- --------------------------------------------------------
 
@@ -343,19 +347,6 @@ INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `promo_menu`
---
-
-DROP TABLE IF EXISTS `promo_menu`;
-CREATE TABLE `promo_menu` (
-  `id_promo` varchar(10) NOT NULL,
-  `id_menu` varchar(10) NOT NULL,
-  `harga_promo_menu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `promo_paket`
 --
 
@@ -365,6 +356,14 @@ CREATE TABLE `promo_paket` (
   `id_paket` varchar(10) NOT NULL,
   `harga_promo_paket` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `promo_paket`
+--
+
+INSERT INTO `promo_paket` (`id_promo`, `id_paket`, `harga_promo_paket`) VALUES
+('PR001', 'MEN012', 7500),
+('PR001', 'MEN011', 12000);
 
 --
 -- Indexes for dumped tables
