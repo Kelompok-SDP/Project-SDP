@@ -38,32 +38,35 @@
         $hari="";
         $ctrr=0;
         foreach ($query as $key => $value3) {
-            $keterangan=explode("||",$value3["keterangan"]);
-            $jam=explode(":",$keterangan[1]);
-            $hari=explode(":",$keterangan[2]);
-            $check_kursi=explode(":",$keterangan[3]);
-            if($check_kursi[1]=="ada"){
-                $allkursi=explode(":",$keterangan[4]);
-                $allkursi=explode(", ",$allkursi[1]);
-            }
-            
+            if($value3["keterangan"]!=""){
 
-            $query2="SELECT * from hjual where jenis_pemesanan='Reservasi' and CURDATE()='$hari[1]' and DATE_ADD(CURRENT_TIME(), INTERVAL 2 HOUR)>CONVERT('$jam[1]$jam[2]',time)";
-
-            // echo $query2;
-            $query2=mysqli_fetch_assoc(mysqli_query($conn,$query2));
-            $keterangan=explode("||",$query2["keterangan"]);
-            
-            if(count($keterangan)>1){
-
+                $keterangan=explode("||",$value3["keterangan"]);
+                $jam=explode(":",$keterangan[1]);
+                $hari=explode(":",$keterangan[2]);
                 $check_kursi=explode(":",$keterangan[3]);
                 if($check_kursi[1]=="ada"){
                     $allkursi=explode(":",$keterangan[4]);
                     $allkursi=explode(", ",$allkursi[1]);
                 }
-                for ($i=0; $i < count($allkursi)-1; $i++) { 
-                    if($allkursi[$i]==$value["id_meja"]){
-                        $ctrr=1;
+                
+    
+                $query2="SELECT * from hjual where jenis_pemesanan='Reservasi' and CURDATE()='$hari[1]' and DATE_ADD(CURRENT_TIME(), INTERVAL 2 HOUR)>CONVERT('$jam[1]$jam[2]',time)";
+    
+                // echo $query2;
+                $query2=mysqli_fetch_assoc(mysqli_query($conn,$query2));
+                $keterangan=explode("||",$query2["keterangan"]);
+                
+                if(count($keterangan)>1){
+    
+                    $check_kursi=explode(":",$keterangan[3]);
+                    if($check_kursi[1]=="ada"){
+                        $allkursi=explode(":",$keterangan[4]);
+                        $allkursi=explode(", ",$allkursi[1]);
+                    }
+                    for ($i=0; $i < count($allkursi)-1; $i++) { 
+                        if($allkursi[$i]==$value["id_meja"]){
+                            $ctrr=1;
+                        }
                     }
                 }
             }
