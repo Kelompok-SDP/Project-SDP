@@ -16,7 +16,7 @@
         }
 
         $keterangan = "";
-        $koderev = "RESVXX-;"
+        $koderev = "RESVXX-;";
         $query = "select * from hjual where id_member ='$id' and jenis_pemesanan ='Reservasi'  order by tanggal_transaksi desc";
         $mysqli = mysqli_query($conn,$query);
         foreach($mysqli as $data=>$row){

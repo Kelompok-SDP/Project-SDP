@@ -117,9 +117,7 @@
         success: function (response) {
 			alert(response);
 			if(response== "berhasil login"){
-				setTimeout(
-              window.location.href = "../Transaction/index.php"
-             , 5000);
+				window.location.href="../home/home.php";
 			}
         }
         });

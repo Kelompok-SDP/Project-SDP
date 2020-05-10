@@ -4,6 +4,7 @@
     $query="SELECT lpad(max(substr(id_hjual,-3,3))+1,3,0) as \"id\"  from hjual";
     $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
     $id_htrans= "H".$query["id"];
+    $_SESSION["id_hjual"]=$id_htrans;
     $today= date("Y-m-d");
     $total=$_SESSION["harga_akhir_Pesanan"];
     $jenis=$_SESSION["jenis"];
