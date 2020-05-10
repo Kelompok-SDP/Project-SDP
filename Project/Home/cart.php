@@ -52,11 +52,14 @@ Body Section
 	<div class="well well-small">
 		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
 	<hr class="soften"/>	
+	<div id="tempat_reservasiKode">
+	
+	</div>
 	<div class="col-12 elevation-2" style="padding: 10px;">
-			<label style="min-width:159px"> VOUCHER Code: </label> 
-			<input type="text" class="input-medium" placeholder="Code"  id="kode">
-			<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="CheckPromo()" style="margin-top: -5px;">ADD</button><br>
-			<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
+		<label style="min-width:159px"> VOUCHER Code: </label> 
+		<input type="text" class="input-medium" placeholder="Code"  id="kode">
+		<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="CheckPromo()" style="margin-top: -5px;">ADD</button><br>
+		<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
 	</div>
 	<br>
 	<div class="col-12 elevation-2" id="place_radio"style="padding: 10px;">
@@ -492,6 +495,7 @@ Body Section
 		});
 	}
 	getRadio();
+	getRervasiKode();
 	function getRadio(){
 		$.ajax({
 			type: "post",
@@ -501,7 +505,15 @@ Body Section
 			}
 		});
 	}
-
+	function getRervasiKode(){
+		$.ajax({
+			method: "post",
+			url: "ajaxFile/getReservasiKode.php",
+			success: function (response) {
+				$("#tempat_reservasiKode").html(response);
+			}
+		});
+	}
 	function kirimemail(){
 		var id =$("#custid").val();
 		$.ajax({
