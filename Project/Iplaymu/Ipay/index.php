@@ -34,7 +34,7 @@
         callback(xmlHttp.responseText);
       }
     }
-    xmlHttp.open("post", "http://localhost/Project-SDP/Project/Iplaymu/Ipay/checkout.php");
+    xmlHttp.open("post", "http://localhost/coba/Project-SDP/Project/Iplaymu/Ipay/checkout.php");
     xmlHttp.send(JSON.stringify(requestBody));
   }
 </script>
