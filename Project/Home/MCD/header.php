@@ -93,20 +93,29 @@
                                     </div>
                                     <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
                                 </div>
+                                <?php 
+                                    $query = "SELECT * FROM MENU ORDER BY RAND() LIMIT 1";
+                                    $list = mysqli_query($conn,$query);
+                                    foreach ($list as $key => $value) {
+                                        $gambar = "../Master/Menu/". $value["gambar"];
+                                ?>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
-                                            
+                                        <img src="<?=$gambar?>" style="background-size: cover;width:540px;height:339px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
                                     </div>
                                     <div class="content">
                                         <div class="content-info">
-                                            <h5>Hotcakes</h5>
-                                            <p>Nikmati menu sarapan kami yang lainnya</p>
+                                            <h5><?= $value["nama_menu"]?></h5>
+                                            <p><?= $value["deskripsi"]?></p>
                                         </div>
-                                        <a href="#" class="btn btn-primary btn-sm" target="_blank">
+                                        <a href="<?="detail_menu.php?id=".$value["id_menu"]?>" class="btn btn-primary btn-sm">
                                             Pesan <span class="d-none d-xl-inline-block">Sekarang</span>
                                         </a>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                     </ul>
