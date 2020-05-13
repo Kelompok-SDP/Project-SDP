@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");  
-    session_start();
+    //session_start();
     // session_destroy();
     if(isset($_SESSION["ctr"])){
         $ctr=$_SESSION["ctr"];
@@ -23,6 +23,5 @@
         $_SESSION["isi_kursi"]=$isi_kursi;
         $ctr++;
         $_SESSION["ctr"]=$ctr;
-        echo $_SESSION["ctr"];
     }
 ?>

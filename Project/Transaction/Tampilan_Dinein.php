@@ -25,7 +25,10 @@
     .small-box {
         cursor:pointer;
     }
-    
+    .cetakan{
+        padding-left: 100px;
+        margin-top: 50px;
+    }
 </style>
 <?php
 session_start();
@@ -76,15 +79,15 @@ if(isset($_SESSION["isi_kursi"])==false){
     <div class="container-fluid">
         <div class= "wrapper">
     <!-- Main content -->
-        <div class="row">
+        <div class="row" >
                 <!-- Left col -->
-                <section class="col-lg-6 connectedSortable">
+                <section class="col-lg-8 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
                     <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
                         <i class="fas fa-chart-pie mr-1"></i>
-                       Meja
+                        Meja
                         </h3>
                         <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
@@ -102,12 +105,14 @@ if(isset($_SESSION["isi_kursi"])==false){
                         </div>
                     </div><!-- /.card-header -->
                     <button onclick="ubahMeja()" class="btn btn-primary btn-sm">Pesan Kursi</button>
-                    <div class="card-body" style="height:75vh;">
+                    <div class="card-body" style="height:100vh;">
                         <div class="tab-content p-0">
                         <!-- Morris chart - Sales -->
-                        
-                        <div class="tempat"></div>
-
+                        <div class="kotak biru" style="width: 350px; color: white; margin-left: 33vh; padding-top: 1.5vh; font-weight: bold;"><center> Meja Kasir</center></div><br><br><br>
+                        <div class="kotak biru" style="width: 55px; height: 100px; color: white; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed;"><center> Pintu <br> Masuk</center></div>
+                        <div class="cetakan">
+                            <div class="tempat"></div>
+                        </div>
                         </div>
                     </div><!-- /.card-body -->
 
@@ -179,8 +184,6 @@ if(isset($_SESSION["isi_kursi"])==false){
 
 <script>
     callMeja();
-    // callKategori();
-    // callDetail();
     function callMeja(){
         $.ajax({
             method: "post",
@@ -190,28 +193,6 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    // function callKategori(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/getKategori.php",
-    //         success: function (response) {
-    //             $(".kategori").html(response);
-    //             callMenu("KAT001");
-    //         }
-    //     });
-    // }
-    // function callMenu(kategori){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/getMenu.php",
-    //         data:{
-    //             kategori:kategori
-    //         },
-    //         success: function (response) {
-    //             $(".menu").html(response);
-    //         }
-    //     });
-    // }
     function callDetail(){
         $.ajax({
             method: "post",
@@ -221,72 +202,16 @@ if(isset($_SESSION["isi_kursi"])==false){
             }
         });
     }
-    // function getHarga(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/getHarga.php",
-    //         success: function (response) {
-    //             $(".harga").html(response);
-    //         }
-    //     });
-    // }
-    // function ubahJumlah(nama,ctr){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/setJumlah_pesanan.php",
-    //         data: {
-    //             nama:nama,
-    //             jumlah:$("#inp"+ctr).val()
-    //         },
-    //         success: function (response) {
-    //             getHarga();
-    //             getDetail_menu();
-    //         }
-    //     });
-    // }
     function ubahMeja(){
         $.ajax({
             method: "post",
             url: "General/setMeja_pesan.php",
             success: function (response) {
                 callMeja();
-                callDetail();
+                window.location.assign("../home/cart.php");
             }
         });
     }
-    // function ambilMenu(nama){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/setSession_menu.php",
-    //         data:{
-    //             nama_menu:nama
-    //         },
-    //         success: function (response) {
-    //             getDetail_menu();
-    //         }
-    //     });
-    // }
-    // function pesanMakanan(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "Dine_In/doTransaksi.php",
-    //         success: function (response) {
-    //             callMeja();
-    //             getDetail_menu();
-    //             callDetail();
-    //         }
-    //     });
-    // }
-    // function getDetail_menu(){
-    //     $.ajax({
-    //         method: "post",
-    //         url: "General/getDetail_pesanan.php",
-    //         success: function (response) {
-    //             $(".detail").html(response);
-    //             getHarga();
-    //         }
-    //     });
-    // }
     function pesanDinein(ke){
         if($("#meja"+ke).hasClass("biru")){
             $("#meja"+ke).addClass("hijau");

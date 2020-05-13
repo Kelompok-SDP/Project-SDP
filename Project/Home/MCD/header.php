@@ -1,7 +1,16 @@
 <?php
-    // session_start();
-  //  require_once("../config.php");
-   
+   // session_start();
+   require_once("../config.php");
+    if(isset($_SESSION["nama_menu"])==false){
+        $_SESSION["isi_kursi"]=" ";
+        $_SESSION["ctr"]=0;
+        $_SESSION["nama_menu"]="";
+        $_SESSION["pilih_menu"]= array();
+        $_SESSION["promo"]=0;
+        $_SESSION["login"]="kosong";
+        $_SESSION["ongkir"]=0;
+        $_SESSION["jenis"]="kosong";
+    }
     $nama = "Login";
     $id = "null";
     if(isset($_SESSION['pelanggan'])){
@@ -37,7 +46,7 @@
             <li><a href="https://mcdonalds.co.id/menu" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
         </ul>
     </div>
-
+<input type="hidden" id="custid" value="<?=$id?>" >
 <nav class="navbar navbar-mcd navbar-expand-md fixed-top light">
     <div class="container">
         <a class="navbar-brand animated fadeInDown delayp4" href="Home.php">
@@ -52,7 +61,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item dropdown menu-large">
+                <li class="nav-item dropdown menu-large" id="dropmenu">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                     <ul class="dropdown-menu megamenu animated fadeInDown">
                         <div class="container">
@@ -84,26 +93,35 @@
                                     </div>
                                     <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
                                 </div>
+                                <?php 
+                                    $query = "SELECT * FROM MENU ORDER BY RAND() LIMIT 1";
+                                    $list = mysqli_query($conn,$query);
+                                    foreach ($list as $key => $value) {
+                                        $gambar = "../Master/Menu/". $value["gambar"];
+                                ?>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
-                                            
+                                        <img src="<?=$gambar?>" style="background-size: cover;width:540px;height:339px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
                                     </div>
                                     <div class="content">
                                         <div class="content-info">
-                                            <h5>Hotcakes</h5>
-                                            <p>Nikmati menu sarapan kami yang lainnya</p>
+                                            <h5><?= $value["nama_menu"]?></h5>
+                                            <p><?= $value["deskripsi"]?></p>
                                         </div>
-                                        <a href="#" class="btn btn-primary btn-sm" target="_blank">
+                                        <a href="<?="detail_menu.php?id=".$value["id_menu"]?>" class="btn btn-primary btn-sm">
                                             Pesan <span class="d-none d-xl-inline-block">Sekarang</span>
                                         </a>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://mcdonalds.co.id/promo">
+                    <a class="nav-link" href="Homepromo.php">
                         Promo
                     </a>
                 </li>
@@ -113,7 +131,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $hr; ?>">
+                    <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>
                     </a>
                 </li>
@@ -149,7 +167,7 @@
                     <a class="nav-link">Menu</a>
                 </li>
                 <li class="nav-slide-item animated fadeInUp delayp3" id="navPromoMobile">
-                    <a href="https://mcdonalds.co.id/promo" class="nav-link">
+                    <a href="Homepromo.php" class="nav-link">
                         Promo
                     </a>
                 </li>

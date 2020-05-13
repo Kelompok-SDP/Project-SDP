@@ -1,16 +1,17 @@
 <?php 
-	session_start();
+	//session_start();
 	require_once('../../email/mailer2/class.phpmailer.php');
 	require_once("../../config.php");
 	//-----------------EMAIL-----------------
 	$captcha = "";
+	if($_POST["kepada"] != ""){
 	$captcha_num = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';
 	$captcha_num = substr(str_shuffle($captcha_num), 0, 6);
 	$captcha = $captcha_num;
 	$mail             = new PHPMailer();
 	$address 		  = $_POST["kepada"];					
-	$_SESSION['email'] = $_POST["kepada"];
-	$_SESSION['captcha'] = $captcha_num;
+	$_SESSION["email"] = $_POST["kepada"];
+	$_SESSION["captcha"] = $captcha;
    // $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT password FROM member where email='$address'"));
 	$mail->Subject    = "Konfirmasi Email";
 
@@ -33,14 +34,14 @@
 	$mail->MsgHTML($body);
 
 	$mail->AddAddress($address, "Kepada Anda");
-
 	//$mail->AddAttachment("result/".$file);      // attachment
 	
-
+	
 	if($mail->Send()) {  
-	 // echo "[SEND TO:] " . $address . "<br>";
-	  echo "berhasil";
+		// echo "[SEND TO:] " . $address . "<br>";
+		echo "berhasil";
 	}
+	}	
 
 	//--------------END EMAIL----------------
 			

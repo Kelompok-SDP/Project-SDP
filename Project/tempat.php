@@ -59,7 +59,7 @@
 <script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
-<!-- page script -->
+<!-- page script --> 
 <script>
 
 </script>

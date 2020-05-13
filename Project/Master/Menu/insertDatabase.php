@@ -4,6 +4,7 @@
     $nmenu = $_POST["nmenu"];
     $hmenu = $_POST["hmenu"];
     $kmenu = $_POST["kmenu"];
+    $pmenu = $_POST["pmenu"];
     $dmenu = $_POST["dmenu"];
     $kembar = false;
     $tmpnama = '';
@@ -37,10 +38,24 @@
         echo "Data Kembar!";
     }else{
         $query2 = "INSERT INTO MENU VALUES('$string','$nmenu',$hmenu,'','$dmenu','$kmenu',1)";
-        if($conn->query($query2) == true){
-            echo $string." -- Berhasil Menambahkan Data";
+        if($pmenu != ""){
+            $tharga = [10,15,20,25,40,50];
+            $rand = rand(0,5);
+            $persen = round($hmenu * $tharga[$rand] / 100);
+            $hpromo = $hmenu - $persen;
+            $query5 = "INSERT INTO PROMO_PAKET VALUES('$pmenu','$string',$hpromo)";
+            if($conn->query($query2) == true && $conn->query($query5) == true){
+                echo $string." -- Berhasil Menambahkan Data";
+            }else{
+                echo "Tidak Berhasil Menambahkan Data";
+            } 
         }else{
-            echo "Tidak Berhasil Menambahkan Data";
-        } 
+            if($conn->query($query2) == true){
+                echo $string." -- Berhasil Menambahkan Data";
+            }else{
+                echo "Tidak Berhasil Menambahkan Data";
+                
+            } 
+        }
     }
 ?>

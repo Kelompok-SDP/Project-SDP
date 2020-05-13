@@ -22,7 +22,6 @@ curl_setopt_array($curl, array(
     "content-type: application/json"
   ),
 ));
-
 $response = curl_exec($curl);
 $err = curl_error($curl);
 

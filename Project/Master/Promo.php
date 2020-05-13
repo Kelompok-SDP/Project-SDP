@@ -62,15 +62,25 @@
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah(1)" style="cursor:pointer;">Nama Promo</li>
                       <li class="dropdown-item" onclick="ubah(2)" style="cursor:pointer;">Harga Promo</li>
+                      <li class="dropdown-item" onclick="ubah(3)" style="cursor:pointer;">Jenis Promo</li>
                     </ul>
                   </div>
                   <div class="col-sm-8" id="harga" style="display: none; margin-left: 1vw;">
                     <input id="range_1" type="text" name="range_1" value="">
                   </div>
+
+                  <select class="form-control" id="filterjenis" style="display:none;">
+                          <option value="H">Promo Hemat</option>
+                          <option value="M">Promo Menu</option>
+                          <option value="HR">Promo Hari Raya</option>
+                        </select>
+
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src" style="display:none;">
                   <div class="input-group-append" id="search" style="display:none;">
                     <button type="submit" id="submitnmenu" onclick = "showtable(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
                     <button type="submit" id="submitharga" onclick = "showtable(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submitjenis" onclick = "showtable(3)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+
                   </div>
                   </div>
                 </div>
@@ -115,15 +125,23 @@
                      <li class="dropdown-divider"></li>
                       <li class="dropdown-item" onclick="ubah2(1)" style="cursor:pointer;">Nama Promo</li>
                       <li class="dropdown-item" onclick="ubah2(2)"  style="cursor:pointer;">Harga Promo</li>
+                      <li class="dropdown-item" onclick="ubah2(3)"  style="cursor:pointer;">Jenis Promo</li>
                     </ul>
                   </div>
                   <div class="col-sm-8" id="harga2" style="display: none; margin-left: 1vw;">
                     <input id="range_12" type="text" name="range_1" value="">
                   </div>
+                  <select class="form-control" id="filterjenis2" style="display:none;">
+                          <option value="H">Promo Hemat</option>
+                          <option value="M">Promo Menu</option>
+                          <option value="HR">Promo Hari Raya</option>
+                       </select>
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search"id="src2" style="display:none;">
                   <div class="input-group-append" id="search2" style="display:none;">
                     <button type="submit" id="submitnmenu2" onclick = "showtable2(1)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
                     <button type="submit" id="submitharga2" onclick = "showtable2(2)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+                    <button type="submit" id="submitjenis2" onclick = "showtable2(3)" class="btn btn-default" style="display:none;"><i class="fas fa-search"></i></button>
+
                   </div>
                   </div>
                 </div>
@@ -166,20 +184,37 @@
             document.getElementById("Btnfilter").innerHTML=tmp;
             $("#harga").css("display","none");
             $("#src").css("display","inline");
+            $("#filterjenis").css("display","none");
             $("#range_1").val("");
             $("#search").css("display","inline");
             $("#submitnmenu").css("display","inline");
             $("#submitharga").css("display","none");
-        }else{
+            $("#submitjenis").css("display","none");
+
+        }else if(id==2){
           let tmp = "Harga Promo";
           tp = 2;
           document.getElementById("Btnfilter").innerHTML=tmp;
           $("#harga").css("display","inline");
           $("#src").css("display","none");
+          $("#filterjenis").css("display","none");
           $("#src").val("");
           $("#search").css("display","inline");
           $("#submitnmenu").css("display","none");
           $("#submitharga").css("display","inline");
+          $("#submitjenis").css("display","none");
+        }else{
+          let tmp = "Jenis Promo";
+          tp = 3;
+          document.getElementById("Btnfilter").innerHTML=tmp;
+          $("#harga").css("display","none");
+          $("#src").css("display","none");
+          $("#filterjenis").css("display","inline");
+          $("#search").css("display","inline");
+          $("#submitnmenu").css("display","none");
+          $("#submitharga").css("display","none");
+          $("#submitjenis").css("display","inline");
+
         }
     }
     function ubah2(id){
@@ -189,20 +224,38 @@
             document.getElementById("Btnfilter2").innerHTML=tmp;
             $("#harga2").css("display","none");
             $("#src2").css("display","inline");
+            $("#filterjenis2").css("display","none");
             $("#range_12").val("");
             $("#search2").css("display","inline");
             $("#submitnmenu2").css("display","inline");
             $("#submitharga2").css("display","none");
-        }else{
+            $("#submitjenis").css("display","none");
+
+        }else if (id == 2){
           let tmp = "Harga Promo";
           tp = 2;
           document.getElementById("Btnfilter2").innerHTML=tmp;
           $("#harga2").css("display","inline");
           $("#src2").css("display","none");
+          $("#filterjenis2").css("display","none");
           $("#src2").val("");
           $("#search2").css("display","inline");
           $("#submitnmenu2").css("display","none");
           $("#submitharga2").css("display","inline");
+          $("#submitjenis").css("display","none");
+
+        }else{
+          let tmp = "Jenis Promo";
+          tp = 3;
+          document.getElementById("Btnfilter2").innerHTML=tmp;
+          $("#harga2").css("display","none");
+          $("#src2").css("display","none");
+          $("#filterjenis2").css("display","inline");
+          $("#search2").css("display","inline");
+          $("#submitnmenu2").css("display","none");
+          $("#submitharga2").css("display","none");
+          $("#submitjenis2").css("display","inline");
+
         }
     }
 
@@ -230,7 +283,7 @@
         }else{
           alert("Kosong");
         }
-      } else{
+      } else if(st==2){
         let harga = $("#range_1").val();
         if(harga != ""){
           $.post("promo/controllerPromo.php",{
@@ -243,6 +296,16 @@
         }else{
           alert("Kosong");
         }
+      }else{
+        let jenis = $("#filterjenis").val();
+        $.post("promo/controllerPromo.php",{
+                "action" : "showdata",
+                "source": jenis,
+                "fillter":st
+            },function(data){
+                $("#tKat").html(data);
+          });
+
       }
     }
     
@@ -276,7 +339,7 @@
         }else{
           alert("Kosong");
         }
-      } else{
+      } else if(st==2){
         let harga = $("#range_12").val();
         if(harga != ""){
           $.post("promo/controllerPromo.php",{
@@ -289,6 +352,15 @@
         }else{
           alert("Kosong");
         }
+      }else{
+        let jenis = $("#filterjenis2").val();
+        $.post("promo/controllerPromo.php",{
+                "action" : "showdata2",
+                "source": jenis,
+                "fillter":st
+            },function(data){
+                $("#tKatHap").html(data);
+          });
       }
     }
     

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php 
-session_start();
 include("../config.php");
+include('Mcd/title.php');
+include('Mcd/header.php');
 $ids = $_GET["id"];
 $tmp = [];
 $tmp = explode('0',$ids,2);
@@ -10,7 +11,8 @@ $nama_menu = "";
 $tdeskripsi = "";
 $deskripsi = "";
 $gambar = "";
-if($tmp[0]== "MEN"){
+$hargapromo = 0;
+if(strpos($ids, "MEN") !== false){
     $query = "select * from menu where id_menu = '$ids'";
     $menu = mysqli_query($conn,$query);
 
@@ -23,7 +25,15 @@ if($tmp[0]== "MEN"){
 
     }
     $gambar = "../Master/Menu/".$gambar;
-
+    $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$ids'";
+    $menu2 = mysqli_query($conn,$query2);
+    $row = mysqli_num_rows($menu2);
+    if($row > 0){
+        foreach ($menu2 as $key => $value) {
+            $hargapromo = $value["harga_promo_paket"];
+            $hasil_rupiah2 = "Rp " . number_format($hargapromo,2,',','.');
+        }
+    }
 } else{
     $query = "select * from paket where id_paket = '$ids'";
     $menu = mysqli_query($conn,$query);
@@ -72,7 +82,7 @@ if($tmp[0]== "MEN"){
 <script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/ec.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/conversion_async.js"></script><script type="text/javascript" async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/analytics.js"></script><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/723821301303563.js" async=""></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/fbevents.js"></script><script async="" src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/gtm.js"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"WebPage","name":"Over 9000 Thousand!","description":"For those who helped create the Genki Dama"}</script>
 
 
-<link rel="stylesheet" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css">
+<!-- <link rel="stylesheet" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/main.css"> -->
         <link rel="dns-prefetch" href="https://https//mcdonalds.co.id/">
             <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -83,11 +93,10 @@ if($tmp[0]== "MEN"){
         <!-- End Google Tag Manager -->
     <link rel="stylesheet" type="text/css" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/a"></script></head>
 
-    <?php include('Mcd/header.php'); ?>
 <body style='margin-top:5.5%'>
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
-    <span>Pesan Sekarang</span>
+    <span >Pesan Sekarang</span>
 </a>
         <!-- Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
@@ -110,13 +119,25 @@ if($tmp[0]== "MEN"){
         </div>
         <div class="col-md-7 content-center">
             <div class="heading">
-                <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2>
-                <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
-
+                <?php 
+                    if($hargapromo != ""){
+                ?>
+                    <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2> 
+                    <p style="background-color: red; color: white; font-weight: bold; padding: 5px; width: 90px;">!!PROMO!!</p>
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt; text-decoration: line-through;"><?=$hasil_rupiah?></h2>
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah2?></h2>
+                <?php 
+                    }else{   
+                ?>
+                    <h2 class="title animated fadeInUp delayp2"><?=$nama_menu?></h2> 
+                    <h2 class="title animated fadeInUp delayp2" style= "font-size:20pt;"><?=$hasil_rupiah?></h2>
+                <?php 
+                    }
+                ?>
                 <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
+                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" style="cursor: pointer;" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
             </div>
         </div>
     </div>

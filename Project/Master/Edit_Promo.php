@@ -9,18 +9,24 @@
      $awp = '';
      $akp = '';
      $gbr = '';
+     $detail = "";
+     $jenispromo = "";
      foreach ($res as $key=>$data){
          $nama  = $data['nama_promo'];
          $harga = $data['harga_promo'];
         $awp = $data['periode_awal'];
         $akp = $data['periode_akhir'];
         $gbr = $data['gambar_promo'];
+        $detail = $data['detail_promo'];
+        $jenispromo = $data["jenis_promo"];
      }
      $awp = strtotime($awp);
      $akp = strtotime($akp);
      $np = date('Y-m-d',$awp);
      $nkp = date('Y-m-d',$akp);
 
+
+     
      
 ?>
 <!DOCTYPE html>
@@ -53,7 +59,7 @@
  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
+<input type="hidden" id = "jenissebelum"value="<?=$jenispromo?>" >
   <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -86,10 +92,24 @@
                     <input type="text" class="form-control" id="nampromo" placeholder="Masukan Nama Promo" name ="nama" value="<?=$nama?>">
                 </div>
 
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Detail Promo</label>
+                    <input type="number" class="form-control" id="detpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$detail?>">
+                  </div>
+
+                  <div class="form-group">
+                        <label>Jenis Promo</label>
+                        <select class="form-control" id="jenispromo">
+                          <option value="H">Promo Hemat</option>
+                          <option value="M">Promo Hari Raya</option>
+                          <option value="HR">Promo Menu</option>
+                        </select>
+
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Promo</label>
                     <input type="number" class="form-control" id="hrgpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$harga?>">
                   </div>
+                 
                          <!-- Date range -->
                     <div class="form-group">
                         <label>Awal Periode:</label>
@@ -161,6 +181,22 @@
 <script src="../AdminLTE-master/dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+  $(document).ready(function(){
+      ubahselect();
+  });
+  function ubahselect(){
+    let sebelum = $("#jenissebelum").val();
+    $.ajax({
+      url : "promo/ubahselect.php",
+      method: "post",
+      data:{
+        sebelum :sebelum
+      },
+      success: function(result){   
+          $("#jenispromo").html(result);
+      }
+    });
+  }
 $('#btnEdit').click(function () {
         let id = $(this).val();
         let nampromo = $('#nampromo').val();

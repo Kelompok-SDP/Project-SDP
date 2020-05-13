@@ -81,21 +81,21 @@
                   $query3 = "SELECT * FROM MENU WHERE ID_MENU = '$tmp'";
                   $list3 = $conn->query($query3);
                   foreach ($list3 as $key => $value) {
-                    $dmenu .= $value["nama_menu"] . "-";
+                    $dmenu = $dmenu."- ". $value['nama_menu']."<br>";
                   }
                 }
               ?>
               <label for="exampleInputEmail1"><h4>Detail Paket </h4></label><br>
               <label for="exampleInputEmail1">Nama Paket </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
               <label for="exampleInputEmail1">Harga Paket </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
-              <label for="exampleInputEmail1">Menu </label><label for="exampleInputEmail1"><?=": ".$dmenu?></label><br>
+              <label for="exampleInputEmail1"> </label><label for="exampleInputEmail1"><?="Menu : <br>".$dmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
                 <div class="card-body">
                 <div class="form-group">
                     <label for="inputDescription">Gambar Paket Sebelumnya</label><br>
-                    <?php echo "<img src='$gbr' width='200' height='200'"; ?>
+                    <?php echo "<img src='../Menu/$gbr' width='200' height='200'"; ?>
                 </div>
                 <form role="form" action = "#" method ="post" enctype="multipart/form-data">
                     Pilih Gambar :

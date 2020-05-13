@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-
-<?php include('Mcd/title.php');
-include("../config.php");
-session_start();
+<?php 
+    include('Mcd/title.php');
+    include("../config.php");
+    include('Mcd/header.php');
+    include('Mcd/corusel.php');
+//session_start();
 ?>
+
 <body>
-<?php include('Mcd/header.php')?>
-<?php include('Mcd/corusel.php');?>
     <!-- Google Tag Manager (noscript) -->
     
     <!-- End Google Tag Manager (noscript) -->
@@ -14,51 +15,50 @@ session_start();
 <section class="py-main section-other-promo">
     <div class="container">
         <div class="heading text-center">
-            <h2 class="title animated fadeInUp delayp2">Promo Menarik</h2>
+            <h2 class="title animated fadeInUp delayp2">Promo Menarik Bulan Ini</h2>
         </div>
-        <div class="owl-carousel owl-theme owl-other-promo card-general-list content animated fadeInUp delayp3 owl-loaded owl-drag">
-            <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 740px;"><div class="owl-item active" style="width: 370px;"><div class="item">
-                <a href="#" data-id="23" data-name="Diskon 30% dengan Kartu Kredit BCA (Visa/MasterCard)" data-slot="1" data-slug="diskon-30-dengan-kartu-kredit-bca-visamastercard" class="card card-general">
-                    <div class="img-container">
-                        <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/TMOHwFH7Z45xzVsFoPcA.png" class="img-fluid">
+        <div class="owl-carousel owl-theme owl-other-promo card-general-list content animated fadeInUp delayp3 owl-loaded owl-drag">  
+            <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1110px;">
+                    <?php
+                        $query = "SELECT * from promo where periode_akhir >= '$datenow' AND periode_akhir like '%$monthnow%' AND status_promo = 1 LIMIT 3";
+                        $promo = mysqli_query($conn,$query);
+                        foreach ($promo as $key => $value) {
+                            $href = "detail_promo.php?id=".$value["id_promo"];
+                    ?>
+                    <div class="owl-item active" style="width: 370px;">
+                        <div id="rekomendasi-promo" class="item">
+                            <a href="<?= $href ?>" data-id="118" data-name="Paket Hemat Banget" data-slot="1" data-slug="paket-hemat-banget" class="card card-general">
+                                <div class="img-container">
+                                <?php
+                                    $gambar = $value["gambar_promo"];
+                                ?>
+                                    <img src="<?="../Master/promo/".$gambar?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
+                                </div>
+                                <div class="card-body">
+                                    <h5><?=$value["nama_promo"]?></h5>
+                                    <p class="text-truncate-multiline"><?= $value["detail_promo"] ?></p>
+                                    <p class="exp-date">
+                                        <img src="MCD/Detail_Promo McDonald&#39;s Indonesia __files/ic_calendar_red.svg" class="img-fluid"> Berlaku
+                                            hingga 
+                                        <?php
+                                            $tmp = $value["periode_akhir"];
+                                            $tanggal = date("d F Y", strtotime($tmp));
+                                            echo $tanggal;
+                                        ?>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5>Diskon 30% dengan Kartu Kredit BCA (Visa/MasterCard)</h5>
-                        <p class="text-truncate-multiline">
-                            Hanya dengan 
-                            bertransaksi senilai Rp200.000 di www.mcdelivery.co.id atau dari 
-                            Aplikasi McDelivery anda akan mendapatkan potongan 30% dengan kartu 
-                            Kredit BCA (Visa/Mastercard)
-                        </p>
-                        <p class="exp-date">
-                            <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
-                            hingga 31 December 2020
-                        </p>
-                    </div>
-                </a>
-            </div></div><div class="owl-item active" style="width: 370px;"><div class="item">
-                <a href="#" data-id="54" data-name="Promo Gratis Ongkir McDelivery dengan Menggunakan LinkAja" data-slot="2" data-slug="promo-gratis-ongkir-mcdelivery-dengan-menggunakan-linkaja" class="card card-general">
-                    <div class="img-container">
-                        <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/PADKVdxyKDd23UkzwK6v.jfif" class="img-fluid">
-                    </div>
-                    <div class="card-body">
-                        <h5>Promo Gratis Ongkir McDelivery dengan Menggunakan LinkAja</h5>
-                        <p class="text-truncate-multiline"></p><p>
-                            Mulai 
-                            22 February 2019, TCASH sudah berganti nama menjadi LinkAja. Tidak ada 
-                            perubahan cara penggunaan TCASH/LinkAja di McDelivery.co.id atau di 
-                            aplikasi McDelivery
-                        </p><p></p>
-                        <p class="exp-date">
-                            <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
-                            hingga 30 November 2020
-                        </p>
-                    </div>
-                </a>
-            </div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
-            </div><div class="owl-dots disabled"></div></div>
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
         <div class="d-flex justify-content-center animated fadeInUp delayp4">
-            <a href="https://mcdonalds.co.id/promo" class="btn btn-primary">Lihat Semua Promo</a>
+            <a href="Homepromo.php" class="btn btn-primary">Lihat Semua Promo</a>
         </div>
     </div>
 </section>
@@ -103,6 +103,15 @@ session_start();
     include('ChatTawkTo.php');
 ?>
     
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","723821301303563");</script>
+<script type="text/javascript" id="">fbq("track","PageView");</script><script type="text/javascript" id="" src="Menu%20%20%20McDonald's%20Indonesia_files/ins.js"></script><iframe style="display: none;" id="insider-worker" src="Menu%20%20%20McDonald's%20Indonesia_files/worker-new.html"></iframe><style id="ins-free-style" innerhtml=""></style></body></html>
+
+
+<!-- <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script> -->
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/vendor.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/app.js"></script>
+<script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/mapbox.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
         $(".loader").fadeOut('slow');

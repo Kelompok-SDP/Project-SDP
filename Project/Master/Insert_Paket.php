@@ -172,6 +172,7 @@ require_once("../config.php");
         let ppaket = $('#Ppaket').val();
         let mpaket = $('#Mpaket').val();
         let mpaket2 = $('#Mpaket2').val();
+        alert(ppaket);
         if(npaket != "" && hpaket != "" && kpaket != null){
           if(mpaket != null && mpaket2 != null){
             if(mpaket != mpaket2){
@@ -188,7 +189,7 @@ require_once("../config.php");
                 },
                 success: function(result){   
                   alert(result);
-                  if(result != "Data Kembar"){
+                  if(result.includes("PK")){
                     let a = "Paket/Uploadgambar.php?id=";
                     let a2 = result.split(" ",1);
                     let a3 = a.concat(a2);

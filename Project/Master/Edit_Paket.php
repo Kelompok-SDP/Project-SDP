@@ -17,16 +17,15 @@
          $npaket  = $data['nama_paket'];
          $hpaket = $data['harga_paket'];
          $kpaket = $data['id_kategori'];
-         $ppaket = $data['id_promo'];
          $query2 = "SELECT * FROM KATEGORI WHERE id_kategori = '$kpaket'";
           $res2 = mysqli_query($conn,$query2);
           foreach ($res2 as $key => $value) {
               $nkat = $value['nama_kategori'];
           }
-          $query2 = "SELECT * FROM PROMO WHERE id_promo = '$ppaket'";
-          $res2 = mysqli_query($conn,$query2);
-          foreach ($res2 as $key => $value) {
-              $npro = $value['nama_promo'];
+          $query3 = "SELECT * FROM PROMO_PAKET WHERE id_paket = '$id'";
+          $res3 = mysqli_query($conn,$query3);
+          foreach ($res3 as $key => $value) {
+              $npro = $value['id_promo'];
           }
      }
     $query2 = "SELECT * FROM PAKET_MENU WHERE ID_PAKET = '$id'";
@@ -156,18 +155,30 @@
                     </div>
                     <div class="form-group">
                     <label for="inputStatus">Promo Menu</label><br>
-                        <i><label for="inputStatus">Promo Menu Sebelumnya</label><label for="inputStatus"><?=": ".$npro?></label><i>
-                        <select class="form-control custom-select" id="Ppaket" name="ppaket">
-                        <option selected disabled>Pilih satu</option>
-                        <?php  
-                            $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
-                            $list3 = $conn->query($query3);
-                            foreach ($list3 as $key => $value) {
-                                $kat = $value['nama_promo'];
-                                ?>        
-                            <option value="<?= $value['id_promo']?>"><?= $value['nama_promo']?></option>
-                        <?php } ?> 
-                        </select>
+                    <?php 
+                      if($npro != ""){
+                    ?>
+                      <label for="inputStatus">Ada Promo Berlangsung di Paket Ini</label><br>
+                      <input type="hidden" name="" id="promo" value="<?= $npro ?>">
+                      <input type="hidden" name="" id="Ppaket" value="">
+                    <?php
+                      }else{
+                    ?>
+                      <input type="hidden" name="" id="promo" value="<?= $npro ?>">
+                      <select class="form-control custom-select" id="Ppaket" name="ppaket">
+                      <option selected disabled>Pilih satu</option>
+                      <?php  
+                          $query3 = "SELECT * FROM PROMO WHERE STATUS_PROMO = 1";
+                          $list3 = $conn->query($query3);
+                          foreach ($list3 as $key => $value) {
+                              $kat = $value['nama_promo'];
+                              ?>        
+                          <option value="<?= $value['id_promo']?>"><?= $value['nama_promo']?></option>
+                      <?php } ?> 
+                      </select>
+                    <?php
+                      } 
+                    ?>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -216,6 +227,7 @@
         let kpaket = $('#Kpaket').val();
         let mpaket = $('#Mpaket').val();
         let mpaket2 = $('#Mpaket2').val();
+        let prepromo = $("#promo").val();
         let ppaket = $('#Ppaket').val();
         if(npaket != "" && hpaket != "" && kpaket != null){
           if(mpaket != null && mpaket2 != null){
@@ -230,14 +242,17 @@
                       kpaket : kpaket,
                       mpaket : mpaket,
                       mpaket2 : mpaket2,
-                      ppaket : ppaket
+                      ppaket : ppaket,
+                      prepromo : prepromo
                   },
                   success: function(result){   
-                      alert(result);
+                    alert(result);
+                    if(result.includes("PK")){
                       let a = "Paket/editGambar.php?id=";
                       let a2 = result.split(" ",1);
                       let a3 = a.concat(a2);
                       document.location.href = a3;
+                    }
                   }
               });
             }else{

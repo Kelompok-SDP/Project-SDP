@@ -1,6 +1,6 @@
 <?php
     require_once("../../config.php");
-    session_start();
+    //session_start();
     $tipe = $_GET["tipe"];
     $user=$_POST["user"];
     $password=$_POST["password"];
@@ -14,6 +14,7 @@
             if($query["status"]==1){
                 if($query["password"]==$password){
                     $_SESSION['pelanggan'] = $query['id_member'];
+                    $_SESSION["login"]="pelanggan";
                     echo "berhasil login";
                 }else{
                     echo "password salah";
@@ -21,7 +22,7 @@
             }else if ($query["status"]==2){
                 if($query["password"]==$password){
                     $_SESSION['pelanggan'] = $query['id_member'];
-
+                    $_SESSION["login"]="pelanggan";
                     echo "berhasil login v2";
 
                 }else{
@@ -43,6 +44,7 @@
             if($query["status"]==1){
                 if($query["password"]==$password){
                     $_SESSION["pegawai"] = $query['id_pegawai'];
+                    $_SESSION["login"]="pegawai";
                     echo "berhasil login";
                 }else{
                     echo "password salah";

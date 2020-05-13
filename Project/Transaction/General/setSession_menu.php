@@ -1,6 +1,6 @@
 <?php
     include_once("../../config.php");    
-    session_start();
+   // session_start();
     $nama=$_POST["nama_menu"];
     print_r($_SESSION["nama_menu"]);
     print_r($_SESSION["pilih_menu"]);

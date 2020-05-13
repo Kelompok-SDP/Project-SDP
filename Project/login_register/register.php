@@ -1,3 +1,13 @@
+<?php
+  require_once("../Source.php");
+  $emails ="";
+  if(isset($_POST['footerregis'])){
+    $emails = $_POST["emailfooter"];
+  }
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +46,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="input-group mb-3">
           <input type="text" id='username' class="form-control" placeholder="Username ">
           <div class="input-group-append">
@@ -54,7 +64,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" id='email'  class="form-control" placeholder="Email">
+          <input type="email" id='email' value="<?=$emails?>"  class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
             <i class="fas fa-envelope"></i>
@@ -94,10 +104,10 @@
           </div>
         </div>
         <div style='float:left;margin-left:30px;margin-right:30px'id='provinsi' onclick='gantiKota()' class="input-group-prepend">
-            
+
         </div>
         <div id='kota' class="input-group-prepend">
-            
+
         </div>
         <div style='clear:both;margin-top:10px' class="row">
           <!-- /.col -->
@@ -106,7 +116,7 @@
           </div>
           <!-- /.col -->
         </div>
-        
+
 
       <a href="login.php" class="text-center">I already have a membership</a>
     </div>
@@ -143,7 +153,7 @@ var balik=-1;
 
 
     function gantiProvinsi(){
-        $.ajax({
+        $.ajax({ 
           type: "post",
           url: "register/ajaxProvinsi.php",
           success: function (response) {
@@ -154,7 +164,7 @@ var balik=-1;
     function ganti(nama){
         $('#provinsi_value').val(name);
     }
-    
+
     gantiProvinsi();
 
     function gantiKotaAwal(){
@@ -172,12 +182,14 @@ var balik=-1;
 
     function gantiKota(){
         $.ajax({
+       
             type: "post",
             url: "register/ajaxKota.php",
             data: {
                 daerah:$("#provinsi_value").val()
             },
             success: function (response) {
+                alert(response);
                 $("#kota").html(response);
             }
         });
@@ -186,9 +198,9 @@ var balik=-1;
 
 
 
-    
+
     function checkValid(){
-      
+
         var fullname=$("#fullname").val();
         var username=$("#username").val();
         var password=$("#password").val();
@@ -199,21 +211,25 @@ var balik=-1;
         var nohp=$("#nohp").val();
         var kabupaten=$("#provinsi").val();
         var kota=$("#kota").val();
-        
+     
+
         if(fullname!=''&&username!=''&&alamat!=''&&kodepos!=''&&email!=''&&password!=''&&conpassword!=''&&nohp!=''){
           if(ValidateEmail(email)){
             if(ValidatePass(password,conpassword)){
               if(ValidateNohp(nohp)){
+
                   check(email,'email');
-                  if(balik==1){check(nohp,'nohp');
-                      if(balik==1){check(username,'username')
+                 
+                  if(balik==1){
+                    check(nohp,'nohp');
+                      if(balik==1){
+                          check(username,'username');
                           if(balik==1){
-                             
-                              insertUser();
-                              Konfirm();
-                              setTimeout(
-                              window.location.href = "confirmation.php?test=1"
-                              , 5000);
+                            insertUser();
+                            Konfirm();
+                            setTimeout(
+                            window.location.href = "confirmation.php?test=1"
+                            , 5000);
                           }
                       }
                   }
@@ -227,7 +243,6 @@ var balik=-1;
 
     function Konfirm(){
         var kepada=$("#email").val();
-        
       $.ajax({
         method: "post",
         url: "register/Emailregister.php",
@@ -236,7 +251,7 @@ var balik=-1;
         },
         success: function (response) {
           if(response == "Berhasil"){
-            
+
           }
         }
       });
@@ -266,17 +281,18 @@ var balik=-1;
               pass:pass,
               nohp:nohp,
               kabupaten:kabupaten,
-              kota:kota         
+              kota:kota
             },
             success: function (response) {
-               // Konfirm();
+               alert(response);
             }
         });
     }
-    
+
     function check(check,jenis){
-        
+
         $.ajax({
+            async:false,
             method: "post",
             url: "register/check_valid.php",
             data: {
@@ -284,10 +300,11 @@ var balik=-1;
                 jenis:jenis
             },dataType: "json",
             success: function (data) {
-                balik=$.parseJSON(data);
+               balik=$.parseJSON(data);
                 console.log(balik);
                 
-                return balik;
+              return balik;
+
             }
         });
     }
@@ -298,7 +315,7 @@ var balik=-1;
         return re.test(String(email).toLowerCase());
     }
 
-    function ValidatePass(pass,conpass) 
+    function ValidatePass(pass,conpass)
     {
         if (pass==conpass)
         {
@@ -308,7 +325,7 @@ var balik=-1;
         return false;
     }
 
-    function ValidateNohp(nohp) 
+    function ValidateNohp(nohp)
     {
         if (nohp.length<=13)
         {

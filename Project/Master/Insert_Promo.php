@@ -67,6 +67,21 @@ require_once("../config.php");
                     <label for="exampleInputEmail1">Nama Promo</label>
                     <input type="text" class="form-control" id="nampromo" placeholder="Masukan Nama Promo" name ="nama">
                   </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Detail Promo</label>
+                    <input type="text" class="form-control" id="detpromo" placeholder="Masukan Nama Promo" name ="nama">
+                  </div>
+
+                  <div class="form-group">
+                        <label>Jenis Promo</label>
+                        <select class="form-control" id="jenispromo">
+                          <option value="H">Promo Hemat</option>
+                          <option value="M">Promo Menu</option>
+                          <option value="HR">Promo Hari Raya</option>
+                        </select>
+
+
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Promo</label>
                     <input type="number" class="form-control" id="hrgpromo" data-mask='___.___.___' placeholder="Masukan Harga Promo" name = "harga">
@@ -147,13 +162,17 @@ require_once("../config.php");
         let hrgpromo = $('#hrgpromo').val();
         let awalp = $('#awalP').val();
         let akhirp = $('#akhirP').val();
+        let detpromo = $('#detpromo').val();
+        let jenispromo = $("#jenispromo").val();
         if(nampromo != "" && hrgpromo !=0 && awalp <akhirp){
             $.ajax({
                 url: "promo/insertDatabase.php",
                 method: 'post',
                 data: {
                     nampromo : nampromo,
+                    detpromo : detpromo,
                     hrgpromo : hrgpromo,
+                    jenispromo : jenispromo,
                     awalp : awalp,
                     akhirp : akhirp
                 },

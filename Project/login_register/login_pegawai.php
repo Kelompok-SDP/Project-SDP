@@ -1,105 +1,79 @@
-<?php
-	require_once("../config.php");
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<title>Login | Pegawai</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="../Template/Login_v3/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../Template/Login_v3/css/main.css">
-<!--===============================================================================================-->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="../AdminLTE-master/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../AdminLTE-master/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body>
-    <!-- <h1>Login</h1>
-    <form action="checkLogin.php" method="post">
-        Username : <input type="text" name="username" id=""> <br>
-        Password : <input type="text" name="pass" id=""> <br>
-        <input type="submit" value="Login" name="btnLogin">
-    </form> -->
-    <div class="limiter">
-		<div class="container-login100" style="background-image: url('../Template/Login_v3/images/bg-01.jpg');">
-			<div class="wrap-login100">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../AdminLTE-master/index2.html"><b>Login Pegawai</b> </a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in Pegawai
-					</span>
+      <!-- <form action="../AdminLTE-master/index3.html" method="post"> -->
+        <div class="input-group mb-3">
+          <input type="email" id='user'class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" id='pass'class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button onclick="check()" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      <!-- </form> -->
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
 
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username" id= "user">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
+<!-- jQuery -->
+<script src="../AdminLTE-master/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../AdminLTE-master/dist/js/adminlte.min.js"></script>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password" id = "pass">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-					<div class="contact100-form-checkbox">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" name="btnLogin" id = "login" onclick= "check()">
-							Login
-						</button>
-					</div>
-
-					<!-- <div class="text-center p-t-90">
-						<a class="txt1" href="#">
-							Forgot Password?
-						</a>
-					</div> -->
-			</div>
-		</div>
-	</div>
-	
-
-    <div id="dropDownSelect1"></div>
-    
-    <!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/bootstrap/js/popper.js"></script>
-	<script src="../Template/Login_v3/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/daterangepicker/moment.min.js"></script>
-	<script src="../Template/Login_v3/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="../Template/Login_v3/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-    <script src="../Template/Login_v3/js/main.js"></script>
-    
 </body>
 </html>
 <script>
@@ -117,9 +91,7 @@
         success: function (response) {
 			alert(response);
 			if(response== "berhasil login"){
-				setTimeout(
-              window.location.href = "../Transaction/index.php"
-             , 5000);
+				window.location.href="../home/home.php";
 			}
         }
         });

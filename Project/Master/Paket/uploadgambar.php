@@ -70,13 +70,14 @@
                   $query3 = "SELECT * FROM MENU WHERE ID_MENU = '$tmp'";
                   $list3 = $conn->query($query3);
                   foreach ($list3 as $key => $value) {
-                  $dmenu .= $value["nama_menu"];
+                    $dmenu = $dmenu."- ". $value['nama_menu']."<br>";
+                  }
                 }
               ?>
               <label for="exampleInputEmail1"><h4>Detail Paket </h4></label><br>
               <label for="exampleInputEmail1">Nama Paket </label><label for="exampleInputEmail1"><?=": ".$nmenu?></label><br>
               <label for="exampleInputEmail1">Harga Paket </label><label for="exampleInputEmail1"><?=": ".$hmenu?></label><br>
-              <label for="exampleInputEmail1">Menu </label><label for="exampleInputEmail1"><?=": ".$dmenu?></label><br>
+              <label for="exampleInputEmail1"></label><label for="exampleInputEmail1"><?="Menu :<br>".$dmenu?></label><br>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -87,7 +88,7 @@
                     <input type="submit" value="Upload" name="upload"><br>
                 <?php
                     if(isset($_REQUEST['upload'])){
-                        $target_dir = "Image/"; //<- ini folder tujuannya
+                        $target_dir = "../Menu/Image/"; //<- ini folder tujuannya
                         $target_file = $target_dir. basename($_FILES["gambar"]["name"]); //murni mendapatkan namanya saja tanpa path nya 
                         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                         if($file_type !="jpg" && $file_type !="png"){
