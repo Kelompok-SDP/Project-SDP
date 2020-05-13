@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
     include("../config.php");
     include("Mcd/title.php");
 	include("../Source.php");
@@ -19,7 +19,7 @@
     <!-- Customize styles -->
     <link href="style.css" rel="stylesheet"/>
     <!-- font awesome styles -->
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!-- <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"> -->
 		<!--[if IE 7]>
 			<link href="css/font-awesome-ie7.min.css" rel="stylesheet">
 		<![endif]-->
@@ -43,27 +43,27 @@
 
 <div class="container" style="padding-top:80px">
 
-<!-- 
-Body Section 
+<!--
+Body Section
 -->
 	<div class="row">
 	<div class="col-12">
 	<div class="span12">
 	<div class="well well-small">
 		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
-	<hr class="soften"/>	
+	<hr class="soften"/>
 	<div id="tempat_reservasiKode">
-	
+
 	</div>
 	<div class="col-12 elevation-2" style="padding: 10px;">
-		<label style="min-width:159px"> VOUCHER Code: </label> 
+		<label style="min-width:159px"> VOUCHER Code: </label>
 		<input type="text" class="input-medium" placeholder="Code"  id="kode">
 		<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="CheckPromo()" style="margin-top: -5px;">ADD</button><br>
 		<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
 	</div>
 	<br>
 	<div class="col-12 elevation-2" id="place_radio"style="padding: 10px;">
-		
+
 	</div>
 	<br>
 	<div id="detailTable"></div>
@@ -78,7 +78,7 @@ Body Section
 			<span class="close">&times;</span>
 			</div>
 			<div class="modal-body" id="tempat">
-			
+
 			</div>
 			<div class="modal-footer">
 			<h3 id="footer"></h3>
@@ -93,9 +93,11 @@ Body Section
 	</div>
 	</div>
 
+
 </div><!-- /container -->
 <hr>
 <?php include('Mcd/footer.php'); ?>
+
 <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
@@ -110,6 +112,8 @@ Body Section
 	$(document).ready(function () {
 		$("#dropmenu").html(
 			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
+
+			document.getElementById("cool").style.height = "40px";
 	});
 	var modal = document.getElementById("myModal");
 
@@ -208,7 +212,7 @@ Body Section
 					document.getElementById('radioPrimary4').checked = false;
 
 				}
-				
+
             }
         });
     }
@@ -223,7 +227,7 @@ Body Section
 						$("#tempat").html(response);
 						getDetail_kursi();
 						getDateNow();
-						getTimeNow(); 
+						getTimeNow();
 						ubahradio(1);
 				}
 			});
@@ -438,7 +442,7 @@ Body Section
 				alert("Pilih Meja ");
 			}
 		}
-		
+
 	}
 	function bayar(){
 		var jenis_pembayaran=$("#jenis_pembayaran").val();

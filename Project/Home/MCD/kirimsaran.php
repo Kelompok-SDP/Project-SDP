@@ -1,6 +1,6 @@
 <?php
     require_once("../../config.php");
-    session_start();
+   // session_start();
     $email = "";
     $idmember = $_POST['idmember'];
     if($idmember !=""){

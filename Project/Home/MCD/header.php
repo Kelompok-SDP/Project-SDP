@@ -30,7 +30,7 @@
     <div class="loader" style="display: none;"></div>
     </div> 
     <div class="menu-slide light" id="menu-slide-1">
-        <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1"><i class="far fa-angle-left"></i>Menu</label>
+        <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1">Menu</label>
         <ul class="mega-menu-down">
             <?php
                 $query ="select id_kategori,nama_kategori from kategori";
@@ -43,7 +43,7 @@
                
             ?>
             
-            <li><a href="https://mcdonalds.co.id/menu" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
+            <li><a href="Homemenu.php" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
         </ul>
     </div>
 <input type="hidden" id="custid" value="<?=$id?>" >
@@ -125,11 +125,7 @@
                         Promo
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://mcdonalds.co.id/dunia-anak">
-                        Dunia Anak
-                    </a>
-                </li>
+              
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>
