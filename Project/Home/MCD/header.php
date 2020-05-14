@@ -2,29 +2,41 @@
    // session_start();
    require_once("../config.php");
     if(isset($_SESSION["nama_menu"])==false){
-        $_SESSION["isi_kursi"]=" ";
+        $_SESSION["isi_kursi"]="";
         $_SESSION["ctr"]=0;
         $_SESSION["nama_menu"]="";
         $_SESSION["pilih_menu"]= array();
         $_SESSION["promo"]=0;
-        $_SESSION["login"]="kosong";
         $_SESSION["ongkir"]=0;
         $_SESSION["jenis"]="kosong";
     }
     $nama = "Login";
     $id = "null";
-    if(isset($_SESSION['pelanggan'])){
-        $id= $_SESSION['pelanggan'];
+    if(isset($_SESSION['login'])){
+        if($_SESSION['login'] == 'pelanggan'){
+            if(isset($_SESSION['pelanggan'])){
+                $id= $_SESSION['pelanggan'];
 
-        $query = "select * from member where id_member= '$id'";
-        $data = mysqli_query($conn,$query);
-        $nama = "Hello, ";
-        foreach($data as $key=>$row){
-            $nama = $nama.$row['fullname'];
+                $query = "select * from member where id_member= '$id'";
+                $data = mysqli_query($conn,$query);
+                $nama = "Hello, ";
+                foreach($data as $key=>$row){
+                    $nama = $nama.$row['fullname'];
+                }
+            }
+        }else if($_SESSION['login'] == 'pegawai'){
+            $id= $_SESSION['pegawai'];
+
+            $query = "select * from pegawai where id_pegawai= '$id'";
+            $data = mysqli_query($conn,$query);
+            $nama = "Pegawai, ";
+            foreach($data as $key=>$row){
+                $nama = $nama.$row['nama'];
+            }
         }
     }
 
-   $hr = "ubahinfo.php?id=".$id;
+   $hr = "cekSession.php?id=".$id;
 ?>
 <div class="loader-wrapper loader-light">
     <div class="loader" style="display: none;"></div>
