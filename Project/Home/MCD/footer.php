@@ -72,7 +72,6 @@
                 <div class="col-md-5 col-lg-3 col-xl-4">
                     <div class="footer-item footer-item-subscribe">
                     <h5 class="footer-title">Tidak Puas dengan Pelayanan Kami ? Yuk Komen di Bawah!!</h5>
-                        <form class="validation-footer" novalidate="">
                             <div class="form-group mb-2">
 
                           
@@ -96,7 +95,6 @@
                                     </div>
                             </div>
                             <p class="form-status status-footer"></p>
-                        </form>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4">
