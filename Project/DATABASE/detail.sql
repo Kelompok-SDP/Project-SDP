@@ -27,6 +27,40 @@ USE `detail`;
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kritik`
+--
+
+DROP TABLE IF EXISTS `kritik`;
+CREATE TABLE `kritik` (
+  `id_saran` varchar(10) NOT NULL,
+  `isi_saran` varchar(500) DEFAULT NULL,
+  `tanggal` date NOT NULL,
+  `email_pelanggan` varchar(100) DEFAULT NULL,
+  `rating` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kritik`
+--
+
+INSERT INTO `kritik` (`id_saran`, `isi_saran`, `tanggal`, `email_pelanggan`, `rating`) VALUES
+('KR00001', '', '2020-05-05', '', 'puas'),
+('KR00002', '', '2020-05-07', '', 'puas');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `kritik`
+--
+ALTER TABLE `kritik`
+  ADD PRIMARY KEY (`id_saran`);
+COMMIT;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `daerah`
 --
 

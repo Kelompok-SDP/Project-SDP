@@ -30,7 +30,7 @@
     <div class="loader" style="display: none;"></div>
     </div> 
     <div class="menu-slide light" id="menu-slide-1">
-        <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1"><i class="far fa-angle-left"></i>Menu</label>
+        <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1">Menu</label>
         <ul class="mega-menu-down">
             <?php
                 $query ="select id_kategori,nama_kategori from kategori";
@@ -43,7 +43,7 @@
                
             ?>
             
-            <li><a href="https://mcdonalds.co.id/menu" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
+            <li><a href="Homemenu.php" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
         </ul>
     </div>
 <input type="hidden" id="custid" value="<?=$id?>" >
@@ -93,20 +93,29 @@
                                     </div>
                                     <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
                                 </div>
+                                <?php 
+                                    $query = "SELECT * FROM MENU ORDER BY RAND() LIMIT 1";
+                                    $list = mysqli_query($conn,$query);
+                                    foreach ($list as $key => $value) {
+                                        $gambar = "../Master/Menu/". $value["gambar"];
+                                ?>
                                 <div class="col-md-6 megamenu-cover">
                                     <div class="img-container">
-                                            
+                                        <img src="<?=$gambar?>" style="background-size: cover;width:540px;height:339px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">
                                     </div>
                                     <div class="content">
                                         <div class="content-info">
-                                            <h5>Hotcakes</h5>
-                                            <p>Nikmati menu sarapan kami yang lainnya</p>
+                                            <h5><?= $value["nama_menu"]?></h5>
+                                            <p><?= $value["deskripsi"]?></p>
                                         </div>
-                                        <a href="#" class="btn btn-primary btn-sm" target="_blank">
+                                        <a href="<?="detail_menu.php?id=".$value["id_menu"]?>" class="btn btn-primary btn-sm">
                                             Pesan <span class="d-none d-xl-inline-block">Sekarang</span>
                                         </a>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                         </div>
                     </ul>
@@ -116,11 +125,7 @@
                         Promo
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://mcdonalds.co.id/dunia-anak">
-                        Dunia Anak
-                    </a>
-                </li>
+              
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>

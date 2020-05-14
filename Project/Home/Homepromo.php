@@ -5,6 +5,26 @@
     include('Mcd/title.php');
     include('Mcd/header.php');
     include('Mcd/corusel.php');
+
+    $datenow = date('Y-m-d');
+    $query = "SELECT * FROM PROMO";
+    $list = mysqli_query($conn, $query);
+    foreach ($list as $key => $value) {
+        $idp = $value["id_promo"];
+        $pawal = $value["periode_awal"];
+        $pakhir = $value["periode_akhir"];
+
+        if($pawal >= $datenow){
+            $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
+            $conn->query($query2);
+        }
+        if($datenow > $pakhir){
+            $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
+            $query4 = "DELETE FROM PROMO_PAKET WHERE ID_PROMO = '$idp'";
+            $conn->query($query3);
+            $conn->query($query4);
+        }
+    }
 ?>
 <body>
 
@@ -63,7 +83,7 @@
             <div class="card-general-list animated fadeInUp delayp2">
                 <div class="row row-0">
         <?php
-            $query = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE '%H%' AND STATUS_PROMO = 1";
+            $query = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'H' AND STATUS_PROMO = 1";
             $list = mysqli_query($conn,$query);
             foreach ($list as $key => $value) {
                 $href = "detail_promo.php?id=".$value["id_promo"];
@@ -95,7 +115,7 @@
                 }
                 ?>
                 <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE '%M%' AND STATUS_PROMO = 1";
+                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'M' AND STATUS_PROMO = 1";
                 $list2 = mysqli_query($conn,$query2);
                 foreach ($list2 as $key => $value) {
                     $href = "detail_promo.php?id=".$value["id_promo"];
@@ -127,7 +147,7 @@
                 }
                 ?>
                 <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE '%HR%' AND STATUS_PROMO = 1";
+                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'HR' AND STATUS_PROMO = 1";
                 $list2 = mysqli_query($conn,$query2);
                 foreach ($list2 as $key => $value) {
                     $href = "detail_promo.php?id=".$value["id_promo"];

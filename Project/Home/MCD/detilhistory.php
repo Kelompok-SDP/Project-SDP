@@ -29,6 +29,7 @@
                        <h2>Tanggal Pemesanan : <?php echo $key["tanggal_transaksi"];?> </h2>
                        <br>
                        <h2> Jenis Pemesanan : <?php echo $key["jenis_pemesanan"]; ?> </h2>
+                       <h2> Items : </h2>
                      </div>
                 </div>
            <?php
@@ -66,7 +67,7 @@
             ?>
                 <div class="row">
                     <div class="col-8">
-                        <h3 style="margin-left:30px;"><span><?=$nama?></span><span style="padding-left:250px;"><?="         Qty:   ".$banyak." x ".$harga1?></span></h3>
+                        <h3 style="margin-left:30px;"><span><?=$nama?></span><span style="padding-left:250px;"><?="         ".$banyak." x ".$harga1?></span></h3>
                   </div>   
                   <div class="col-4">
                         <h3><?="   ".$subtotal?></h3>
@@ -79,7 +80,7 @@
 ?>  
     <hr style="border:2px solid gray;">
     <div class="row">
-        <div class="col-8"></div>
-        <div class="col-4"><h3><?="   ".$hargas?></h3></div>
+        <div class="col-8"><h3 style="float: right; margin-right:100px;">Total:</h3></div>
+        <div class="col-4"><h3><?=$hargas?></h3></div>
     </div>
 </div>

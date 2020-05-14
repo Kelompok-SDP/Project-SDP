@@ -96,7 +96,7 @@ if(strpos($ids, "MEN") !== false){
 <body style='margin-top:5.5%'>
 <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
-    <span>Pesan Sekarang</span>
+    <span >Pesan Sekarang</span>
 </a>
         <!-- Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
@@ -137,7 +137,7 @@ if(strpos($ids, "MEN") !== false){
                 <p class="subtitle animated fadeInUp delayp3 mb-0"><?=$deskripsi?></p>
             </div>
             <div class="clearfix btn-placeholder animated fadeInUp delayp4">
-                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
+                <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" style="cursor: pointer;" onclick='Add_To_Cart("<?=$ids?>")'><img src="<?=$gambar?>"\>Pesan Sekarang</p> 
             </div>
         </div>
     </div>
