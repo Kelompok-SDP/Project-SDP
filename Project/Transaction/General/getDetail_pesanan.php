@@ -102,21 +102,22 @@
         $ctr++;
     }
     $promo=$_SESSION["promo"];
-    $_SESSION["harga_akhir_Pesanan"]=$gt+15000-$promo;
     $Tampgt=$gt;
+    $_SESSION["disc"]=$dc;
+    $ongkir=$_SESSION["ongkir"];
+    $_SESSION["harga_akhir_Pesanan"]=$gt-$promo+$ongkir-$dc;
     $gt="Rp " . number_format($gt,2,',','.');
     $gtt="Rp " . number_format($Tampgt,2,',','.');
-    $ongkir=$_SESSION["ongkir"];
     $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
     $promoTampil="Rp " . number_format($promo,2,',','.');
     $discounttampil="Rp " . number_format($dc,2,',','.');
    
-    if($Tampgt-$promo+$ongkir<=0){
+    if($Tampgt-$promo+$ongkir-$dc<=0){
         $_SESSION["harga_akhir_Pesanan"]=0;
         $gt="Rp " . number_format(0,2,',','.');
     }else{
-        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$promo;
-        $gt="Rp " . number_format($Tampgt-$promo-$dc,2,',','.');
+        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$promo-$dc;
+        $gt="Rp " . number_format($Tampgt-$promo-$dc+$ongkir,2,',','.');
     }
 
 ?>
@@ -136,7 +137,7 @@
                     <p><?= $gtt ?></p>
                     <p id="d" style="color: black;"><?= $discounttampil?></p>
                     <p id="p" style="color: black;"><?= $promoTampil ?></p>
-                    <p id="o" style="color: black;"><?=$ongkirTampil ?></p>
+                    <p ><?=$ongkirTampil ?></p>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -168,9 +169,6 @@
         }
         if(b != 0){
             $("#p").css("color","red");
-        }
-        if(c != 0){
-            $("#o").css("color","red");
         }
     });
 
