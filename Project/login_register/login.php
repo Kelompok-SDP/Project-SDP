@@ -104,6 +104,8 @@
           setTimeout(
               window.location.href = "confirm-passw2.php"
              , 5000);
+        }else {
+          alert(response);
         }
       }
     });

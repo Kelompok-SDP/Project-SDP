@@ -52,8 +52,8 @@
                             <div class="col-md-5">
 
                     <ul class="footer-links">
-                                    <li><a href="https://mcdonalds.co.id/contact">Kode Promo</a></li>
-                                    <li><a href="https://mcdonalds.co.id/about">Tentang Kami</a></li>
+                                    <li><a href="Homepromo.php">Promo Terbaru</a></li>
+                                    <li><a href="AboutUs.php">Tentang Kami</a></li>
                              </ul>
                             </div>
                         </div>
