@@ -26,7 +26,9 @@
     if($ket_meja=="ada"){
         $Detail_meja=$_SESSION["isi_kursi"];
     }
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja";
+    $disc=$_SESSION["disc"];
+    $promo=$_SESSION["promo"];
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
