@@ -229,6 +229,7 @@ Body Section
 						getDateNow();
 						getTimeNow();
 						ubahradio(1);
+		getDetailPesanan();
 				}
 			});
 		}
@@ -241,6 +242,7 @@ Body Section
 					$("#footer").html("Take Away");
 					$("#tempat").html(response);
 					getTimeNow();
+		getDetailPesanan();
 				}
 			});
 		}
@@ -253,6 +255,7 @@ Body Section
 					$("#footer").html("Delivery");
 					$("#tempat").html(response);
 					getTimeNow();
+		getDetailPesanan();
 				}
 			});
 		}
@@ -266,10 +269,10 @@ Body Section
 					$("#tempat").html(response);
 					getDetail_kursi();
 					ubahradio(4);
+		getDetailPesanan();
 				}
 			});
 		}
-		getDetailPesanan();
 	}
 	function getDetail_kursi(){
 		$.ajax({
@@ -342,104 +345,108 @@ Body Section
 		document.getElementById('time_res').value = currentTime;
 	}
 	function Pay(){
+		var banyak_pesanan="<?= $_SESSION["nama_menu"]?>";
 		ctr=0;
 		var jenis_pembayaran=$("#jenis_pembayaran").val();
 		var jumlah_meja="<?= $_SESSION["ctr"]?>";
-		if(document.getElementById("radioPrimary1").checked ){
-			open(2);
-			var date = new Date($('#date_res').val());
-			day = date.getDate();
-			month = date.getMonth()+1;
-			year = date.getFullYear();
-			date=[day, month, year].join('/');
-			time=$("#time_res").val();
-			if(date!="NaN/NaN/NaN"){
+		if(banyak_pesanan!=""){
+			
+			if(document.getElementById("radioPrimary1").checked ){
+				open(2);
+				var date = new Date($('#date_res').val());
+				day = date.getDate();
+				month = date.getMonth()+1;
+				year = date.getFullYear();
+				date=[day, month, year].join('/');
+				time=$("#time_res").val();
+				if(date!="NaN/NaN/NaN"){
+					$.ajax({
+						type: "post",
+						url: "ajaxFile/check/check_valid_day.php",
+						data: {
+							tanggal:date
+						},
+						success: function (response) {
+							if(response=="berhasil"){
+								$.ajax({
+									type: "post",
+									url: "ajaxFile/check/check_valid_time.php",
+									data: {
+										time:time
+									},
+									success: function (response) {
+										if(response=="berhasil" ){
+											if(jumlah_meja>0){
+												if(jenis_pembayaran=="cash"){
+													document.location.href="window_perantara.php";
+												}
+												bayar();
+												kirimemail();
+											}else{
+												alert("Pilih Kursi");
+											}
+										}else{
+											alert(response);
+										}
+									}
+								});
+							}else{
+								alert(response);
+							}
+						}
+					});
+				}
+			}else if(document.getElementById("radioPrimary2").checked ){
+				time=$("#time_res").val();
 				$.ajax({
 					type: "post",
-					url: "ajaxFile/check/check_valid_day.php",
+					url: "ajaxFile/check/check_valid_time.php",
 					data: {
-						tanggal:date
+						time:time
 					},
 					success: function (response) {
 						if(response=="berhasil"){
-							$.ajax({
-								type: "post",
-								url: "ajaxFile/check/check_valid_time.php",
-								data: {
-									time:time
-								},
-								success: function (response) {
-									if(response=="berhasil" ){
-										if(jumlah_meja>0){
-											if(jenis_pembayaran=="cash"){
-												document.location.href="window_perantara.php";
-											}
-											bayar();
-											kirimemail();
-										}else{
-											alert("Pilih Kursi");
-										}
-									}else{
-										alert(response);
-									}
-								}
-							});
+							if(jenis_pembayaran=="cash"){
+								document.location.href="window_perantara.php";
+							}
+							bayar();
 						}else{
 							alert(response);
 						}
 					}
 				});
-			}
-		}else if(document.getElementById("radioPrimary2").checked ){
-			time=$("#time_res").val();
-			$.ajax({
-				type: "post",
-				url: "ajaxFile/check/check_valid_time.php",
-				data: {
-					time:time
-				},
-				success: function (response) {
-					if(response=="berhasil"){
-						if(jenis_pembayaran=="cash"){
-							document.location.href="window_perantara.php";
-						}
-						bayar();
-					}else{
-						alert(response);
-					}
-				}
-			});
-		}else if(document.getElementById("radioPrimary3").checked ){
-			time=$("#time_res").val();
-			alamat=$("#alamat").val();
-			$.ajax({
-				type: "post",
-				url: "ajaxFile/check/check_valid_time.php",
-				data: {
-					time:time
-				},
-				success: function (response) {
-					if(response=="berhasil"){
-						if(alamat!=""){
-							if(jenis_pembayaran=="cash"){
-								document.location.href="window_perantara.php";
+			}else if(document.getElementById("radioPrimary3").checked ){
+				time=$("#time_res").val();
+				alamat=$("#alamat").val();
+				$.ajax({
+					type: "post",
+					url: "ajaxFile/check/check_valid_time.php",
+					data: {
+						time:time
+					},
+					success: function (response) {
+						if(response=="berhasil"){
+							if(alamat!=""){
+								if(jenis_pembayaran=="cash"){
+									document.location.href="window_perantara.php";
+								}
+								bayar();
 							}
-							bayar();
+						}else{
+							alert(response);
 						}
-					}else{
-						alert(response);
 					}
+				});
+			}else if(document.getElementById("radioPrimary4").checked){
+				open(2);
+				if(jumlah_meja>0){
+					if(jenis_pembayaran=="cash"){
+						window.location.href="window_perantara.php";
+					}
+					bayar();
+				}else{
+					alert("Pilih Meja ");
 				}
-			});
-		}else if(document.getElementById("radioPrimary4").checked){
-			open(2);
-			if(jumlah_meja>0){
-				if(jenis_pembayaran=="cash"){
-					window.location.href="window_perantara.php";
-				}
-				bayar();
-			}else{
-				alert("Pilih Meja ");
 			}
 		}
 

@@ -5,5 +5,5 @@
 <?php
 session_start();
     $_SESSION["ongkir"]=15000;
-    $_SESSION["jenis"]="Delivery"
+    $_SESSION["jenis"]="Delivery";
 ?>
