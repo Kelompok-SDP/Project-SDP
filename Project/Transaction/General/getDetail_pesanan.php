@@ -40,7 +40,7 @@
                         $discount = $discount + $hargapromo;
                     }
                 }
-            } else{
+            } else if(substr($value,0,2)=="PK"){
                 $query = "select *  from paket where id_paket = '$value'";
                 $menu = mysqli_fetch_assoc(mysqli_query($conn,$query));
                 $nama = $menu["nama_paket"];
