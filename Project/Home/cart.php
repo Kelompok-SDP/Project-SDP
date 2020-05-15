@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <?php
     include("../config.php");
-    include("Mcd/title.php");
+	include("Mcd/title.php");
+	if($_SESSION["login"]==""){
+		header("location: home.php");
+	}
 	include("../Source.php");
 	include("Mcd/header.php");
 	// session_destroy();
+	
 ?>
 
 <html lang="en">

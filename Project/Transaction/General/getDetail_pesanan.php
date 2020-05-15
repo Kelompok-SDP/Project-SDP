@@ -45,6 +45,7 @@ if($nama!=""){
                 $query = "select *  from paket where id_paket = '$value'";
                 $menu = mysqli_fetch_assoc(mysqli_query($conn,$query));
                 $nama = $menu["nama_paket"];
+                $id = $value;
                 $gambar = $menu['gambar'];
                 $harga = $menu['harga_paket'];
                 $gambar = "../Master/Menu/".$gambar;
