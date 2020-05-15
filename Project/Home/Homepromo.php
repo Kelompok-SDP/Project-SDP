@@ -20,7 +20,7 @@
         }
         if($datenow > $pakhir){
             $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $query4 = "DELETE FROM PROMO_PAKET WHERE ID_PROMO = '$idp'";
+            $query4 = "UPDATE promo_paket set status = 0  WHERE ID_PROMO = '$idp'";
             $conn->query($query3);
             $conn->query($query4);
         }

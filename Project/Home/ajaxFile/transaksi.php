@@ -8,6 +8,12 @@
     $today= date("Y-m-d");
     $total=$_SESSION["harga_akhir_Pesanan"];
     $jenis=$_SESSION["jenis"];
+    if(isset($_SESSION["nama_promo"])){
+        $nama_promo = $_SESSION["nama_promo"];
+
+    }
+    $hargadiscpake = $_SESSION["hargapmenu"];
+    $idpromodisc = $_SESSION["ipromomenu"];
     if($jenis=="Dine-in"){
         $pegawai=$_SESSION["pegawai"];
         $member="default";
@@ -30,7 +36,7 @@
     $promo=$_SESSION["promo"];
     
     $koderev = "RESVXX-".$id_htrans;
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type||kode_res:$koderev";
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type||kode_res:$koderev||Kode Promo:$nama_promo||$hargadiscpake||$idpromodisc";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";

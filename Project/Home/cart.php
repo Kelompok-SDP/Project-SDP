@@ -54,7 +54,7 @@ Body Section
 	<div class="col-12">
 	<div class="span12">
 	<div class="well well-small">
-		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
+		<h1>Check Out <small class="pull-right" id="displayQTY" style="float:right;">  </small></h1>
 	<hr class="soften"/>
 	<div id="tempat_reservasiKode">
 

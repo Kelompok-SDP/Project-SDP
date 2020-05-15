@@ -1,3 +1,30 @@
+<?php 
+require_once("../config.php");
+  $datenow = date('Y-m-d');
+  $query = "SELECT * FROM PROMO";
+  $list = mysqli_query($conn, $query);
+  foreach ($list as $key => $value) {
+      $idp = $value["id_promo"];
+      $pawal = $value["periode_awal"];
+      $pakhir = $value["periode_akhir"];
+
+      if($pawal >= $datenow){
+          $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
+          $conn->query($query2);
+      }
+      if($datenow > $pakhir){
+          $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
+          $query4 = "UPDATE  PROMO_PAKET  set status = 0 WHERE ID_PROMO = '$idp'";
+          $conn->query($query3);
+          $conn->query($query4);
+      }
+  }
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

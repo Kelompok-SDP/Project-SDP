@@ -25,7 +25,7 @@ if(strpos($ids, "MEN") !== false){
 
     }
     $gambar = "../Master/Menu/".$gambar;
-    $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$ids'";
+    $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$ids' and status= 1";
     $menu2 = mysqli_query($conn,$query2);
     $row = mysqli_num_rows($menu2);
     if($row > 0){
