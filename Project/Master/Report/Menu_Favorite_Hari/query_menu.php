@@ -31,7 +31,7 @@
                 echo "<th>No.</th>";
                 echo "<th>Gambar</th>";
                 echo "<th>Nama Menu</th>";
-                echo "<th>Jumlah Dipesan</th>";
+                echo "<th>Jumlah Transaksi</th>";
                 echo "<th>Total Pesanan</th>";
             echo "</thead>";
             foreach ($menu as $key => $value3) {

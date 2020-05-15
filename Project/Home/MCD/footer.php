@@ -75,7 +75,7 @@
                             <div class="form-group mb-2">
 
                           
-                                <div class="input-group" style="width:500px;">
+                                <div class="input-group" style="width:30vw;">
 
                                 <div id="sites" style="margin-right: 20px;">
                                     <input type="radio" name="site" id="so" value="puas" style="margin:12px; text-align: center;" class="warna"/><label for="so" ><img class="gbr" src="MCD/bagus.png" alt="happy"  style="width:40px;height:40px;"/></label>
@@ -84,7 +84,7 @@
 
                                     <input type="text" class="form-control" placeholder="Kritik dan Saran" required="" name="saran" id="subscribe-footer" >
                                     <div class="input-group-append">
-                                        <button name="cools"class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" onclick="kirimsaran()" type="submit" id="cool">
+                                        <button name="cools"class="btn btn-primary btn-submit btn-submit-footer sbscrb-tag" onclick="kirimsaran()" type="submit" id="cool" style="margin-top: -1px;">
                                            Kirim
                                         </button>
                                     </div>

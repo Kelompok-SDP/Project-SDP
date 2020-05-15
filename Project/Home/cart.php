@@ -108,7 +108,6 @@ Body Section
   </body>
 </html>
 <script>
-	// Get the modal
 	$(document).ready(function () {
 		$("#dropmenu").html(
 			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
@@ -136,7 +135,6 @@ Body Section
 		}
 	});
 
-	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 
 	function open(pilihan) {
@@ -146,12 +144,10 @@ Body Section
 		}
 	};
 
-	// When the user clicks on <span> (x), close the modal
 	span.onclick = function() {
 	modal.style.display = "none";
 	}
 
-	//When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
@@ -160,6 +156,7 @@ Body Section
 	var ctr=0;
 	var pilihan = 0;
 	start();
+	getDetailPesanan();
 	ubahradio(0);
 	$("#subvcode").click(function () {
 		var vkode = $("#kode").val();
@@ -175,21 +172,10 @@ Body Section
 		$("#err").fadeOut("slow");
 		$("#err").fadeOut(3000);
 	});
+
 	function start(){
-		getDetailPesanan();
-		$("#Reservasi").prop("checked",true);
-		$.ajax({
-			method: "post",
-			url: "ajaxFile/getReservasi.php",
-			success: function (response) {
-				$(".tempat").html(response);
-				getDetail_kursi();
-				getDateNow();
-				getTimeNow();
-			}
-		});
 		var login="<?=$_SESSION["login"]?>";
-		if(login=="kosong"){
+		if(login==""){
 			window.location.href="../login_register/login.php";
 		}
 	}

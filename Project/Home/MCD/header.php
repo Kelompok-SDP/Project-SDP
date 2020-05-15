@@ -1,12 +1,13 @@
 <?php
    // session_start();
-   require_once("../config.php");
+    require_once("../config.php");
     if(isset($_SESSION["nama_menu"])==false){
         $_SESSION["isi_kursi"]="";
         $_SESSION["ctr"]=0;
         $_SESSION["nama_menu"]="";
         $_SESSION["pilih_menu"]= array();
         $_SESSION["promo"]=0;
+        $_SESSION["login"]="";
         $_SESSION["ongkir"]=0;
         $_SESSION["jenis"]="kosong";
     }

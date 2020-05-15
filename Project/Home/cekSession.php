@@ -8,7 +8,7 @@
     if(isset($_SESSION['login'])){
         if($_SESSION['login'] == 'pelanggan'){
             header("location: ubahinfo.php?id=".$id);
-        }else{
+        }else if($_SESSION['login'] == 'pegawai'){
             $query = "SELECT * FROM PEGAWAI WHERE ID_PEGAWAI = '$id'";
             $list = mysqli_query($conn, $query);
             foreach ($list as $key => $value) {
@@ -119,11 +119,12 @@ function destroy(){
 </script>
 <?php
         }
+        else{
+            if($id == "null"){
+                header("location: ../login_register/login.php");
+            }
         
-    }else{
-        if($id == "null"){
-            header("location: ../login_register/login.php");
-        }
+    }
     }
 ?>
 

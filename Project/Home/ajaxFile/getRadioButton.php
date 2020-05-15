@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include("../../config.php");
     echo"<div class='icheck-primary d-inline'>
     ";echo"    <input type='radio' id='radioPrimary1' name='r1'>
     ";echo"    <label for='radioPrimary1'>Reservasi
@@ -28,10 +28,10 @@
 
 <script>
 	// Get the modal
-	$(document).ready(function () {
-		$("#dropmenu").html(
-			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
-	});
+	// $(document).ready(function () {
+	// 	$("#dropmenu").html(
+	// 		"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
+	// });
 	var modal = document.getElementById("myModal");
 
 	$('input[type="radio"]').click(function(){
@@ -76,7 +76,7 @@
 	}
 	var ctr=0;
 	var pilihan = 0;
-	start();
+	//start();
 	ubahradio(0);
 	$("#subvcode").click(function () {
 		var vkode = $("#kode").val();

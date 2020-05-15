@@ -21,7 +21,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../AdminLTE-master/index2.html"><b>Login</b> </a>
+    <b>Login</b></a><br>
+    <a href="../Home/Home.php"><b style="font-size:15pt; color:blue;">Back to Home</b> </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
