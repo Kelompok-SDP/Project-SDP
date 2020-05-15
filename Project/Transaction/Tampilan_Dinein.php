@@ -69,8 +69,8 @@ if(isset($_SESSION["isi_kursi"])==false){
           </div><!-- /.col -->
           <div class="col-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item"><a href="../Home/Cart.php">Back</a></li>
+              <li class="breadcrumb-item active">Cart</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

@@ -398,7 +398,7 @@ if(strpos($ids, "MEN") !== false){
                 nama_menu:nama
             },
             success: function (response) {
-                alert("berhasil");
+                //alert("berhasil");
             }
         });
     }
