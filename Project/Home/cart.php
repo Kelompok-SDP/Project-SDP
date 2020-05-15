@@ -377,11 +377,11 @@ Body Section
 									success: function (response) {
 										if(response=="berhasil" ){
 											if(jumlah_meja>0){
+												bayar();
+												kirimemail();
 												if(jenis_pembayaran=="cash"){
 													document.location.href="window_perantara.php";
 												}
-												bayar();
-												kirimemail();
 											}else{
 												alert("Pilih Kursi");
 											}
@@ -406,10 +406,10 @@ Body Section
 					},
 					success: function (response) {
 						if(response=="berhasil"){
+							bayar();
 							if(jenis_pembayaran=="cash"){
 								document.location.href="window_perantara.php";
 							}
-							bayar();
 						}else{
 							alert(response);
 						}
@@ -427,10 +427,10 @@ Body Section
 					success: function (response) {
 						if(response=="berhasil"){
 							if(alamat!=""){
+								bayar();
 								if(jenis_pembayaran=="cash"){
 									document.location.href="window_perantara.php";
 								}
-								bayar();
 							}
 						}else{
 							alert(response);
@@ -440,10 +440,10 @@ Body Section
 			}else if(document.getElementById("radioPrimary4").checked){
 				open(2);
 				if(jumlah_meja>0){
+					bayar();
 					if(jenis_pembayaran=="cash"){
 						window.location.href="window_perantara.php";
 					}
-					bayar();
 				}else{
 					alert("Pilih Meja ");
 				}
@@ -513,6 +513,22 @@ Body Section
 			url: "ajaxFile/getRadioButton.php",
 			success: function (response) {
 				$("#place_radio").html(response);
+			}
+		});
+	}
+	function CheckRes(){
+		var id=$("#member_id").val();
+		var kode=$("#reservasiKode").val();
+
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/CheckRes.php",
+			data:{
+				id:id,
+				kode:kode
+			},
+			success: function (response) {
+				window.location.href="struk.php?htrans="+response+"";
 			}
 		});
 	}

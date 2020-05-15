@@ -13,6 +13,7 @@
     <div class="row">
             <div class="col-8">
 <?php
+if($nama!=""){
     foreach ($arrMenu as $key => $value) {
 
         if($ctr<count($arrMenu)-1){
@@ -101,6 +102,7 @@
 <?php   } 
         $ctr++;
     }
+}
     $promo=$_SESSION["promo"];
     $Tampgt=$gt;
     $_SESSION["disc"]=$dc;
