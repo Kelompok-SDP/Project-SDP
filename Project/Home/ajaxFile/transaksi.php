@@ -28,7 +28,9 @@
     }
     $disc=$_SESSION["disc"];
     $promo=$_SESSION["promo"];
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type";
+    
+    $koderev = "RESVXX-".$id_htrans;
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type||kode_res:$koderev";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
@@ -79,6 +81,13 @@
                 mysqli_query($conn,$query);
                 echo $query."<br>";
                 $ctr++;
+                $_SESSION["isi_kursi"]="";
+                $_SESSION["ctr"]=0;
+                $_SESSION["nama_menu"]="";
+                $_SESSION["pilih_menu"]= array();
+                $_SESSION["promo"]=0;
+                $_SESSION["ongkir"]=0;
+                $_SESSION["jenis"]="kosong";
             }
         }
     }else{

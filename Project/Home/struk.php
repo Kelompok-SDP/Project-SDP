@@ -5,7 +5,11 @@
     $id_htrans= $_GET["htrans"];
     $query="SELECT * from hjual where id_hjual='$id_htrans'";
     $cmd=mysqli_fetch_assoc(mysqli_query($conn,$query));
-
+    $jenis_pemesanan=$cmd["jenis_pemesanan"];
+    $ongkir=0;
+    if($jenis_pemesanan=="Delivery"){
+        $ongkir=15000;
+    }
     $keterangan=explode("||",$cmd["keterangan"]);
     
     $alamat=          explode(":",$keterangan[0]);
@@ -16,14 +20,13 @@
     $discount=        explode(":",$keterangan[5]);
     $promo=           explode(":",$keterangan[6]);
     $jenis=           explode(":",$keterangan[7]);
-  
+
     // echo $alamat[1]."<br>".$waktu[1]."<br>".$hari[1]."<br>".$keterangan_meja[1]."<br>".$detail_meja[1]."<br>".$discount[1]."<br>".$promo[1]."<br>".$jenis[1];
 
     echo "<div style='width:30%'>";
     echo "Uwenak Resto &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$tanggal."<br>";
     echo "Surabaya<br>";
     echo "081111111111 <br><br>";
-
 
     echo"No Transaksi: $id_htrans<br>";
     if($keterangan_meja=="ada"){
@@ -85,11 +88,25 @@
     }
     echo"</table>";
             $grandtotal_string="Rp " . number_format($grandtotal,2,',','.');
+            $ongkir_string="Rp " . number_format($ongkir,2,',','.');
+            $discount_string="Rp " . number_format($discount[1],2,',','.');
+            $promo_string="Rp " . number_format($promo[1],2,',','.');
+            $total_string="Rp " . number_format($grandtotal-$promo[1]+$ongkir-$discount[1],2,',','.');
+            
             echo"    <div style='float:left'>Total Bayar</div>
             ";echo"    <div style='float:right;margin-right:20%'>$grandtotal_string</div>
             ";
-            echo"    <div style='clear:both;float:left'>Total Menu</div>
-            ";echo"    <div style='float:right;margin-right:20%'>$jum_qrt Item</div>
+            echo"    <div style='clear:both;float:left'>Promo Menu</div>
+            ";echo"    <div style='float:right;margin-right:20%'>$promo_string </div>
+            ";
+            echo"    <div style='clear:both;float:left'>Discount Menu</div>
+            ";echo"    <div style='float:right;margin-right:20%'>$discount_string </div>
+            ";
+            echo"    <div style='clear:both;float:left'>Ongkir Menu</div>
+            ";echo"    <div style='float:right;margin-right:20%'>$ongkir_string </div>
+            ";
+            echo"    <div style='clear:both;float:left'>Grandtotal Menu</div>
+            ";echo"    <div style='float:right;margin-right:20%'>$total_string </div>
             ";
     echo "</div>";
 ?>

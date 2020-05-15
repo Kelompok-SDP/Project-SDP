@@ -7,26 +7,30 @@
 	if($_POST["id"] != ""){
         $id = $_POST["id"];
         $nama  = "";
-        $query = "select * from member where id= '$id'";
-        $email = "";
-        $mys = mysqli_query($conn,$query);
+        $query = "SELECT * from member where id_member= '$id'";
+		$email = "";
+		$mys = mysqli_query($conn,$query);
+
         foreach($mys as $data=>$row){
             $nama = $row['fullname'];
             $email = $row['email'];
         }
 
         $keterangan = "";
-        $koderev = "RESVXX-;";
-        $query = "select * from hjual where id_member ='$id' and jenis_pemesanan ='Reservasi'  order by tanggal_transaksi desc";
+        $koderev = "RESVXX-";
+        $query = "SELECT * from hjual where id_member ='$id' and jenis_pemesanan ='Reservasi'  order by tanggal_transaksi desc";
         $mysqli = mysqli_query($conn,$query);
         foreach($mysqli as $data=>$row){
-            $koderev = $koderev.$row['id_hjual'];
+            $kodereve = $koderev.$row['id_hjual'];
             $keterangan = $row["keterangan"];
         }
+		$koderev=$kodereve;
+		$keterangan=explode("||",$keterangan);
+		$hari=explode(":",$keterangan[2]);
+		$jam=explode(":",$keterangan[1]);
+		$detail_meja=explode(":",$keterangan[4]);
 
-
-
-
+		$keterangan="Hari : ".$hari[1]."<br>"."Jam : ".$jam[1].":".$jam[2]."<br>"."Meja : ".$detail_meja[1];
 
 		$mail             = new PHPMailer();
 		$address 		  = $email;					

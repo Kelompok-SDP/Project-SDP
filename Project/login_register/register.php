@@ -217,22 +217,56 @@ var balik=-1;
           if(ValidateEmail(email)){
             if(ValidatePass(password,conpassword)){
               if(ValidateNohp(nohp)){
-
-                  check(email,'email');
-                 
-                  if(balik==1){
-                    check(nohp,'nohp');
-                      if(balik==1){
-                          check(username,'username');
-                          if(balik==1){
-                            insertUser();
-                            Konfirm();
-                            setTimeout(
-                            window.location.href = "confirmation.php?test=1"
-                            , 5000);
-                          }
+                $.ajax({
+                    method: "post",
+                    url: "register/check_valid.php",
+                    data: {
+                        data:email,
+                        jenis:"email"
+                    },
+                    success: function (data) {
+                      if(data=="1"){
+                        $.ajax({
+                            method: "post",
+                            url: "register/check_valid.php",
+                            data: {
+                                data:nohp,
+                                jenis:"nohp"
+                            },
+                            success: function (data) {
+                              if(data=="1"){
+                                $.ajax({
+                                    method: "post",
+                                    url: "register/check_valid.php",
+                                    data: {
+                                        data:username,
+                                        jenis:"username"
+                                    },
+                                    success: function (data) {
+                                      if(data=="1"){
+                                        insertUser();
+                                        Konfirm();
+                                        setTimeout(
+                                        window.location.href = "confirmation.php?test=1"
+                                        , 5000);
+                                      }else{
+                                        
+                                        alert(data);
+                                      }
+                                    }
+                                });
+                              }else{
+                                
+                        alert(data);
+                              }
+                            }
+                        });
+                      }else{
+                        alert(data);
                       }
-                  }
+                    }
+                });
+           
               }
             }
           }
@@ -303,8 +337,6 @@ var balik=-1;
                balik=$.parseJSON(data);
                 console.log(balik);
                 
-              return balik;
-
             }
         });
     }
