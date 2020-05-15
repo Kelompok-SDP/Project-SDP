@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Bulan Mei 2020 pada 14.19
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Waktu pembuatan: 15 Bulan Mei 2020 pada 13.55
+-- Versi server: 10.4.8-MariaDB
+-- Versi PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -69,7 +69,50 @@ INSERT INTO `djual` (`id_djual`, `id_menu`, `harga`, `jumlah`, `subtotal`, `id_h
 ('DJ022', 'MEN002', 5000, 1, 5000, 'H011'),
 ('DJ026', 'MEN002', 5000, 1, 5000, 'H025'),
 ('DJ027', 'MEN002', 5000, 1, 5000, 'H026'),
-('DJ028', 'MEN002', 5000, 1, 5000, 'H027');
+('DJ028', 'MEN002', 5000, 1, 5000, 'H027'),
+('DJ029', 'MEN004', 30000, 1, 30000, 'H016'),
+('DJ030', 'MEN004', 30000, 1, 30000, 'H017'),
+('DJ031', 'MEN004', 30000, 1, 30000, 'H018'),
+('DJ032', 'MEN004', 30000, 1, 30000, 'H019'),
+('DJ033', 'MEN004', 30000, 1, 30000, 'H020'),
+('DJ034', 'MEN012', 15000, 1, 15000, 'H020'),
+('DJ035', 'MEN004', 30000, 1, 30000, 'H021'),
+('DJ036', 'MEN012', 15000, 1, 15000, 'H021'),
+('DJ037', 'MEN004', 30000, 1, 30000, 'H022'),
+('DJ038', 'MEN012', 15000, 1, 15000, 'H022'),
+('DJ039', 'MEN004', 30000, 2, 60000, 'H023'),
+('DJ040', 'MEN012', 15000, 1, 15000, 'H023'),
+('DJ041', 'MEN004', 30000, 2, 60000, 'H024'),
+('DJ042', 'MEN012', 15000, 1, 15000, 'H024'),
+('DJ043', 'MEN004', 30000, 2, 60000, 'H025'),
+('DJ044', 'MEN012', 15000, 1, 15000, 'H025'),
+('DJ045', 'MEN004', 30000, 2, 60000, 'H026'),
+('DJ046', 'MEN012', 15000, 1, 15000, 'H026'),
+('DJ047', 'MEN004', 30000, 2, 60000, 'H027'),
+('DJ048', 'MEN012', 15000, 1, 15000, 'H027'),
+('DJ049', 'MEN004', 30000, 2, 60000, 'H028'),
+('DJ050', 'MEN012', 15000, 1, 15000, 'H028'),
+('DJ051', 'MEN004', 30000, 2, 60000, 'H029'),
+('DJ052', 'MEN012', 15000, 1, 15000, 'H029'),
+('DJ053', 'MEN004', 30000, 2, 60000, 'H030'),
+('DJ054', 'MEN012', 15000, 1, 15000, 'H030'),
+('DJ055', 'MEN004', 30000, 2, 60000, 'H031'),
+('DJ056', 'MEN012', 15000, 1, 15000, 'H031'),
+('DJ057', 'MEN004', 30000, 2, 60000, 'H032'),
+('DJ058', 'MEN012', 15000, 1, 15000, 'H032'),
+('DJ059', 'MEN004', 30000, 2, 60000, 'H033'),
+('DJ060', 'MEN012', 15000, 1, 15000, 'H033'),
+('DJ061', 'MEN004', 30000, 2, 60000, 'H034'),
+('DJ062', 'MEN012', 15000, 1, 15000, 'H034'),
+('DJ063', 'MEN004', 30000, 2, 60000, 'H035'),
+('DJ064', 'MEN012', 15000, 1, 15000, 'H035'),
+('DJ065', 'MEN004', 30000, 2, 60000, 'H036'),
+('DJ066', 'MEN012', 15000, 1, 15000, 'H036'),
+('DJ067', 'MEN004', 30000, 2, 60000, 'H037'),
+('DJ068', 'MEN012', 15000, 1, 15000, 'H037'),
+('DJ069', 'MEN002', 5000, 8, 40000, 'H038'),
+('DJ070', 'MEN002', 5000, 8, 40000, 'H039'),
+('DJ071', 'PK003', 20000, 3, 60000, 'H040');
 
 -- --------------------------------------------------------
 
@@ -104,7 +147,35 @@ INSERT INTO `hjual` (`id_hjual`, `tanggal_transaksi`, `total`, `jenis_pemesanan`
 ('H009', '2020-07-18', 20000, 'Delivery', 'W00002', 'AB00001', ''),
 ('H010', '2020-08-18', 27000, 'Dine-in', 'W00002', 'AB00001', ''),
 ('H011', '2020-02-15', 10000, 'delivery', 'W00002', 'AB00001', ''),
-('H012', '2020-05-08', 35000, 'Reservasi', '', 'FA00001', 'Alamat:||Waktu:09:23||Hari:2020-05-10||Keterangan Meja:ada||detail_meja: 16, 8, ');
+('H012', '2020-05-08', 35000, 'Reservasi', '', 'FA00001', 'Alamat:||Waktu:09:23||Hari:2020-05-10||Keterangan Meja:ada||detail_meja: 16, 8, '),
+('H013', '2020-05-14', 0, 'Take-away', '', 'FA00002', 'Alamat:||Waktu:19:09||Hari:||Keterangan Meja:||detail_meja:||discount:0'),
+('H014', '2020-05-14', 0, 'Delivery', '', 'FA00002', 'Alamat:kranggan 38||Waktu:19:12||Hari:||Keterangan Meja:||detail_meja:||discount:0'),
+('H015', '2020-05-14', 0, 'Delivery', '', 'AM001', 'Alamat:aa||Waktu:19:12||Hari:||Keterangan Meja:||detail_meja:||discount:'),
+('H016', '2020-05-14', 30000, 'Delivery', '', 'AM001', 'Alamat:aa||Waktu:19:19||Hari:||Keterangan Meja:||detail_meja:||discount:0'),
+('H017', '2020-05-14', 30000, 'Delivery', '', 'AM001', 'Alamat:aba||Waktu:20:01||Hari:||Keterangan Meja:||detail_meja:||discount:0'),
+('H018', '2020-05-14', 5000, 'Take-away', '', 'AM001', 'Alamat:||Waktu:20:18||Hari:||Keterangan Meja:||detail_meja:||discount:0'),
+('H019', '2020-05-14', 20000, 'Delivery', '', 'AM001', 'Alamat:aa||Waktu:22:45||Hari:||Keterangan Meja:||detail_meja:||discount:0||ongkir:15000||jenis:||'),
+('H020', '2020-05-14', 35000, 'Delivery', '', 'AM001', 'Alamat:aa||Waktu:20:54||Hari:||Keterangan Meja:||detail_meja:||discount:7500||ongkir:15000||jenis:cash'),
+('H021', '2020-05-14', 35000, 'Delivery', '', 'AM001', 'Alamat:a||Waktu:21:09||Hari:||Keterangan Meja:||detail_meja:||discount:7500||promo:25000||jenis:cash'),
+('H022', '2020-05-14', 27500, 'Delivery', '', 'AM001', 'Alamat:aa||Waktu:21:10||Hari:||Keterangan Meja:||detail_meja:||discount:7500||promo:25000||jenis:cash'),
+('H023', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:11:00||Hari:2020-05-15||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H023'),
+('H024', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-15||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H024'),
+('H025', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-15||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H025'),
+('H026', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H026'),
+('H027', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H027'),
+('H028', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H028'),
+('H029', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H029'),
+('H030', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H030'),
+('H031', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H031'),
+('H032', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H032'),
+('H033', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H033'),
+('H034', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H034'),
+('H035', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H035'),
+('H036', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H036'),
+('H037', '2020-05-14', 42500, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:00||Hari:2020-05-14||Keterangan Meja:ada||detail_meja: 16, 8, ||discount:7500||promo:25000||jenis:cash||kode_res:RESVXX-H037'),
+('H038', '2020-05-15', 40000, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:12:34||Hari:2020-05-15||Keterangan Meja:ada||detail_meja:7, ||discount:0||promo:0||jenis:cash||kode_res:RESVXX-H038'),
+('H039', '2020-05-15', 40000, 'Reservasi', '', 'FA00004', 'Alamat:||Waktu:13:36||Hari:2020-05-15||Keterangan Meja:ada||detail_meja:7, ||discount:0||promo:0||jenis:cash||kode_res:RESVXX-H039'),
+('H040', '2020-05-15', 75000, 'Delivery', '', 'FA00002', 'Alamat:aa||Waktu:12:40||Hari:||Keterangan Meja:||detail_meja:||discount:0||promo:0||jenis:cash||kode_res:RESVXX-H040');
 
 -- --------------------------------------------------------
 
@@ -168,6 +239,8 @@ INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `n
 ('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0', 0),
 ('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1', 0),
 ('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1', 0),
+('FA00003', 'Fabian Suryajaya S', '123', 'fabiansuryajayas@gmail.com', 'jalan kusuma bangsa', 1234567897987, 'Surabaya', 'Jawa Timur', 123213, 'fabianss', '2', 0),
+('FA00004', 'Fabian Suryajaya S', '123', 'fabiansuryajaya@gmail.com', 'jalan kusuma bangsa', 4543875654243, 'Surabaya', 'Jawa Timur', 123213, 'fabiansss', '1', 0),
 ('FE00001', 'Fendy', 'aa', 'fendysugiartog@gmail.com', 'jalan pecatu no 2', 88989, 'Surabaya', 'Jawa Timur', 89089, 'Fendyaso', '1', 0),
 ('SH00001', 'Shan', 'a', 'michaelshan077@gmail.com', 'BCF', 123, 'Surabaya', 'Jawa Timur', 615333, 'sha', '1', 0);
 
@@ -338,9 +411,9 @@ CREATE TABLE `promo` (
 INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `periode_akhir`, `gambar_promo`, `detail_promo`, `jenis_promo`, `status_promo`) VALUES
 ('PR001', 'Hemat 1', 25000, '2020-04-01', '2020-05-20', 'PrImage/ayam-bakar-dengan-es.jpg', 'enak', 'H', 1),
 ('PR002', 'Hemat 2', 24000, '2020-04-02', '2020-05-20', 'PrImage/download.png', 'enak', 'H', 0),
-('PR003', 'Beef Time', 85000, '2020-04-08', '2020-04-23', 'PrImage/16214324-beef-steak-on-a-wooden-table.jpg', 'enak', 'M', 1),
-('PR004', 'Ramadhan Hemat', 15000, '2020-04-01', '2020-04-30', 'PrImage/ketupat-dan-opor-ayam-foto-resep-utama.jpg', 'enak', 'HR', 1),
-('PR005', 'Es Ceria', 50000, '2020-04-09', '2020-04-11', 'PrImage/easiest-ever-fruit-ice-cream-ghk-1532637317.jpg', 'enak', 'M', 1),
+('PR003', 'Beef Time', 85000, '2020-04-08', '2020-04-23', 'PrImage/16214324-beef-steak-on-a-wooden-table.jpg', 'enak', 'M', 0),
+('PR004', 'Ramadhan Hemat', 15000, '2020-04-01', '2020-04-30', 'PrImage/ketupat-dan-opor-ayam-foto-resep-utama.jpg', 'enak', 'HR', 0),
+('PR005', 'Es Ceria', 50000, '2020-04-09', '2020-04-11', 'PrImage/easiest-ever-fruit-ice-cream-ghk-1532637317.jpg', 'enak', 'M', 0),
 ('PR006', 'Hari Raya Penuh berkah', 2000000, '2020-05-11', '2020-05-23', 'PrImage/LennyFace.jpg', 'Promo Ini sangat bagus dan hebat', 'HR', 0),
 ('PR007', 'Promo Enak', 10000, '2020-05-28', '2020-05-31', 'PrImage/promoenak.jpg', 'lalala', 'H', 1);
 
@@ -354,16 +427,17 @@ DROP TABLE IF EXISTS `promo_paket`;
 CREATE TABLE `promo_paket` (
   `id_promo` varchar(10) NOT NULL,
   `id_paket` varchar(10) NOT NULL,
-  `harga_promo_paket` int(11) NOT NULL
+  `harga_promo_paket` int(11) NOT NULL,
+  `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `promo_paket`
 --
 
-INSERT INTO `promo_paket` (`id_promo`, `id_paket`, `harga_promo_paket`) VALUES
-('PR001', 'MEN012', 7500),
-('PR001', 'MEN011', 12000);
+INSERT INTO `promo_paket` (`id_promo`, `id_paket`, `harga_promo_paket`, `status`) VALUES
+('PR001', 'MEN012', 7500, 1),
+('PR001', 'MEN011', 12000, 1);
 
 --
 -- Indexes for dumped tables
