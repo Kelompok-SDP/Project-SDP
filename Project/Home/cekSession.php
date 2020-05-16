@@ -103,7 +103,6 @@ $( document).ready(function() {
     $("#dropmenu").html(
         "<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
         document.getElementById("cool").style.height = "40px";
-
 });
 function destroy(){
         $.ajax({
