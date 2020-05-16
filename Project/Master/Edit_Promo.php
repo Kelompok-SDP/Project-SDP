@@ -12,8 +12,7 @@
      $detail = "";
      $jenispromo = "";
      foreach ($res as $key=>$data){
-         $nama  = $data['nama_promo'];
-         $harga = $data['harga_promo'];
+        $nama  = $data['nama_promo'];
         $awp = $data['periode_awal'];
         $akp = $data['periode_akhir'];
         $gbr = $data['gambar_promo'];
@@ -94,7 +93,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputPassword1">Detail Promo</label>
-                    <input type="number" class="form-control" id="detpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$detail?>">
+                    <input type="text" class="form-control" id="detpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$detail?>">
                   </div>
 
                   <div class="form-group">
@@ -104,42 +103,36 @@
                           <option value="M">Promo Hari Raya</option>
                           <option value="HR">Promo Menu</option>
                         </select>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Harga Promo</label>
-                    <input type="number" class="form-control" id="hrgpromo" placeholder="Masukan Harga Promo" name = "harga" value="<?=$harga?>">
                   </div>
-                 
                          <!-- Date range -->
-                    <div class="form-group">
-                        <label>Awal Periode:</label>
+                  <div class="form-group">
+                      <label>Awal Periode:</label>
 
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="date" class="form-control float-right" name="awalP" value="<?=$np?>" id="awalP">
-                        </div>
-                        <!-- /.input group -->
-                     </div>
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="far fa-calendar-alt"></i>
+                              </span>
+                          </div>
+                          <input type="date" class="form-control float-right" name="awalP" value="<?=$np?>" id="awalP">
+                      </div>
+                      <!-- /.input group -->
+                  </div>
                       
-                     <div class="form-group">
-                        <label>Akhir Periode:</label>
+                    <div class="form-group">
+                      <label>Akhir Periode:</label>
 
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="date" class="form-control float-right" name="akhirP"  value="<?=$nkp?>" id="akhirP">
-                        </div>
-                        <!-- /.input group -->
-                     </div>
-                     
-                        
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="far fa-calendar-alt"></i>
+                              </span>
+                          </div>
+                          <input type="date" class="form-control float-right" name="akhirP"  value="<?=$nkp?>" id="akhirP">
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                    
                 </div>
               
                 <!-- /.card-body -->
@@ -200,24 +193,30 @@
 $('#btnEdit').click(function () {
         let id = $(this).val();
         let nampromo = $('#nampromo').val();
-        let hrgpromo = $('#hrgpromo').val();
         let awalp = $('#awalP').val();
         let akhirp = $('#akhirP').val();
-        if(nampromo != "" && hrgpromo !=0 && awalp <akhirp){
+        let jenisp = $('#jenispromo').val();
+        let detp = $('#detpromo').val();
+        if(nampromo != "" && awalp < akhirp && jenisp != null && detp != ""){
             $.ajax({
                 url: "promo/updateDatabase.php",
                 method: 'post',
                 data: {
                     id : id,
                     nampromo : nampromo,
-                    hrgpromo : hrgpromo,
                     awalp : awalp,
-                    akhirp : akhirp
+                    akhirp : akhirp,
+                    jenisp : jenisp,
+                    detp : detp
                 },
                 success: function(result){   
                     alert(result);
-                    let a = "promo/editGambar.php?id="+id;
-                    document.location.href = a;
+                    if(result.includes("PR")){
+                      let a = "promo/Uploadgambar.php?id=";
+                      let a2 = result.split(" ",1);
+                      let a3 = a.concat(a2);
+                      document.location.href = a3;
+                    }
                 }
             });
         }else{

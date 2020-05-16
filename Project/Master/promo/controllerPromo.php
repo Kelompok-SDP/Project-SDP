@@ -14,12 +14,6 @@
         if($filter == 1){
             $pb = "nama_promo";
             $query="SELECT * FROM PROMO WHERE $pb LIKE '$isi%' AND STATUS_PROMO = 1";
-        }else if($filter == 2){
-            $tmp = explode(";", $isi);
-            $min = $tmp[0];
-            $max = $tmp[1];
-            $pb = "harga_promo";
-            $query="SELECT * FROM PROMO WHERE $pb >= $min AND $pb <= $max AND STATUS_PROMO = 1";
         }else{
             $pb = "jenis_promo";
             $query="SELECT * FROM PROMO WHERE $pb = '$isi' AND STATUS_PROMO = 1";
@@ -29,7 +23,6 @@
         <thead>
         <tr>
                 <th>Nama Promo</th>
-                <th>Harga Promo</th>
                 <th>Detail Promo</th>
                 <th>Jenis Promo</th>
                 <th>Awal Periode Promo</th>
@@ -42,11 +35,9 @@
             $tmp ='';
             $jpro= '';
             foreach ($hasil as $key=>$row){
-                $angka = $row["harga_promo"];
-                $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
                 if($row['jenis_promo']=="M") $jpro= "Promo Menu";
-                else if($row['jenis_promo']=="H") $jpro = "Promo Hemat";
-                else $jpro= "Promo Hari Raya";
+                else if($row['jenis_promo']=="HR") $jpro = "Promo Hari Raya";
+                else $jpro= "Promo Buy 1 Get 1 Free";
             echo" <tr>
             <td>
             <form action='promo/openDetail.php' method='post' target='_blank'>
@@ -61,7 +52,6 @@
                </td>
                <td>".$row["detail_promo"]."</td>
                 <td>".$jpro."</td>
-                <td>".$hasil_rupiah."</td>
                 <td>".$row["periode_awal"]."</td>
                 <td>".$row["periode_akhir"]."</td>
                 <td>";
@@ -96,12 +86,6 @@
         if($filter == 1){
             $pb = "nama_promo";
             $query="SELECT * FROM PROMO WHERE $pb LIKE '$isi%' AND STATUS_PROMO = 0";
-        }else if($filter == 2){
-            $tmp = explode(";", $isi);
-            $min = $tmp[0];
-            $max = $tmp[1];
-            $pb = "harga_promo";
-            $query="SELECT * FROM PROMO WHERE $pb >= $min AND $pb <= $max AND STATUS_PROMO = 0";
         } else{
             $pb = "jenis_promo";
             $query="SELECT * FROM PROMO WHERE $pb = '$isi' AND STATUS_PROMO = 0";
@@ -111,8 +95,7 @@
         <thead>
         <tr>
             <th>Nama Promo</th>
-            <th>Harga Promo</th>
-            <th>Detail Prom </th>
+            <th>Detail Promo </th>
             <th>Jenis Promo</th>
             <th>Awal Periode Promo</th>
             <th>Akhir Periode Promo</th>
@@ -124,11 +107,9 @@
             $tmp ='';
             $jpro= '';
             foreach ($hasil as $key=>$row){
-                $angka = $row["harga_promo"];
-                $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
                 if($row['jenis_promo']=="M") $jpro= "Promo Menu";
-                else if($row['jenis_promo']=="H") $jpro = "Promo Hemat";
-                else $jpro= "Promo Hari Raya";
+                else if($row['jenis_promo']=="HR") $jpro = "Promo Hari Raya";
+                else $jpro= "Promo Buy 1 Get 1 Free";
             echo" <tr>
             <td>
             <form action='promo/openDetail.php' method='post' target='_blank'>
@@ -143,7 +124,6 @@
    
                 
                </td>
-                <td>".$hasil_rupiah."</td>
                 <td>".$row["detail_promo"]."</td>
                 <td>".$jpro."</td>
                 <td>".$row["periode_awal"]."</td>

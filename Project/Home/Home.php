@@ -12,40 +12,27 @@
         $idp = $value["id_promo"];
         $pawal = $value["periode_awal"];
         $pakhir = $value["periode_akhir"];
-
-        if($pawal >= $datenow){
+        $stat = $value["status_promo"];
+        if($datenow < $pawal){
+            $query5 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
+            $conn->query($query5);
+        }
+        else if ($pawal >= $datenow && $stat == 0){
+            $query6 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
+            $conn->query($query6);
+        }
+        else if($pawal >= $datenow){
             $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
             $conn->query($query2);
         }
         if($datenow > $pakhir){
             $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $query4 = "UPDATE promo_paket set status = 0  WHERE ID_PROMO = '$idp'";
-            $conn->query($query3);
-            $conn->query($query4);
-        }
-    }
-//session_start();
-    $datenow = date('Y-m-d');
-    $query = "SELECT * FROM PROMO";
-    $list = mysqli_query($conn, $query);
-    foreach ($list as $key => $value) {
-        $idp = $value["id_promo"];
-        $pawal = $value["periode_awal"];
-        $pakhir = $value["periode_akhir"];
-
-        if($pawal >= $datenow){
-            $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
-            $conn->query($query2);
-        }
-        if($datenow > $pakhir){
-            $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $query4 = "DELETE FROM PROMO_PAKET WHERE ID_PROMO = '$idp'";
+            $query4 = "UPDATE  PROMO_PAKET  set status = 0 WHERE ID_PROMO = '$idp'";
             $conn->query($query3);
             $conn->query($query4);
         }
     }
 ?>
-
 <body>
     <!-- Google Tag Manager (noscript) -->
     

@@ -77,15 +77,15 @@ require_once("../config.php");
                         <label>Jenis Promo</label>
                         <select class="form-control" id="jenispromo">
                           <option value="H">Promo Hemat</option>
-                          <option value="M">Promo Menu</option>
                           <option value="HR">Promo Hari Raya</option>
+                          <option value="X">Buy 1 Get 1 Free</option>
                         </select>
 
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="exampleInputPassword1">Harga Promo</label>
                     <input type="number" class="form-control" id="hrgpromo" data-mask='___.___.___' placeholder="Masukan Harga Promo" name = "harga">
-                  </div>
+                  </div> -->
                          <!-- Date range -->
                     <div class="form-group">
                         <label>Awal Periode:</label>
@@ -121,7 +121,7 @@ require_once("../config.php");
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" id="Submit" name="submit">Submit <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>                </div>
-              <
+                </div>
             </div>
         </div>
         <!-- /.col -->
@@ -159,30 +159,27 @@ require_once("../config.php");
 <script>
     $('#Submit').click(function () {
         let nampromo = $('#nampromo').val();
-        let hrgpromo = $('#hrgpromo').val();
         let awalp = $('#awalP').val();
         let akhirp = $('#akhirP').val();
         let detpromo = $('#detpromo').val();
         let jenispromo = $("#jenispromo").val();
-        if(nampromo != "" && hrgpromo !=0 && awalp <akhirp){
+        if(nampromo != "" && awalp < akhirp && detpromo != "" && jenispromo != null){
             $.ajax({
                 url: "promo/insertDatabase.php",
                 method: 'post',
                 data: {
                     nampromo : nampromo,
                     detpromo : detpromo,
-                    hrgpromo : hrgpromo,
                     jenispromo : jenispromo,
                     awalp : awalp,
                     akhirp : akhirp
                 },
                 success: function(result){
                   alert(result);
-                  if(result != "Data Kembar"){
+                  if(result.includes("PR")){
                     let a = "promo/uploadgambar.php?id=";
                     let a2 = result.split(" ",1);
                     let a3 = a.concat(a2);
-                    alert(a3);
                     document.location.href = a3;
                   }
                 }

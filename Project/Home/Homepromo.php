@@ -5,26 +5,6 @@
     include('Mcd/title.php');
     include('Mcd/header.php');
     include('Mcd/corusel.php');
-
-    $datenow = date('Y-m-d');
-    $query = "SELECT * FROM PROMO";
-    $list = mysqli_query($conn, $query);
-    foreach ($list as $key => $value) {
-        $idp = $value["id_promo"];
-        $pawal = $value["periode_awal"];
-        $pakhir = $value["periode_akhir"];
-
-        if($pawal >= $datenow){
-            $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
-            $conn->query($query2);
-        }
-        if($datenow > $pakhir){
-            $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $query4 = "UPDATE promo_paket set status = 0  WHERE ID_PROMO = '$idp'";
-            $conn->query($query3);
-            $conn->query($query4);
-        }
-    }
 ?>
 <body>
 
@@ -72,10 +52,10 @@
                     <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-1" id="filter">Promo Hemat</a>
                 </li>
                                 <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-2" id="filter">Promo Menu</a>
+                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-2" id="filter">Promo Hari Raya</a>
                 </li>
                                 <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-3" id="filter">Promo Hari Raya</a>
+                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-3" id="filter">Promo Buy 1 Get 1 Free</a>
                 </li>
                             </ul>
         </div>
@@ -115,7 +95,7 @@
                 }
                 ?>
                 <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'M' AND STATUS_PROMO = 1";
+                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'HR' AND STATUS_PROMO = 1";
                 $list2 = mysqli_query($conn,$query2);
                 foreach ($list2 as $key => $value) {
                     $href = "detail_promo.php?id=".$value["id_promo"];
@@ -147,7 +127,7 @@
                 }
                 ?>
                 <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'HR' AND STATUS_PROMO = 1";
+                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'X' AND STATUS_PROMO = 1";
                 $list2 = mysqli_query($conn,$query2);
                 foreach ($list2 as $key => $value) {
                     $href = "detail_promo.php?id=".$value["id_promo"];

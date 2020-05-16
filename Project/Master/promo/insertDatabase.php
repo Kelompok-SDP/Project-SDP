@@ -2,7 +2,6 @@
     require_once("../../config.php");
     $awalP =''; $akhirP =''; $nawal = ''; $nakhir = '';
     $nampromo = $_POST["nampromo"];
-    $hrgpromo = $_POST["hrgpromo"];
     $awalp = $_POST["awalp"];
     $jenispromo = $_POST["jenispromo"];
     $detpromo = $_POST["detpromo"];
@@ -42,7 +41,7 @@
     if($kembar){
         echo "Data Kembar!";
     }else{
-        $query2 = "INSERT INTO promo VALUES('$string','$nampromo',$hrgpromo,'$nawal','$nakhir','','$detpromo','$jenispromo',1)";
+        $query2 = "INSERT INTO promo VALUES('$string','$nampromo','$nawal','$nakhir','','$detpromo','$jenispromo',1)";
         if($conn->query($query2) == true){
             echo $string." -- Berhasil Menambahkan Data";
         }else{

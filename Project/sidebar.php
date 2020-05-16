@@ -180,10 +180,24 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="Insert_kupon.php" class="nav-link">
+                <a href="Kupon.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Master Kupon</p>
+                  <p>Master Kupon <i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview" style="margin-left:10%">
+                  <li class="nav-item">
+                    <a href="Kupon.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Detail Kupon</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="Insert_kupon.php" class="nav-link">
+                      <i class="fas fa-circle nav-icon"></i>
+                      <p>Insert Kupon</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -744,6 +758,28 @@
       type    : 'double',
       step    : 1000,
       prefix  : 'Rp ',
+      prettify: false,
+      hasGrid : true
+    })
+    $('#range_13').ionRangeSlider({
+      min     : 0,
+      max     : 20,
+      from    : 0,
+      to      : 0,
+      type    : 'double',
+      step    : 1,
+      prefix  : '',
+      prettify: false,
+      hasGrid : true
+    })
+    $('#range_14').ionRangeSlider({
+      min     : 0,
+      max     : 20,
+      from    : 0,
+      to      : 0,
+      type    : 'double',
+      step    : 1,
+      prefix  : '',
       prettify: false,
       hasGrid : true
     })
