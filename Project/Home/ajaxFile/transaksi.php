@@ -8,6 +8,7 @@
     $today= date("Y-m-d");
     $total=$_SESSION["harga_akhir_Pesanan"];
     $jenis=$_SESSION["jenis"];
+    $nama_promo="";
     if(isset($_SESSION["nama_promo"])){
         $nama_promo = $_SESSION["nama_promo"];
 
@@ -58,7 +59,7 @@
         $query="SELECT saldo_member from member where id_member='$member'";
         $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
         $point= $query["saldo_member"];
-        if($saldo_member<$total){
+        if($point<$total){
             $ctr=1;
         }else{
             $query="UPDATE member set saldo_member=$point-$total where id_member='$member'";
