@@ -31,7 +31,7 @@
     }
 </style>
 <?php
-session_start();
+require_once("../config.php");
 if(isset($_SESSION["isi_kursi"])==false){
     $_SESSION["isi_kursi"]="";
     $_SESSION["ctr"]="";
@@ -65,7 +65,7 @@ if(isset($_SESSION["isi_kursi"])==false){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-6">
-            <h1 class="m-0 " style="color:rgb(98, 0, 234);;">Uwenak Resotran</h1>
+            <h1 class="m-0 " style="color:rgb(98, 0, 234);">Uwenak Resotran</h1>
           </div><!-- /.col -->
           <div class="col-6">
             <ol class="breadcrumb float-sm-right">

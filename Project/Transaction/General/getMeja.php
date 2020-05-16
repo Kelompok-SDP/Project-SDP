@@ -1,8 +1,6 @@
 <?php
-    include_once("../../config.php");    
+    require_once("../../config.php");    
     //session_start();
-
-    
 
 
     $kursi = mysqli_query($conn_detail,"SELECT * from meja order by kolom asc,baris asc");
