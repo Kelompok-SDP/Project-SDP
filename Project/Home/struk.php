@@ -10,6 +10,7 @@
     if($jenis_pemesanan=="Delivery"){
         $ongkir=15000;
     }
+    $namapromo = "kode promo : -";
     $keterangan=explode("||",$cmd["keterangan"]);
     
     $alamat=          explode(":",$keterangan[0]);
@@ -20,6 +21,7 @@
     $discount=        explode(":",$keterangan[5]);
     $promo=           explode(":",$keterangan[6]);
     $jenis=           explode(":",$keterangan[7]);
+    $namapromo = $keterangan[9];
 
     // echo $alamat[1]."<br>".$waktu[1]."<br>".$hari[1]."<br>".$keterangan_meja[1]."<br>".$detail_meja[1]."<br>".$discount[1]."<br>".$promo[1]."<br>".$jenis[1];
 
@@ -31,12 +33,12 @@
     ";
     echo "<div style='width:96%;text-align:center; font-weight:bold;float:left;font-size:10pt;'>Surabaya</div>";
     echo "<div style='width:96%;text-align:center; font-weight:bold;float:left;font-size:10pt;'>No-Tlp: 081111111111  Alamat : Jl Hayam Wuruk</div>";
-    echo "<hr style='border-top: 1px dashed black;margin-top:60px; margin-bottom:20px;'>";
+    echo "<hr style='border-top: 1px dashed black;margin-top:80px; margin-bottom:20px;'>";
     echo "<hr style='border-top: 1px dashed black;margin-top:10px; margin-bottom:10px;'>";
 
     echo"No Transaksi: $id_htrans<br>";
-    echo"Tanggal Pembelian : $tanggal";
-
+    echo"Tanggal Pembelian : $tanggal<br>";
+    echo $namapromo;
     if($keterangan_meja=="ada"){
         echo"Jumlah Meja : $jumlah_meja<br>";
         $kursi=substr($_SESSION["isi_kursi"],0,strlen($_SESSION["isi_kursi"])-2);
@@ -104,21 +106,24 @@
             $promo_string="Rp " . number_format($promo[1],2,',','.');
             $total_string="Rp " . number_format($grandtotal-$promo[1]+$ongkir-$discount[1],2,',','.');
             
-            echo"   <div > <div style='float:left;width:60%;'>Total Bayar</div>
+            echo"   <div > <div style='float:left;width:60%;;font-weight:bold'>Total Bayar</div>
             ";echo"    <div style='float:right;margin-right:9%'>$grandtotal_string</div></div>
             ";
-            echo"   <div> <div style='width:60%;float:left'>Discount Menu</div>
-            ";echo"    <div style='float:right;margin-right:9%'>$discount_string </div></div>
+            echo"   <div> <div style='width:60%;float:left;font-weight:bold'>Discount Menu</div>
+            ";echo"    <div style='float:right;margin-right:9%'>  - $discount_string </div></div>
             ";
-            echo"    <div><div style='width:60%;float:left'>Ongkir Menu</div>
-            ";echo"    <div style='float:right;margin-right:9%'>$ongkir_string </div></div>
+            echo"   <div> <div style='width:60%;float:left; font-weight:bold'>Promo Menu</div>
+            ";echo"    <div style='float:right;margin-right:9%'>  - $promo_string </div></div>
+            ";
+            echo"    <div><div style='width:60%;float:left;font-weight:bold'>Ongkir Menu</div>
+            ";echo"    <div style='float:right;margin-right:9%'>  - $ongkir_string </div></div>
             ";
             echo "<div style='width:100%'>";
             echo "<br>";
             echo "<div style='float:left;width:100%;'>-----------------------------------------------------------------------------</div>";
             
     
-            echo"   <div> <div style='width:60%;float:left'>Grandtotal Menu</div>
+            echo"   <div> <div style='width:60%;float:left;font-weight:bold'>Grandtotal Menu</div>
             ";echo"    <div style='float:right;margin-right:9%'>$total_string </div></div>
             ";
     echo "</div>";
