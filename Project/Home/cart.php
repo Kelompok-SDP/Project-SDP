@@ -147,12 +147,19 @@ Body Section
 		getDetailPesanan();
 		var login="<?=$_SESSION["login"]?>";
 		var kursi="<?=$_SESSION["isi_kursi"]?>";
+		var jenis="<?=$_SESSION["jenis"]?>";
+
 		if(login==""){
 			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}
 		if(kursi != ""){
-			document.getElementById('radioPrimary1').checked = true;
+			if(jenis == "Reservasi"){
+				document.getElementById('radioPrimary1').checked = true;
+			}
+			else{
+				document.getElementById('radioPrimary4').checked = true;
+			}
 		}
 	}
 

@@ -1,5 +1,5 @@
 <?php
-   session_start();
+   require_once("../../config.php");
    $_SESSION["ongkir"]=0;
    $_SESSION["jenis"]="Dine-in";
    $_SESSION["status_member_code"]=false;

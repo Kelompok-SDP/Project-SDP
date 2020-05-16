@@ -391,15 +391,21 @@ if(strpos($ids, "MEN") !== false){
 
 <script>
     function Add_To_Cart(nama){
-        $.ajax({
-            method: "post",
-            url: "../Transaction/General/setSession_menu.php",
-            data:{
-                nama_menu:nama
-            },
-            success: function (response) {
-                //alert("berhasil");
-            }
-        });
+        var login="<?=$_SESSION["login"]?>";
+        if(login==""){
+			alert("Maaf, Anda harus Login!");
+			window.location.href="../login_register/login.php";
+		}else{
+            $.ajax({
+                method: "post",
+                url: "../Transaction/General/setSession_menu.php",
+                data:{
+                    nama_menu:nama
+                },
+                success: function (response) {
+                    //alert("berhasil");
+                }
+            });
+        }
     }
 </script>
