@@ -2,7 +2,7 @@
     require_once("../../config.php");
     $id = $_POST["id"];
    
-    
+   
     $query = "SELECT * FROM HJUAL WHERE ID_MEMBER= '$id' order by tanggal_transaksi desc limit 5";
     $mys = mysqli_query($conn, $query);
    

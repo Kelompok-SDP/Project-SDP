@@ -6,6 +6,8 @@
     $total=0;
     $gt=0;
     $dc=0;
+    $ipromo = "";
+     $hargp = "";
     $hargapromo = 0;
     $discount = 0;
     $discounts = 0;
@@ -21,6 +23,8 @@ if($nama!=""){
             $nama = "";
             $deskripsi = "";
             $gambar = "";
+            $tmpharga = 0;
+
             if(substr($value,0,2)=="ME"){
                 $query = "select *  from menu where id_menu = '$value'";
                 $menu = mysqli_fetch_assoc(mysqli_query($conn,$query));
@@ -31,7 +35,7 @@ if($nama!=""){
                 $harga = $menu['harga_menu'];
                 $gambar = "../Master/Menu/".$gambar;
 
-                $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$value'";
+                $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$value' and status = 1";
                 $menu2 = mysqli_query($conn,$query2);
                 $row = mysqli_num_rows($menu2);
                 if($row > 0){
@@ -39,6 +43,8 @@ if($nama!=""){
                         $tmpharga = $value["harga_promo_paket"];
                         $hargapromo = $harga - $tmpharga;
                         $discount = $discount + $hargapromo;
+                        $hargp = $hargp.$tmpharga.",";
+                        $ipromo = $ipromo.$value["id_promo"].",";
                     }
                 }
             } else if(substr($value,0,2)=="PK"){
@@ -57,16 +63,23 @@ if($nama!=""){
                         $tmpharga = $value["harga_promo_paket"];
                         $hargapromo = $harga - $tmpharga;
                         $discount = $discount + $hargapromo;
+                        $hargp = $hargp.$tmpharga.",";
                     }
                 }
             }
             
             $total="Rp " . number_format($harga,2,',','.');
             $hargas="Rp " . number_format($harga,2,',','.');
+            if($tmpharga !=0){
+              
+                 $tmpharga = "Rp " . number_format($tmpharga,2,',','.');
+            }
             $grandtotal="Rp " . number_format($harga*$jumlah,2,',','.');
             $discounts="Rp " . number_format($discount*$jumlah,2,',','.');
             $gt+=$harga*$jumlah;    
             $dc = $discount*$jumlah;  
+
+           
 ?>
            
             <div class="info-box elevation-2">
@@ -75,9 +88,15 @@ if($nama!=""){
                     <div class="col-6">
                         <div class="info-box-content" style="width: 150px;">
                             <span class="info-box-text" style="font-weight:bold;"><?= $nama?></span>
-                            <span class="">
-                            <?= $hargas?><br>
-                            </span>
+                          
+                                <span class="">
+                                <?= $hargas?><br> 
+                                </span>
+                            
+                           
+
+
+                            
                         </div>
                     </div>
                 </div>
@@ -107,7 +126,13 @@ if($nama!=""){
     $promo=$_SESSION["promo"];
     $Tampgt=$gt;
     $_SESSION["disc"]=$dc;
-    $ongkir=$_SESSION["ongkir"];
+    $_SESSION["hargapmenu"] = $hargp;
+    $_SESSION["ipromomenu"] = $ipromo;
+    $ongkir = 0;
+    if(isset($_SESSION["ongkir"])){
+        $ongkir=$_SESSION["ongkir"];
+
+    }
     $_SESSION["harga_akhir_Pesanan"]=$gt-$promo+$ongkir-$dc;
     $gt="Rp " . number_format($gt,2,',','.');
     $gtt="Rp " . number_format($Tampgt,2,',','.');
