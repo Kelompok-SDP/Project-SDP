@@ -13,6 +13,7 @@
     }
     $nama = "Login";
     $id = "null";
+    $tl = "";
     if(isset($_SESSION['login'])){
         if($_SESSION['login'] == 'pelanggan'){
             if(isset($_SESSION['pelanggan'])){
@@ -25,6 +26,7 @@
                     $nama = $nama.$row['fullname'];
                 }
             }
+            $tl = "cekSession.php?id=".$id;
         }else if($_SESSION['login'] == 'pegawai'){
             $id= $_SESSION['pegawai'];
 
@@ -34,10 +36,13 @@
             foreach($data as $key=>$row){
                 $nama = $nama.$row['nama'];
             }
+            $tl = "cekSession.php?id=".$id;
+        }else{
+            $tl = "../login_register/login.php";
         }
     }
 
-   $hr = "cekSession.php?id=".$id;
+   $hr = $tl;
 ?>
 <div class="loader-wrapper loader-light">
     <div class="loader" style="display: none;"></div>

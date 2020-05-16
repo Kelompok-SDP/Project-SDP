@@ -1,7 +1,8 @@
 <?php
     require_once("../config.php");
     require_once("MCD/title.php");
-  
+    require_once("MCD/header.php");
+
     $id = $_GET["id"];
     $tgl = "";
     $jen = "";
@@ -96,10 +97,13 @@
 
     
 </section>
+<?php require_once("MCD/footer.php");?>
 <script>
 $( document).ready(function() {
     $("#dropmenu").html(
         "<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
+        document.getElementById("cool").style.height = "40px";
+
 });
 function destroy(){
         $.ajax({
@@ -124,7 +128,10 @@ function destroy(){
                 header("location: ../login_register/login.php");
             }
         
-    }
+         }
+    } else{
+        header("location: ../login_register/login.php");
+
     }
 ?>
 
