@@ -58,10 +58,24 @@ Body Section
 
 	</div>
 	<div class="col-12 elevation-2" style="padding: 10px;">
-		<label style="min-width:159px"> VOUCHER Code: </label>
-		<input type="text" class="input-medium" placeholder="Code"  id="kode">
-		<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="CheckPromo()" style="margin-top: -5px;">ADD</button><br>
-		<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
+	
+		<label style="min-width:159px"> Kupon: </label>
+
+		<?php
+			$id_member=$_SESSION["pelanggan"];
+			$query="SELECT * from kupon_member where id_member='$id_member' and status=1";
+
+			echo "<select name='' id='id_kupon'>";
+			echo"<option value='kosong'>tidak pakai</option>";
+			$query=mysqli_query($conn,$query);
+			foreach ($query as $key => $value) {
+				$query_kupon="SELECT * from kupon where id_kupon='$value[id_kupon]'";
+				$values=mysqli_fetch_assoc(mysqli_query($conn,$query_kupon));
+				echo"<option value='$values[id_kupon]'>$values[nama_kupon]</option>";
+			}
+			echo"</select>";
+		?>
+
 	</div>
 	<br>
 	<div class="col-12 elevation-2" style="padding: 10px;">
@@ -501,19 +515,19 @@ Body Section
 			}
 		});
 	}
-	function CheckPromo(){
-		var kode=$("#kode").val();
-		$.ajax({
-			type: "post",
-			url: "ajaxFile/check/CheckPromo.php",
-			data: {
-				nama:kode
-			},
-			success: function (response) {
-				alert(response);
-			}
-		});
-	}
+	// function CheckPromo(){
+	// 	var kode=$("#kode").val();
+	// 	$.ajax({
+	// 		type: "post",
+	// 		url: "ajaxFile/check/CheckPromo.php",
+	// 		data: {
+	// 			nama:kode
+	// 		},
+	// 		success: function (response) {
+	// 			alert(response);
+	// 		}
+	// 	});
+	// }
 	//getRadio();
 	getRervasiKode();
 	// function getRadio(){

@@ -44,7 +44,7 @@ if($nama!=""){
                         $hargapromo = $harga - $tmpharga;
                         $discount = $discount + $hargapromo;
                         $hargp = $hargp.$tmpharga.",";
-                        $ipromo = $ipromo.$value["id_promo"].",";
+                        $ipromo = $ipromo.$id.",";
                     }
                 }
             } else if(substr($value,0,2)=="PK"){
@@ -64,6 +64,7 @@ if($nama!=""){
                         $hargapromo = $harga - $tmpharga;
                         $discount = $discount + $hargapromo;
                         $hargp = $hargp.$tmpharga.",";
+                        $ipromo = $ipromo.$id.",";
                     }
                 }
             }
@@ -123,7 +124,7 @@ if($nama!=""){
         $ctr++;
     }
 }
-    $promo=$_SESSION["promo"];
+    // $promo=$_SESSION["promo"];
     $Tampgt=$gt;
     $_SESSION["disc"]=$dc;
     $_SESSION["hargapmenu"] = $hargp;
@@ -131,21 +132,19 @@ if($nama!=""){
     $ongkir = 0;
     if(isset($_SESSION["ongkir"])){
         $ongkir=$_SESSION["ongkir"];
-
     }
-    $_SESSION["harga_akhir_Pesanan"]=$gt-$promo+$ongkir-$dc;
+    $_SESSION["harga_akhir_Pesanan"]=$gt+$ongkir-$dc;
     $gt="Rp " . number_format($gt,2,',','.');
     $gtt="Rp " . number_format($Tampgt,2,',','.');
     $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
-    $promoTampil="Rp " . number_format($promo,2,',','.');
     $discounttampil="Rp " . number_format($dc,2,',','.');
    
-    if($Tampgt-$promo+$ongkir-$dc<=0){
+    if($Tampgt+$ongkir-$dc<=0){
         $_SESSION["harga_akhir_Pesanan"]=0;
         $gt="Rp " . number_format(0,2,',','.');
     }else{
-        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$promo-$dc;
-        $gt="Rp " . number_format($Tampgt-$promo-$dc+$ongkir,2,',','.');
+        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$dc;
+        $gt="Rp " . number_format($Tampgt-$dc+$ongkir,2,',','.');
     }
 
 ?>
@@ -158,13 +157,11 @@ if($nama!=""){
                 <div class="col-8">
                     <p> Subtotal products: </p>
                     <p> Discount products: </p> 
-                    <p> Promo products:	</p>
                     <p> Shipping cost: </p>
                 </div>  
                 <div class="col-4">
                     <p><?= $gtt ?></p>
                     <p id="d" style="color: black;"><?= $discounttampil?></p>
-                    <p id="p" style="color: black;"><?= $promoTampil ?></p>
                     <p ><?=$ongkirTampil ?></p>
                 </div>
                 <div class="col-12">
