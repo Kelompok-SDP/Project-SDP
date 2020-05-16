@@ -41,7 +41,7 @@
     // $promo=$_SESSION["promo"];
     
     $koderev = "RESVXX-".$id_htrans;
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||discount:$disc||promo:$promo||jenis:$type||kode_res:$koderev||Kode Promo:$nama_promo||$hargadiscpake||$idpromodisc";
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
