@@ -45,7 +45,7 @@
     $id_kupon=$_SESSION["kupon"];
     $harga_kupon=$_SESSION["harga_kupon"];
 
-    $query="UPDATE kupon set status = 0 where id_kupon='$id_kupon' and id_member='$member'";
+    $query="UPDATE kupon_member set status = 0 where id_kupon='$id_kupon' and id_member='$member'";
     mysqli_query($conn,$query);
     $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc||Keterangan Kupon:$id_kupon||$harga_kupon";
 

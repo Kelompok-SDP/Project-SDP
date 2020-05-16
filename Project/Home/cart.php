@@ -63,6 +63,20 @@ Body Section
 
 		<?php
 			$id_member=$_SESSION["pelanggan"];
+
+
+			$query="SELECT * from kupon_member where id_member='$id_member' and status=1";
+			$query=mysqli_query($conn,$query);
+			foreach ($query as $key => $value) {
+				$query_kupon="SELECT * from kupon where id_kupon='$value[id_kupon]'";
+				$date=date("Y-m-d");
+				$value_kuponnya=mysqli_fetch_assoc(mysqli_query($conn,$query_kupon));
+				if($value_kuponnya["periode_akhir_kupon"]<$date){
+					$query="UPDATE kupon_member set status = 0 where id_kupon='$value[id_kupon]'";
+					mysqli_query($conn,$query);
+				}
+			}
+
 			$query="SELECT * from kupon_member where id_member='$id_member' and status=1";
 
 			echo "<select name='' id='id_kupon'>";

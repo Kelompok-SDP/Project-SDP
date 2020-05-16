@@ -6,8 +6,8 @@
     $ctr=0;
     $nama=$_SESSION["nama_menu"];
     $arrMenu=explode(" ,",$nama);
-    foreach ($arrMenu as $key => $value) {
-        if($value==$value_kupon["id_menu"]){
+    for ($i=0; $i <count($arrMenu)-1 ; $i++) { 
+        if($arrMenu[$i]==$value_kupon["id_menu"]){
             $ctr=1;
         }
     }
