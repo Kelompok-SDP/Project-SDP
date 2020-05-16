@@ -179,6 +179,12 @@
                   <p>Master Report</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="Insert_kupon.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Master Kupon</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

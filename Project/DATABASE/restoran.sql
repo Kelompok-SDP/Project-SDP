@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Bulan Mei 2020 pada 09.00
+-- Waktu pembuatan: 16 Bulan Mei 2020 pada 10.16
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -224,6 +224,16 @@ CREATE TABLE `kupon` (
   `sisa_kupon` int(11) NOT NULL,
   `status_kupon` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kupon`
+--
+
+INSERT INTO `kupon` (`id_kupon`, `nama_kupon`, `kode_kupon`, `id_menu`, `harga_kupon`, `periode_awal_kupon`, `periode_akhir_kupon`, `sisa_kupon`, `status_kupon`) VALUES
+('KUP001', 'Coba', 'KUPCO001', 'MEN001', 5000, '2020-05-21', '2020-05-23', 5, 1),
+('KUP002', 'Coba2', 'KUPCO002', 'MEN001', 5000, '2020-05-27', '2020-05-29', 3, 1),
+('KUP003', 'Coba3', 'KUPCO003', 'MEN011', 8000, '2020-05-27', '2020-05-29', 4, 1),
+('KUP004', 'Murah', 'KUPMU004', 'MEN012', 4000, '2020-05-19', '2020-05-21', 6, 1);
 
 -- --------------------------------------------------------
 

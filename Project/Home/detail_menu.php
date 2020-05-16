@@ -98,6 +98,7 @@ if(strpos($ids, "MEN") !== false){
     <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
     <span >Pesan Sekarang</span>
 </a>
+    
         <!-- Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
     <div class="loader-wrapper loader-light">
@@ -238,7 +239,9 @@ if(strpos($ids, "MEN") !== false){
         </div>
     </div>
 </section>
-
+<div id="box" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 0;">
+    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Add to Cart</p> 
+</div>
 <?php include('Mcd/footer.php'); ?>
     <script>
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -396,6 +399,8 @@ if(strpos($ids, "MEN") !== false){
 			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}else{
+            $('#box').fadeIn(800);
+            $('#box').fadeOut(2000);
             $.ajax({
                 method: "post",
                 url: "../Transaction/General/setSession_menu.php",
