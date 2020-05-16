@@ -27,7 +27,7 @@
                     $nama = $nama.$row['fullname'];
                 }
             }
-            $tl = "cekSession.php?id=".$id;
+            $tl = "ubahinfo.php?id=".$id;
         }else if($_SESSION['login'] == 'pegawai'){
             $id= $_SESSION['pegawai'];
 
