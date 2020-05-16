@@ -179,8 +179,9 @@ if($nama!=""){
                 <select class="form-control select2" name="" id="jenis_pembayaran" style="width: 100%;">
                     <option value="cash">Payment</option>
                     <option value="poin">Poin Member</option>
+                    <option value="saldo">Saldo Member</option>
                 </select><br><br>
-                <button type="submit" class="btn btn-block btn-primary" id="Submit" name="submit" onclick="Pay()">Pay! <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
+                <button class="btn btn-block btn-primary" id="Submit" name="submit" onclick="Pay()">Pay! <i class="fas fa-angle-right" style="margin-left:12px;"></i></button>
                 
             </div>
             </div>

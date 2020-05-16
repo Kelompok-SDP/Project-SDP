@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Bulan Mei 2020 pada 13.55
--- Versi server: 10.4.8-MariaDB
--- Versi PHP: 7.3.11
+-- Waktu pembuatan: 16 Bulan Mei 2020 pada 09.00
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -209,6 +209,37 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `jenis_kategori`, `statu
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kupon`
+--
+
+DROP TABLE IF EXISTS `kupon`;
+CREATE TABLE `kupon` (
+  `id_kupon` varchar(10) NOT NULL,
+  `nama_kupon` varchar(50) NOT NULL,
+  `kode_kupon` varchar(10) NOT NULL,
+  `id_menu` varchar(10) NOT NULL,
+  `harga_kupon` int(11) NOT NULL,
+  `periode_awal_kupon` date NOT NULL,
+  `periode_akhir_kupon` date NOT NULL,
+  `sisa_kupon` int(11) NOT NULL,
+  `status_kupon` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kupon_member`
+--
+
+DROP TABLE IF EXISTS `kupon_member`;
+CREATE TABLE `kupon_member` (
+  `id_kupon` varchar(10) NOT NULL,
+  `id_member` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `member`
 --
 
@@ -225,24 +256,23 @@ CREATE TABLE `member` (
   `kode_pos` int(8) NOT NULL,
   `username` varchar(50) NOT NULL,
   `status` varchar(1) NOT NULL,
-  `point` int(11) NOT NULL
+  `point` int(11) NOT NULL,
+  `saldo_member` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `member`
 --
 
-INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`, `point`) VALUES
-('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0', 0),
-('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '0', 0),
-('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1', 0),
-('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0', 0),
-('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1', 0),
-('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1', 0),
-('FA00003', 'Fabian Suryajaya S', '123', 'fabiansuryajayas@gmail.com', 'jalan kusuma bangsa', 1234567897987, 'Surabaya', 'Jawa Timur', 123213, 'fabianss', '2', 0),
-('FA00004', 'Fabian Suryajaya S', '123', 'fabiansuryajaya@gmail.com', 'jalan kusuma bangsa', 4543875654243, 'Surabaya', 'Jawa Timur', 123213, 'fabiansss', '1', 0),
-('FE00001', 'Fendy', 'aa', 'fendysugiartog@gmail.com', 'jalan pecatu no 2', 88989, 'Surabaya', 'Jawa Timur', 89089, 'Fendyaso', '1', 0),
-('SH00001', 'Shan', 'a', 'michaelshan077@gmail.com', 'BCF', 123, 'Surabaya', 'Jawa Timur', 615333, 'sha', '1', 0);
+INSERT INTO `member` (`id_member`, `fullname`, `password`, `email`, `alamat`, `no_hp`, `kota`, `kecematan`, `kode_pos`, `username`, `status`, `point`, `saldo_member`) VALUES
+('', 'aaa', '123', 'aa@gmail.com', 'bbb', 1234314132132, '', '', 111111, 'aaab', '0', 0, 0),
+('AB00001', 'ab', '123', 'aabbbb@gmail.com', 'bbb', 1234314132134, '', '', 111111, 'ababb', '0', 0, 0),
+('AB00002', 'abc', '123', 'aabbbbb@gmail.com', 'bbb', 1234314132135, '', '', 111111, 'ababbc', '1', 0, 0),
+('AM00002', 'amm', '123', 'aabbb@gmail.com', 'bbb', 1234314132133, '', '', 111111, 'abab', '0', 0, 0),
+('AM001', 'Amelia', '213', 'amelia@gmail.com', 'aba', 1231231231231, 'surabaya', 'Jawa Timur', 12312312, 'ameliaDwi', '1', 0, 0),
+('FA00002', 'Fabian Suryajaya S', '123', 'fabi@gmail.com', 'jalan 30', 891234567890, 'Surabaya', 'Jawa Timur', 123123, 'fabiansuryajaya', '1', 0, 0),
+('FE00001', 'Fendy', 'aa', 'fendysugiartog@gmail.com', 'jalan pecatu no 2', 88989, 'Surabaya', 'Jawa Timur', 89089, 'Fendyaso', '1', 0, 0),
+('SH00001', 'Shan', 'a', 'michaelshan077@gmail.com', 'BCF', 123, 'Surabaya', 'Jawa Timur', 615333, 'sha', '1', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -420,6 +450,18 @@ INSERT INTO `promo` (`id_promo`, `nama_promo`, `harga_promo`, `periode_awal`, `p
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `promo_menu`
+--
+
+DROP TABLE IF EXISTS `promo_menu`;
+CREATE TABLE `promo_menu` (
+  `id_menu` varchar(10) NOT NULL,
+  `id_promo` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `promo_paket`
 --
 
@@ -460,6 +502,12 @@ ALTER TABLE `hjual`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indeks untuk tabel `kupon`
+--
+ALTER TABLE `kupon`
+  ADD PRIMARY KEY (`id_kupon`);
 
 --
 -- Indeks untuk tabel `member`
