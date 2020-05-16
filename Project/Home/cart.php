@@ -87,7 +87,7 @@ Body Section
             <input type='radio' id='radioPrimary4' name='r1'>
             <label for='radioPrimary4'>Dine In
             </label>
-        </div>";
+        </div>
 	<?php  
 		}
 	?>
@@ -456,21 +456,25 @@ Body Section
 			var time=$("#time_res").val();
 			var keterangan_meja="ada";
 			var date=$("#date_res").val();
+			var member="";
 		}else if(document.getElementById("radioPrimary2").checked ){
 			var alamat="";
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
+			var member="";
 		}else if(document.getElementById("radioPrimary3").checked ){
 			var alamat=$("#alamat").val();
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
+			var member="";
 		}else if(document.getElementById("radioPrimary4").checked ){
 			var alamat="";
 			var time="";
 			var keterangan_meja="ada";
 			var date="";
+			var member=$("#kodemem").val();;
 		}
 		// alert(alamat+ " "+ time+" "+keterangan_meja+" "+date);
 		alert(jenis_pembayaran);
@@ -482,7 +486,8 @@ Body Section
 				time:time,
 				keterangan_meja:keterangan_meja,
 				date:date,
-				method:jenis_pembayaran
+				method:jenis_pembayaran,
+				member_id:member
 			},
 			success: function (response) {
 				alert(response);

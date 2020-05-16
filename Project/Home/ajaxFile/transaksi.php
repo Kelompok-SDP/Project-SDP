@@ -16,7 +16,11 @@
     $idpromodisc = $_SESSION["ipromomenu"];
     if($jenis=="Dine-in"){
         $pegawai=$_SESSION["pegawai"];
-        $member="default";
+        if($_SESSION["status_member_code"]=="true"){
+            $member=$_POST["member_id"];
+        }else{
+            $member="default";
+        }
     }else{
         $pegawai="";
         $member=$_SESSION["pelanggan"];
@@ -42,10 +46,22 @@
         $query="SELECT point from member where id_member='$member'";
         $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
         $point= $query["point"];
-        if($point<=$total){
+        if($point<$total){
             $ctr=1;
         }else{
             $query="UPDATE member set point=$point-$total where id_member='$member'";
+            mysqli_query($conn,$query);
+        }
+    }
+
+    if($type=="saldo"){
+        $query="SELECT saldo_member from member where id_member='$member'";
+        $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
+        $point= $query["saldo_member"];
+        if($saldo_member<$total){
+            $ctr=1;
+        }else{
+            $query="UPDATE member set saldo_member=$point-$total where id_member='$member'";
             mysqli_query($conn,$query);
         }
     }
