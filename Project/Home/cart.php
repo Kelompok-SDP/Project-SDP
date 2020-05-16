@@ -6,9 +6,7 @@
 		header("location: ../login_register/login.php");
 	}
 	include("../Source.php");
-	include("Mcd/header.php");
-	// session_destroy();
-	
+	include("Mcd/header.php");	
 ?>
 
 <html lang="en">
@@ -54,7 +52,7 @@ Body Section
 	<div class="col-12">
 	<div class="span12">
 	<div class="well well-small">
-		<h1>Check Out <small class="pull-right" id="displayQTY">  </small></h1>
+		<h1>Check Out <small class="pull-right" id="displayQTY" style="float:right;">  </small></h1>
 	<hr class="soften"/>
 	<div id="tempat_reservasiKode">
 
@@ -66,8 +64,33 @@ Body Section
 		<div id="err" style="color: red; margin-left: 160px; display: none;">Masukkan Kode Voucher!</div>
 	</div>
 	<br>
-	<div class="col-12 elevation-2" id="place_radio"style="padding: 10px;">
-
+	<div class="col-12 elevation-2" style="padding: 10px;">
+		<div class='icheck-primary d-inline'>
+			<input type='radio' id='radioPrimary1' name='r1'>
+			<label for='radioPrimary1'>Reservasi
+			</label>
+		</div>
+		<div class='icheck-primary d-inline' style='margin-left: 100px;'>
+			<input type='radio' id='radioPrimary2' name='r1'>
+			<label for='radioPrimary2'>Take Away
+			</label>
+		</div>
+		<div class='icheck-primary d-inline' style='margin-left: 100px;'>
+			<input type='radio' id='radioPrimary3' name='r1'>
+			<label for='radioPrimary3'>Delivery
+			</label>
+		</div>
+	<?php 
+		if($_SESSION["login"]=="pegawai"){
+	?>
+        <div class='icheck-primary d-inline'style='margin-left: 100px;'>
+            <input type='radio' id='radioPrimary4' name='r1'>
+            <label for='radioPrimary4'>Dine In
+            </label>
+        </div>";
+	<?php  
+		}
+	?>
 	</div>
 	<br>
 	<div id="detailTable"></div>
@@ -114,10 +137,25 @@ Body Section
 <script>
 	$(document).ready(function () {
 		$("#dropmenu").html(
-			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>");
-
-			document.getElementById("cool").style.height = "40px";
+			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>"
+		);
+		document.getElementById("cool").style.height = "40px";
+		start();
 	});
+	
+	function start(){
+		getDetailPesanan();
+		var login="<?=$_SESSION["login"]?>";
+		var kursi="<?=$_SESSION["isi_kursi"]?>";
+		if(login==""){
+			alert("Maaf, Anda harus Login!");
+			window.location.href="../login_register/login.php";
+		}
+		if(kursi != ""){
+			document.getElementById('radioPrimary1').checked = true;
+		}
+	}
+
 	var modal = document.getElementById("myModal");
 
 	$('input[type="radio"]').click(function(){
@@ -140,6 +178,8 @@ Body Section
 	});
 
 	var span = document.getElementsByClassName("close")[0];
+	var ctr=0;
+	var pilihan = 0;
 
 	function open(pilihan) {
 		if(pilihan == 1){
@@ -157,11 +197,7 @@ Body Section
 			modal.style.display = "none";
 		}
 	}
-	var ctr=0;
-	var pilihan = 0;
-	start();
-	getDetailPesanan();
-	ubahradio(0);
+	
 	$("#subvcode").click(function () {
 		var vkode = $("#kode").val();
 		if(vkode == ""){
@@ -177,35 +213,6 @@ Body Section
 		$("#err").fadeOut(3000);
 	});
 
-	function start(){
-		var login="<?=$_SESSION["login"]?>";
-		if(login==""){
-			window.location.href="../login_register/login.php";
-		}
-	}
-
-	function ubahradio(berubah){
-        $.ajax({
-            url: "ajaxFile/radio_jpemesanan.php?id="+berubah,
-            method: "post",
-			data : {
-				berubah : berubah
-			},
-            success: function (response) {
-                if(response == "Berhasil"){
-                    document.getElementById('radioPrimary1').checked = true;
-                }else if(response == "Gagal"){
-                	document.getElementById('radioPrimary1').checked = false;
-                }else if(response == "Berhasil4"){
-					document.getElementById('radioPrimary4').checked = true;
-				}else if (response == "Gagal4"){
-					document.getElementById('radioPrimary4').checked = false;
-
-				}
-
-            }
-        });
-    }
 	function inisialisasi(){
 		if(document.getElementById("radioPrimary1").checked ){
 			$.ajax({
@@ -214,12 +221,11 @@ Body Section
 				success: function (response) {
 					$("#header").html("Reservasi");
 					$("#footer").html("Reservasi");
-						$("#tempat").html(response);
-						getDetail_kursi();
-						getDateNow();
-						getTimeNow();
-						ubahradio(1);
-		getDetailPesanan();
+					$("#tempat").html(response);
+					getDetail_kursi();
+					getDateNow();
+					getTimeNow();
+					getDetailPesanan();
 				}
 			});
 		}
@@ -232,7 +238,7 @@ Body Section
 					$("#footer").html("Take Away");
 					$("#tempat").html(response);
 					getTimeNow();
-		getDetailPesanan();
+					getDetailPesanan();
 				}
 			});
 		}
@@ -245,7 +251,7 @@ Body Section
 					$("#footer").html("Delivery");
 					$("#tempat").html(response);
 					getTimeNow();
-		getDetailPesanan();
+					getDetailPesanan();
 				}
 			});
 		}
@@ -258,12 +264,12 @@ Body Section
 					$("#footer").html("Dine In");
 					$("#tempat").html(response);
 					getDetail_kursi();
-					ubahradio(4);
-		getDetailPesanan();
+					getDetailPesanan();
 				}
 			});
 		}
 	}
+
 	function getDetail_kursi(){
 		$.ajax({
 			method: "post",
@@ -273,9 +279,11 @@ Body Section
 			}
 		});
 	}
+
 	function tomeja(){
 		window.location.assign("../transaction/tampilan_dinein.php")
 	}
+
 	function getDetailPesanan(){
 		$.ajax({
 			type: "post",
@@ -483,7 +491,6 @@ Body Section
 	}
 	function CheckPromo(){
 		var kode=$("#kode").val();
-		alert(kode);
 		$.ajax({
 			type: "post",
 			url: "ajaxFile/check/CheckPromo.php",
@@ -495,17 +502,17 @@ Body Section
 			}
 		});
 	}
-	getRadio();
+	//getRadio();
 	getRervasiKode();
-	function getRadio(){
-		$.ajax({
-			type: "post",
-			url: "ajaxFile/getRadioButton.php",
-			success: function (response) {
-				$("#place_radio").html(response);
-			}
-		});
-	}
+	// function getRadio(){
+	// 	$.ajax({
+	// 		type: "post",
+	// 		url: "ajaxFile/getRadioButton.php",
+	// 		success: function (response) {
+	// 			$("#place_radio").html(response);
+	// 		}
+	// 	});
+	// }
 	function CheckRes(){
 		var id=$("#member_id").val();
 		var kode=$("#reservasiKode").val();
