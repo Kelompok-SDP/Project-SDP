@@ -244,8 +244,9 @@ var balik=-1;
                                     },
                                     success: function (data) {
                                       if(data=="1"){
-                                        insertUser();
                                         Konfirm();
+                                        insertUser();
+                                       
                                         setTimeout(
                                         window.location.href = "confirmation.php?test=1"
                                         , 5000);
@@ -278,6 +279,7 @@ var balik=-1;
     function Konfirm(){
         var kepada=$("#email").val();
       $.ajax({
+        async : false,
         method: "post",
         url: "register/Emailregister.php",
         data:{
