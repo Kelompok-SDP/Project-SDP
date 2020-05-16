@@ -11,6 +11,7 @@
     $hargapromo = 0;
     $discount = 0;
     $discounts = 0;
+    $kupon=$_SESSION["kupon"];
 ?>
     <div class="row">
             <div class="col-8">
@@ -125,6 +126,16 @@ if($nama!=""){
     }
 }
     // $promo=$_SESSION["promo"];
+    $id_kupon=$_SESSION["kupon"];
+    if($id_kupon!=""){
+        $query="SELECT * from kupon where id_kupon='$id_kupon'";
+        $value_kupon=mysqli_fetch_assoc(mysqli_query($conn,$query));
+        $potongan_kupon=$value_kupon["harga_kupon"];
+    }else{
+        $potongan_kupon=0;
+    }
+    $_SESSION["harga_kupon"]=$potongan_kupon;
+    $potongan_kupon_string="Rp " . number_format($potongan_kupon,2,',','.');
     $Tampgt=$gt;
     $_SESSION["disc"]=$dc;
     $_SESSION["hargapmenu"] = $hargp;
@@ -133,18 +144,18 @@ if($nama!=""){
     if(isset($_SESSION["ongkir"])){
         $ongkir=$_SESSION["ongkir"];
     }
-    $_SESSION["harga_akhir_Pesanan"]=$gt+$ongkir-$dc;
+    $_SESSION["harga_akhir_Pesanan"]=$gt+$ongkir-$dc-$potongan_kupon;
     $gt="Rp " . number_format($gt,2,',','.');
     $gtt="Rp " . number_format($Tampgt,2,',','.');
     $ongkirTampil="Rp " . number_format($ongkir,2,',','.');
     $discounttampil="Rp " . number_format($dc,2,',','.');
    
-    if($Tampgt+$ongkir-$dc<=0){
+    if($Tampgt+$ongkir-$dc-$potongan_kupon<=0){
         $_SESSION["harga_akhir_Pesanan"]=0;
         $gt="Rp " . number_format(0,2,',','.');
     }else{
-        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$dc;
-        $gt="Rp " . number_format($Tampgt-$dc+$ongkir,2,',','.');
+        $_SESSION["harga_akhir_Pesanan"]=$Tampgt+$ongkir-$dc-$potongan_kupon;
+        $gt="Rp " . number_format($Tampgt-$dc+$ongkir-$potongan_kupon,2,',','.');
     }
 
 ?>
@@ -157,11 +168,13 @@ if($nama!=""){
                 <div class="col-8">
                     <p> Subtotal products: </p>
                     <p> Discount products: </p> 
+                    <p> Kupon products: </p> 
                     <p> Shipping cost: </p>
                 </div>  
                 <div class="col-4">
                     <p><?= $gtt ?></p>
                     <p id="d" style="color: black;"><?= $discounttampil?></p>
+                    <p id="d" style="color: black;"><?= $potongan_kupon_string?></p>
                     <p ><?=$ongkirTampil ?></p>
                 </div>
                 <div class="col-12">

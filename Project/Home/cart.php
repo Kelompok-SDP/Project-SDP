@@ -75,7 +75,8 @@ Body Section
 			}
 			echo"</select>";
 		?>
-
+		<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="check_kupon()" style="margin-top: -5px;">ADD</button><br>
+		
 	</div>
 	<br>
 	<div class="col-12 elevation-2" style="padding: 10px;">
@@ -325,7 +326,9 @@ Body Section
 				qty:qty
 			},
 			success: function (response) {
+				check_kupon();
 				getDetailPesanan();
+				
 			}
 		});
 	}
@@ -575,6 +578,21 @@ Body Section
 			},
 			success : function(response){
 				alert(response);
+			}
+		});
+	}
+	function check_kupon(){
+		var id =$("#id_kupon").val();
+		$.ajax({
+			async :false,
+			type: "post",
+			url : "ajaxFile/check_kupon.php",
+			data:{
+				id : id
+			},
+			success : function(response){
+				alert(response);
+				getDetailPesanan();
 			}
 		});
 	}

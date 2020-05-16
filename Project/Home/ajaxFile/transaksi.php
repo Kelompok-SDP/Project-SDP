@@ -41,7 +41,13 @@
     // $promo=$_SESSION["promo"];
     
     $koderev = "RESVXX-".$id_htrans;
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc";
+
+    $id_kupon=$_SESSION["kupon"];
+    $harga_kupon=$_SESSION["harga_kupon"];
+
+    $query="UPDATE kupon set status = 0 where id_kupon='$id_kupon' and id_member='$member'";
+    mysqli_query($conn,$query);
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc||Keterangan Kupon:$id_kupon||$harga_kupon";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
@@ -110,6 +116,8 @@
                 $_SESSION["pilih_menu"]= array();
                 $_SESSION["promo"]=0;
                 $_SESSION["ongkir"]=0;
+                $_SESSION["kupon"]="";
+                $_SESSION["harga_kupon"]=0;
                 $_SESSION["jenis"]="kosong";
             }
         }
