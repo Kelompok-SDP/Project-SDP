@@ -81,7 +81,7 @@
                 mysqli_query($conn,$query);
                 echo $query."<br>";
                 $ctr++;
-                $_SESSION["isi_kursi"]="";
+                $_SESSION["isi_kursi"]=" ";
                 $_SESSION["ctr"]=0;
                 $_SESSION["nama_menu"]="";
                 $_SESSION["pilih_menu"]= array();

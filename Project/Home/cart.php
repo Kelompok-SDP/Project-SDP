@@ -3,7 +3,7 @@
     include("../config.php");
 	include("Mcd/title.php");
 	if($_SESSION["login"]==""){
-		header("location: home.php");
+		header("location: ../login_register/login.php");
 	}
 	include("../Source.php");
 	include("Mcd/header.php");
