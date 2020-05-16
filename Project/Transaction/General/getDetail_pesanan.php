@@ -36,6 +36,7 @@ if($nama!=""){
                 $harga = $menu['harga_menu'];
                 $gambar = "../Master/Menu/".$gambar;
 
+                $tmpharga=$harga;
                 $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$value' and status = 1";
                 $menu2 = mysqli_query($conn,$query2);
                 $row = mysqli_num_rows($menu2);
@@ -56,6 +57,7 @@ if($nama!=""){
                 $gambar = $menu['gambar'];
                 $harga = $menu['harga_paket'];
                 $gambar = "../Master/Menu/".$gambar;
+                $tmpharga=$harga;
                 $query2 = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$value'";
                 $menu2 = mysqli_query($conn,$query2);
                 $row = mysqli_num_rows($menu2);
@@ -72,8 +74,8 @@ if($nama!=""){
             
             $total="Rp " . number_format($harga,2,',','.');
             $hargas="Rp " . number_format($harga,2,',','.');
+            $tmpharga_number=$tmpharga;
             if($tmpharga !=0){
-              
                  $tmpharga = "Rp " . number_format($tmpharga,2,',','.');
             }
             $grandtotal="Rp " . number_format($harga*$jumlah,2,',','.');
@@ -92,7 +94,19 @@ if($nama!=""){
                             <span class="info-box-text" style="font-weight:bold;"><?= $nama?></span>
                           
                                 <span class="">
-                                <?= $hargas?><br> 
+                                <?php 
+                                if($tmpharga!=$hargas){
+                                    echo "<span style='text-decoration: line-through;'>$hargas</span>";
+                                }else{
+                                    echo "<span>$hargas</span>";
+                                }
+                                ?><br> 
+                                <?php
+                                if($tmpharga!=$hargas){
+                                    echo $tmpharga;
+                                    $grandtotal="Rp " . number_format($tmpharga_number*$jumlah,2,',','.');
+                                }
+                                ?><br> 
                                 </span>
                             
                            
