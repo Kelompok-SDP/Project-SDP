@@ -2,6 +2,7 @@
     require_once("../config.php");
     require_once("MCD/title.php");
     require_once("MCD/header.php");
+    
 ?>
 
 <!DOCTYPE html>
@@ -29,13 +30,26 @@
             $list = mysqli_query($conn,$query);
             foreach ($list as $key => $value) {
                 $idm = $value["id_menu"];
+                $idk = $value["id_kupon"];
                 $harga = $value['harga_kupon'];
                 $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
                 $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$idm'";
                 $list2 = mysqli_query($conn,$query2);
-                foreach ($list2 as $key => $value2) {
+                $value2=mysqli_fetch_assoc($list2);
+                // foreach ($list2 as $key => $value2) {
                     $nmenu = $value2["nama_menu"];
                     $gbr = $value2["gambar"];
+
+                $counter=0;
+                if($_SESSION["login"]=="pelanggan"){
+                    $id_member=$_SESSION["pelanggan"];
+                    $query_search="SELECT * from kupon_member where id_kupon='$idk' and id_member='$id_member'";
+                    $value_search=mysqli_query($conn,$query_search);
+                    $row = mysqli_num_rows($value_search);
+                    if($row>0){
+                        $counter=1;
+                    }
+                }
         ?>
                     <div class="col-2 col-lg-4 filter-element" data-filter="category-1">
                         <a href="" data-id="134" class="card card-general">
@@ -57,10 +71,16 @@
                                 <br>
                             </div>
                         </a>
-                        <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" style="color: white; cursor: pointer; margin-left: 5vw;" onclick='Claim_cupon()'><img src="<?="../Master/Menu/Image/diskon.png"?>"\>Claim Sekarang</p> 
+                        <?php
+                        if($counter==0){
+                            echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw;' onclick='Claim_cupon(\"$idk\")'><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang</p> ";
+                        }else{
+                            echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw; background-color:grey' '><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang</p> ";
+                        }
+                        ?>
                     </div>
             <?php
-                }
+                // }
             }
             ?>
                 </div>
@@ -79,7 +99,7 @@
 include('Mcd/footer.php');
 ?>
 <script>
-    function Claim_cupon(){
+    function Claim_cupon(id_kupon){
         var login="<?=$_SESSION["login"]?>";
         if(login==""){
 			alert("Maaf, Anda harus Login!");
@@ -87,16 +107,16 @@ include('Mcd/footer.php');
 		}else{
             $('#box').fadeIn(1500);
             $('#box').fadeOut(1000);
-            // $.ajax({
-            //     method: "post",
-            //     url: "../Transaction/General/setSession_menu.php",
-            //     data:{
-            //         nama_menu:nama
-            //     },
-            //     success: function (response) {
-            //         //alert("berhasil");
-            //     }
-            // });
+            $.ajax({
+                method: "post",
+                url: "ajaxFile/setKupon.php",
+                data:{
+                    id_kupon:id_kupon
+                },
+                success: function (response) {
+                    alert(response);
+                }
+            });
         }
     }
         document.addEventListener("DOMContentLoaded", function (event) {
