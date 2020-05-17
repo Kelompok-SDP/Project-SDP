@@ -8,23 +8,32 @@ foreach ($list as $key => $value) {
     $pawal = $value["periode_awal_kupon"];
     $pakhir = $value["periode_akhir_kupon"];
     $stat = $value["status_kupon"];
-    if($datenow < $pawal){
-        $query5 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
-        $conn->query($query5);
-    }
-    else if ($pawal >= $datenow && $stat == 0){
-        $query6 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
-        $conn->query($query6);
-    }
-    else if($pawal >= $datenow){
-        $query2 = "UPDATE kupon SET STATUS_kupon = 1 WHERE id_kupon = '$idp'";
-        $conn->query($query2);
-    }
-    if($datenow > $pakhir){
-        $query3 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
-        $query4 = "delete  kupon_member WHERE id_kupon = '$idp'";
-        $conn->query($query3);
-        $conn->query($query4);
+    $stok = $value["sisa_kupon"];
+
+    if($stok <= 0){
+        $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+        $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+        $conn->query($query8);
+        $conn->query($query9);
+    }else{
+      if($datenow < $pawal){
+          $query5 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+          $conn->query($query5);
+      }
+      else if ($pawal >= $datenow && $stat == 0){
+          $query6 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+          $conn->query($query6);
+      }
+      else if($pawal >= $datenow){
+          $query2 = "UPDATE kupon SET STATUS_kupon = 1 WHERE id_kupon = '$idp'";
+          $conn->query($query2);
+      }
+      if($datenow > $pakhir){
+          $query3 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+          $query4 = "delete  kupon_member WHERE id_kupon = '$idp'";
+          $conn->query($query3);
+          $conn->query($query4);
+      }
     }
 }
 
