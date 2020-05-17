@@ -31,7 +31,7 @@ $hasil = mysqli_query($conn,$query);
             <td><?=$row["periode_awal_kupon"]?></td>
             <td><?=$row["periode_akhir_kupon"]?></td>
             <td>
-                <button onclick="edit('<?=$row['id_kupon']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                <button onclick="pulihkan('<?=$row['id_kupon']?>')" class="btn btn-primary">Pulihkan</button>
             </td>
         </tr>
     <?php } ?>

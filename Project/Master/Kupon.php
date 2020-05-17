@@ -1,22 +1,32 @@
 <?php 
 require_once("../config.php");
-  $datenow = date('Y-m-d');
-  $query = "SELECT * FROM KUPON";
-  $list = mysqli_query($conn, $query);
-  foreach ($list as $key => $value) {
-      $idp = $value["id_kupon"];
-      $pawal = $value["periode_awal_kupon"];
-      $pakhir = $value["periode_akhir_kupon"];
-
-      if($pawal >= $datenow){
-          $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";
-          $conn->query($query2);
-      }
-      if($datenow > $pakhir){
-          $query3 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-          $conn->query($query3);
-      }
-  }
+$datenow = date('Y-m-d');
+$query = "SELECT * FROM KUPON";
+$list = mysqli_query($conn, $query);
+foreach ($list as $key => $value) {
+    $idp = $value["id_kupon"];
+    $pawal = $value["periode_awal_kupon"];
+    $pakhir = $value["periode_akhir_kupon"];
+    $stat = $value["status_kupon"];
+    if($datenow < $pawal){
+        $query5 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+        $conn->query($query5);
+    }
+    else if ($pawal >= $datenow && $stat == 0){
+        $query6 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+        $conn->query($query6);
+    }
+    else if($pawal >= $datenow){
+        $query2 = "UPDATE kupon SET STATUS_kupon = 1 WHERE id_kupon = '$idp'";
+        $conn->query($query2);
+    }
+    if($datenow > $pakhir){
+        $query3 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
+        $query4 = "delete  kupon_member WHERE id_kupon = '$idp'";
+        $conn->query($query3);
+        $conn->query($query4);
+    }
+}
 
 ?>
 
@@ -25,7 +35,7 @@ require_once("../config.php");
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Promo</title>
+  <title>Kupon</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -130,7 +140,6 @@ require_once("../config.php");
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
 
                 <div class="card-tools">
                 
@@ -333,7 +342,7 @@ require_once("../config.php");
     }
     
     function edit(id){
-        var url  = "Edit_Promo.php?id="+id;
+        var url  = "Edit_Kupon.php?id="+id;
         document.location.href = url;
 
     }
