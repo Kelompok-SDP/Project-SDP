@@ -49,13 +49,13 @@
                 $angka = $row["harga_kupon"];
                 $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
             echo" <tr>
-                <td>".$row["nama_kupon"]"</td>
+                <td>".$row["nama_kupon"]."</td>
                 <td>".$hasil_rupiah."</td>
                 <td>".$row["sisa_kupon"]."</td>
-                <td>".$row["periode_awal"]."</td>
-                <td>".$row["periode_akhir"]."</td>
-                <td>"
-             echo "<button onclick='edit(\"$row[id_kupon]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+                <td>".$row["periode_awal_kupon"]."</td>
+                <td>".$row["periode_akhir_kupon"]."</td>
+                <td>";
+            echo "<button onclick='edit(\"$row[id_kupon]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
             echo " </td> ";
             echo " </tr> ";
         }
@@ -119,11 +119,11 @@
                 $angka = $row["harga_kupon"];
                 $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
             echo" <tr>
-                <td>".$row["nama_kupon"]"</td>
+                <td>".$row["nama_kupon"]."</td>
                 <td>".$hasil_rupiah."</td>
                 <td>".$row["sisa_kupon"]."</td>
-                <td>".$row["periode_awal"]."</td>
-                <td>".$row["periode_akhir"]."</td>
+                <td>".$row["periode_awal_kupon"]."</td>
+                <td>".$row["periode_akhir_kupon"]."</td>
                 <td>";
              echo "<button onclick='edit(\"$row[id_kupon]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
              echo " </td> "; 

@@ -320,7 +320,7 @@ require_once("../config.php");
           alert("Kosong");
         }
       }else{
-        let jenis = $("#filterjenis").val();
+        let jenis = $("#range_13").val();
         $.post("Kupon/controllerKupon.php",{
                 "action" : "showdata",
                 "source": jenis,
@@ -376,7 +376,7 @@ require_once("../config.php");
           alert("Kosong");
         }
       }else{
-        let jenis = $("#filterjenis2").val();
+        let jenis = $("#range_14").val();
         $.post("Kupon/controllerKupon.php",{
                 "action" : "showdata2",
                 "source": jenis,
