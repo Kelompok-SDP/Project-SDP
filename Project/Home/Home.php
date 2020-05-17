@@ -40,6 +40,10 @@
     
 <section class="py-main section-other-promo">
     <div class="container">
+            <a href="Homekupon.php" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag visible slideInRight full-visible" target="_blank">
+            <img src="../Master/Menu/Image/diskon.png" class="mcd-delivery-icon" alt="Yellow Element">
+            <span>Claim Kupon Sekarang</span>
+            </a>
         <div class="heading text-center">
             <h2 class="title animated fadeInUp delayp2">Promo Menarik Bulan Ini</h2>
         </div>
@@ -120,10 +124,7 @@
     <div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
 </section>
 
-<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
-    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
-    <span>Pesan Sekarang</span>
-</a>
+
 <?php 
     include('Mcd/footer.php');
     include('ChatTawkTo.php');
