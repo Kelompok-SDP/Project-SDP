@@ -32,6 +32,42 @@
             $conn->query($query4);
         }
     }
+
+    $query7 = "SELECT * FROM KUPON";
+    $list = mysqli_query($conn, $query7);
+    foreach ($list as $key => $value) {
+        $idp = $value["id_kupon"];
+        $pawal = $value["periode_awal_kupon"];
+        $pakhir = $value["periode_akhir_kupon"];
+        $stat = $value["status_kupon"];
+        $stok = $value["sisa_kupon"];
+
+        if($stok <= 0){
+            $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+            $conn->query($query8);
+            $conn->query($query9);
+        }else{
+            if($datenow < $pawal){
+                $query5 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $conn->query($query5);
+            }
+            else if ($pawal >= $datenow && $stat == 0){
+                $query6 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $conn->query($query6);
+            }
+            else if($pawal >= $datenow){
+                $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";
+                $conn->query($query2);
+            }
+            if($datenow > $pakhir){
+                $query3 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $query4 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+                $conn->query($query3);
+                $conn->query($query4);
+            }
+        }
+    }
 ?>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -40,6 +76,10 @@
     
 <section class="py-main section-other-promo">
     <div class="container">
+            <a href="Homekupon.php" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag visible slideInRight full-visible" target="_blank">
+            <img src="../Master/Menu/Image/diskon.png" class="mcd-delivery-icon" alt="Yellow Element">
+            <span>Claim Kupon Sekarang</span>
+            </a>
         <div class="heading text-center">
             <h2 class="title animated fadeInUp delayp2">Promo Menarik Bulan Ini</h2>
         </div>
@@ -120,10 +160,7 @@
     <div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
 </section>
 
-<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
-    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
-    <span>Pesan Sekarang</span>
-</a>
+
 <?php 
     include('Mcd/footer.php');
     include('ChatTawkTo.php');

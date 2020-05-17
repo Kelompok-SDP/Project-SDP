@@ -2,6 +2,7 @@
     require_once("../config.php");
     require_once("MCD/title.php");
     require_once("MCD/header.php");
+    
 ?>
 
 <!DOCTYPE html>
@@ -23,46 +24,8 @@
         
         <div class="container">
             <div class="card-general-list animated fadeInUp delayp2">
-                <div class="row row-0">
-        <?php
-            $query = "SELECT * FROM KUPON WHERE STATUS_KUPON = 1";
-            $list = mysqli_query($conn,$query);
-            foreach ($list as $key => $value) {
-                $idm = $value["id_menu"];
-                $harga = $value['harga_kupon'];
-                $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
-                $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$idm'";
-                $list2 = mysqli_query($conn,$query2);
-                foreach ($list2 as $key => $value2) {
-                    $nmenu = $value2["nama_menu"];
-                    $gbr = $value2["gambar"];
-        ?>
-                    <div class="col-2 col-lg-4 filter-element" data-filter="category-1">
-                        <a href="" data-id="134" class="card card-general">
-                            <div class="img-container">
-                                <img src="<?="../Master/Menu/".$gbr?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
-                            </div>
-                            <div class="card-body">
-                                <h5><?= $value["nama_kupon"] ?></h5>
-                                <p class="text-truncate-multiline">Potongan <?= $nmenu?> sebesar <?= $hasil_rupiah?></p>
-                                                                <p class="exp-date">
-                                    <img src="MCD/Promo _ McDonald&#39;s Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
-                                    hingga 
-                                    <?php
-                                        $tmp = $value["periode_akhir_kupon"];
-                                        $tanggal = date("d F Y", strtotime($tmp));
-                                        echo $tanggal;
-                                        ?>
-                                </p>
-                                <br>
-                            </div>
-                        </a>
-                        <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" style="color: white; cursor: pointer; margin-left: 5vw;" onclick='Claim_cupon()'><img src="<?="../Master/Menu/Image/diskon.png"?>"\>Claim Sekarang</p> 
-                    </div>
-            <?php
-                }
-            }
-            ?>
+                <div class="row row-0 tampilan_kupon">
+
                 </div>
             </div>
         </div>
@@ -79,25 +42,35 @@
 include('Mcd/footer.php');
 ?>
 <script>
-    function Claim_cupon(){
+    function Claim_cupon(id_kupon){
         var login="<?=$_SESSION["login"]?>";
         if(login==""){
 			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}else{
-            $('#box').fadeIn(1000);
+            $('#box').fadeIn(1500);
             $('#box').fadeOut(1000);
-            // $.ajax({
-            //     method: "post",
-            //     url: "../Transaction/General/setSession_menu.php",
-            //     data:{
-            //         nama_menu:nama
-            //     },
-            //     success: function (response) {
-            //         //alert("berhasil");
-            //     }
-            // });
+            $.ajax({
+                method: "post",
+                url: "ajaxFile/setKupon.php",
+                data:{
+                    id_kupon:id_kupon
+                },
+                success: function (response) {
+                    getKupon_tampilan();
+                }
+            });
         }
+    }
+    getKupon_tampilan();
+    function getKupon_tampilan(){
+        $.ajax({
+            type: "post",
+            url: "ajaxFile/getKupon_tampilan.php",
+            success: function (response) {
+                $(".tampilan_kupon").html(response);
+            }
+        });
     }
         document.addEventListener("DOMContentLoaded", function (event) {
             $(".loader").fadeOut('slow');
