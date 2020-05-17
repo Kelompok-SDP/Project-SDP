@@ -1,20 +1,29 @@
 <?php
     $isi = $_POST['sebelum'];
-    if($isi == "H"){
-        echo "<option value='H' selected>Promo Hemat</option>
-        <option value='HR'selected>Promo Hari Raya</option>
-        <option value='X'>Promo Buy 1 Get 1 Free</option>";
+    $id = $_POST['id'];
 
-    }else if($isi == "HR"){
-        echo "<option value='H'>Promo Hemat</option>
-        <option value='HR' selected>Promo Hari Raya</option>
-        <option value='X'>Promo Buy 1 Get 1 Free</option>";
-    }else{
-        echo "<option value='H'>Promo Hemat</option>
-        <option value='HR'>Promo Hari Raya</option>
-        <option value='X' selected>Promo Buy 1 Get 1 Free</option>";
+    require_once("../../config.php");
+    $query1 = "select * from kupon where id_kupon = '$id'";
+    $rsc = mysqli_query($conn,$query1);
+    $id_menu = "";
+    foreach($rsc as $key=>$data){
+        $id_menu = $data['id_menu'];
     }
 
+    $query1 = "select * from menu ";
+    $rsc = mysqli_query($conn,$query1);
+   
+    foreach($rsc as $key=>$data){
+        if($id_menu == $data['id_menu']){
+            echo "<option value='".$data['id_menu']."' selected>".$data["nama_menu"]."</option>";
+        }else{
+            echo "<option value='".$data['id_menu']."' >".$data["nama_menu"]."</option>";
+
+        }
+        
+        
+    }
+   
 
 
 

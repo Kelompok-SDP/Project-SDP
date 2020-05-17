@@ -1,11 +1,11 @@
 <?php
     require_once("../../config.php");
     $id = $_POST["id"];
-    $query3 = "UPDATE promo SET status_promo = 0 WHERE ID_promo = '$id'";
-    $query4 = "Update promo_paket set status = 0 where id_promo = '$id'";
+    $query3 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$id'";
+    $query4 = "delete kupon_member where id_kupon = '$id'";
     if($conn->query($query3) == true){
         mysqli_query($conn,$query4);
-        echo "Berhasil Menonaktifkan Data";
+        echo $query3;
     }else{
         echo "Tidak Berhasil Menonaktifkan Data";
     }

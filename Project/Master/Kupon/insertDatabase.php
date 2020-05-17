@@ -33,11 +33,15 @@
         $string = 'KUP'.$ctr2;
     }
 
-    $query3 = "SELECT * FROM KUPON";
+    $query3 = "SELECT * FROM KUPON where status_kupon = 1";
     $list = $conn->query($query3);
     foreach($list as $key=>$data){
         $tmpnama = $data['nama_kupon'];
         if($nkupon == $tmpnama){
+            $kembar = true;
+        }
+
+        if($kmenu == $data['id_menu']){
             $kembar = true;
         }
     }
@@ -48,7 +52,7 @@
         $tmp2 = strtoupper(substr($nkupon, 0, 2));
         $tmp3 = substr($string, 3, 3);
         $kode = $tmp1.$tmp2.$tmp3;
-        $query2 = "INSERT INTO KUPON VALUES('$string','$nkupon','$kode','$kmenu',$hkupon,'$nawal','$nakhir',$skupon,1)";
+        $query2 = "INSERT INTO KUPON VALUES('$string','$nkupon','$kmenu',$hkupon,'$nawal','$nakhir',$skupon,1)";
         if($conn->query($query2) == true){
             echo $string." -- Berhasil Menambahkan Data";
         }else{

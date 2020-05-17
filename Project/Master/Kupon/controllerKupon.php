@@ -125,7 +125,7 @@
                 <td>".$row["periode_awal_kupon"]."</td>
                 <td>".$row["periode_akhir_kupon"]."</td>
                 <td>";
-             echo "<button onclick='edit(\"$row[id_kupon]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+             echo "<button onclick='pulihkan(\"$row[id_kupon]\")' class='btn btn-primary'>Pulihkan </button>";
              echo " </td> "; 
              echo " </tr> ";
         }

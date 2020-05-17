@@ -137,7 +137,6 @@ require_once("../config.php");
             </div>
             <div class="card-body">
             <div class="card-header">
-            <label style="font-size:20pt; font:bold;">Filter Promo :</label>
 
                 <div class="card-tools">
                 
