@@ -8,6 +8,14 @@ foreach ($list as $key => $value) {
     $pawal = $value["periode_awal_kupon"];
     $pakhir = $value["periode_akhir_kupon"];
     $stat = $value["status_kupon"];
+    $stok = $value["sisa_kupon"];
+
+    if($stok == 0){
+        $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+        $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+        $conn->query($query8);
+        $conn->query($query9);
+    }
     if($datenow < $pawal){
         $query5 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
         $conn->query($query5);

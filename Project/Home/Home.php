@@ -32,6 +32,41 @@
             $conn->query($query4);
         }
     }
+
+    $query7 = "SELECT * FROM KUPON";
+    $list = mysqli_query($conn, $query7);
+    foreach ($list as $key => $value) {
+        $idp = $value["id_kupon"];
+        $pawal = $value["periode_awal_kupon"];
+        $pakhir = $value["periode_akhir_kupon"];
+        $stat = $value["status_kupon"];
+        $stok = $value["sisa_kupon"];
+
+        if($stok == 0){
+            $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+            $conn->query($query8);
+            $conn->query($query9);
+        }
+        if($datenow < $pawal){
+            $query5 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $conn->query($query5);
+        }
+        else if ($pawal >= $datenow && $stat == 0){
+            $query6 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $conn->query($query6);
+        }
+        else if($pawal >= $datenow){
+            $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";
+            $conn->query($query2);
+        }
+        if($datenow > $pakhir){
+            $query3 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $query4 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+            $conn->query($query3);
+            $conn->query($query4);
+        }
+    }
 ?>
 <body>
     <!-- Google Tag Manager (noscript) -->
