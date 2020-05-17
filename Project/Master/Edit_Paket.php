@@ -63,6 +63,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<?php include("../sidebar.php"); ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
  
@@ -97,10 +98,10 @@
               <!-- form start -->
               <!-- <form role="form" action = "" method ="post"> -->
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Paket</label>
-                    <input type="text" class="form-control" id="Npaket" placeholder="Masukan Nama Paket" name ="npaket" value=<?=$npaket?>>
-                  </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama Paket</label>
+                        <input type="text" class="form-control" id="Npaket" placeholder="Nama Paket" name ="npaket" value="<?=$npaket?>">
+                    </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Harga Paket</label>
                     <input type="number" class="form-control" id="Hpaket" placeholder="Masukan Harga Paket" name = "hpaket" value=<?=$hpaket?>>

@@ -1,168 +1,75 @@
-<!DOCTYPE html>
-
-<?php 
-    include("../config.php");
-    include('Mcd/title.php');
-    include('Mcd/header.php');
-    include('Mcd/corusel.php');
+<?php
+    require_once("../config.php");
+    require_once("MCD/title.php");
+    require_once("MCD/header.php");
 ?>
-<body>
 
-            <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NF7SB8" 
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-                  <div class="loader-wrapper loader-light">
-      <div class="loader" style="display: none;"></div>
-    </div> 
-    <div class="menu-slide light" id="menu-slide-1">
-    <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1"><i class="far fa-angle-left"></i>Menu</label>
-</div>
-    
-<div class="section-cover-promo animated fadeInUp">
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<div class="section-cover-menu cover cover-general bg-cream">
     <div class="container position-relative">
         <nav aria-label="breadcrumb" class="general-breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="https://mcdonalds.co.id/" class="text-white breadcrumb-content" style="opacity: 0.85;"><i class="far fa-arrow-left"></i> Home</a></li>
-            </ol>
+            
         </nav>
+        <div class="cover-content">
+        <h1 class="cover-title animated fadeInUp delayp1"><center>Dapatkan segera kupon-kupon menarik kami<br>Hanya di <br>"Uwenak Resto"</center></h1>
+        </div>
+        <!-- <img src="Menu%20%20%20McDonald's%20Indonesia_files/img-header-menu-2.png" class="cover-img-banner img-fluid animated fadeInRight delayp4"> -->
     </div>
 </div>
-
     <section class="py-main section-promo-list">
-        <div class="general-tab d-block d-md-none animated fadeInUp delayp2">
-            <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="select-value" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Semua Promo
-                </button>
-                <div class="dropdown-menu" aria-labelledby="select-value">
-                    <a class="dropdown-item selection-value active" data-filter="*" id="filter" href="https://mcdonalds.co.id/promo#">Semua Promo</a>
-                                        <a class="dropdown-item selection-value" data-filter="category-1" id="filter" href="https://mcdonalds.co.id/promo#">Promo Kegiatan</a>
-                                        <a class="dropdown-item selection-value" data-filter="category-2" id="filter" href="https://mcdonalds.co.id/promo#">Promo Menu</a>
-                                        <a class="dropdown-item selection-value" data-filter="category-3" id="filter" href="https://mcdonalds.co.id/promo#">Promo Cashless</a>
-                                    </div>
-            </div>
-        </div>
-        <div class="general-tab d-none d-md-block animated fadeInUp delayp2">
-            <ul>
-                <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default active" data-filter="*" id="filter">Semua Promo</a>
-                </li>
-                                <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-1" id="filter">Promo Hemat</a>
-                </li>
-                                <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-2" id="filter">Promo Hari Raya</a>
-                </li>
-                                <li>
-                    <a href="https://mcdonalds.co.id/promo#" class="btn btn-default" data-filter="category-3" id="filter">Promo Buy 1 Get 1 Free</a>
-                </li>
-                            </ul>
-        </div>
+        
         <div class="container">
             <div class="card-general-list animated fadeInUp delayp2">
                 <div class="row row-0">
         <?php
-            $query = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'H' AND STATUS_PROMO = 1";
+            $query = "SELECT * FROM KUPON WHERE STATUS_KUPON = 1";
             $list = mysqli_query($conn,$query);
             foreach ($list as $key => $value) {
-                $href = "detail_promo.php?id=".$value["id_promo"];
+                $idm = $value["id_menu"];
+                $harga = $value['harga_kupon'];
+                $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
+                $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$idm'";
+                $list2 = mysqli_query($conn,$query2);
+                foreach ($list2 as $key => $value2) {
+                    $nmenu = $value2["nama_menu"];
+                    $gbr = $value2["gambar"];
         ?>
                     <div class="col-2 col-lg-4 filter-element" data-filter="category-1">
-                        <a href="<?= $href ?>" data-id="134" data-name="Iced Toffee Coffee" data-slot="2" data-slug="iced-toffee-coffee" class="card card-general">
+                        <a href="" data-id="134" class="card card-general">
                             <div class="img-container">
-                            <?php
-                                $gambar = $value["gambar_promo"];
-                                ?>
-                                <img src="<?="../Master/promo/".$gambar?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
+                                <img src="<?="../Master/Menu/".$gbr?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
                             </div>
                             <div class="card-body">
-                                <h5><?= $value["nama_promo"] ?></h5>
-                                <p class="text-truncate-multiline"><?= $value["detail_promo"]?></p>
+                                <h5><?= $value["nama_kupon"] ?></h5>
+                                <p class="text-truncate-multiline">Potongan <?= $nmenu?> sebesar <?= $hasil_rupiah?></p>
                                                                 <p class="exp-date">
                                     <img src="MCD/Promo _ McDonald&#39;s Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
                                     hingga 
                                     <?php
-                                        $tmp = $value["periode_akhir"];
+                                        $tmp = $value["periode_akhir_kupon"];
                                         $tanggal = date("d F Y", strtotime($tmp));
                                         echo $tanggal;
                                         ?>
                                 </p>
+                                <br>
                             </div>
                         </a>
+                        <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow" style="color: white; cursor: pointer; margin-left: 5vw;" onclick='Claim_cupon()'><img src="<?="../Master/Menu/Image/diskon.png"?>"\>Claim Sekarang</p> 
                     </div>
-                <?php
+            <?php
                 }
-                ?>
-                <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'HR' AND STATUS_PROMO = 1";
-                $list2 = mysqli_query($conn,$query2);
-                foreach ($list2 as $key => $value) {
-                    $href = "detail_promo.php?id=".$value["id_promo"];
-                ?>
-                    <div class="col-2 col-lg-4 filter-element" data-filter="category-2">
-                        <a href="<?= $href ?>" data-id="134" data-name="Iced Toffee Coffee" data-slot="2" data-slug="iced-toffee-coffee" class="card card-general">
-                            <div class="img-container">
-                            <?php
-                                $gambar = $value["gambar_promo"];
-                            ?>
-                                <img src="<?="../Master/promo/".$gambar?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
-                            </div>
-                            <div class="card-body">
-                                <h5><?= $value["nama_promo"] ?></h5>
-                                <p class="text-truncate-multiline"><?= $value["detail_promo"]?></p>
-                                                                <p class="exp-date">
-                                    <img src="MCD/Promo _ McDonald&#39;s Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
-                                    hingga 
-                                    <?php
-                                        $tmp = $value["periode_akhir"];
-                                        $tanggal = date("d F Y", strtotime($tmp));
-                                        echo $tanggal;
-                                    ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                <?php
-                }
-                ?>
-                <?php
-                $query2 = "SELECT * FROM PROMO WHERE JENIS_PROMO LIKE 'X' AND STATUS_PROMO = 1";
-                $list2 = mysqli_query($conn,$query2);
-                foreach ($list2 as $key => $value) {
-                    $href = "detail_promo.php?id=".$value["id_promo"];
-                ?>
-                    <div class="col-2 col-lg-4 filter-element" data-filter="category-3">
-                        <a href="<?= $href ?>" data-id="134" data-name="Iced Toffee Coffee" data-slot="2" data-slug="iced-toffee-coffee" class="card card-general">
-                            <div class="img-container">
-                            <?php
-                                $gambar = $value["gambar_promo"];
-                            ?>
-                                <img src="<?="../Master/promo/".$gambar?>" class="img-fluid" style="background-size: cover;width:335px;height:180px">
-                            </div>
-                            <div class="card-body">
-                                <h5><?= $value["nama_promo"] ?></h5>
-                                <p class="text-truncate-multiline"><?= $value["detail_promo"]?></p>
-                                                                <p class="exp-date">
-                                    <img src="MCD/Promo _ McDonald&#39;s Indonesia_files/ic_calendar_red.svg" class="img-fluid"> Berlaku
-                                    hingga 
-                                    <?php
-                                        $tmp = $value["periode_akhir"];
-                                        $tanggal = date("d F Y", strtotime($tmp));
-                                        echo $tanggal;
-                                    ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                <?php
-                }
-                ?>
+            }
+            ?>
                 </div>
             </div>
         </div>
     </section>
-
+<div id="box" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 0;">
+    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Claim Successfull</p> 
+</div>
         <!-- <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/manifest.js.download"></script> -->
         <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/vendor.js.download"></script>
         <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/app.js.download"></script>
@@ -172,6 +79,26 @@
 include('Mcd/footer.php');
 ?>
 <script>
+    function Claim_cupon(){
+        var login="<?=$_SESSION["login"]?>";
+        if(login==""){
+			alert("Maaf, Anda harus Login!");
+			window.location.href="../login_register/login.php";
+		}else{
+            $('#box').fadeIn(1000);
+            $('#box').fadeOut(1000);
+            // $.ajax({
+            //     method: "post",
+            //     url: "../Transaction/General/setSession_menu.php",
+            //     data:{
+            //         nama_menu:nama
+            //     },
+            //     success: function (response) {
+            //         //alert("berhasil");
+            //     }
+            // });
+        }
+    }
         document.addEventListener("DOMContentLoaded", function (event) {
             $(".loader").fadeOut('slow');
             $(".loader-wrapper").fadeOut("slow");

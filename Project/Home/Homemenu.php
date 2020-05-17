@@ -14,7 +14,7 @@
             
         </nav>
         <div class="cover-content">
-        <h1 class="cover-title animated fadeInUp delayp1"><center>Nikmati menu-menu pilihan terbaik<br>Hanya di <br>"Uwenak Resto"</center></h1>
+        <h1 class="cover-title animated fadeInUp delayp1"><center>Nikmati menu-menu pilihan terbaik kami<br>Hanya di <br>"Uwenak Resto"</center></h1>
         </div>
         <!-- <img src="Menu%20%20%20McDonald's%20Indonesia_files/img-header-menu-2.png" class="cover-img-banner img-fluid animated fadeInRight delayp4"> -->
     </div>
