@@ -170,8 +170,9 @@ Body Section
 		);
 		document.getElementById("cool").style.height = "40px";
 		start();
+		
 	});
-	
+
 	function start(){
 		getDetailPesanan();
 		var login="<?=$_SESSION["login"]?>";

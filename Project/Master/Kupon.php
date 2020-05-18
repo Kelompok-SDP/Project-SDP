@@ -12,7 +12,7 @@ foreach ($list as $key => $value) {
 
     if($stok <= 0){
         $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-        $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+        $query9 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
         $conn->query($query8);
         $conn->query($query9);
     }else{
@@ -30,7 +30,7 @@ foreach ($list as $key => $value) {
       }
       if($datenow > $pakhir){
           $query3 = "UPDATE kupon SET status_kupon = 0 WHERE id_kupon = '$idp'";
-          $query4 = "delete  kupon_member WHERE id_kupon = '$idp'";
+          $query4 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
           $conn->query($query3);
           $conn->query($query4);
       }

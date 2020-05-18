@@ -6,6 +6,7 @@ include("../../config.php");
                 $idm = $value["id_menu"];
                 $idk = $value["id_kupon"];
                 $harga = $value['harga_kupon'];
+                $sisa = $value['sisa_kupon'];
                 $hasil_rupiah = "Rp " . number_format($harga,2,',','.');
                 $query2 = "SELECT * FROM MENU WHERE ID_MENU = '$idm'";
                 $list2 = mysqli_query($conn,$query2);
@@ -47,7 +48,7 @@ include("../../config.php");
                         </a>
                         <?php
                         if($counter==0){
-                            echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw;' onclick='Claim_cupon(\"$idk\")'><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang</p> ";
+                            echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw;' onclick='Claim_cupon(\"$idk\")'><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang <br> Tersedia: $sisa</p> ";
                         }else{
                             echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw; background-color:grey;border-color: grey'><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang</p> ";
                         }

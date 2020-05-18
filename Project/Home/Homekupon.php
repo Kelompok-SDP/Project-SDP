@@ -2,7 +2,45 @@
     require_once("../config.php");
     require_once("MCD/title.php");
     require_once("MCD/header.php");
-    
+    $total = 0;
+    $datenow = date('Y-m-d');
+    $query7 = "SELECT * FROM KUPON";
+    $list = mysqli_query($conn, $query7);
+    foreach ($list as $key => $value) {
+        $idp = $value["id_kupon"];
+        $pawal = $value["periode_awal_kupon"];
+        $pakhir = $value["periode_akhir_kupon"];
+        $stat = $value["status_kupon"];
+        $stok = $value["sisa_kupon"];
+        if($stat != 0){
+            $total = $total + 1;
+        }
+        if($stok <= 0){
+            $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+            $query9 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
+            $conn->query($query8);
+            $conn->query($query9);
+        }else{
+            if($datenow < $pawal){
+                $query5 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $conn->query($query5);
+            }
+            else if ($pawal >= $datenow && $stat == 0){
+                $query6 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $conn->query($query6);
+            }
+            else if($pawal >= $datenow){
+                $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";
+                $conn->query($query2);
+            }
+            if($datenow > $pakhir){
+                $query3 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
+                $query4 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
+                $conn->query($query3);
+                $conn->query($query4);
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +58,9 @@
         <!-- <img src="Menu%20%20%20McDonald's%20Indonesia_files/img-header-menu-2.png" class="cover-img-banner img-fluid animated fadeInRight delayp4"> -->
     </div>
 </div>
+    <?php
+        if($total > 0){
+    ?>
     <section class="py-main section-promo-list">
         
         <div class="container">
@@ -30,8 +71,20 @@
             </div>
         </div>
     </section>
-<div id="box" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 0;">
-    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Claim Successfull</p> 
+    <?php 
+        }else{
+    ?>
+    <section class="py-main section-menu-list" id="" style="width: 100vw;">
+        <div class="container">
+            <div class="heading text-center animated fadeInUp delayp2">
+                <h2 class="title">Maaf, tidak ada kupon yang tersedia</h2>
+            </div>        
+        </div>
+    </section>
+        <?php } ?>
+
+<div id="box2" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 40%;">
+    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Add to Cart</p> 
 </div>
         <!-- <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/manifest.js.download"></script> -->
         <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/vendor.js.download"></script>
@@ -48,8 +101,8 @@ include('Mcd/footer.php');
 			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}else{
-            $('#box').fadeIn(1500);
-            $('#box').fadeOut(1000);
+            $('#box2').fadeIn(1500);
+            $('#box2').fadeOut(1000);
             $.ajax({
                 method: "post",
                 url: "ajaxFile/setKupon.php",

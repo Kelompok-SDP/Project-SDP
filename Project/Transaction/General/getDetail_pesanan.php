@@ -177,7 +177,7 @@ if($nama!=""){
 ?>
             </div>
             <input type="hidden" name="" id="dd" value="<?= $dc?>">
-            <input type="hidden" name="" id="pp" value="<?= $promo?>">
+            <input type="hidden" name="" id="pp" value="<?= $potongan_kupon?>">
             <input type="hidden" name="" id="oo" value="<?= $ongkir?>">
             <div class="col-4 elevation-2" style="background-color: #E8ECEE">
             <div class="row" style="padding:15px;">
@@ -190,8 +190,8 @@ if($nama!=""){
                 <div class="col-4">
                     <p><?= $gtt ?></p>
                     <p id="d" style="color: black;"><?= $discounttampil?></p>
-                    <p id="d" style="color: black;"><?= $potongan_kupon_string?></p>
-                    <p ><?=$ongkirTampil ?></p>
+                    <p id="p" style="color: black;"><?= $potongan_kupon_string?></p>
+                    <p id="o" style="color: black;"><?=$ongkirTampil ?></p>
                 </div>
                 <div class="col-12">
                     <hr>
@@ -214,18 +214,18 @@ if($nama!=""){
         
     </div>
 <script>
-    $(document).ready(function () {
         var a = $("#dd").val();
         var b = $("#pp").val();
         var c = $("#oo").val();
-
         if(a != 0){
             $("#d").css("color","red");
         }
         if(b != 0){
             $("#p").css("color","red");
         }
-    });
+        if(c != 0){
+            $("#o").css("color","red");
+        }
 
 
 </script>

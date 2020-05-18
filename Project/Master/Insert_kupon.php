@@ -63,18 +63,21 @@
                         <input type="text" class="form-control" id="Nkupon" placeholder="Nama Menu" name ="nkupon">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Pilih Menu</label>
-                        <select class="form-control custom-select" id="Kmenu" name="kmenu">
+                        <label for="inputStatus">Pilih Kategori</label>
+                        <select class="form-control custom-select" id="kat" name="kat">
                         <option selected disabled>Pilih satu</option>
                         <?php  
-                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
+                            $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
                             $list3 = $conn->query($query3);
                             foreach ($list3 as $key => $value) {
-                                $kat = $value['nama_menu'];
+                                $nkat = $value['nama_kategori'];
                                 ?>        
-                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
+                            <option value="<?= $value['id_kategori']?>"><?= $value['nama_kategori']?></option>
                         <?php } ?> 
                         </select>
+                    </div>
+                    <div class="form-group" id="fmenu">
+                        
                     </div>
                     <div class="form-group">
                         <label for="inputSpentBudget">Harga Kupon</label>
@@ -175,6 +178,22 @@
         }else{
             alert("Terdapat isian yang kosong!");
         }
+    });
+
+    $('#kat').change(function () {
+      var tmp = $(this).val();
+      if(tmp != null){
+        $.ajax({
+            url: "filtermenu.php",
+            method: 'post',
+            data: {
+                tmp : tmp
+            },
+            success: function(result){   
+              $('#fmenu').html(result);
+            }
+        });
+      }
     });
 </script>
 </body>

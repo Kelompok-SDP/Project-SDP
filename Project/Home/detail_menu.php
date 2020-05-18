@@ -239,7 +239,7 @@ if(strpos($ids, "MEN") !== false){
         </div>
     </div>
 </section>
-<div id="box" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 0;">
+<div id="box" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 40%;">
     <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Add to Cart</p> 
 </div>
 <?php include('Mcd/footer.php'); ?>
