@@ -145,7 +145,8 @@ if($nama!=""){
     if($id_kupon!=""){
         $query="SELECT * from kupon where id_kupon='$id_kupon'";
         $value_kupon=mysqli_fetch_assoc(mysqli_query($conn,$query));
-        $potongan_kupon=$value_kupon["harga_kupon"];
+        $jumlah=$_SESSION["pilih_menu"][$value_kupon["id_menu"]];
+        $potongan_kupon=$value_kupon["harga_kupon"]*$jumlah;
     }else{
         $potongan_kupon=0;
     }
