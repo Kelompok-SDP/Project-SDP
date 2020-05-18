@@ -10,6 +10,7 @@
         $_SESSION["login"]="";
         $_SESSION["ongkir"]=0;
         $_SESSION["jenis"]="kosong";
+        $_SESSION["kupon"]="";
     }
     // session_destroy();
     $nama = "Login";

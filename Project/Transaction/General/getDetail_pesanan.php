@@ -45,6 +45,7 @@ if($nama!=""){
                         $tmpharga = $value["harga_promo_paket"];
                         $hargapromo = $harga - $tmpharga;
                         $discount = $discount + $hargapromo;
+                        $discount=$discount*$jumlah;
                         $hargp = $hargp.$tmpharga.",";
                         $ipromo = $ipromo.$id.",";
                     }
@@ -68,6 +69,7 @@ if($nama!=""){
                         $discount = $discount + $hargapromo;
                         $hargp = $hargp.$tmpharga.",";
                         $ipromo = $ipromo.$id.",";
+                        
                     }
                 }
             }
@@ -81,9 +83,8 @@ if($nama!=""){
             $grandtotal="Rp " . number_format($harga*$jumlah,2,',','.');
             $discounts="Rp " . number_format($discount*$jumlah,2,',','.');
             $gt+=$harga*$jumlah;    
-            $dc = $discount*$jumlah;  
+            $dc = $discount;  
 
-           
 ?>
            
             <div class="info-box elevation-2">

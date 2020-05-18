@@ -13,9 +13,7 @@
     }
     if($ctr==1){
         $_SESSION["kupon"]=$id;
-        echo "berhasil tambah";
     }else{
         $_SESSION["kupon"]="";
-        echo "makanan tidak ada dalam cart";
     }
 ?>

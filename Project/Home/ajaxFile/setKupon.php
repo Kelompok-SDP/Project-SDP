@@ -5,7 +5,6 @@
     $query="SELECT * from kupon where id_kupon='$id_kupon'";
     $value=mysqli_fetch_assoc(mysqli_query($conn,$query));
     $sisa_kupon=$value["sisa_kupon"]-1;
-    echo $sisa_kupon;
     $query="INSERT INTO kupon_member values('$id_kupon','$id_member',1)";
     mysqli_query($conn,$query);
 

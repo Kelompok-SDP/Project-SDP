@@ -605,7 +605,6 @@ Body Section
 				id : id
 			},
 			success : function(response){
-				alert(response);
 				getDetailPesanan();
 			}
 		});
