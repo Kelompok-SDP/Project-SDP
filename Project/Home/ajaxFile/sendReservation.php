@@ -28,9 +28,9 @@
 		$keterangan=explode("||",$keterangan);
 		$hari=explode(":",$keterangan[2]);
 		$jam=explode(":",$keterangan[1]);
-		$detail_meja=explode(":",$keterangan[4]);
+		$jumlah_orang=explode(":",$keterangan[12]);
 
-		$keterangan="Hari : ".$hari[1]."<br>"."Jam : ".$jam[1].":".$jam[2]."<br>"."Meja : ".$detail_meja[1];
+		$keterangan="Hari : ".$hari[1]."<br>"."Jam : ".$jam[1].":".$jam[2]."<br>"."Jumlah Orang : ".$jumlah_orang[1];
 
 		$mail             = new PHPMailer();
 		$address 		  = $email;					

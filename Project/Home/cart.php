@@ -57,11 +57,17 @@ Body Section
 	<div id="tempat_reservasiKode">
 
 	</div>
+	<?php
+	
+	if($_SESSION["login"]=="pelanggan"){
+		?>
 	<div class="col-12 elevation-2" style="padding: 10px;">
 	
 		<label style="min-width:159px"> Kupon: </label>
 
 		<?php
+
+		
 			$id_member=$_SESSION["pelanggan"];
 
 
@@ -88,10 +94,45 @@ Body Section
 				echo"<option value='$values[id_kupon]'>$values[nama_kupon]</option>";
 			}
 			echo"</select>";
+		
 		?>
 		<button type="button" class="btn bg-gradient-primary btn-sm" id="subvcode" onclick="check_kupon()" style="margin-top: -5px;">ADD</button><br>
 		
 	</div>
+	<?php
+	}
+	?>
+<?php
+	
+	if($_SESSION["login"]=="pegawai"){
+		?>
+	<div class="col-12 elevation-2" style="padding: 10px;">
+	
+		<label style="min-width:159px"> Check Struk : </label>
+		<?php
+			$query="SELECT hj.id_hjual,hj.jenis_pemesanan,m.fullname from hjual hj join member m on hj.id_member=m.id_member where hj.tanggal_transaksi=CURDATE() order by 1 desc";
+			$query=mysqli_query($conn,$query);
+			echo "<select id='id_struk'>";
+			foreach ($query as $key => $value) {
+				echo"<option value='$value[id_hjual]'>$value[jenis_pemesanan] - $value[fullname]</option>";
+			}
+			echo"</select>";
+		?>
+		<br>
+		<button type="button" class="btn bg-gradient-primary btn-sm" onclick="gotoStruk()" style="margin-top: -5px;">Check Struk</button><br>
+		<div id="keterangan_member"></div>
+	</div>
+	<div class="col-12 elevation-2" style="padding: 10px;">
+	
+		<label style="min-width:159px"> Email Member : </label>
+		<input type="text" id="member_pilihan">
+		<button type="button" class="btn bg-gradient-primary btn-sm" onclick="set_pegawai_member()" style="margin-top: -5px;">Pilih Member</button><br>
+		<div id="keterangan_member"></div>
+	</div>
+	<?php
+	}
+	?>
+
 	<br>
 	<div class="col-12 elevation-2" style="padding: 10px;">
 		<div class='icheck-primary d-inline'>
@@ -258,7 +299,6 @@ Body Section
 					$("#header").html("Reservasi");
 					$("#footer").html("Reservasi");
 					$("#tempat").html(response);
-					getDetail_kursi();
 					getDateNow();
 					getTimeNow();
 					getDetailPesanan();
@@ -346,6 +386,23 @@ Body Section
 			}
 		});
 	}
+	function gotoStruk(){
+		var id_hjual=$("#id_struk").val();
+		window.location.href("struk.php?htrans="+id_hjual+"");
+		
+	}
+	function set_pegawai_member(){
+		$.ajax({
+			type: "post",
+			url: "ajaxFile/set_pegawai_member.php",
+			data:{
+				email:$("#member_pilihan").val()
+			},
+			success: function (response) {
+				$("#keterangan_member").html(response);
+			}
+		});
+	}
 	function NumberOnly(evt){
         var input= String.fromCharCode(evt.which);
         if(!(/[0-9]/.test(input))){
@@ -357,7 +414,6 @@ Body Section
 			type: "post",
 			url: "../Transaction/General/getQty.php",
 			success: function (response) {
-				$("#displayQTY").html(response);
 			}
 		});
 	}
@@ -412,14 +468,15 @@ Body Section
 									},
 									success: function (response) {
 										if(response=="berhasil" ){
-											if(jumlah_meja>0){
+										var banyak_orang=$("#banyak_orang").val();
+											if(banyak_orang>0){
 												bayar();
 												kirimemail();
 												if(jenis_pembayaran=="cash"){
 													document.location.href="window_perantara.php";
 												}
 											}else{
-												alert("Pilih Kursi");
+												alert("Jumlah Orang Harus Lebih Dari 0");
 											}
 										}else{
 											alert(response);
@@ -495,27 +552,29 @@ Body Section
 			var keterangan_meja="ada";
 			var date=$("#date_res").val();
 			var member="";
+			var banyak_orang=$("#banyak_orang").val();
 		}else if(document.getElementById("radioPrimary2").checked ){
 			var alamat="";
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
 			var member="";
+			var banyak_orang="";
 		}else if(document.getElementById("radioPrimary3").checked ){
 			var alamat=$("#alamat").val();
 			var time=$("#time_res").val();
 			var keterangan_meja="";
 			var date="";
 			var member="";
+			var banyak_orang="";
 		}else if(document.getElementById("radioPrimary4").checked ){
 			var alamat="";
 			var time="";
 			var keterangan_meja="ada";
 			var date="";
 			var member=$("#kodemem").val();;
+			var banyak_orang="";
 		}
-		// alert(alamat+ " "+ time+" "+keterangan_meja+" "+date);
-		alert(jenis_pembayaran);
 		$.ajax({
 			type: "post",
 			url: "ajaxFile/transaksi.php",
@@ -525,10 +584,11 @@ Body Section
 				keterangan_meja:keterangan_meja,
 				date:date,
 				method:jenis_pembayaran,
-				member_id:member
+				member_id:member,
+				banyak_orang:banyak_orang
 			},
 			success: function (response) {
-				alert(response);
+
 			}
 		});
 	}
@@ -582,18 +642,23 @@ Body Section
 		});
 	}
 	function kirimemail(){
-		var id =$("#custid").val();
-		$.ajax({
-			async :false,
-			type: "post",
-			url : "ajaxFile/sendReservation.php",
-			data:{
-				id : id
-			},
-			success : function(response){
-				alert(response);
-			}
-		});
+		var isPelanggan="<?=$_SESSION["pelanggan"]?>";
+		if(isPelanggan!=""){
+			var id =isPelanggan;
+			$.ajax({
+				async :false,
+				type: "post",
+				url : "ajaxFile/sendReservation.php",
+				data:{
+					id : id
+				},
+				success : function(response){
+					alert(response);
+				}
+			});
+		}else{
+			alert("Harus ada Member");
+		}
 	}
 	function check_kupon(){
 		var id =$("#id_kupon").val();
