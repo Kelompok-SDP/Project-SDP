@@ -146,11 +146,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Homekupon.php">
-                        Kupon
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="<?php echo $hr; ?>" id="tagnamaatas">
                         <?php echo $nama; ?>
                     </a>
