@@ -26,6 +26,7 @@
     $ketkupon = explode(":",$keterangan[10]);
     
     $hargakupon = $keterangan[11];
+    $banyak_orang = explode(":",$keterangan[12]);
     
     //$idkupon = explode(",",$ketkupon[1]);
     $idmenupromo =  explode(",",$idmenuarr);
@@ -54,10 +55,11 @@
     echo"No Transaksi: $id_htrans<br>";
     echo"Tanggal Pembelian : $tanggal<br>";
     echo $namakupon;
-    if($keterangan_meja=="ada"){
+   // echo $keterangan_meja;
+    if($keterangan_meja[1]=="ada"){
         // echo"Jumlah Meja : $jumlah_meja<br>";
         // $kursi=substr($_SESSION["isi_kursi"],0,strlen($_SESSION["isi_kursi"])-2);
-        echo "Meja : ".$detail_meja[1]."<br>";
+        echo "Banyak Orang : ".$banyak_orang."<br>";
     }
     echo "<hr style='border-top: 1px dashed black;margin-top:20px; margin-bottom:20px;'>";
 
@@ -95,9 +97,11 @@
                     }
 
                 }
-
+               // echo $hargapromo[$tmtampung];
+                if($hargapromo[$tmtampung] != ''){
                 $hargabarupromo = "Rp " . number_format($hargapromo[$tmtampung],2,',','.');
                         $hagrapromoint = $hargapromo[$tmtampung];
+                }
             }
 
         } else{
@@ -114,8 +118,10 @@
                     }
                 }
 
-                $hargabarupromo = "Rp " . number_format($hargapromo[$tmtampung],2,',','.');
-                        $hagrapromoint = $hargapromo[$tmtampung];
+                if($hargapromo[$tmtampung] != ''){
+                    $hargabarupromo = "Rp " . number_format($hargapromo[$tmtampung],2,',','.');
+                            $hagrapromoint = $hargapromo[$tmtampung];
+                    }
             }
            
         }

@@ -44,7 +44,7 @@
 
         if($stok <= 0){
             $query8 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-            $query9 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+            $query9 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
             $conn->query($query8);
             $conn->query($query9);
         }else{
@@ -62,7 +62,7 @@
             }
             if($datenow > $pakhir){
                 $query3 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-                $query4 = "DELETE KUPON_MEMBER WHERE ID_KUPON = '$idp'";
+                $query4 = "UPDATE KUPON_MEMBER SET STATUS = 0 WHERE ID_KUPON = '$idp'";
                 $conn->query($query3);
                 $conn->query($query4);
             }
@@ -76,9 +76,9 @@
     
 <section class="py-main section-other-promo">
     <div class="container">
-            <a href="Homekupon.php" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag visible slideInRight full-visible" target="_blank">
+            <a href="Homekupon.php" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag visible slideInRight full-visible">
             <img src="../Master/Menu/Image/diskon.png" class="mcd-delivery-icon" alt="Yellow Element">
-            <span>Claim Kupon Sekarang</span>
+            <span>Klaim Kuponmu Sekarang</span>
             </a>
         <div class="heading text-center">
             <h2 class="title animated fadeInUp delayp2">Promo Menarik Bulan Ini</h2>

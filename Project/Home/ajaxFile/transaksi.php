@@ -17,10 +17,10 @@
     $idpromodisc = $_SESSION["ipromomenu"];
     if($jenis=="Dine-in"){
         $pegawai=$_SESSION["pegawai"];
-        if($_SESSION["status_member_code"]=="true"){
-            $member=$_POST["member_id"];
-        }else{
+        if($_SESSION["pelanggan"]==""){
             $member="default";
+        }else{
+            $member=$_SESSION["pelanggan"];
         }
     }else{
         $pegawai="";
@@ -32,6 +32,7 @@
     $date=$_POST["date"];
     $ket_meja=$_POST["keterangan_meja"];
     $type=$_POST["method"];
+    $banyak_orang=$_POST["banyak_orang"];
     $ctr=0;
     $Detail_meja="";
     if($ket_meja=="ada"){
@@ -47,7 +48,7 @@
 
     $query="UPDATE kupon_member set status = 0 where id_kupon='$id_kupon' and id_member='$member'";
     mysqli_query($conn,$query);
-    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc||Keterangan Kupon:$id_kupon||$harga_kupon";
+    $keterangan="Alamat:$alamat||Waktu:$time||Hari:$date||Keterangan Meja:$ket_meja||detail_meja:$Detail_meja||total discount:$disc||jenis:$type||kode_res:$koderev||Keterangan Promo:$hargadiscpake||$idpromodisc||Keterangan Kupon:$id_kupon||$harga_kupon||banyak_orang:$banyak_orang";
 
     if($type=="poin"){
         $query="SELECT point from member where id_member='$member'";
@@ -74,8 +75,17 @@
     }
 
     if($ctr==0){
-        
-        $query="INSERT into hjual values('$id_htrans','$today','$total','$jenis','$pegawai','$member','$keterangan')";
+        if($_SESSION["pelanggan"]!=""){
+            $dapat_poin=$total/100;
+            $query="SELECT point from member where id_member='$member'";
+            $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
+            $point= $query["point"];
+
+            $query="UPDATE member set point=$point+$dapat_poin where id_member='$member'";
+            mysqli_query($conn,$query);
+            
+        }
+        $query="INSERT into hjual values('$id_htrans','$today','$total','$jenis','$pegawai','$member','$keterangan',0)";
         echo $query."<br>";
         mysqli_query($conn,$query);
         $semua_menu=$_SESSION["nama_menu"];
