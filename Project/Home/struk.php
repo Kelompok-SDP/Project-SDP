@@ -210,8 +210,7 @@
             ";
 
 
-            echo"   <div style='width:100%; margin-top:30px;'> <div style='float:left;width:70%;;font-weight:bold'>Ongkir Menu</div>";
-            echo"    <div style='float:left;width:5%;text-align:right;'>- </div>";
+            echo"   <div style='width:100%; margin-top:30px;'> <div style='float:left;width:75%;;font-weight:bold'>Ongkir Menu</div>";
 
             echo"    <div style='float:left;width:5%'>Rp </div>";
             echo"    <div style='float:left;width:20%'>  $ongkir_string </div></div>
