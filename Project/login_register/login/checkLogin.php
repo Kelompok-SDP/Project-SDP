@@ -1,6 +1,5 @@
 <?php
     require_once("../../config.php");
-    //session_start();
     $tipe = $_GET["tipe"];
     $user=$_POST["user"];
     $password=$_POST["password"];
