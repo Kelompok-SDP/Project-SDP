@@ -83,35 +83,39 @@ require_once("../config.php");
                       <?php } ?> 
                       </select>
                   </div>
-                  <div id="Menupaket">
                   <div class="form-group">
-                    <label for="inputStatus">Menu 1</label><br>
-                        <select class="form-control custom-select" id="Mpaket" name="mpaket">
-                        <option selected disabled>Pilih satu</option>
-                        <?php  
-                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
-                            $list3 = $conn->query($query3);
-                            foreach ($list3 as $key => $value) {
-                                $kat = $value['nama_menu'];
-                                ?>        
-                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
-                        <?php } ?> 
-                        </select>
-                    </div>
-                    <div class="form-group">
-                    <label for="inputStatus">Menu 2</label><br>
-                        <select class="form-control custom-select" id="Mpaket2" name="mpaket2">
-                        <option selected disabled>Pilih satu</option>
-                        <?php  
-                            $query3 = "SELECT * FROM MENU WHERE STATUS = 1";
-                            $list3 = $conn->query($query3);
-                            foreach ($list3 as $key => $value) {
-                                $kat = $value['nama_menu'];
-                                ?>        
-                            <option value="<?= $value['id_menu']?>"><?= $value['nama_menu']?></option>
-                        <?php } ?> 
-                        </select>
-                    </div>
+                      <label for="inputStatus">Filter Kategori</label>
+                      <select class="form-control custom-select" id="kat" name="kat">
+                      <option selected disabled>Pilih satu</option>
+                      <?php  
+                          $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
+                          $list3 = $conn->query($query3);
+                          foreach ($list3 as $key => $value) {
+                              $nkat = $value['nama_kategori'];
+                              ?>        
+                          <option value="<?= $value['id_kategori']?>"><?= $value['nama_kategori']?></option>
+                      <?php } ?> 
+                      </select>
+                  </div>
+                  <div id="fmenu">
+                    
+                  </div>
+                  <div class="form-group">
+                      <label for="inputStatus">Filter Kategori 2</label>
+                      <select class="form-control custom-select" id="kat2" name="kat2">
+                      <option selected disabled>Pilih satu</option>
+                      <?php  
+                          $query3 = "SELECT * FROM KATEGORI WHERE STATUS_KATEGORI = 1";
+                          $list3 = $conn->query($query3);
+                          foreach ($list3 as $key => $value) {
+                              $nkat = $value['nama_kategori'];
+                              ?>        
+                          <option value="<?= $value['id_kategori']?>"><?= $value['nama_kategori']?></option>
+                      <?php } ?> 
+                      </select>
+                  </div>
+                  <div id="fmenu2">
+                    
                   </div>
                   <div class="form-group">
                       <label for="inputStatus">Promo Paket</label>
@@ -208,19 +212,41 @@ require_once("../config.php");
         }
     });
 
-    // // $("#Kpaket").change(function () {
-    // //   let a = $('#Kpaket').val();
-    // //   $.ajax({
-    // //       url: "Paket/Load_menu.php",
-    // //       method: 'post',
-    // //       data: {
-    // //           a : a
-    // //       },
-    // //       success: function(result){   
-    // //         $("#Menupaket").html(result);
-    // //       }
-    // //   });
-    // });
+    $('#kat').change(function () {
+      var tmp = $(this).val();
+      var pt = 2;
+      if(tmp != null){
+        $.ajax({
+            url: "filtermenu.php",
+            method: 'post',
+            data: {
+                tmp : tmp,
+                pt : pt
+            },
+            success: function(result){   
+              $('#fmenu').html(result);
+            }
+        });
+      }
+    });
+
+    $('#kat2').change(function () {
+      var tmp = $(this).val();
+      var pt = 3;
+      if(tmp != null){
+        $.ajax({
+            url: "filtermenu.php",
+            method: 'post',
+            data: {
+                tmp : tmp,
+                pt : pt
+            },
+            success: function(result){   
+              $('#fmenu2').html(result);
+            }
+        });
+      }
+    });
 </script>
 </body>
 </html>

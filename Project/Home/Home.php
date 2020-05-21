@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Home | Uwenak Restoran</title>
 <?php 
     include('Mcd/title.php');
     include("../config.php");
@@ -51,10 +52,6 @@
             if($datenow < $pawal){
                 $query5 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
                 $conn->query($query5);
-            }
-            else if ($pawal >= $datenow && $stat == 0){
-                $query6 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-                $conn->query($query6);
             }
             else if($pawal >= $datenow){
                 $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";

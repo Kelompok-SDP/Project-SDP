@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Promo | Uwenak Restoran</title>
 
 <?php 
     include("../config.php");

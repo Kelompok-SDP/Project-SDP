@@ -63,7 +63,7 @@
                         <input type="text" class="form-control" id="Nkupon" placeholder="Nama Menu" name ="nkupon">
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Pilih Kategori</label>
+                        <label for="inputStatus">Filter Kategori</label>
                         <select class="form-control custom-select" id="kat" name="kat">
                         <option selected disabled>Pilih satu</option>
                         <?php  
@@ -182,12 +182,14 @@
 
     $('#kat').change(function () {
       var tmp = $(this).val();
+      var pt = 1
       if(tmp != null){
         $.ajax({
             url: "filtermenu.php",
             method: 'post',
             data: {
-                tmp : tmp
+                tmp : tmp,
+                pt : pt
             },
             success: function(result){   
               $('#fmenu').html(result);

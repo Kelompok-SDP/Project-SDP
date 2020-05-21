@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Detail Menu | Uwenak Restoran</title>
 <?php 
 include("../config.php");
 include('Mcd/title.php');
@@ -93,27 +94,9 @@ if(strpos($ids, "MEN") !== false){
         <!-- End Google Tag Manager -->
     <link rel="stylesheet" type="text/css" href="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/mapbox.css"><style type="text/css">.fancybox-margin{margin-right:17px;}</style><script src="Menu/Detail_Menu/Big%20Mac%20%20%20McDonald's%20Indonesia_files/a"></script></head>
 
-<body style='margin-top:5.5%'>
-<a href="https://www.mcdelivery.co.id/" class="btn btn-yellow btn-floating animated vp-slideinright delayp10 pesan-tag" target="_blank" style="">
-    <img src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.png" class="mcd-delivery-icon" alt="Yellow Element">
-    <span >Pesan Sekarang</span>
-</a>
-    
-        <!-- Google Tag Manager (noscript) -->
-    <!-- End Google Tag Manager (noscript) -->
-    <div class="loader-wrapper loader-light">
-        <div class="loader" style="display: none;"></div>
-    </div> 
-    
+<body>
     <section class="section-menu-detail-cover bg-cream">
     <div class="container position-relative py-main">
-
-    <nav aria-label="breadcrumb" class="general-breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Homemenu.php"><i class="fa fa-arrow-left"></i> Menu</a></li>
-            <!-- <li class="breadcrumb-item"><a href="/">Menu</a></li> -->
-        </ol>
-    </nav>
     <div class="row">
         <div class="col-md-5">
             <img src="<?=$gambar?>" style="background-size: cover;width:445px;height:339px" class="img-fluid animated vp-slideinleft delayp3 visible slideInLeft full-visible">

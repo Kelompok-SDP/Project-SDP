@@ -7,7 +7,7 @@
     $gt=0;
     $dc=0;
     $ipromo = "";
-     $hargp = "";
+    $hargp = "";
     $hargapromo = 0;
     $discount = 0;
     $discounts = 0;

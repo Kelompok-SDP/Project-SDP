@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Cart | Uwenak Restoran</title>
 <?php
     include("../config.php");
 	include("Mcd/title.php");

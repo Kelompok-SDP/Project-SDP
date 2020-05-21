@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<title>Kupon | Uwenak Restoran</title>
 <?php
     require_once("../config.php");
     require_once("MCD/title.php");
@@ -25,10 +27,6 @@
                 $query5 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
                 $conn->query($query5);
             }
-            else if ($pawal >= $datenow && $stat == 0){
-                $query6 = "UPDATE KUPON SET STATUS_KUPON = 0 WHERE ID_KUPON = '$idp'";
-                $conn->query($query6);
-            }
             else if($pawal >= $datenow){
                 $query2 = "UPDATE KUPON SET STATUS_KUPON = 1 WHERE ID_KUPON = '$idp'";
                 $conn->query($query2);
@@ -42,8 +40,6 @@
         }
     }
 ?>
-
-<!DOCTYPE html>
 <head>
 </head>
 <body>

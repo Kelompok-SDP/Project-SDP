@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<title>Detail Promo | Uwenak Restoran</title>
 <?php 
     include("../config.php");
     include('Mcd/title.php');
@@ -84,12 +86,6 @@
 
 <section class="section-promo-detail">
     <div class="container position-relative py-main pb-0">
-        
-        <nav aria-label="breadcrumb" class="general-breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="Homepromo.php"><i class="far fa-arrow-left"></i> Promo</a></li>
-            </ol>
-        </nav>
         <div class="row row-3">
             <div class="col-md-5 animated fadeInUp">
                 <div class="img-container">

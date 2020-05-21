@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<title>Ubah Info | Uwenak Restoran</title>
 <style>
     .bx:hover{
         background-color:#BEBEBE;
@@ -100,6 +102,7 @@
     }
 
 ?>
+
 <html class="no-js" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="page" content="index" initial="index">
 <meta name="csrf-token" content="Yfr9jwojX1hAPHrutx39SIDiLKvM3KRrp9aYkA1i">

@@ -3,6 +3,8 @@
     $id = $_GET["id"];
     $aa = "";
     $dmenu = "";
+    $nmenu = "";
+    $hmenu = "";
 ?>
 <!DOCTYPE html>
 <html>
