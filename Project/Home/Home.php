@@ -147,7 +147,7 @@
                             Pesan Antar Saja Tinggal Klik Klik Bayar pesanan akan di antar
                         </p>
                         <div class="btn-placeholder mt-4 animated vp-fadeinup delayp3 visible fadeInUp full-visible">
-                            <a href="#" class="btn btn-primary">Pelajari Selengkapnya</a>
+                            <a href="AboutUs.php" class="btn btn-primary">Pelajari Selengkapnya</a>
                         </div>
                     </div>
                 </div>
