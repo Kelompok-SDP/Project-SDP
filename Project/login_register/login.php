@@ -50,16 +50,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
           <!-- /.col -->
-          <div class="col-4">
+          <div class="col-12">
             <button onclick="checkLogin()" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
@@ -98,12 +90,12 @@
         password:password
       },
       success: function (response) {
-        if(response == "berhasil login"){
+        if(response == "Berhasil login"){
           alert(response);
           setTimeout(
               window.location.href = "../Home/Home.php"
              , 5000);
-        }else if(response == "berhasil login v2"){
+        }else if(response == "Berhasil login v2"){
           alert("Berhasil Login Silahkan konfirmasi email terlebih dahulu");
           setTimeout(
               window.location.href = "confirm-passw2.php"

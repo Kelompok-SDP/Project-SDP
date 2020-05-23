@@ -74,7 +74,7 @@
           //alert(response);
           if(response=='Email Anda Tidak Di Temukan'){
             alert(response);
-          }else if (response=='Password Anda Sudah Kamu Ubah Tolong Check Email Anda'){
+          }else if (response=='Tolong Check Email Anda'){
             alert(response);
             kirim();
             setTimeout(
@@ -89,6 +89,7 @@
         var kepada=$("#email").val();
         
         $.ajax({
+        async: false,
         method: "post",
         url: "forget/EmailForgetPassword.php",
         data:{

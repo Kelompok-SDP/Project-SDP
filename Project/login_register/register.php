@@ -251,14 +251,12 @@ var balik=-1;
                                         window.location.href = "confirmation.php?test=1"
                                         , 5000);
                                       }else{
-                                        
                                         alert(data);
                                       }
                                     }
                                 });
                               }else{
-                                
-                        alert(data);
+                                alert(data);
                               }
                             }
                         });

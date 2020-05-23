@@ -45,7 +45,7 @@
           <img src="../Master/Menu/Image/logo2.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Uwenak Restoran</a>
+          <a href="../Master/Menu.php" class="d-block">Uwenak Restoran</a>
         </div>
       </div>
 

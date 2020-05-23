@@ -8,7 +8,7 @@
     if($row_cnt>0){
         //mysqli_query($conn,"UPDATE member set password='$captcha_num' where email='$email'");
        
-        echo "Password Anda Sudah Kamu Ubah Tolong Check Email Anda";
+        echo "Tolong Check Email Anda";
     }else{
         echo "Email Anda Tidak Di Temukan";
     }

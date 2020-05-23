@@ -87,7 +87,7 @@ Body Section
 			$query="SELECT * from kupon_member where id_member='$id_member' and status=1";
 
 			echo "<select name='' id='id_kupon'>";
-			echo"<option value='kosong'>tidak pakai</option>";
+			echo"<option value='kosong'>Tidak pakai</option>";
 			$query=mysqli_query($conn,$query);
 			foreach ($query as $key => $value) {
 				$query_kupon="SELECT * from kupon where id_kupon='$value[id_kupon]'";
@@ -207,6 +207,7 @@ Body Section
 </html>
 <script>
 	$(document).ready(function () {
+		alert();
 		$("#dropmenu").html(
 			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>"
 		);

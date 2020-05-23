@@ -14,22 +14,22 @@
                 if($query["password"]==$password){
                     $_SESSION['pelanggan'] = $query['id_member'];
                     $_SESSION["login"]="pelanggan";
-                    echo "berhasil login";
+                    echo "Berhasil login";
                 }else{
-                    echo "password salah";
+                    echo "Password salah";
                 }
             }else if ($query["status"]==2){
                 if($query["password"]==$password){
                     $_SESSION['pelanggan'] = $query['id_member'];
                     $_SESSION["login"]="pelanggan";
-                    echo "berhasil login v2";
+                    echo "Berhasil login v2";
 
                 }else{
-                    echo "password salah";
+                    echo "Password salah";
                 }
             }
             else{
-                echo "akun anda telah di banned";
+                echo "Akun anda telah di banned";
             }
         }else{
             echo "Email atau Nohp atau Username salah";
@@ -44,15 +44,15 @@
                 if($query["password"]==$password){
                     $_SESSION["pegawai"] = $query['id_pegawai'];
                     $_SESSION["login"]="pegawai";
-                    echo "berhasil login";
+                    echo "Berhasil login";
                 }else{
-                    echo "password salah";
+                    echo "Password salah";
                 }
             }else{
-                echo "akun anda telah di banned";
+                echo "Akun anda telah di banned";
             }
         }else{
-            echo "Email atau Nohp atau Username salah";
+            echo "Email salah";
         }
     }
 ?>
