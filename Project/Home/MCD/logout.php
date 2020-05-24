@@ -4,4 +4,5 @@
     $_SESSION['login'] = "";
     unset($_SESSION['pelanggan']);
     unset($_SESSION['pegawai']);
+   // $_SESSION['pelanggan'] = "";
 ?>

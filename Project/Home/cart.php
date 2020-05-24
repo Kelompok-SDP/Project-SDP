@@ -7,7 +7,11 @@
 		header("location: ../login_register/login.php");
 	}
 	include("../Source.php");
-	include("Mcd/header.php");	
+	include("Mcd/header.php");
+	$isPel = "";
+	if(isset($_SESSION['pelanggan'])){
+		$isPel = $_SESSION['pelanggan'];
+	}
 ?>
 
 <html lang="en">
@@ -207,7 +211,6 @@ Body Section
 </html>
 <script>
 	$(document).ready(function () {
-		alert();
 		$("#dropmenu").html(
 			"<a class='nav-link border-left' href='Homemenu.php'>Menu</a>"
 		);
@@ -645,7 +648,7 @@ Body Section
 		});
 	}
 	function kirimemail(){
-		var isPelanggan="<?=$_SESSION["pelanggan"]?>";
+		var isPelanggan="<?=$isPel?>";
 		if(isPelanggan!=""){
 			var id =isPelanggan;
 			$.ajax({

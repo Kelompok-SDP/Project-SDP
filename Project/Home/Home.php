@@ -142,12 +142,12 @@
                 </div>
                 <div class="col-lg-6 order-lg-last content-center">
                     <div class="cover-content">
-                        <h2 class="title animated vp-fadeinup delayp1 visible fadeInUp full-visible">Mager Di Rumah?</h2>
+                        <h2 class="title animated vp-fadeinup delayp1 visible fadeInUp full-visible">Ingin Lebih Tau Tentang Kami?</h2>
                         <p class="subtitle dark animated vp-fadeinup delayp2 visible fadeInUp full-visible">
-                            Pesan Antar Saja Tinggal Klik Klik Bayar pesanan akan di antar
+                            Klik di bawah ini
                         </p>
                         <div class="btn-placeholder mt-4 animated vp-fadeinup delayp3 visible fadeInUp full-visible">
-                            <a href="AboutUs.php" class="btn btn-primary">Pelajari Selengkapnya</a>
+                            <a href="AboutUs.php" class="btn btn-primary">Tentang Kami</a>
                         </div>
                     </div>
                 </div>
