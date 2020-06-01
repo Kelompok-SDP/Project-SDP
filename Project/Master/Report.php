@@ -22,18 +22,18 @@
   background-color: white; 
 }
 </style>
-<?php
+<?php 
   include("../sidebar.php");
 ?>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
- 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
+  
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Report</h1>
@@ -172,7 +172,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                 </span>
                             </div>
-                            <input type="month" id="month" class="form-control float-right" name="inpmonth" id="inpmonth">
+                            <input type="month" id="inpmonth" class="form-control float-right" name="inpmonth" id="inpmonth">
                         </div>
                         <!-- /.input group -->
                     </div>

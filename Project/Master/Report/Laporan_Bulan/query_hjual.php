@@ -1,6 +1,6 @@
 <?php
     include("../../../config.php");
-    $month=$_POST["month"];
+    $month=$_REQUEST["month"];
     $total = 0;
     $totalangka = 0;
     $query = "SELECT * FROM HJUAL where tanggal_transaksi like '%$month%'";
@@ -39,6 +39,8 @@
                 foreach ($hasil as $key => $value2) {
                     echo "<td>$value2[nama]</td>";
                 }
+            }else{
+                echo "<td></td>";
             }
             echo "<td><button onclick='detail(\"$value[id_hjual]\")'class='btn btn-primary'>Lihat Detail <i class='fas fa-angle-right' style='padding-left:12px;color:white;'></i></button></td>";
             echo "</tr>";
@@ -54,7 +56,7 @@
     function detail(id){
         $.ajax({
             method: "post",
-            url: "Report/Laporan_Hari/query_djual.php",
+            url: "Report/Laporan_Bulan/query_djual.php",
             data: {
                 id:id
             },

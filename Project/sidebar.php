@@ -38,7 +38,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" style="height: 100%;">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -206,11 +206,6 @@
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Log Out</p>
             </a>
-          </li>
-          <li class="nav-item" style="height: 125vh;">
-            <p>
-              <span class="right badge badge-danger"></span>
-            </p>
           </li>
         </ul>
       </nav>
