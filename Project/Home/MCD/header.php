@@ -11,7 +11,6 @@
         $_SESSION["jenis"]="kosong";
         $_SESSION["kupon"]="";
     }
-    // session_destroy();
     $nama = "Login";
     $id = "null";
     $tl = "";
@@ -45,27 +44,7 @@
 
    $hr = $tl;
 ?>
-<div class="loader-wrapper loader-light">
-    <div class="loader" style="display: none;"></div>
-    </div> 
-    <div class="menu-slide light" id="menu-slide-1">
-        <label class="product-title-slide animated fadeInUp delayp1" id="menu-back-1">Menu</label>
-        <ul class="mega-menu-down">
-            <?php
-                $query ="select id_kategori,nama_kategori from kategori";
-                $query=mysqli_query($conn,$query);
-                $ctr=1;
-                foreach ($query as $key => $value) {
-                    echo "<li><a href='menu/semua_menu/Homemenu.php?filter=$value[id_kategori]' class='animated menu-mobile-list fadeInUp delayp$ctr'>$value[nama_kategori]</a></li>";
-                    $ctr++;
-                }
-               
-            ?>
-            
-            <li><a href="Homemenu.php" class="animated fadeInUp delayp10"><strong>Lihat Semua Menu</strong></a></li>
-        </ul>
-    </div>
-<input type="hidden" id="custid" value="<?=$id?>" >
+<input type="hidden" id="custid" value="<?=$id?>">
 <nav class="navbar navbar-mcd navbar-expand-md fixed-top light">
     <div class="container">
         <a class="navbar-brand animated fadeInDown delayp4" href="Home.php">
@@ -81,7 +60,7 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item dropdown menu-large" id="dropmenu">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                     <ul class="dropdown-menu megamenu animated fadeInDown">
                         <div class="container">
                             <div class="row megamenu-links">
@@ -110,7 +89,7 @@
                                         ?>   
                                         </div>
                                     </div>
-                                    <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu <i class="fa fa-angle-right"></i></a>
+                                    <a href="Homemenu.php" class="btn btn-link btn-subtitle">Lihat semua menu</a>
                                 </div>
                                 <?php 
                                     $query = "SELECT * FROM MENU ORDER BY RAND() LIMIT 1";
@@ -164,51 +143,6 @@
             </ul>
         </div>
     </div>
-
-    <div class="navbar-slide light">
-        <div class="navbar-slide-close">
-            <span class="icon-bar icon-bar-1"></span>
-            <span class="icon-bar icon-bar-2"></span>
-            <span class="icon-bar icon-bar-3"></span>
-        </div>
-        <div class="content">
-            <a href="https://www.mcdelivery.co.id/" class="btn btn-yellow mb-3 pesan-tag" target="_blank">
-                <img src="Home%20%20%20McDonald's%20Indonesia_files/ic_mcdelivery.jpg" class="mcd-delivery-icon" alt="Yellow Element">
-                <span>Pesan Sekarang</span>
-            </a>
-            <ul class="nav-slide-list">
-                <li class="nav-slide-item animated fadeInUp delayp2" id="navMenuMobile">
-                    <a class="nav-link">Menu</a>
-                </li>
-                <li class="nav-slide-item animated fadeInUp delayp3" id="navPromoMobile">
-                    <a href="Homepromo.php" class="nav-link">
-                        Promo
-                    </a>
-                </li>
-                <li class="nav-slide-item animated fadeInUp delayp4" id="navDuniaAnakMobile">
-                    <a href="https://mcdonalds.co.id/dunia-anak" class="nav-link">
-                        Dunia Anak
-                    </a>
-                </li>
-                <li class="nav-slide-item animated fadeInUp delayp5" id="navWhatsOnMobile">
-                    <a href="https://mcdonalds.co.id/whats-on" class="nav-link">
-                        Berita Terkini
-                    </a>
-                </li>
-                <!-- <li class="nav-slide-item animated fadeInUp delayp6" id="navMakinKenalMakinSayang">
-                    <a href="/makin-kenal-makin-sayang" class="nav-link">
-                        Makin Kenal Makin Sayang
-                    </a>
-                </li> -->
-                <li class="nav-slide-item animated fadeInUp delayp7" id="navLocationMobile">
-                    <a href="https://mcdonalds.co.id/location" class="nav-link">
-                        Lokasi
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
 </nav>
 
 <script src="Mcd/Home%20%20%20McDonald's%20Indonesia_files/manifest.js"></script>

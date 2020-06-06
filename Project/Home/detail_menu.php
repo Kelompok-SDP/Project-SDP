@@ -382,8 +382,8 @@ if(strpos($ids, "MEN") !== false){
 			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}else{
-            $('#box').fadeIn(1500);
-            $('#box').fadeOut(1000);
+            $('#box').fadeIn(1000);
+            $('#box').fadeOut(3000);
             $.ajax({
                 method: "post",
                 url: "../Transaction/General/setSession_menu.php",

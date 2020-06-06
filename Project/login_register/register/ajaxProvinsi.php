@@ -1,4 +1,3 @@
-
 <?php
 	require_once("../../config.php");
     $query=mysqli_query($conn_detail,"SELECT * from daerah ");
@@ -11,9 +10,14 @@
         echo "<button class='dropdown-item' onclick='ganti(\"".$value['nama_daerah']."\")'>$value[nama_daerah]</button>";
     }
     echo "</div>"
+
 ?>
 <script>
     function ganti(nama){
         $('#provinsi_value').val(nama);
+        $('#provinsi_value').html(nama);
+
+      
+
     }
 </script>

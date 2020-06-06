@@ -46,7 +46,7 @@
             $rand = rand(0,5);
             $persen = round($hpaket * $tharga[$rand] / 100);
             $hpromo = $hpaket - $persen;
-            $query5 = "INSERT INTO PROMO_PAKET VALUES('$ppaket','$string',$hpromo)";
+            $query5 = "INSERT INTO PROMO_PAKET VALUES('$ppaket','$string',$hpromo,1)";
             if($conn->query($query2) == true && $conn->query($query3) == true && $conn->query($query4) == true && $conn->query($query5) == true){
                 echo $string." -- Berhasil Menambahkan Data";
             }else{

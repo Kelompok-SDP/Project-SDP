@@ -4,7 +4,7 @@
     require_once("../config.php");
     require_once("MCD/title.php");
     require_once("MCD/header.php");
-
+    include("Totop.php");
     $datenow = date('Y-m-d');
     $query7 = "SELECT * FROM KUPON";
     $list = mysqli_query($conn, $query7);
@@ -38,8 +38,10 @@
     }
 ?>
 <head>
+
 </head>
 <body>
+    
 <div class="section-cover-menu cover cover-general bg-cream">
     <div class="container position-relative">
         <nav aria-label="breadcrumb" class="general-breadcrumb">
@@ -114,7 +116,6 @@
     <?php } ?><!-- for j tutup-->
         </div>
     </div>
-
 </section>
 <?php 
     if($ctr == 0 && $ctr2 == 0){
@@ -129,7 +130,9 @@
     include('Mcd/footer.php');
     ?>
     <div id="app"></div>
-    <script>
+<script>
+    
+
     document.addEventListener("DOMContentLoaded", function (event) {
         $(".loader").fadeOut('slow');
         $(".loader-wrapper").fadeOut("slow");

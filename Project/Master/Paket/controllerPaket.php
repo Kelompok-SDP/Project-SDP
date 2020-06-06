@@ -39,8 +39,16 @@
             echo" <tr>
                 <td>".$row['nama_paket']."</td>
                 <td>".$hasil_rupiah."</td>
-                <td>
-                    <button onclick='edit(\"$row[id_paket]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
+                <td>";
+                $query = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$row[id_paket]' AND STATUS = 1";
+                $list = mysqli_query($conn,$query);
+                $row2 = mysqli_num_rows($list);
+                if($row2 > 0){
+                    echo "<button onclick='edit(\"$row[id_paket]\")' class='btn btn-primary' disabled>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+                }else{
+                    echo "<button onclick='edit(\"$row[id_paket]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+                }
+            echo "</td>
                 </tr>";
         }
         echo " </tbody>
@@ -75,7 +83,7 @@
             $query="SELECT * FROM PAKET WHERE $pb >= $min AND $pb <= $max AND STATUS = 0";
         }
         $hasil = mysqli_query($conn,$query);
-        echo  "<table class='table table-head-fixed text-nowrap' id='purgatoryurut'>
+        echo  "<table class='table table-bordered text-nowrap' id='purgatoryurut'>
         <thead>
         <tr>
         <th>Nama Paket</th>
@@ -92,8 +100,10 @@
             echo" <tr>
                 <td>".$row['nama_paket']."</td>
                 <td>".$hasil_rupiah."</td>
-                <td>
-                    <button onclick='pulihkan(\"$row[id_paket]\")' class='btn btn-primary'>Pulihkan</button>
+                <td>";
+                echo "<button onclick='pulihkan(\"$row[id_paket]\")' class='btn btn-primary'>Pulihkan</button>";
+                
+            echo "</td>
                 </tr>";
         }
         echo " </tbody>

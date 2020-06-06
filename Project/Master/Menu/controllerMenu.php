@@ -1,15 +1,15 @@
 <?php
-    require_once("../../config.php");
+    require_once('../../config.php');
    if($_POST["action"]=="recover")
     {
      //delete kategori
-     $id  = $_POST['id'];
+     $id  = $_POST["id"];
      $query = "UPDATE MENU SET STATUS = 1 WHERE ID_MENU = '$id'";
      mysqli_query($conn,$query) ;
     } else
     if($_POST["action"]=="showdata"){
-        $isi = $_POST['source'];
-        $filter = $_POST['fillter'];
+        $isi = $_POST["source"];
+        $filter = $_POST["fillter"];
         $pb ='';
         if($filter == 1){
             $pb = "nama_menu";
@@ -40,17 +40,25 @@
             echo" <tr>
             <td>
             <form action='Menu/openDetail.php' method='post' target='_blank'>
-            <button type='submit' name='detail' value=\"$row[id_menu]\" style='  background-color: Transparent;
+            <button type='submit' name='detail' value=\'$row[id_menu]\' style='  background-color: Transparent;
             background-repeat:no-repeat;
             border: none;
             color: blue;
             cursor:pointer;
             overflow: hidden;
-            outline:none;'>".$row['nama_menu']."</button>
+            outline:none;'>".$row["nama_menu"]."</button>
              </form> </td>
                 <td>".$hasil_rupiah."</td>
-                <td>
-                    <button onclick='edit(\"$row[id_menu]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>
+                <td>";
+                $query = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$row[id_menu]' AND STATUS = 1";
+                $list = mysqli_query($conn,$query);
+                $row2 = mysqli_num_rows($list);
+                if($row2 > 0){
+                    echo "<button onclick='edit(\"$row[id_menu]\")' class='btn btn-primary' disabled>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+                }else{
+                    echo "<button onclick='edit(\"$row[id_menu]\")' class='btn btn-primary'>Edit <i class='fas fa-pencil-alt' style='padding-left:12px;color:white;'></i></button>";
+                }
+            echo "</td>
             </tr>";
         }
         echo " </tbody>
@@ -70,8 +78,8 @@
         </script>";
     }
     else if($_POST["action"]=="showdata2"){
-        $isi = $_POST['source'];
-        $filter = $_POST['fillter'];
+        $isi = $_POST["source"];
+        $filter = $_POST["fillter"];
         $pb ='';
         if($filter == 1){
             $pb = "nama_menu";
@@ -102,17 +110,18 @@
             echo" <tr>
             <td>
             <form action='Menu/openDetail.php' method='post' target='_blank'>
-            <button type='submit' name='detail' value=\"$row[id_menu]\" style='  background-color: Transparent;
+            <button type='submit' name='detail' value=\'$row[id_menu]\' style='  background-color: Transparent;
             background-repeat:no-repeat;
             border: none;
             color: blue;
             cursor:pointer;
             overflow: hidden;
-            outline:none;'>".$row['nama_menu']."</button>
+            outline:none;'>".$row["nama_menu"]."</button>
              </form> </td>
                 <td>".$hasil_rupiah."</td>
-                <td>
-                <button onclick='pulihkan(\"$row[id_menu]\")' class='btn btn-primary'>Pulihkan</button>
+                <td>";
+                echo "<button onclick='pulihkan(\"$row[id_menu]\")' class='btn btn-primary'>Pulihkan</button>";
+            echo "</td>
             </tr>";
         }
         echo " </tbody>

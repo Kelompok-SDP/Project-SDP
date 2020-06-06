@@ -1,6 +1,5 @@
 <?php
     require_once("../config.php");
-
     $snmenu="";
     $snmenu = $_POST["a"];
     $tctr = 0;

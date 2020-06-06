@@ -37,7 +37,20 @@ $hasil = mysqli_query($conn,$query);
             ?>
             <td><?=$hasil_rupiah?></td>
             <td>
-                <button onclick="edit('<?=$row['id_paket']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+            <?php 
+                $query = "SELECT * FROM PROMO_PAKET WHERE ID_PAKET = '$row[id_paket]' AND STATUS = 1";
+                $list = mysqli_query($conn,$query);
+                $row2 = mysqli_num_rows($list);
+                if($row2 > 0){
+                ?>
+                    <button onclick="edit('<?=$row['id_paket']?>')" class="btn btn-primary" disabled>Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                <?php
+                    }else{
+                ?>
+                    <button onclick="edit('<?=$row['id_paket']?>')" class="btn btn-primary">Edit <i class="fas fa-pencil-alt" style="padding-left:12px;color:white;"></i></button>
+                <?php
+                }
+                ?>
             </td>
         </tr>
     <?php } ?>

@@ -22,7 +22,7 @@
           foreach ($res2 as $key => $value) {
               $nkat = $value['nama_kategori'];
           }
-          $query3 = "SELECT * FROM PROMO_PAKET WHERE id_paket = '$id'";
+          $query3 = "SELECT * FROM PROMO_PAKET WHERE id_paket = '$id' AND STATUS = 1";
           $res3 = mysqli_query($conn,$query3);
           foreach ($res3 as $key => $value) {
               $npro = $value['id_promo'];

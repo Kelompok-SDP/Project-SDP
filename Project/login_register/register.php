@@ -1,5 +1,5 @@
 <?php
-  require_once("../Source.php");
+  //require_once("../Source.php");
   $emails ="";
   if(isset($_POST['footerregis'])){
     $emails = $_POST["emailfooter"];
@@ -13,7 +13,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Registration Page</title>
+  <title>Uwenak Restoran | Registrasi Member</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -157,6 +157,7 @@ var balik=-1;
           type: "post",
           url: "register/ajaxProvinsi.php",
           success: function (response) {
+            //alert(response);
               $("#provinsi").html(response);
           }
         });
@@ -182,14 +183,13 @@ var balik=-1;
 
     function gantiKota(){
         $.ajax({
-       
             type: "post",
             url: "register/ajaxKota.php",
             data: {
                 daerah:$("#provinsi_value").val()
             },
             success: function (response) {
-                alert(response);
+                //alert(response);
                 $("#kota").html(response);
             }
         });
@@ -247,9 +247,7 @@ var balik=-1;
                                         Konfirm();
                                         insertUser();
                                        
-                                        setTimeout(
-                                        window.location.href = "confirmation.php?test=1"
-                                        , 5000);
+                                        
                                       }else{
                                         alert(data);
                                       }
@@ -285,7 +283,7 @@ var balik=-1;
         },
         success: function (response) {
           if(response == "Berhasil"){
-
+            
           }
         }
       });
@@ -303,6 +301,7 @@ var balik=-1;
         var kabupaten=$("#provinsi_value").val();
         var kota=$("#kota_value").val();
         $.ajax({
+            async: false,
             method: "post",
             url: "register/insertUser.php",
             data: {
@@ -318,7 +317,10 @@ var balik=-1;
               kota:kota
             },
             success: function (response) {
-               alert(response);
+              alert("Tolong Cek Email Anda");
+              setTimeout(
+              window.location.href = "confirmation.php?test=1"
+              , 5000);
             }
         });
     }

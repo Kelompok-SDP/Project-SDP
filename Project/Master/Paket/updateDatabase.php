@@ -41,20 +41,20 @@
                     $hpromo = $hpaket - $persen;
                     $query5 = "DELETE FROM PROMO_PAKET WHERE ID_PROMO = '$ppaket' AND ID_PAKET = '$id'";
                     $conn->query($query5);
-                    $query5 = "INSERT INTO PROMO_PAKET VALUES('$ppaket','$id',$hpromo)";
+                    $query5 = "INSERT INTO PROMO_PAKET VALUES('$ppaket','$id',$hpromo,1)";
                     $conn->query($query6);
 
                     if(mysqli_query($conn,$query) == true && mysqli_query($conn,$query2) == true && mysqli_query($conn,$query3) == true && mysqli_query($conn,$query4) == true){
                         echo $id." -- Berhasil Meng-update Data";
                     } else {
-                        echo "Tidak Berhasil Meng-update Data";
+                        echo "Tidak Berhasil Meng-update Data hai";
                     }   
                 }
             }else{
                 echo "Menu Kembar, Tidak Berhasil Meng-update Data";
             }
         }else{
-            $query = "UPDATE PAKET SET NAMA_paket ='$npaket', HARGA_paket ='$hpaket', ID_KATEGORI = '$kpaket', ID_PROMO = '$ppaket' WHERE id_paket = '$id'";
+            $query = "UPDATE PAKET SET NAMA_paket ='$npaket', HARGA_paket =$hpaket, ID_KATEGORI = '$kpaket' WHERE id_paket = '$id'";
             $query2 = "DELETE FROM PAKET_MENU WHERE ID_PAKET = '$id'"; 
             $query3 = "INSERT INTO PAKET_MENU VALUES('$id','$mpaket')";
             $query4 = "INSERT INTO PAKET_MENU VALUES('$id','$mpaket2')";
@@ -62,7 +62,7 @@
             if(mysqli_query($conn,$query) == true && mysqli_query($conn,$query2) == true && mysqli_query($conn,$query3) == true && mysqli_query($conn,$query4) == true){
                 echo $id." -- Berhasil Meng-update Data";
             } else {
-                echo "Tidak Berhasil Meng-update Data";
+                echo "Tidak Berhasil Meng-update Data hai2";
             }   
         }
     }

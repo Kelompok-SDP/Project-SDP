@@ -81,7 +81,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="inputStatus">Promo Paket</label>
+                        <label for="inputStatus">Promo Menu</label>
                         <select class="form-control custom-select" id="Pmenu" name="pmenu">
                         <option selected disabled>Pilih satu</option>
                         <?php  

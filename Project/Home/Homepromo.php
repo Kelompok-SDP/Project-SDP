@@ -6,6 +6,7 @@
     include('Mcd/title.php');
     include('Mcd/header.php');
     include('Mcd/corusel.php');
+    include("Totop.php");
 ?>
 <body>
 

@@ -4,6 +4,7 @@
     require_once("../config.php");
     require_once("MCD/title.php");
     require_once("MCD/header.php");
+    include("Totop.php");
     $total = 0;
     $datenow = date('Y-m-d');
     $query7 = "SELECT * FROM KUPON";

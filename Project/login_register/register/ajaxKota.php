@@ -2,7 +2,7 @@
     require_once("../../config.php");
     $kodeDaerah=$_POST["daerah"];
     $query=mysqli_query($conn_detail,"SELECT * from kota ");
-    $query_first=mysqli_fetch_assoc(mysqli_query($conn_detail,"SELECT * from kota"));
+$query_first=mysqli_fetch_assoc(mysqli_query($conn_detail,"SELECT * from kota where kode_daerah =(select kode_daerah from daerah where nama_daerah ='$kodeDaerah')"));
     echo "<button type='button' id='kota_value' value='Surabaya' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>";
         echo $query_first['nama_kota'];
     echo"</button>";
@@ -25,6 +25,7 @@
 ?>
 <script>
     function ganti2(nama){
+        $('#kota_value').val(nama);
         $('#kota_value').html(nama);
     }
 </script>

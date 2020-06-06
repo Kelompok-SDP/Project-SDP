@@ -5,7 +5,6 @@
     include("../config.php");
     include('Mcd/header.php');
     include('Mcd/corusel.php');
-
     $datenow = date('Y-m-d');
     $query = "SELECT * FROM PROMO";
     $list = mysqli_query($conn, $query);
@@ -14,23 +13,15 @@
         $pawal = $value["periode_awal"];
         $pakhir = $value["periode_akhir"];
         $stat = $value["status_promo"];
-        if($datenow < $pawal){
-            $query5 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $conn->query($query5);
-        }
-        else if ($pawal >= $datenow && $stat == 0){
-            $query6 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
-            $conn->query($query6);
-        }
-        else if($pawal >= $datenow){
-            $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
-            $conn->query($query2);
-        }
-        if($datenow > $pakhir){
+        if($datenow < $pawal || $datenow > $pakhir){
             $query3 = "UPDATE PROMO SET STATUS_PROMO = 0 WHERE ID_PROMO = '$idp'";
             $query4 = "UPDATE  PROMO_PAKET  set status = 0 WHERE ID_PROMO = '$idp'";
             $conn->query($query3);
             $conn->query($query4);
+        }
+        if($datenow >= $pawal && $datenow <= $pakhir){
+          $query2 = "UPDATE PROMO SET STATUS_PROMO = 1 WHERE ID_PROMO = '$idp'";
+            $conn->query($query2);
         }
     }
 
