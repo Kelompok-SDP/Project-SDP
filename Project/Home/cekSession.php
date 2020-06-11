@@ -35,14 +35,14 @@
                     <h5 style="margin-right:20px; font-size:20pt;"><?= $jab?></h5>
                 </div>
                 <?php
-                $query2 = "SELECT * FROM HJUAL WHERE ID_PEGAWAI = 'W00002' ORDER BY TANGGAL_TRANSAKSI DESC LIMIT 5";
+                $query2 = "SELECT * FROM HJUAL WHERE ID_PEGAWAI = '$id' ORDER BY TANGGAL_TRANSAKSI DESC LIMIT 5";
                     $list2 = mysqli_query($conn, $query2);
-                    $query3 = "SELECT * FROM HJUAL WHERE ID_PEGAWAI = 'W00002' ORDER BY TANGGAL_TRANSAKSI DESC ";
+                    $query3 = "SELECT * FROM HJUAL WHERE ID_PEGAWAI = '$id' ORDER BY TANGGAL_TRANSAKSI DESC ";
                     $list3 = mysqli_query($conn, $query3);
-                    $row = mysqli_num_rows($list3);
+                    $row2 = mysqli_num_rows($list3);
                     ?>
                 <div class="input-group" style="margin:10px;">
-                    <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Record History </h5><h5 style="margin-right:10px; font-size:20pt; font-weight:1px;">:<?="   ".$row . " record"?></h5><br>
+                    <h5 class="footer-title" style="margin-right:20px; font-size:20pt;width:200px;">Record History </h5><h5 style="margin-right:10px; font-size:20pt; font-weight:1px;">:<?="   ".$row2 . " record"?></h5><br>
                 </div><h5 style="font-size:20pt; margin-left:10px;"> Record 5 terakhir </h5>
                 <?php 
                     $ctr = 0;

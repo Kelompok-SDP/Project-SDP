@@ -81,7 +81,7 @@
         <?php } ?>
 
 <div id="box2" class="clearfix btn-placeholder" style="display: none; position: fixed; bottom: 0; right: 40%;">
-    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Add to Cart</p> 
+    <p data-id="20" data-name="Big Mac" data-category="Daging Sapi" class="btn btn-primary animated fadeInUp delayp4 ordernow" style="cursor: pointer;">Claim Successfull</p> 
 </div>
         <!-- <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/manifest.js.download"></script> -->
         <script src="MCD/Promo _ McDonald&#39;s Indonesia_files/vendor.js.download"></script>
@@ -95,7 +95,6 @@ include('Mcd/footer.php');
     function Claim_cupon(id_kupon){
         var login="<?=$_SESSION["login"]?>";
         if(login==""){
-			alert("Maaf, Anda harus Login!");
 			window.location.href="../login_register/login.php";
 		}else{
             $('#box2').fadeIn(1500);

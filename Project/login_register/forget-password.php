@@ -63,7 +63,6 @@
 <script>
     function CheckEmail(){
        var kepada=$("#email").val();
-        alert(kepada);
       $.ajax({
         method: "post",
         url: "forget/getEmail.php",

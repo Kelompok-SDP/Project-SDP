@@ -394,7 +394,8 @@ Body Section
 	}
 	function gotoStruk(){
 		var id_hjual=$("#id_struk").val();
-		window.location.href("struk.php?htrans="+id_hjual+"");
+		alert(id_hjual);
+		document.location.href="window_perantara.php?ctr="+id_hjual;
 		
 	}
 	function set_pegawai_member(){
@@ -479,7 +480,7 @@ Body Section
 												bayar();
 												kirimemail();
 												if(jenis_pembayaran=="cash"){
-													document.location.href="window_perantara.php";
+													document.location.href="window_perantara.php?ctr=0";
 												}
 											}else{
 												alert("Jumlah Orang Harus Lebih Dari 0");
@@ -504,10 +505,11 @@ Body Section
 						time:time
 					},
 					success: function (response) {
+						alert(response);
 						if(response=="berhasil"){
 							bayar();
 							if(jenis_pembayaran=="cash"){
-								document.location.href="window_perantara.php";
+								document.location.href="window_perantara.php?ctr=0";
 							}
 						}else{
 							alert(response);
@@ -528,7 +530,7 @@ Body Section
 							if(alamat!=""){
 								bayar();
 								if(jenis_pembayaran=="cash"){
-									document.location.href="window_perantara.php";
+									document.location.href="window_perantara.php?ctr=0";
 								}
 							}
 						}else{
@@ -541,7 +543,7 @@ Body Section
 				if(jumlah_meja>0){
 					bayar();
 					if(jenis_pembayaran=="cash"){
-						window.location.href="window_perantara.php";
+						window.location.href="window_perantara.php?ctr=0";
 					}
 				}else{
 					alert("Pilih Meja ");
@@ -594,7 +596,9 @@ Body Section
 				banyak_orang:banyak_orang
 			},
 			success: function (response) {
-
+				if(response == "Point Tidak Cukup"){
+					alert(response);
+				}
 			}
 		});
 	}

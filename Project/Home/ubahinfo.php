@@ -8,9 +8,9 @@
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
+  position: relative; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 0px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -229,7 +229,7 @@
       
     </div>
         <!-- The Modal -->
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal" style="margin-top:-100px;">
 
         <!-- Modal content -->
         <div class="modal-content">
@@ -245,8 +245,6 @@
         </div>
 
         </div>
-
-    
 </section>
 <hr>
 <?php require_once("MCD/footer.php") ?>
@@ -279,7 +277,7 @@
             telp:telp
         },
         success: function (response) {
-            alert(response);
+
             setTimeout(
               window.location.href = "ubahinfo.php?id="+document.getElementById('ndas').value
              , 5000);

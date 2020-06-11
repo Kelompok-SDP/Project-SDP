@@ -1,7 +1,7 @@
 <?php
     include("../../config.php");
     // session_start();
-    $query="SELECT lpad(max(substr(id_hjual,-3,3))+1,3,0) as \"id\"  from hjual";
+    $query="SELECT lpad(nvl(max(substr(id_hjual,-3,3))+1,1),3,0) as \"id\"  from hjual";
     $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
     $id_htrans= "H".$query["id"];
     $_SESSION["id_hjual"]=$id_htrans;
@@ -96,7 +96,7 @@
         foreach ($semua_menu as $key => $value) {
             if($ctr<$jumlah_menu-1){
 
-                $query="SELECT lpad(max(substr(id_djual,-3,3))+1,3,0) as \"id\"  from djual";
+                $query="SELECT lpad(nvl(max(substr(id_djual,-3,3))+1,1),3,0) as \"id\"  from djual";
                 $query=mysqli_fetch_assoc(mysqli_query($conn,$query));
                 $id_dtrans= "DJ".$query["id"];
 
@@ -132,6 +132,6 @@
             }
         }
     }else{
-        echo "Point Tidak Cukup";
+        echo "Point / Saldo Anda Tidak Mencukupi";
     }
 ?>

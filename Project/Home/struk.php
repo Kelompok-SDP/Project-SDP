@@ -150,7 +150,7 @@
         //     ";echo"</tr>";
         // echo"</tbody>";
 
-      
+        echo "<div style='margin-bottom: 5vh;'>";
          if($ada == true ){
 
             echo "<div style='width:100%; float:left;'>";
@@ -175,13 +175,16 @@
             echo "<div style='width:25%; font-size:12pt;float:left;'>$grandtotal_string</div>";
         
         }
+       
 
             
         
        
     }
+    echo "<br><br>";
+    echo "</div>";
     // echo"</table>";
-    echo "<div style='float:right;width:100%;'>----------------------------------------------------------------------------------------------------------------</div>";
+    echo "<hr style='border-top: 1px dashed black;margin-top:10px; margin-bottom:10px; '>";
    
             $grandtotal_string= number_format($grandtotal,2,',','.');
             $ongkir_string=number_format($ongkir,2,',','.');
@@ -218,17 +221,17 @@
 
             echo "<div style='width:100%'>";
             echo "<br>";
-            echo "<div style='float:left;width:100%;'>----------------------------------------------------------------------------------------------------------------</div>";
-            
+            echo "<hr style='border-top: 1px dashed black;margin-top:10px; margin-bottom:10px; '>";            
     
             echo"   <div style='width:100%; margin-top:30px;'> <div style='float:left;width:75%;;font-weight:bold'>Grandtotal</div>";
 
             echo"    <div style='float:left;width:5%'>Rp </div>";
             echo"    <div style='float:left;width:20%'>  $total_string </div></div>
             ";
-            echo "<div style='float:right;width:100%;'>----------------------------------------------------------------------------------------------------------------</div>";
-            echo "<div style='width:100%; font-weight:bold; font-size:16pt;text-align:center'>-- SUWUN --</div>";
-            echo "<div style='float:right;width:100%;'>----------------------------------------------------------------------------------------------------------------</div>";
-
+            echo "<hr style='border-top: 1px dashed black;margin-top:10px; margin-bottom:10px; '>";
+            echo "<div style='width:100%; font-weight:bold; font-size:16pt;text-align:center'>-- THANK YOU --</div>";
+            echo "<hr style='border-top: 1px dashed black;margin-top:10px; margin-bottom:10px; '>";
+            echo "<div style='width:100%; font-weight:bold; font-size:12pt;text-align:center'>-- Kritik dan Saran Kami Terima --</div><br>";
+            echo "<div style='width:100%; font-weight:bold; font-size:12pt;text-align:center'>-- Uwenak Restoran untuk Masyarakat --</div>";
     echo "</div>";
 ?>

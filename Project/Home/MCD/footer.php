@@ -63,9 +63,9 @@
                     <div class="footer-item">
                     <h5 class="footer-title">`Tak Kenal maka tak sayang- Cek Our Sosmed~ Yuk!`</h5>
                     <ul class="footer-social">
-                                    <li><a href="" target="_blank" class="social-fb"><img src="MCD/facebook.png" alt="facebook" srcset="" style="height:30px; width:30px;"></i></a></li>
-                                    <li><a href="" target="_blank" class="social-twitter"><img src="MCD/insta.png" alt="instagram" srcset="" style="height:30px; width:30px;"></i></a></li>
-                                    <li><a href="" target="_blank" class="social-instagram"><img src="MCD/twiter.png" alt="twiter" srcset="" style="height:30px; width:30px;"></i></a></li>
+                                    <li><a href="https://www.facebook.com" target="_blank" class="social-fb"><img src="MCD/facebook.png" alt="facebook" srcset="" style="height:30px; width:30px;"></i></a></li>
+                                    <li><a href="https://www.instagram.com" target="_blank" class="social-twitter"><img src="MCD/insta.png" alt="instagram" srcset="" style="height:30px; width:30px;"></i></a></li>
+                                    <li><a href="https://www.twitter.com" target="_blank" class="social-instagram"><img src="MCD/twiter.png" alt="twiter" srcset="" style="height:30px; width:30px;"></i></a></li>
                       </ul>
                     </div>
                 </div>

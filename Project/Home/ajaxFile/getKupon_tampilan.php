@@ -47,6 +47,7 @@ include("../../config.php");
                             </div>
                         </a>
                         <?php
+                       
                         if($counter==0){
                             echo "<p data-id='20' data-name='Big Mac' data-category='Daging Sapi' class='btn btn-primary btn-w-img animated fadeInUp delayp4 ordernow' style='color: white; cursor: pointer; margin-left: 5vw;' onclick='Claim_cupon(\"$idk\")'><img src='../Master/Menu/Image/diskon.png'\>Claim Sekarang <br> Tersedia: $sisa</p> ";
                         }else{
